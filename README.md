@@ -6,7 +6,7 @@
 ------------
 
 ## 시스템 구성도
-![asdgasdg](https://user-images.githubusercontent.com/71515740/147410142-759eaf1f-f692-4783-baa9-83a0e13f44fb.PNG)
+![20220103_163746](https://user-images.githubusercontent.com/70521476/147908142-249d7b0c-74eb-4f37-86b0-a911cf0928f7.png)
 
 ------------
 
