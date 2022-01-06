@@ -1,7 +1,10 @@
 import pandas
 from googleapiclient.discovery import build
 
+# API 키 등록
 api_key = 'AIzaSyC02qrZyWZRNMDA60q307mi2S3JrI1pNY0'
+
+# 유튜브 영상 id
 video_id = '13CoaS8PR64'
 
 comments = list()
