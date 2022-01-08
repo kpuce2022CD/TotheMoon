@@ -7,7 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class NaetubeApplication {
 
 	public static void main(String[] args) {
-
+		//start
 		SpringApplication.run(NaetubeApplication.class, args);
 	}
 
