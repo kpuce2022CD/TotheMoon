@@ -28,7 +28,12 @@
             const btn = document.getElementById('btn')
             btn.onclick = function () {
                 const url = new URL(document.getElementById("url").value)
-                window.location.href = '/search' + url.pathname
+                if(url.search.split("=")[1] == null){
+                    window.location.href = '/search' + url.pathname
+                } else{
+                    window.location.href = '/search/' + url.search.split("=")[1]
+                }
+
             }
         }
     </script>
