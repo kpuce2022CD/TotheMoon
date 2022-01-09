@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request
 from comment import collectComment
 
 def create_app():
@@ -7,6 +7,7 @@ def create_app():
 
   @app.route('/', methods=['GET'])
   def start():
-    return jsonify(collectComment(request.args.get('url')))
+    collectComment(request.args.get('url'))
+    return "success"
   
   return app

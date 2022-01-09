@@ -1,7 +1,7 @@
+import pandas
 from googleapiclient.discovery import build
 
 def collectComment(url):
-
   # API 키 등록
   api_key = 'AIzaSyC02qrZyWZRNMDA60q307mi2S3JrI1pNY0'
 
@@ -28,8 +28,8 @@ def collectComment(url):
                                                  pageToken=response['nextPageToken'], maxResults=100).execute()
     else:
         break
-
-  return comments
+  df = pandas.DataFrame(comments)
+  df.to_excel(url+'.xlsx', header=['comment', 'author', 'date', 'num_likes'], index=None)
 
 
 
