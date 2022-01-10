@@ -2,7 +2,7 @@ package Youtube.Naetube;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-
+//푸시 테스트
 @SpringBootApplication
 public class NaetubeApplication {
 
