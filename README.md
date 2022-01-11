@@ -19,7 +19,7 @@
   <a href="https://www.notion.so/865a1642082849d2ad836bc14d92802c">
     <img src="https://img.shields.io/badge/Notion-000000?style=for-the-badge&logo=Notion&logoColor=white">
   </a>
-------------
+
 
 ## 팀원 구성
 
