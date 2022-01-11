@@ -13,7 +13,7 @@
 ## 개발 계획
 
 https://trello.com/b/xjsdTC33/tothemoon
-
+(https://www.notion.so/ca2e25dfe2ea425ab37afa8b7c40a432)
 ------------
 
 ## 팀원 구성
