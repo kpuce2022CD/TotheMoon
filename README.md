@@ -9,6 +9,23 @@
 ![20220103_163746](https://user-images.githubusercontent.com/70521476/147908142-249d7b0c-74eb-4f37-86b0-a911cf0928f7.png)
 
 ------------
+## 기술 스택
++ framework
+<div> 
+  <img src="https://img.shields.io/badge/SpringBoot-6DB33F?style=for-the-badge&logo=SpringBoot&logoColor=white">
+  <img src="https://img.shields.io/badge/react-61DAFB?style=for-the-badge&logo=react&logoColor=black">
+  <img src="https://img.shields.io/badge/flask-000000?style=for-the-badge&logo=flask&logoColor=white">
+</div>
+
+
+
+* language
+<div>
+<img src="https://img.shields.io/badge/JAVA-007396?style=for-the-badge&logo=java&logoColor=white"> <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=Python&logoColor=white">
+</div>
+
+
+------------
 
 ## 개발 계획
 
@@ -21,6 +38,7 @@
   </a>
 
 
+------------
 ## 팀원 구성
 
 한승수 hanseu96@naver.com
