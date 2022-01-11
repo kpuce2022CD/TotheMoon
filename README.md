@@ -12,8 +12,13 @@
 
 ## 개발 계획
 
-https://trello.com/b/xjsdTC33/tothemoon
-(https://www.notion.so/ca2e25dfe2ea425ab37afa8b7c40a432)
+  <a href="https://trello.com/b/xjsdTC33/tothemoon">
+    <img src="https://img.shields.io/badge/Trello-3DDC84?style=for-the-badge&logo=Trello&logoColor=white">
+  </a>
+  
+  <a href="https://www.notion.so/865a1642082849d2ad836bc14d92802c">
+    <img src="https://img.shields.io/badge/Notion-3DDC84?style=for-the-badge&logo=Notion&logoColor=white">
+  </a>
 ------------
 
 ## 팀원 구성
