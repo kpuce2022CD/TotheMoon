@@ -5,7 +5,7 @@ from googleapiclient.discovery import build
 api_key = 'AIzaSyC02qrZyWZRNMDA60q307mi2S3JrI1pNY0'
 
 # 유튜브 영상 id
-video_id = '13CoaS8PR64'
+video_id = 'vl9lwn9jQwY'
 
 comments = list()
 api_obj = build('youtube', 'v3', developerKey=api_key)
