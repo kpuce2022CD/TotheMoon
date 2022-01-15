@@ -19,7 +19,8 @@ import pickle
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 
 okt = Okt()
-stopwords = ['의','가','이','은','들','는','좀','잘','걍','과','도','를','으로','자','에','와','한','하다']
+f = open("stopwords.txt", 'r' , encoding='utf8')
+stopwords = f.read()
 # 정수 인코딩
 
 max_len = 30
@@ -70,14 +71,13 @@ def youtube_comment_processing(filename) :
 
     for val in comment_dic.values() :
         print(val) # 댓글 원본
-        tokens = re.sub(emoji_pattern, "", val) # 이모티콘 제거
-        tokens = re.sub("<br>", " ", val) # <br> 한줄띄기 -> 스페이스 공백으로 변환
-        comment_result.append(tokens)
-        #    sentiment_predict(val)
+        val = re.sub(emoji_pattern, "", val) # 이모티콘 제거
+        val = re.sub("<br>|♡", " ", val) # <br> 한줄띄기 -> 스페이스 공백으로 변환 , 제거 이모티콘 추가
+        comment_result.append(val)
 
     for i in comment_result:
         print("------------------전처리 후-----------------")
         print(i)
-
+        sentiment_predict(i)
 
 youtube_comment_processing("test.xlsx")
