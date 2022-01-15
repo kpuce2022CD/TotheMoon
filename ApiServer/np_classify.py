@@ -18,9 +18,6 @@ import pickle
 
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 
-train_data = pd.read_table('ratings_train.txt')
-test_data = pd.read_table('ratings_test.txt')
-
 okt = Okt()
 stopwords = ['의','가','이','은','들','는','좀','잘','걍','과','도','를','으로','자','에','와','한','하다']
 # 정수 인코딩
@@ -34,7 +31,8 @@ with open('tokenizer.pickle', 'rb') as handle:
 
 loaded_model = load_model('best_model.h5')
 
-
+def comment_classify(comment_file):
+  print("dd")
 
 def sentiment_predict(new_sentence):
   new_sentence = re.sub(r'[^ㄱ-ㅎㅏ-ㅣ가-힣 ]','', new_sentence)
@@ -48,11 +46,38 @@ def sentiment_predict(new_sentence):
   else:
     print("{:.2f}% 확률로 부정 리뷰입니다.\n".format((1 - score) * 100))
 
+# 이모티콘 유니코드 패턴
+emoji_pattern = re.compile("["
+        u"\U0001F600-\U0001F64F"  # emoticons
+        u"\U0001F300-\U0001F5FF"  # symbols & pictographs
+        u"\U0001F680-\U0001F6FF"  # transport & map symbols
+        u"\U0001F1E0-\U0001F1FF"  # flags (iOS)
+                           "]+", flags=re.UNICODE)
+
+# 유튜브 데이터 전처리
+def youtube_comment_processing(filename) :
+    df = pd.read_excel(filename)
+    comment_dic = {}  # 추출한 댓글 데이터
+    comment_result = []  # 전처리 후 데이터
+
+    # 엑셀 파일로부터 데이터 추출
+    for i in df.index:
+        comment = df.loc[i, 'comment']  # 댓글 내용
+        author = df.loc[i, 'author']  # 작성자
+        date = df.loc[i, 'date']  # 작성 날짜
+        num_likes = df.loc[i, 'num_likes']  # 좋아요 개수
+        comment_dic[i] = comment  # comment_dic 딕셔너리에 추가
+
+    for val in comment_dic.values() :
+        print(val) # 댓글 원본
+        tokens = re.sub(emoji_pattern, "", val) # 이모티콘 제거
+        tokens = re.sub("<br>", " ", val) # <br> 한줄띄기 -> 스페이스 공백으로 변환
+        comment_result.append(tokens)
+        #    sentiment_predict(val)
+
+    for i in comment_result:
+        print("------------------전처리 후-----------------")
+        print(i)
 
 
-sentiment_predict('영상 보니 너무 웃기네요')
-sentiment_predict('영상 너무 재밌어요')
-sentiment_predict("장난하냐 이게 뭐냐")
-sentiment_predict("개 노잼")
-sentiment_predict("주호민작가님은 이말년 작가님을 볼 때 정말 애정을 담아서 바라보시네요...")
-sentiment_predict("와 이말년이 맛있게 먹으니까 진짜 맛있어보이네 ㅋㅋㅋㅋ")
+youtube_comment_processing("test.xlsx")
