@@ -59,7 +59,13 @@ emoji_pattern = re.compile("["
 def youtube_comment_processing(filename) :
     df = pd.read_excel(filename)
     comment_dic = {}  # 추출한 댓글 데이터
+    author_dic = {} # 추출한 작성자 데이터
+    date_dic = {} # 추출한 작성 날짜 데이터
+    num_likes_dic = {} # 추출한 좋아요 개수 데이터
     comment_result = []  # 전처리 후 데이터
+    author_result = []  # 전처리 후 데이터
+    date_result = []  # 전처리 후 데이터
+    num_likes_result = []  # 전처리 후 데이터
 
     # 엑셀 파일로부터 데이터 추출
     for i in df.index:
@@ -68,6 +74,10 @@ def youtube_comment_processing(filename) :
         date = df.loc[i, 'date']  # 작성 날짜
         num_likes = df.loc[i, 'num_likes']  # 좋아요 개수
         comment_dic[i] = comment  # comment_dic 딕셔너리에 추가
+        author_dic[i] = author # author_dic 딕셔너리에 추가
+        date_dic[i] = date # date_dic 딕셔너리에 추가
+        num_likes_dic[i] = num_likes # num_likes 딕셔너리에 추가
+
 
     for val in comment_dic.values() :
         print(val) # 댓글 원본
@@ -75,9 +85,21 @@ def youtube_comment_processing(filename) :
         val = re.sub("<br>|♡", " ", val) # <br> 한줄띄기 -> 스페이스 공백으로 변환 , 제거 이모티콘 추가
         comment_result.append(val)
 
-    for i in comment_result:
-        print("------------------전처리 후-----------------")
-        print(i)
-        sentiment_predict(i)
+    for val in author_dic.values() : # 작성자 배열에 추가
+        author_result.append(val)
 
-youtube_comment_processing("test.xlsx")
+    for val in date_dic.values() : # 작성 날짜 배열에 추가
+        date_result.append(val)
+
+    for val in num_likes_dic.values() : # 좋아요 개수 배열에 추가
+        num_likes_result.append(val)
+
+    for i in range(len(comment_result)):
+        print("------------------전처리 후-----------------")
+        print("댓글: "+comment_result[i])
+        print("작성자: "+author_result[i])
+        print("작성 날짜: "+date_result[i])
+        print("좋아요 개수: "+str(num_likes_result[i]))
+        sentiment_predict(comment_result[i])
+
+youtube_comment_processing("fq65aGyZrsA.xlsx")
