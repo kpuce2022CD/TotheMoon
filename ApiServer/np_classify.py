@@ -47,13 +47,31 @@ def sentiment_predict(new_sentence):
   else:
     print("{:.2f}% 확률로 부정 리뷰입니다.\n".format((1 - score) * 100))
 
+#이모티콘 제거 함수(ASCII 코드에 해당하지 않는 경우)
+def remove_emoji(inputString):
+    return inputString.encode('ascii', 'ignore').decode('ascii')
+
 # 이모티콘 유니코드 패턴
 emoji_pattern = re.compile("["
-        u"\U0001F600-\U0001F64F"  # emoticons
-        u"\U0001F300-\U0001F5FF"  # symbols & pictographs
-        u"\U0001F680-\U0001F6FF"  # transport & map symbols
-        u"\U0001F1E0-\U0001F1FF"  # flags (iOS)
-                           "]+", flags=re.UNICODE)
+                               u"\U0001F600-\U0001F64F"  # emoticons
+                               u"\U0001F300-\U0001F5FF"  # symbols & pictographs
+                               u"\U0001F680-\U0001F6FF"  # transport & map symbols
+                               u"\U0001F1E0-\U0001F1FF"  # flags (iOS)
+                               u"\U00002500-\U00002BEF"  # chinese char
+                               u"\U00002702-\U000027B0"
+                               u"\U00002702-\U000027B0"
+                               #u"\U000024C2-\U0001F251"
+                               u"\U0001f926-\U0001f937"
+                               u"\U00010000-\U0010ffff"
+                               u"\u2640-\u2642"
+                               u"\u2600-\u2B55"
+                               u"\u200d"
+                               u"\u23cf"
+                               u"\u23e9"
+                               u"\u231a"
+                               u"\ufe0f"  # dingbats
+                               u"\u3030"
+                               "]+", flags=re.UNICODE)
 
 # 유튜브 데이터 전처리
 def youtube_comment_processing(filename) :
@@ -82,7 +100,8 @@ def youtube_comment_processing(filename) :
     for val in comment_dic.values() :
         print(val) # 댓글 원본
         val = re.sub(emoji_pattern, "", val) # 이모티콘 제거
-        val = re.sub("<br>|♡", " ", val) # <br> 한줄띄기 -> 스페이스 공백으로 변환 , 제거 이모티콘 추가
+        #remove_emoji(val) #이모티콘 제거
+        val = re.sub("<br>|❤|🧡|💛|💚|💙|💜|🤎|🖤|🤍|💔|❣|💕|💞|💓|💗|💖|💘|💝|💟", " ", val) # <br> 한줄띄기 -> 스페이스 공백으로 변환 , 제거 이모티콘 추가
         comment_result.append(val)
 
     for val in author_dic.values() : # 작성자 배열에 추가
@@ -94,7 +113,7 @@ def youtube_comment_processing(filename) :
     for val in num_likes_dic.values() : # 좋아요 개수 배열에 추가
         num_likes_result.append(val)
 
-    for i in range(len(comment_result)):
+    for i in range(len(comment_result)): #배열 크기만큼 실행
         print("------------------전처리 후-----------------")
         print("댓글: "+comment_result[i])
         print("작성자: "+author_result[i])
