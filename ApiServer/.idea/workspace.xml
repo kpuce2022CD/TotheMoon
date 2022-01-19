@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="dcfeaba6-ab4e-4548-9932-540f5c2b5d35" name="Changes" comment="youtube_comment_processing function commit (유튜브 댓글 전처리)">
+    <list default="true" id="dcfeaba6-ab4e-4548-9932-540f5c2b5d35" name="Changes" comment="불용어 stopwords.txt 파일 추가">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/comment.py" beforeDir="false" afterPath="$PROJECT_DIR$/comment.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/np_classify.py" beforeDir="false" afterPath="$PROJECT_DIR$/np_classify.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Naetube/src/main/java/Youtube/Naetube/controller/HomeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Naetube/src/main/java/Youtube/Naetube/controller/HomeController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -167,8 +170,8 @@
     <recent_temporary>
       <list>
         <item itemvalue="Python.np_classify" />
-        <item itemvalue="Python.test2" />
         <item itemvalue="Python.test" />
+        <item itemvalue="Python.test2" />
         <item itemvalue="Python.aasd" />
         <item itemvalue="Python.comment" />
       </list>
