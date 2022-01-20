@@ -146,9 +146,8 @@ def youtube_comment_processing(filename):
         print(val)  # 댓글 원본
         val = emoticonToWord(val)  # 이모티콘 텍스트로 변환
         val = re.sub(emoji_pattern, "", val)  # 이모티콘 제거
-        # remove_emoji(val) #이모티콘 제거
-        val = re.sub("<br>|❤|🧡|💛|💚|💙|💜|🤎|🖤|🤍|💔|❣|💕|💞|💓|💗|💖|💘|💝|💟", " ",
-                     val)  # <br> 한줄띄기 -> 스페이스 공백으로 변환 , 제거 이모티콘 추가
+        remove_emoji(val) #이모티콘 제거
+        val = re.sub("<br>", " ",val)  # <br> 한줄띄기 -> 스페이스 공백으로 변환 , 제거 이모티콘 추가
         comment_result.append(val)
 
     for val in author_dic.values():  # 작성자 배열에 추가
