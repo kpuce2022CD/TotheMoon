@@ -5,26 +5,21 @@ from googleapiclient.discovery import build
 api_key = 'AIzaSyC02qrZyWZRNMDA60q307mi2S3JrI1pNY0'
 
 # 유튜브 영상 id
-video_id = 'a0fJ0dvYB6A'
+video_id = 'lDpdfknhF-4'
 
 comments = list()
 api_obj = build('youtube', 'v3', developerKey=api_key)
-response = api_obj.commentThreads().list(part='snippet,replies', videoId=video_id, maxResults=100).execute()
-
+response = api_obj.commentThreads().list(part='snippet', videoId=video_id, maxResults=100).execute()
+#관련성 순으로 받아오고 싶다면 order="relevance" 속성 추가
+#디폴트는 order="time"
 while response:
     for item in response['items']:
         comment = item['snippet']['topLevelComment']['snippet']
         comments.append(
             [comment['textDisplay'], comment['authorDisplayName'], comment['publishedAt'], comment['likeCount']])
 
-        if item['snippet']['totalReplyCount'] > 0:
-            for reply_item in item['replies']['comments']:
-                reply = reply_item['snippet']
-                comments.append(
-                    [reply['textDisplay'], reply['authorDisplayName'], reply['publishedAt'], reply['likeCount']])
-
     if 'nextPageToken' in response:
-        response = api_obj.commentThreads().list(part='snippet,replies', videoId=video_id,
+        response = api_obj.commentThreads().list(part='snippet', videoId=video_id,
                                                  pageToken=response['nextPageToken'], maxResults=100).execute()
     else:
         break
