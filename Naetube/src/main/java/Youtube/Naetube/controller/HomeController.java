@@ -28,110 +28,37 @@ public class HomeController {
         String baseUrl = "http://localhost:5000/tospring2?url=" + url;
         RestTemplate restTemplate = new RestTemplate();
 
-        ResponseEntity<Comment[]> response =
-                restTemplate.getForEntity(baseUrl, Comment[].class);
+        ResponseEntity<Comment[]> response = restTemplate.getForEntity(baseUrl, Comment[].class);
 
         Comment comments[] = response.getBody();
-        List<Comment> positivecomments = new ArrayList<>();
-        List<Comment> negativecomments = new ArrayList<>();
+        List<Comment> positiveComments = new ArrayList<>();
+        List<Comment> negativeComments = new ArrayList<>();
 
-        for(int i=0;i<comments.length;i++){
+        for(int i=0;i<comments.length;i++){    //인덱스 번호를 통해서 긍정, 부정 댓글 분류
             if(comments[i].getIndex().equals("1")){
-                positivecomments.add(comments[i]);
+                positiveComments.add(comments[i]);
             }
             else{
-                negativecomments.add(comments[i]);
+                negativeComments.add(comments[i]);
             }
         }
-        for(int i=0;i<positivecomments.size();i++){
-            System.out.println(positivecomments.get(i).getIndex());
-            System.out.println(positivecomments.get(i).getId());
-            System.out.println(positivecomments.get(i).getComment());
-            System.out.println(positivecomments.get(i).getDate());
-            System.out.println(positivecomments.get(i).getNum_like());
-        }
-        for(int i=0;i<negativecomments.size();i++){
-            System.out.println(negativecomments.get(i).getIndex());
-            System.out.println(negativecomments.get(i).getId());
-            System.out.println(negativecomments.get(i).getComment());
-            System.out.println(negativecomments.get(i).getDate());
-            System.out.println(negativecomments.get(i).getNum_like());
-        }
+        System.out.println("positiveComments = " + positiveComments);
+        //[Comment(index=1, id=상휘1퍼센트, comment=첫곡 미쳤다, date=2022-01-19T04:29:36Z, num_like=0) , ...]
+        System.out.println("positiveComments[0] = " + positiveComments.get(0));
+        //Comment(index=1, id=상휘1퍼센트, comment=첫곡 미쳤다, date=2022-01-19T04:29:36Z, num_like=0)
+//        for(int i=0;i<positiveComments.size();i++){
+//            System.out.println(positiveComments.get(i).getIndex());
+//            System.out.println(positiveComments.get(i).getId());
+//            System.out.println(positiveComments.get(i).getComment());
+//            System.out.println(positiveComments.get(i).getDate());
+//            System.out.println(positiveComments.get(i).getNum_like());
+//        }
+
         model.addAttribute("url", "https://www.youtube.com/embed/"+url);    //search.html에 url 전달.
+        model.addAttribute("positiveComments",positiveComments);
+        model.addAttribute("negativeComments",negativeComments);
         return "search";
     }
-
-    @GetMapping("/test")
-    public String Test(Model model){
-        String baseUrl = "http://localhost:5000/tospring";
-        RestTemplate restTemplate = new RestTemplate();
-
-        ResponseEntity<String[]> response =
-                restTemplate.getForEntity(baseUrl, String[].class);
-
-        String test[] = response.getBody();
-        System.out.println(test[0]);
-        System.out.println(test[1]);
-        System.out.println(test[2]);
-        System.out.println(test[3]);
-        System.out.println(test[4]);
-
-        model.addAttribute("data", "response");    //search.html에 url 전달.
-
-        return "test";
-    }
-
-    @GetMapping("/test2/{url}")
-    public String Test2(@PathVariable String url, Model model){
-        String baseUrl = "http://localhost:5000/tospring2?url=" + url;
-        RestTemplate restTemplate = new RestTemplate();
-
-        ResponseEntity<Comment[]> response =
-                restTemplate.getForEntity(baseUrl, Comment[].class);
-
-        Comment comments[] = response.getBody();
-        List<Comment> positivecomments = new ArrayList<>();
-        List<Comment> negativecomments = new ArrayList<>();
-
-        for(int i=0;i<comments.length;i++){
-            if(comments[i].getIndex().equals("1")){
-                positivecomments.add(comments[i]);
-            }
-            else{
-                negativecomments.add(comments[i]);
-            }
-        }
-        for(int i=0;i<positivecomments.size();i++){
-            System.out.println(positivecomments.get(i).getIndex());
-            System.out.println(positivecomments.get(i).getId());
-            System.out.println(positivecomments.get(i).getComment());
-            System.out.println(positivecomments.get(i).getDate());
-            System.out.println(positivecomments.get(i).getNum_like());
-        }
-        for(int i=0;i<positivecomments.size();i++){
-            System.out.println(negativecomments.get(i).getIndex());
-            System.out.println(negativecomments.get(i).getId());
-            System.out.println(negativecomments.get(i).getComment());
-            System.out.println(negativecomments.get(i).getDate());
-            System.out.println(negativecomments.get(i).getNum_like());
-        }
-
-
-
-//        System.out.println(positiveComments[i].getId());
-//            System.out.println(positiveComments[i].getComment());
-//            System.out.println(positiveComments[i].getDate());
-//            System.out.println(positiveComments[i].getNum_like());
-
-
-        model.addAttribute("data", "response");    //search.html에 url 전달.
-
-        return "test";
-    }
-
-
-
-
 }
 
 
