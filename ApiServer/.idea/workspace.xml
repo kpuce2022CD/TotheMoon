@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="dcfeaba6-ab4e-4548-9932-540f5c2b5d35" name="Changes" comment="flask, spring json 통신 구현">
+    <list default="true" id="dcfeaba6-ab4e-4548-9932-540f5c2b5d35" name="Changes" comment="np_classify_model.h5, np_classify_model.py,&#10;np_tokenizer.pickle commit">
       <change afterPath="$PROJECT_DIR$/movie_test.txt" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/movie_train.txt" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/shopping_test.txt" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/shopping_train.txt" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/steam_test.txt" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/steam_train.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/np_classify.py" beforeDir="false" afterPath="$PROJECT_DIR$/np_classify.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -220,7 +219,14 @@
       <option name="project" value="LOCAL" />
       <updated>1642610569452</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="np_classify_model.h5, np_classify_model.py,&#10;np_tokenizer.pickle commit">
+      <created>1642841774421</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1642841774421</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -240,6 +246,7 @@
     <MESSAGE value="np_classify.py (분류 코드) commit" />
     <MESSAGE value="youtube_comment_processing function commit (유튜브 댓글 전처리)" />
     <MESSAGE value="flask, spring json 통신 구현" />
-    <option name="LAST_COMMIT_MESSAGE" value="flask, spring json 통신 구현" />
+    <MESSAGE value="np_classify_model.h5, np_classify_model.py,&#10;np_tokenizer.pickle commit" />
+    <option name="LAST_COMMIT_MESSAGE" value="np_classify_model.h5, np_classify_model.py,&#10;np_tokenizer.pickle commit" />
   </component>
 </project>
