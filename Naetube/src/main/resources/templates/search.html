@@ -10,12 +10,60 @@
             align-items: center;
             justify-content: center;
         }
+        #btnWrapper{
+             display: flex;
+             justify-content: center;
+        }
+        #tableWrapper{
+             display: flex;
+             justify-content: center;
+        }
+        #tb1 { position:absolute; border: 1px solid #444444; border-collapse: collapse; }
+        #tb2 { position:absolute; border: 1px solid #444444; border-collapse: collapse; display:none; }
+
+        th, td {
+             border: 1px solid #444444;
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <iframe width="560" height="315" th:src="${url}"></iframe>
     </div>
-
+    <div id="btnWrapper">
+        <input type="button" value="긍정 댓글" onClick="view(1)">&nbsp;
+        <input type="button" value="부정 댓글" onClick="view(2)">
+    </div>
+    <br><br>
+    <div id ="tableWrapper">
+    <table id="tb1">
+        <thead>
+        <tr>
+            <th>작성자 아이디</th>
+            <th>댓글</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="Comment : ${positiveComments}">
+            <td th:text="${Comment.id}"></td>
+            <td th:text="${Comment.comment}"></td>
+        </tr>
+        </tbody>
+    </table>
+    <table id="tb2">
+        <thead>
+        <tr>
+            <th>작성자 아이디</th>
+            <th>댓글</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="Comment : ${negativeComments}">
+            <td th:text="${Comment.id}"></td>
+            <td th:text="${Comment.comment}"></td>
+        </tr>
+        </tbody>
+    </table>
+    </div>
 </body>
 </html>
