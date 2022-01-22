@@ -25,10 +25,10 @@ stopwords = f.read()
 max_len = 30
 
 # loading
-with open('tokenizer.pickle', 'rb') as handle:
+with open('np_tokenizer.pickle', 'rb') as handle:
     tokenizer = pickle.load(handle)
 
-loaded_model = load_model('best_model.h5')
+loaded_model = load_model('np_classify_model.h5')
 
 global comment_dic
 comment_dic = {}  # 추출한 댓글 데이터
@@ -67,16 +67,18 @@ def sentiment_predict(new_sentence, id, comment, date, num_like):
     pad_new = pad_sequences(encoded, maxlen=max_len)  # 패딩
     score = float(loaded_model.predict(pad_new))  # 예측
     if (score > 0.5):
-        print("{:.2f}% 확률로 긍정 리뷰입니다.\n".format(score * 100))
-        dic_temp = {"index": "1", "id": id, "comment": comment,
-                    "date": date, "num_like": num_like}
-        dic_return.append(dic_temp)
+        if(score > 0.8):
+            print("{:.2f}% 확률로 긍정 리뷰입니다.\n".format(score * 100))
+            dic_temp = {"index": "1", "id": id, "comment": comment,
+                        "date": date, "num_like": num_like}
+            dic_return.append(dic_temp)
 
     else:
-        print("{:.2f}% 확률로 부정 리뷰입니다.\n".format((1 - score) * 100))
-        dic_temp = {"index": "0", "id": id, "comment": comment,
-                    "date": date, "num_like": num_like}
-        dic_return.append(dic_temp)
+        if(score < 0.2):
+            print("{:.2f}% 확률로 부정 리뷰입니다.\n".format((1 - score) * 100))
+            dic_temp = {"index": "0", "id": id, "comment": comment,
+                        "date": date, "num_like": num_like}
+            dic_return.append(dic_temp)
 
 
 # 이모티콘 제거 함수(ASCII 코드에 해당하지 않는 경우)
@@ -169,5 +171,5 @@ def youtube_comment_processing(filename):
 
     return dic_return
 
-#youtube_comment_processing("test.xlsx")
+youtube_comment_processing("test.xlsx")
 #print(dic_return)
