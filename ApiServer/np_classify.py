@@ -47,6 +47,9 @@ date_result = []  # 전처리 후 데이터
 global num_likes_result
 num_likes_result = []  # 전처리 후 데이터
 
+global show_comment
+show_comment= []
+
 global dic_return  # 스프링으로 전송할 json 데이터
 dic_return = []
 
@@ -146,10 +149,11 @@ def youtube_comment_processing(filename):
 
     for val in comment_dic.values():
         print(val)  # 댓글 원본
+        val = re.sub("<br>", " ", val)  # <br> 한줄띄기 -> 스페이스 공백으로 변환 , 제거 이모티콘 추가
+        show_comment.append(val)
         val = emoticonToWord(val)  # 이모티콘 텍스트로 변환
         val = re.sub(emoji_pattern, "", val)  # 이모티콘 제거
         remove_emoji(val) #이모티콘 제거
-        val = re.sub("<br>", " ",val)  # <br> 한줄띄기 -> 스페이스 공백으로 변환 , 제거 이모티콘 추가
         comment_result.append(val)
 
     for val in author_dic.values():  # 작성자 배열에 추가
@@ -167,7 +171,7 @@ def youtube_comment_processing(filename):
         print("작성자: " + author_result[i])
         print("작성 날짜: " + date_result[i])
         print("좋아요 개수: " + str(num_likes_result[i]))
-        sentiment_predict(comment_result[i], author_result[i], comment_result[i], date_result[i], str(num_likes_result[i]))
+        sentiment_predict(comment_result[i], author_result[i], show_comment[i], date_result[i], str(num_likes_result[i]))
 
     return dic_return
 

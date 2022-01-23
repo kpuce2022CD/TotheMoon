@@ -9,7 +9,7 @@
       <change afterPath="$PROJECT_DIR$/steam_test.txt" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/steam_train.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Naetube/src/main/resources/templates/search.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Naetube/src/main/resources/templates/search.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/np_classify.py" beforeDir="false" afterPath="$PROJECT_DIR$/np_classify.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
