@@ -80,9 +80,6 @@
             부정적(~%)
         </div>
     </div>
-    <div th:text="${#numbers.formatInteger(positivePercent,0)}"></div>
-    <div th:text="${positivePercent}"></div>
-    <div th:text="${#lists.size(negativeComments)}"></div>
     <div id="btnWrapper">
         <input type="button" value="긍정 댓글" onClick="view(1)">&nbsp;
         <input type="button" value="부정 댓글" onClick="view(2)">
