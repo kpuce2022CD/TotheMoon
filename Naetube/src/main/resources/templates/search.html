@@ -71,15 +71,18 @@
         <iframe width="560" height="315" th:src="${url}"></iframe>
     </div>
     <div class="progress" style="width:70%;height:25px">
-        <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40"
-             aria-valuemin="0" aria-valuemax="100" style="width:40%;text-align:center">
-            긍정적(40%)
+        <div class="progress-bar progress-bar-success" role="progressbar" th:aria-valuenow="${#numbers.formatDecimal(positivePercent,2,2)}"
+             aria-valuemin="0" aria-valuemax="100" th:style="|width:${#numbers.formatDecimal(positivePercent,2,2)}%;text-align:center|" th:text="|긍정적(${#numbers.formatDecimal(positivePercent,2,2)}%)|">
+            긍정적(~%)
         </div>
-        <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="60"
-             aria-valuemin="0" aria-valuemax="100" style="width:60%">
-            부정적(60%)
+        <div class="progress-bar progress-bar-danger" role="progressbar" th:aria-valuenow="${#numbers.formatDecimal(negativePercent,2,2)}"
+             aria-valuemin="0" aria-valuemax="100" th:style="|width:${#numbers.formatDecimal(negativePercent,2,2)}%|" th:text="|부정적(${#numbers.formatDecimal(negativePercent,2,2)}%)|">
+            부정적(~%)
         </div>
     </div>
+    <div th:text="${#numbers.formatInteger(positivePercent,0)}"></div>
+    <div th:text="${positivePercent}"></div>
+    <div th:text="${#lists.size(negativeComments)}"></div>
     <div id="btnWrapper">
         <input type="button" value="긍정 댓글" onClick="view(1)">&nbsp;
         <input type="button" value="부정 댓글" onClick="view(2)">

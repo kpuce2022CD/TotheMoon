@@ -53,10 +53,21 @@ public class HomeController {
 //            System.out.println(positiveComments.get(i).getDate());
 //            System.out.println(positiveComments.get(i).getNum_like());
 //        }
+        double positivePercent = (double)positiveComments.size() / (double)comments.length * 100;
+        double negativePercent = (double)negativeComments.size() / (double)comments.length * 100;
+
+        System.out.println("전체 댓글 수 = " + comments.length);
+        System.out.println("긍정 댓글 수 = " + positiveComments.size());
+        System.out.println("부정 댓글 수  = " + negativeComments.size());
+        System.out.println("긍정 댓글 비율 = " + positivePercent);
+        System.out.println("부정 댓글 비율 = " + negativePercent);
 
         model.addAttribute("url", "https://www.youtube.com/embed/"+url);    //search.html에 url 전달.
         model.addAttribute("positiveComments",positiveComments);
         model.addAttribute("negativeComments",negativeComments);
+        model.addAttribute("comments",comments);
+        model.addAttribute("positivePercent", positivePercent);
+        model.addAttribute("negativePercent", negativePercent);
         return "search";
     }
 }
