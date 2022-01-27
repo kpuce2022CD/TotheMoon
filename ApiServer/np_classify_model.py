@@ -159,7 +159,8 @@ shopping_test_data['document'].replace('', np.nan, inplace=True)  # 공백은 Nu
 shopping_test_data = shopping_test_data.dropna(how='any')  # Null 값 제거
 print('전처리 후 쇼핑 테스트용 샘플의 개수 :', len(shopping_test_data))
 
-stopwords = ['의', '가', '이', '은', '들', '는', '좀', '잘', '걍', '과', '도', '를', '으로', '자', '에', '와', '한', '하다']
+f = open("stopwords.txt", 'r', encoding='utf8')
+stopwords = f.read()
 okt = Okt()
 
 # 영화 훈련 데이터셋 토큰화
