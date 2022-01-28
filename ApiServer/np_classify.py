@@ -3,6 +3,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import re
 import urllib.request
+from bs4 import BeautifulSoup
 import os
 from konlpy.tag import Okt
 from tqdm import tqdm
@@ -102,11 +103,16 @@ def youtube_comment_processing(filename):
 
     for i in comments:
         val = i[0]
+        timeInComment = []
         print(val)
         val = re.sub("<br>", " ", val)  # <br> 한줄띄기 -> 스페이스 공백으로 변환 , 제거 이모티콘 추가
         val = emoticonToWord(val)  # 이모티콘 텍스트로 변환
         val = re.sub(emoji_pattern, "", val)  # 이모티콘 제거
         remove_emoji(val) #이모티콘 제거
+        soup = BeautifulSoup(val,'html.parser')
+        for j in soup.find_all('a') : # 타임라인 처리
+            timeInComment.append(j.text)
+        print(timeInComment)
         comment_result.append(val)
 
     for i in range(len(comment_result)):  # 배열 크기만큼 실행
@@ -128,7 +134,6 @@ def youtube_comment_processing(filename):
                 dic_temp = {"index": "0", "id": comments[i][1], "comment": comments[i][0],
                             "date": comments[i][2], "num_like": str(comments[i][3])}
                 dic_return.append(dic_temp)
-
     return dic_return
 
 ##test
