@@ -76,7 +76,7 @@ class keywordExtracter: # 키워드 추출 클래스
     # 반환값 : 상위 5개 키워드
     return best_5_keywords
   
-  def get_comments_related_to_keyword(self,keyword, n=10):
+  def get_comments_related_to_keyword(self,keyword, n=None):
     # 키워드에 대한 관련 댓글 추출
     data = self.data.sort_values(by='num_likes', ascending=False)
     # 좋아요 순으로 정렬
