@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="dcfeaba6-ab4e-4548-9932-540f5c2b5d35" name="Changes" comment="em_classify_model.pt 업로드">
+    <list default="true" id="dcfeaba6-ab4e-4548-9932-540f5c2b5d35" name="Changes" comment="batch_size 조절">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/em_classify.py" beforeDir="false" afterPath="$PROJECT_DIR$/em_classify.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/np_classify.py" beforeDir="false" afterPath="$PROJECT_DIR$/np_classify.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -170,8 +173,8 @@
     <recent_temporary>
       <list>
         <item itemvalue="Python.em_classify" />
-        <item itemvalue="Python.em_classify_moel" />
         <item itemvalue="Python.np_classify" />
+        <item itemvalue="Python.em_classify_moel" />
         <item itemvalue="Python.em_test" />
         <item itemvalue="Python.np_classify_model" />
       </list>
@@ -270,7 +273,14 @@
       <option name="project" value="LOCAL" />
       <updated>1643631909111</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="batch_size 조절">
+      <created>1643632150055</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1643632150055</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -308,6 +318,7 @@
     <MESSAGE value="np_classify_model.h5 불용어 처리 적용" />
     <MESSAGE value="em_classify.py 업로드, requirements.txt commit" />
     <MESSAGE value="em_classify_model.pt 업로드" />
-    <option name="LAST_COMMIT_MESSAGE" value="em_classify_model.pt 업로드" />
+    <MESSAGE value="batch_size 조절" />
+    <option name="LAST_COMMIT_MESSAGE" value="batch_size 조절" />
   </component>
 </project>

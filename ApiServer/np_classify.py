@@ -15,6 +15,7 @@ from tensorflow.keras.models import Sequential
 from tensorflow.keras.models import load_model
 from tensorflow.keras.callbacks import EarlyStopping, ModelCheckpoint
 import pickle
+#tt
 
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 
@@ -94,7 +95,7 @@ def emoticonToWord(comment):
 
 
 # 유튜브 데이터 전처리
-def youtube_comment_processing(filename):
+def npClassifyProcessing(filename):
     df = pd.read_excel(filename)
 
     comments = df.values    # 댓글 데이터(댓글, 작성자, 날짜, 좋아요 수)
@@ -134,6 +135,8 @@ def youtube_comment_processing(filename):
                 dic_temp = {"index": "0", "id": comments[i][1], "comment": comments[i][0],
                             "date": comments[i][2], "num_like": str(comments[i][3])}
                 dic_return.append(dic_temp)
+    print(dic_return)
     return dic_return
 
+npClassifyProcessing("test.xlsx")
 ##test

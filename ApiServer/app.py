@@ -1,6 +1,6 @@
 from flask import Flask, request, jsonify
 from comment import collectComment
-from np_classify import youtube_comment_processing,\
+from np_classify import npClassifyProcessing,\
     comment_classify,sentiment_predict,remove_emoji,emoticonToWord
 
 
@@ -22,7 +22,7 @@ def create_app():
     @app.route('/tospring2')
     def test2():
         filepath = collectComment(request.args.get('url'))
-        comment_data = youtube_comment_processing(filepath)
+        comment_data = npClassifyProcessing(filepath)
 
         return jsonify(comment_data)
 
