@@ -26,7 +26,7 @@ tok = nlp.data.BERTSPTokenizer(tokenizer, vocab, lower=False)
 
 # Setting parameters
 max_len = 64
-batch_size = 1
+batch_size = 128
 warmup_ratio = 0.1
 num_epochs = 5
 max_grad_norm = 1
