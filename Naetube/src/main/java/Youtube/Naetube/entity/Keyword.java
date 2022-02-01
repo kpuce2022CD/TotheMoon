@@ -9,5 +9,5 @@ import lombok.ToString;
 @ToString
 public class Keyword {
     private String [] b5 ;
-//    private String [] comments;
+    private String [][] comments;
 }

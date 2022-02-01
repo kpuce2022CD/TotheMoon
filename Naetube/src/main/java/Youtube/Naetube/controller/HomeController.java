@@ -80,7 +80,8 @@ public class HomeController {
 
         Keyword keyword = response.getBody();
 
-        System.out.println(keyword);
+        System.out.println(keyword.getB5()[0]);
+        System.out.println(keyword.getComments()[0][0]);
         return "keyword";
     }
 
