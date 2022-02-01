@@ -41,8 +41,7 @@ def create_app():
 
         keywords = keywordExtracter(common_words)
         keywords.get_comments_from_excel(filepath)
-        best_5_keywords, comments = keywords.get_comments_related_to_best5keywords(
-            keywords.keywords_from_soynlp)
+        best_5_keywords, comments = keywords.get_comments_related_to_best5keywords(keywords.keywords_from_soynlp)
         data = {'b5': best_5_keywords, 'comments': comments}
         return jsonify(data)
 
