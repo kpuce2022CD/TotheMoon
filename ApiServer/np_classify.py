@@ -138,5 +138,5 @@ def npClassifyProcessing(filename):
     print(dic_return)
     return dic_return
 
-npClassifyProcessing("test.xlsx")
+#npClassifyProcessing("test.xlsx")
 ##test
