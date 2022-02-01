@@ -19,7 +19,10 @@ from bs4 import BeautifulSoup
 
 
 # GPU 사용
-device = torch.device("cuda:0")
+USE_CUDA = torch.cuda.is_available()
+print(USE_CUDA)
+device = torch.device('cuda:0' if USE_CUDA else 'cpu') # gpu 없을 시 cpu 사용
+
 
 # BERT 모델, Vocabulary 불러오기
 bertmodel, vocab = get_pytorch_kobert_model()
@@ -246,6 +249,7 @@ def emClassifyProcessing(filename):
     print(dic_return)
     return dic_return
 
+#emClassifyProcessing("test.xlsx")
 
 
 """# 질문 무한반복하기! 0 입력시 종료
