@@ -249,7 +249,7 @@ def emClassifyProcessing(filename):
     print(dic_return)
     return dic_return
 
-#emClassifyProcessing("test.xlsx")
+emClassifyProcessing("4-koqJzCpwY.xlsx")
 
 
 """# 질문 무한반복하기! 0 입력시 종료
@@ -261,3 +261,4 @@ while end == 1:
     predict(sentence)
     print("\n")
 """
+#123
