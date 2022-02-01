@@ -21,7 +21,7 @@ from bs4 import BeautifulSoup
 # GPU 사용
 USE_CUDA = torch.cuda.is_available()
 print(USE_CUDA)
-device = torch.device('cuda:0' if USE_CUDA else 'cpu') # gpu 없을 시 cpu 사용
+device = torch.device('cpu') # gpu 없을 시 cpu 사용
 
 
 # BERT 모델, Vocabulary 불러오기
@@ -92,7 +92,7 @@ class BERTClassifier(nn.Module):
         return self.classifier(out)
 
 
-model = torch.load('em_classify_model.pt')
+model = torch.load('em_classify_model.pt',map_location=device) #cpu 사용
 
 
 def emotion_predict(predict_sentence):
@@ -261,4 +261,3 @@ while end == 1:
     predict(sentence)
     print("\n")
 """
-#123
