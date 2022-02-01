@@ -70,6 +70,21 @@ public class HomeController {
         model.addAttribute("negativePercent", negativePercent);
         return "search";
     }
+
+    @GetMapping("/keyword/{url}")
+    public String getKeyword(@PathVariable String url, Model model){
+        String baseUrl = "http://localhost:5000/searchKeyword?url=" + url;
+        RestTemplate restTemplate = new RestTemplate();
+
+        ResponseEntity<Keyword> response = restTemplate.getForEntity(baseUrl, Keyword.class);
+
+        Keyword keyword = response.getBody();
+
+        System.out.println(keyword);
+        return "keyword";
+    }
+
+
 }
 
 
