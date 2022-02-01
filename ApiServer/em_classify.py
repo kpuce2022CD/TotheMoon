@@ -248,7 +248,6 @@ def emClassifyProcessing(filename):
 
 
 
-
 """# 질문 무한반복하기! 0 입력시 종료
 end = 1
 while end == 1:
@@ -258,4 +257,3 @@ while end == 1:
     predict(sentence)
     print("\n")
 """
-emClassifyProcessing("test.xlsx")
