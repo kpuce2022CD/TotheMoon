@@ -5,7 +5,7 @@ from googleapiclient.discovery import build
 api_key = 'AIzaSyC02qrZyWZRNMDA60q307mi2S3JrI1pNY0'
 
 # 유튜브 영상 id
-video_id = 'lDpdfknhF-4'
+video_id = 'urTHIYKxLDg'
 
 comments = list()
 api_obj = build('youtube', 'v3', developerKey=api_key)
@@ -25,4 +25,4 @@ while response:
         break
 
 df = pandas.DataFrame(comments)
-df.to_excel('test.xlsx', header=['comment', 'author', 'date', 'num_likes'], index=None)
+df.to_excel('urTHIYKxLDg.xlsx', header=['comment', 'author', 'date', 'num_likes'], index=None)
