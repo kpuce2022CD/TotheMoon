@@ -11,7 +11,7 @@ import copy
 # 댓글이 적을 경우 => 키워드 유사 10개를 못 뽑아 낼경우 error => 예외처리 해주어야함
 
 
-class keywordExtracter: # 키워드 추출 클래스
+class keywordExtractor: # 키워드 추출 클래스
 
   def __init__(self, common_words=[]):
     self.common_words = common_words

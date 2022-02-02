@@ -1,17 +1,17 @@
-from keywordExtracter import keywordExtracter
+from keywordExtractor import keywordExtractor
 from collections import Counter
 
 class CommonWords:  # commonwords를 추출하는 클래스
 
   def __init__(self):
     self.count = Counter()
-    self.keywordExtracter = keywordExtracter()
+    self.keywordExtractor = keywordExtractor()
 
   def word_count_list_krwordrank(self,links):
     # krwordsrank를 통한 commonwords 추출
     word_list = []
     for i in links:
-      keywords = self.keywordExtracter.get_comments_from_excel(i).keywords_from_krwordsrank()
+      keywords = self.keywordExtractor.get_comments_from_excel(i).keywords_from_krwordsrank()
       keywords = [*keywords]
       word_list.extend(keywords)
       # 여러 영상의 댓글의 키워드를 뽑아 하나의 리스트로 합침
@@ -23,7 +23,7 @@ class CommonWords:  # commonwords를 추출하는 클래스
     # soynlp를 통한 commonwords 추출
     word_list = []
     for i in links:
-      keywords = self.keywordExtracter.get_comments_from_excel(i).keywords_from_soynlp()
+      keywords = self.keywordExtractor.get_comments_from_excel(i).keywords_from_soynlp()
       keywords = [*keywords]
       word_list.extend(keywords)
       # 여러 영상의 댓글의 키워드를 뽑아 하나의 리스트로 합침
@@ -35,7 +35,7 @@ class CommonWords:  # commonwords를 추출하는 클래스
     # konlpy를 통한 commonwords 추출
     word_list = []
     for i in links:
-      keywords = self.keywordExtracter.get_comments_from_excel(i).keywords_from_konlpy()
+      keywords = self.keywordExtractor.get_comments_from_excel(i).keywords_from_konlpy()
       keywords = [*keywords]
       word_list.extend(keywords)
       # 여러 영상의 댓글의 키워드를 뽑아 하나의 리스트로 합침

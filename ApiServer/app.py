@@ -1,14 +1,10 @@
 # -*- coding: utf-8 -*-
-import sys
-import os
 from flask import Flask, request, jsonify
 from comment import collectComment
-from findKeyword.keywordExtracter import keywordExtracter
+from timeline.timelineExtractor import timelineExtractor
+from findKeyword.keywordExtractor import keywordExtractor
 from np_classify import npClassifyProcessing,\
     comment_classify,sentiment_predict,remove_emoji,emoticonToWord
-
-
-
 
 def create_app():
     app = Flask(__name__)
@@ -28,7 +24,6 @@ def create_app():
     def test2():
         filepath = collectComment(request.args.get('url'))
         comment_data = npClassifyProcessing(filepath)
-
         return jsonify(comment_data)
 
     @app.route('/searchKeyword')
@@ -39,10 +34,18 @@ def create_app():
                         '한번', '같아', '이런', '무슨', '지금', '같음', '느낌', '보면', '우리', '이제', 'ㅎㅎ', '알았', '보니', '좋다', '항상', '어떻게',
                         '다들', '생각', '가는', '그런', '하나', '어디', '좋은', '좋네', '보기', '올라', '응원', '올려', '진짜']
 
-        keywords = keywordExtracter(common_words)
+        keywords = keywordExtractor(common_words)
         keywords.get_comments_from_excel(filepath)
         best_5_keywords, comments = keywords.get_comments_related_to_best5keywords(keywords.keywords_from_soynlp)
         data = {'b5': best_5_keywords, 'comments': comments}
         return jsonify(data)
+    
+    @app.route('/timeline')
+    def getTimeline():
+        # filepath = collectComment(request.args.get('url'))
+        extractor = timelineExtractor()
+        data = extractor.extract_timeline_comments('./5qcUbf_lSJ4.xlsx')
+        return jsonify(data)
+
 
     return app
