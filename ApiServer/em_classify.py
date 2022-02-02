@@ -19,7 +19,10 @@ from bs4 import BeautifulSoup
 
 
 # GPU 사용
-device = torch.device("cuda:0")
+USE_CUDA = torch.cuda.is_available()
+print(USE_CUDA)
+device = torch.device('cpu') # gpu 없을 시 cpu 사용
+
 
 # BERT 모델, Vocabulary 불러오기
 bertmodel, vocab = get_pytorch_kobert_model()
@@ -89,7 +92,7 @@ class BERTClassifier(nn.Module):
         return self.classifier(out)
 
 
-model = torch.load('em_classify_model.pt')
+model = torch.load('em_classify_model.pt',map_location=device) #cpu 사용
 
 
 def emotion_predict(predict_sentence):
@@ -246,7 +249,7 @@ def emClassifyProcessing(filename):
     print(dic_return)
     return dic_return
 
-
+emClassifyProcessing("4-koqJzCpwY.xlsx")
 
 
 """# 질문 무한반복하기! 0 입력시 종료
@@ -258,4 +261,3 @@ while end == 1:
     predict(sentence)
     print("\n")
 """
-emClassifyProcessing("test.xlsx")
