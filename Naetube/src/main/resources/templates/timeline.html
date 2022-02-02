@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>댓글 분석</title>
+    <style>
+        .container{
+            height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        table {
+            border: 1px solid #444444;
+        }
+
+        th, td {
+            border: 1px solid #444444;
+        }
+
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="myplayer"></div>
+        <table>
+            <thead>
+            <tr>
+                <th>여러 타임라인</th>
+            </tr>
+
+            </thead>
+            <tbody>
+            <tr th:each="Comment : ${many_timeline_comments}">
+                <td th:utext="${Comment.comment}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <table>
+        <thead>
+        <tr>
+            <th>단독 타임라인</th>
+        </tr>
+
+        </thead>
+        <tbody>
+        <tr th:each="Comment : ${one_timeline_comments}">
+            <td th:utext="${Comment.comment}"></td>
+        </tr>
+        </tbody>
+    </table>
+    <script src='https://www.youtube.com/iframe_api'></script>
+    <script th:inline="javascript">
+        let player
+        function onYouTubeIframeAPIReady() {
+            player = new YT.Player("myplayer", {
+                width: 360,
+                height: 180,
+                videoId: [[${url}]],
+            });
+        }
+
+        function move(time){
+            player.seekTo(time)
+        }
+
+
+    </script>
+</body>
+</html>
