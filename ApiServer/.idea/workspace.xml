@@ -1,12 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="dcfeaba6-ab4e-4548-9932-540f5c2b5d35" name="Changes" comment="requirements.txt commit">
-      <change beforePath="$PROJECT_DIR$/.idea/ApiServer.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/ApiServer.iml" afterDir="false" />
+    <list default="true" id="dcfeaba6-ab4e-4548-9932-540f5c2b5d35" name="Changes" comment="감정분류 데이터 json 전송">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/em_classify.py" beforeDir="false" afterPath="$PROJECT_DIR$/em_classify.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Naetube/src/main/java/Youtube/Naetube/controller/HomeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Naetube/src/main/java/Youtube/Naetube/controller/HomeController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -324,7 +320,14 @@
       <option name="project" value="LOCAL" />
       <updated>1643870078151</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="감정분류 데이터 json 전송">
+      <created>1643876556588</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1643876556588</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -368,6 +371,7 @@
     <MESSAGE value="gpu 사용 불가 시 cpu 설정 코드 추가" />
     <MESSAGE value="em_classify_model.pt upload" />
     <MESSAGE value="requirements.txt commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="requirements.txt commit" />
+    <MESSAGE value="감정분류 데이터 json 전송" />
+    <option name="LAST_COMMIT_MESSAGE" value="감정분류 데이터 json 전송" />
   </component>
 </project>
