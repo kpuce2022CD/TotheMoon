@@ -5,13 +5,16 @@ from pathlib import Path
 
 class timelineExtractor:
 
-# 타임라인 처리 시 타임라인 + 댓글 + ???
+# 타임라인 처리 시 타임라인 + 댓글 + (작성자)
 # 하나의 댓글에 여러개의 타임라인을 걸어두었을 경우
 
 # html 태그 그대로 처리!!! 그런것만 검출
 # js에서 링크만 사아악 바꿔주기
 # np_classify.py에서 timeline 추출 기능 제거해야함
+# 10등까지
+# 댓글 x 빈도만
 
+# 타임라인 빈도수 뽑기
   def __init__(self):
     self.timeline_list = []
 
@@ -37,7 +40,7 @@ class timelineExtractor:
       timeline_data['length'] = len(timeline)
       self.timeline_list.append(timeline_data)
     return self
-  
+
   
   def sorting_timeline_comments(self):
     self.timeline_list.sort(key = lambda x : (-x['length'], x['timeline']))
