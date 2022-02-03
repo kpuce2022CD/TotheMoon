@@ -31,14 +31,44 @@ public class HomeController {
         ResponseEntity<Comment[]> response = restTemplate.getForEntity(baseUrl, Comment[].class);
 
         Comment comments[] = response.getBody();
-        List<Comment> positiveComments = new ArrayList<>();
-        List<Comment> negativeComments = new ArrayList<>();
+        List<Comment> positiveComments = new ArrayList<>(); // json 구분 인덱스 : 1
+        List<Comment> negativeComments = new ArrayList<>(); // json 구분 인덱스 : 0
+        List<Comment> fearComments = new ArrayList<>(); // json 구분 인덱스 : 2
+        List<Comment> surprisedComments = new ArrayList<>(); // json 구분 인덱스 : 3
+        List<Comment> angerComments = new ArrayList<>(); // json 구분 인덱스 : 4
+        List<Comment> sadnessComments = new ArrayList<>(); // json 구분 인덱스 : 5
+        List<Comment> neutralComments = new ArrayList<>(); // json 구분 인덱스 : 6
+        List<Comment> happyComments = new ArrayList<>(); // json 구분 인덱스 : 7
+        List<Comment> disgustComments = new ArrayList<>(); // json 구분 인덱스 : 8
 
-        for(int i=0;i<comments.length;i++){    //인덱스 번호를 통해서 긍정, 부정 댓글 분류
+
+
+        for(int i=0;i<comments.length;i++){    //인덱스 번호를 통해서 긍정, 부정 , 감정 댓글 분류
             if(comments[i].getIndex().equals("1")){
                 positiveComments.add(comments[i]);
             }
-            else{
+            else if(comments[i].getIndex().equals("2")){
+                fearComments.add(comments[i]);
+            }
+            else if(comments[i].getIndex().equals("3")){
+                surprisedComments.add(comments[i]);
+            }
+            else if(comments[i].getIndex().equals("4")){
+                angerComments.add(comments[i]);
+            }
+            else if(comments[i].getIndex().equals("5")){
+                sadnessComments.add(comments[i]);
+            }
+            else if(comments[i].getIndex().equals("6")){
+                neutralComments.add(comments[i]);
+            }
+            else if(comments[i].getIndex().equals("7")){
+                happyComments.add(comments[i]);
+            }
+            else if(comments[i].getIndex().equals("8")){
+                disgustComments.add(comments[i]);
+            }
+            else if(comments[i].getIndex().equals("0")){
                 negativeComments.add(comments[i]);
             }
         }
@@ -61,6 +91,10 @@ public class HomeController {
         System.out.println("부정 댓글 수  = " + negativeComments.size());
         System.out.println("긍정 댓글 비율 = " + positivePercent);
         System.out.println("부정 댓글 비율 = " + negativePercent);
+        for(int i=0;i<happyComments.size();i++){
+            System.out.println(happyComments.get(i).getComment());
+        }
+
 
         model.addAttribute("url", "https://www.youtube.com/embed/"+url);    //search.html에 url 전달.
         model.addAttribute("positiveComments",positiveComments);

@@ -3,8 +3,13 @@ from flask import Flask, request, jsonify
 from comment import collectComment
 from timeline.timelineExtractor import timelineExtractor
 from findKeyword.keywordExtractor import keywordExtractor
-from np_classify import npClassifyProcessing,\
-    comment_classify,sentiment_predict,remove_emoji,emoticonToWord
+from np_classify import npClassifyProcessing, \
+    comment_classify, sentiment_predict, remove_emoji, emoticonToWord
+from em_classify import *
+
+#model = BERTClassifier()
+#model.load_state_dict(torch.load('model_state_dic.pt'))
+
 
 def create_app():
     app = Flask(__name__)
@@ -24,7 +29,9 @@ def create_app():
     def test2():
         filepath = collectComment(request.args.get('url'))
         comment_data = npClassifyProcessing(filepath)
-        return jsonify(comment_data)
+        comment_data2 = emClassifyProcessing(filepath)
+        result_data = comment_data + comment_data2
+        return jsonify(result_data)
 
     @app.route('/searchKeyword')
     def searchKeyword():
@@ -39,13 +46,12 @@ def create_app():
         best_5_keywords, comments = keywords.get_comments_related_to_best5keywords(keywords.keywords_from_soynlp)
         data = {'b5': best_5_keywords, 'comments': comments}
         return jsonify(data)
-    
+
     @app.route('/timeline')
     def getTimeline():
         # filepath = collectComment(request.args.get('url'))
         extractor = timelineExtractor()
         data = extractor.extract_timeline_comments('./5qcUbf_lSJ4.xlsx')
         return jsonify(data)
-
 
     return app
