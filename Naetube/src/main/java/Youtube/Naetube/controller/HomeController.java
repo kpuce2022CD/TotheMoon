@@ -41,48 +41,14 @@ public class HomeController {
         List<Comment> happyComments = new ArrayList<>(); // json 구분 인덱스 : 7
         List<Comment> disgustComments = new ArrayList<>(); // json 구분 인덱스 : 8
 
+        //댓글 분류
+        classifyComment(comments, positiveComments, negativeComments, fearComments, surprisedComments, angerComments, sadnessComments, neutralComments, happyComments, disgustComments);
 
-
-        for(int i=0;i<comments.length;i++){    //인덱스 번호를 통해서 긍정, 부정 , 감정 댓글 분류
-            if(comments[i].getIndex().equals("1")){
-                positiveComments.add(comments[i]);
-            }
-            else if(comments[i].getIndex().equals("2")){
-                fearComments.add(comments[i]);
-            }
-            else if(comments[i].getIndex().equals("3")){
-                surprisedComments.add(comments[i]);
-            }
-            else if(comments[i].getIndex().equals("4")){
-                angerComments.add(comments[i]);
-            }
-            else if(comments[i].getIndex().equals("5")){
-                sadnessComments.add(comments[i]);
-            }
-            else if(comments[i].getIndex().equals("6")){
-                neutralComments.add(comments[i]);
-            }
-            else if(comments[i].getIndex().equals("7")){
-                happyComments.add(comments[i]);
-            }
-            else if(comments[i].getIndex().equals("8")){
-                disgustComments.add(comments[i]);
-            }
-            else if(comments[i].getIndex().equals("0")){
-                negativeComments.add(comments[i]);
-            }
-        }
         System.out.println("positiveComments = " + positiveComments);
         //[Comment(index=1, id=상휘1퍼센트, comment=첫곡 미쳤다, date=2022-01-19T04:29:36Z, num_like=0) , ...]
         System.out.println("positiveComments[0] = " + positiveComments.get(0));
         //Comment(index=1, id=상휘1퍼센트, comment=첫곡 미쳤다, date=2022-01-19T04:29:36Z, num_like=0)
-//        for(int i=0;i<positiveComments.size();i++){
-//            System.out.println(positiveComments.get(i).getIndex());
-//            System.out.println(positiveComments.get(i).getId());
-//            System.out.println(positiveComments.get(i).getComment());
-//            System.out.println(positiveComments.get(i).getDate());
-//            System.out.println(positiveComments.get(i).getNum_like());
-//        }
+
         double positivePercent = ((double)positiveComments.size() / ((double)positiveComments.size()+(double)negativeComments.size()))*100;
         double negativePercent = ((double)negativeComments.size() / ((double)positiveComments.size()+(double)negativeComments.size()))*100;
 
@@ -94,7 +60,6 @@ public class HomeController {
         for(int i=0;i<happyComments.size();i++){
             System.out.println(happyComments.get(i).getComment());
         }
-
 
         model.addAttribute("url", "https://www.youtube.com/embed/"+url);    //search.html에 url 전달.
         model.addAttribute("positiveComments",positiveComments);
@@ -141,7 +106,40 @@ public class HomeController {
     }
 
 
-
+    //댓글 분류
+    private void classifyComment(Comment[] comments, List<Comment> positiveComments, List<Comment> negativeComments, List<Comment> fearComments,
+                                 List<Comment> surprisedComments, List<Comment> angerComments, List<Comment> sadnessComments, List<Comment> neutralComments,
+                                 List<Comment> happyComments, List<Comment> disgustComments) {
+        for(int i = 0; i< comments.length; i++){    //인덱스 번호를 통해서 긍정, 부정 , 감정 댓글 분류
+            if(comments[i].getIndex().equals("1")){
+                positiveComments.add(comments[i]);
+            }
+            else if(comments[i].getIndex().equals("2")){
+                fearComments.add(comments[i]);
+            }
+            else if(comments[i].getIndex().equals("3")){
+                surprisedComments.add(comments[i]);
+            }
+            else if(comments[i].getIndex().equals("4")){
+                angerComments.add(comments[i]);
+            }
+            else if(comments[i].getIndex().equals("5")){
+                sadnessComments.add(comments[i]);
+            }
+            else if(comments[i].getIndex().equals("6")){
+                neutralComments.add(comments[i]);
+            }
+            else if(comments[i].getIndex().equals("7")){
+                happyComments.add(comments[i]);
+            }
+            else if(comments[i].getIndex().equals("8")){
+                disgustComments.add(comments[i]);
+            }
+            else if(comments[i].getIndex().equals("0")){
+                negativeComments.add(comments[i]);
+            }
+        }
+    }
 }
 
 
