@@ -83,8 +83,8 @@ public class HomeController {
 //            System.out.println(positiveComments.get(i).getDate());
 //            System.out.println(positiveComments.get(i).getNum_like());
 //        }
-        double positivePercent = (double)positiveComments.size() / (double)comments.length * 100;
-        double negativePercent = (double)negativeComments.size() / (double)comments.length * 100;
+        double positivePercent = ((double)positiveComments.size() / ((double)positiveComments.size()+(double)negativeComments.size()))*100;
+        double negativePercent = ((double)negativeComments.size() / ((double)positiveComments.size()+(double)negativeComments.size()))*100;
 
         System.out.println("전체 댓글 수 = " + comments.length);
         System.out.println("긍정 댓글 수 = " + positiveComments.size());

@@ -39,38 +39,31 @@
              display: flex;
              justify-content: center;
         }
-        #tb1 { position:absolute; border: 1px solid #444444; border-collapse: collapse; }
-        #tb2 { position:absolute; border: 1px solid #444444; border-collapse: collapse; display:none; }
+        #tb1 {border:none; border-collapse:separate; border-spacing: 0 30px;}
+        #tb2 {border:none; border-collapse:separate; border-spacing: 0 30px;}
 
         th, td {
-             border: 1px solid #444444;
+             border: none
         }
         .progress {height:60px; width:30%; text-align:center; align:center;
         margin-left: auto; margin-right:auto;}
-    </style>
-    <script language="javascript">
-      function view(arg){
-         var t1 = document.getElementById("tb1");
-         var t2 = document.getElementById("tb2");
+        body{ background:black}
 
-         if(arg == 1)
-         {
-         t1.style.display="block";
-         t2.style.display="none";
+        .box{
+            -ms-overflow-style: none;
          }
-         else
-         {
-         t2.style.display="block";
-         t1.style.display="none";
-         }
-    }
-    </script>
+        .box::-webkit-scrollbar{
+            display:none;
+        }
+
+    </style>
+
 </head>
 <body>
     <div class="container">
-        <iframe width="560" height="315" th:src="${url}"></iframe>
+        <iframe width="60%" height="315" th:src="${url}"></iframe>
     </div>
-    <div class="progress" style="width:70%;height:25px">
+    <div class="progress" style="width:50%;height:25px">
         <div class="progress-bar progress-bar-success" role="progressbar" th:aria-valuenow="${#numbers.formatDecimal(positivePercent,2,2)}"
              aria-valuemin="0" aria-valuemax="100" th:style="|width:${#numbers.formatDecimal(positivePercent,2,2)}%;text-align:center|" th:text="|긍정적(${#numbers.formatDecimal(positivePercent,2,2)}%)|">
             긍정적(~%)
@@ -85,35 +78,40 @@
         <input type="button" value="부정 댓글" onClick="view(2)">
     </div>
     <br><br>
-    <div id ="tableWrapper">
-    <table id="tb1">
-        <thead>
-        <tr>
-            <th>작성자 아이디</th>
-            <th>댓글</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="Comment : ${positiveComments}">
-            <td th:text="${Comment.id}"></td>
-            <td th:text="${Comment.comment}"></td>
-        </tr>
-        </tbody>
-    </table>
-    <table id="tb2">
-        <thead>
-        <tr>
-            <th>작성자 아이디</th>
-            <th>댓글</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="Comment : ${negativeComments}">
-            <td th:text="${Comment.id}"></td>
-            <td th:text="${Comment.comment}"></td>
-        </tr>
-        </tbody>
-    </table>
+    <div>
+        <div style="overflow:scroll;height:500px;width:50%;float:left;" class="box">
+        <table id="tb1" style="margin:50px">
+            <thead>
+            <tr>
+                <th width="30%" style="color:white">작성자 아이디</th>
+                <th width="70%" style="color:white">댓글</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="Comment : ${positiveComments}">
+                <td th:text="${Comment.id}" style="color:gray"></td>
+                <td th:text="${Comment.comment}" style="color:green"></td>
+            </tr>
+            </tbody>
+        </table>
+        </div>
+        <div style="overflow:scroll;height:500px;width:50%;float:right;" class="box">
+        <table id="tb2" style="margin:50px">
+            <thead>
+            <tr>
+                <th width="30%" style="color:white">작성자 아이디</th>
+                <th width="70%" style="color:white">댓글</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="Comment : ${negativeComments}">
+                <td th:text="${Comment.id}" style="color:gray"></td>
+                <td th:text="${Comment.comment}" style="color:red"></td>
+            </tr>
+            </tbody>
+        </table>
+        </div>
     </div>
+
 </body>
 </html>
