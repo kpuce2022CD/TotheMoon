@@ -44,6 +44,7 @@ public class HomeController {
         //댓글 분류
         classifyComment(comments, positiveComments, negativeComments, fearComments, surprisedComments, angerComments, sadnessComments, neutralComments, happyComments, disgustComments);
 
+
         System.out.println("positiveComments = " + positiveComments);
         //[Comment(index=1, id=상휘1퍼센트, comment=첫곡 미쳤다, date=2022-01-19T04:29:36Z, num_like=0) , ...]
         System.out.println("positiveComments[0] = " + positiveComments.get(0));
@@ -51,15 +52,32 @@ public class HomeController {
 
         double positivePercent = ((double)positiveComments.size() / ((double)positiveComments.size()+(double)negativeComments.size()))*100;
         double negativePercent = ((double)negativeComments.size() / ((double)positiveComments.size()+(double)negativeComments.size()))*100;
-
+        double emTotalSize = fearComments.size()+ surprisedComments.size()+ angerComments.size()+ sadnessComments.size()+ neutralComments.size()+ happyComments.size()+ disgustComments.size();
+        double fearPercent = ((double)fearComments.size()/emTotalSize)*100;
+        double surprisedPercent = ((double)surprisedComments.size()/emTotalSize)*100;
+        double angerPercent = ((double)angerComments.size()/emTotalSize)*100;
+        double sadnessPercent = ((double)sadnessComments.size()/emTotalSize)*100;
+        double neutralPercent = ((double)neutralComments.size()/emTotalSize)*100;
+        double happyPercent = ((double)happyComments.size()/emTotalSize)*100;
+        double disgustPercent = ((double)disgustComments.size()/emTotalSize)*100;
         System.out.println("전체 댓글 수 = " + comments.length);
         System.out.println("긍정 댓글 수 = " + positiveComments.size());
         System.out.println("부정 댓글 수  = " + negativeComments.size());
         System.out.println("긍정 댓글 비율 = " + positivePercent);
         System.out.println("부정 댓글 비율 = " + negativePercent);
-        for(int i=0;i<happyComments.size();i++){
-            System.out.println(happyComments.get(i).getComment());
-        }
+        System.out.println("공포 댓글 비율 = " + fearPercent);
+        System.out.println("놀람 댓글 비율 = " + surprisedPercent);
+        System.out.println("분노 댓글 비율 = " + angerPercent);
+        System.out.println("슬픔 댓글 비율 = " + sadnessPercent);
+        System.out.println("중립 댓글 비율 = " + neutralPercent);
+        System.out.println("행복 댓글 비율 = " + happyPercent);
+        System.out.println("혐오 댓글 비율 = " + disgustPercent);
+
+
+        // "행복" 댓글 출력 테스트
+        //for(int i=0;i<happyComments.size();i++){
+        //    System.out.println(happyComments.get(i).getComment());
+        //}
 
         model.addAttribute("url", "https://www.youtube.com/embed/"+url);    //search.html에 url 전달.
         model.addAttribute("positiveComments",positiveComments);
