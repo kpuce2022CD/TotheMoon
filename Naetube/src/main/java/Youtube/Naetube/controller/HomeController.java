@@ -16,11 +16,6 @@ import java.util.List;
 public class HomeController {
 
     private ObjectMapper objectMapper = new ObjectMapper();
-    //홈 화면
-    @GetMapping("/")
-    public String Home(){
-        return "home";
-    }
 
     //결과 화면
     @GetMapping("/search/{url}")
