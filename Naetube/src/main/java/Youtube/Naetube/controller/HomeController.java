@@ -53,25 +53,37 @@ public class HomeController {
         double positivePercent = ((double)positiveComments.size() / ((double)positiveComments.size()+(double)negativeComments.size()))*100;
         double negativePercent = ((double)negativeComments.size() / ((double)positiveComments.size()+(double)negativeComments.size()))*100;
         double emTotalSize = fearComments.size()+ surprisedComments.size()+ angerComments.size()+ sadnessComments.size()+ neutralComments.size()+ happyComments.size()+ disgustComments.size();
-        double fearPercent = ((double)fearComments.size()/emTotalSize)*100;
+        double fearPercent = (((double)fearComments.size()/emTotalSize)*100);
         double surprisedPercent = ((double)surprisedComments.size()/emTotalSize)*100;
         double angerPercent = ((double)angerComments.size()/emTotalSize)*100;
         double sadnessPercent = ((double)sadnessComments.size()/emTotalSize)*100;
         double neutralPercent = ((double)neutralComments.size()/emTotalSize)*100;
         double happyPercent = ((double)happyComments.size()/emTotalSize)*100;
         double disgustPercent = ((double)disgustComments.size()/emTotalSize)*100;
+
+        // 소수점 정규화
+        double return_fearPercent = Double.parseDouble(String.format("%.1f",fearPercent));
+        double return_surprisedPercent = Double.parseDouble(String.format("%.1f",surprisedPercent));
+        double return_angerPercent = Double.parseDouble(String.format("%.1f",angerPercent));
+        double return_sadnessPercent = Double.parseDouble(String.format("%.1f",sadnessPercent));
+        double return_neutralPercent = Double.parseDouble(String.format("%.1f",neutralPercent));
+        double return_happyPercent = Double.parseDouble(String.format("%.1f",happyPercent));
+        double return_disgustPercent = Double.parseDouble(String.format("%.1f",disgustPercent));
+
+
+
         System.out.println("전체 댓글 수 = " + comments.length);
         System.out.println("긍정 댓글 수 = " + positiveComments.size());
         System.out.println("부정 댓글 수  = " + negativeComments.size());
         System.out.println("긍정 댓글 비율 = " + positivePercent);
         System.out.println("부정 댓글 비율 = " + negativePercent);
-        System.out.println("공포 댓글 비율 = " + fearPercent);
-        System.out.println("놀람 댓글 비율 = " + surprisedPercent);
-        System.out.println("분노 댓글 비율 = " + angerPercent);
-        System.out.println("슬픔 댓글 비율 = " + sadnessPercent);
-        System.out.println("중립 댓글 비율 = " + neutralPercent);
-        System.out.println("행복 댓글 비율 = " + happyPercent);
-        System.out.println("혐오 댓글 비율 = " + disgustPercent);
+        System.out.println("공포 댓글 비율 = " + return_fearPercent);
+        System.out.println("놀람 댓글 비율 = " + return_surprisedPercent);
+        System.out.println("분노 댓글 비율 = " + return_angerPercent);
+        System.out.println("슬픔 댓글 비율 = " + return_sadnessPercent);
+        System.out.println("중립 댓글 비율 = " + return_neutralPercent);
+        System.out.println("행복 댓글 비율 = " + return_happyPercent);
+        System.out.println("혐오 댓글 비율 = " + return_disgustPercent);
 
 
         // "행복" 댓글 출력 테스트
@@ -85,6 +97,13 @@ public class HomeController {
         model.addAttribute("comments",comments);
         model.addAttribute("positivePercent", positivePercent);
         model.addAttribute("negativePercent", negativePercent);
+        model.addAttribute("fearPercent",return_fearPercent);
+        model.addAttribute("surprisedPercent",return_surprisedPercent);
+        model.addAttribute("angerPercent",return_angerPercent);
+        model.addAttribute("sadnessPercent",return_sadnessPercent);
+        model.addAttribute("neutralPercent",return_neutralPercent);
+        model.addAttribute("happyPercent",return_happyPercent);
+        model.addAttribute("disgustPercent",return_disgustPercent);
         return "search";
     }
 
