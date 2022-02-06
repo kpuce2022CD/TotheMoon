@@ -24,6 +24,13 @@
     <th:block layout:fragment="script"></th:block>
     <th:block layout:fragment="css"></th:block>
     -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.bundle.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.bundle.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.css">
+
     <style>
         .container{
             height: 80vh;
@@ -39,38 +46,115 @@
              display: flex;
              justify-content: center;
         }
-        #tb1 { position:absolute; border: 1px solid #444444; border-collapse: collapse; }
-        #tb2 { position:absolute; border: 1px solid #444444; border-collapse: collapse; display:none; }
+        #tb1 {border:none; border-collapse:separate; border-spacing: 0 30px;}
+        #tb2 {border:none; border-collapse:separate; border-spacing: 0 30px;}
 
         th, td {
-             border: 1px solid #444444;
+             border: none
         }
         .progress {height:60px; width:30%; text-align:center; align:center;
         margin-left: auto; margin-right:auto;}
-    </style>
-    <script language="javascript">
-      function view(arg){
-         var t1 = document.getElementById("tb1");
-         var t2 = document.getElementById("tb2");
+        body{ background:black}
 
-         if(arg == 1)
-         {
-         t1.style.display="block";
-         t2.style.display="none";
+        .box{
+            -ms-overflow-style: none;
          }
-         else
-         {
-         t2.style.display="block";
-         t1.style.display="none";
-         }
-    }
+        .box::-webkit-scrollbar{
+            display:none;
+        }
+
+        .legend-div {
+
+        top: 62px;
+        left: 320px;
+        }
+
+        .legend-div ul li {
+            margin: 10px 0;
+            color: #666;
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif
+        }
+
+        .legend-div ul li span {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            margin-right: 5px;
+            vertical-align: middle;
+        }
+
+    </style>
+    <script language="JavaScript" th:inline="javascript">
+        window.onload = function () {
+            pieChartDraw();
+            document.getElementById('legend-div').innerHTML = window.pieChart.generateLegend();
+        }
+        var fearPercent = "[[${fearPercent}]]";
+        var surprisedPercent = "[[${surprisedPercent}]]";
+        var angerPercent = "[[${angerPercent}]]";
+        var sadnessPercent = "[[${sadnessPercent}]]";
+        var neutralPercent = "[[${neutralPercent}]]";
+        var happyPercent = "[[${happyPercent}]]";
+        var disgustPercent = "[[${disgustPercent}]]";
+
+        let pieChartData = {
+            labels: ['공포', '놀람', '분노', '슬픔', '중립', '행복', '혐오'],
+
+
+            datasets: [{
+                data: [fearPercent, surprisedPercent, angerPercent, sadnessPercent, neutralPercent, happyPercent, disgustPercent],
+                backgroundColor: ['rgb(153, 102, 255)', 'rgb(255, 159, 64)', 'rgb(255, 205, 86)', 'rgb(75, 192, 192)', 'rgb(54, 162, 235)', 'rgb(255, 99, 132)', 'rgb(188,143,143)']
+            }]
+        };
+
+        let pieChartDraw = function () {
+            let ctx = document.getElementById('pieChartCanvas').getContext('2d');
+
+            window.pieChart = new Chart(ctx, {
+                type: 'pie',
+                data: pieChartData,
+                options: {
+                    responsive: false,
+                    legend: {
+                        display: false
+                    },
+                    legendCallback: customLegend
+                }
+            });
+        };
+
+        let customLegend = function (chart) {
+            let ul = document.createElement('ul');
+            let color = chart.data.datasets[0].backgroundColor;
+
+            chart.data.labels.forEach(function (label, index) {
+                ul.innerHTML += `<li><span style="background-color: ${color[index]}"></span>${label}</li>`;
+            });
+
+            return ul.outerHTML;
+        };
+
     </script>
+
 </head>
 <body>
-    <div class="container">
-        <iframe width="560" height="315" th:src="${url}"></iframe>
+    <div>
+        <div class="container" width="100%">
+            <iframe width="50%" height="315" th:src="${url}"></iframe>
+            <div class="chart-div" style="float:right;margin-left:100px" >
+                <div>
+                    <canvas id="pieChartCanvas" width="150%" height="250px" style="float:left"></canvas>
+                    <div id='legend-div' class="legend-div" style="float:right"></div>
+                </div>
+            </div>
+            <script src="script.js"></script>
+        </div>
+
     </div>
-    <div class="progress" style="width:70%;height:25px">
+
+
+    <div class="progress" style="width:50%;height:25px">
         <div class="progress-bar progress-bar-success" role="progressbar" th:aria-valuenow="${#numbers.formatDecimal(positivePercent,2,2)}"
              aria-valuemin="0" aria-valuemax="100" th:style="|width:${#numbers.formatDecimal(positivePercent,2,2)}%;text-align:center|" th:text="|긍정적(${#numbers.formatDecimal(positivePercent,2,2)}%)|">
             긍정적(~%)
@@ -85,35 +169,40 @@
         <input type="button" value="부정 댓글" onClick="view(2)">
     </div>
     <br><br>
-    <div id ="tableWrapper">
-    <table id="tb1">
-        <thead>
-        <tr>
-            <th>작성자 아이디</th>
-            <th>댓글</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="Comment : ${positiveComments}">
-            <td th:text="${Comment.id}"></td>
-            <td th:text="${Comment.comment}"></td>
-        </tr>
-        </tbody>
-    </table>
-    <table id="tb2">
-        <thead>
-        <tr>
-            <th>작성자 아이디</th>
-            <th>댓글</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="Comment : ${negativeComments}">
-            <td th:text="${Comment.id}"></td>
-            <td th:text="${Comment.comment}"></td>
-        </tr>
-        </tbody>
-    </table>
+    <div>
+        <div style="overflow:scroll;height:500px;width:50%;float:left;" class="box">
+        <table id="tb1" style="margin:50px">
+            <thead>
+            <tr>
+                <th width="30%" style="color:white">작성자 아이디</th>
+                <th width="70%" style="color:white">댓글</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="Comment : ${positiveComments}">
+                <td th:text="${Comment.id}" style="color:gray"></td>
+                <td th:text="${Comment.comment}" style="color:green"></td>
+            </tr>
+            </tbody>
+        </table>
+        </div>
+        <div style="overflow:scroll;height:500px;width:50%;float:right;" class="box">
+        <table id="tb2" style="margin:50px">
+            <thead>
+            <tr>
+                <th width="30%" style="color:white">작성자 아이디</th>
+                <th width="70%" style="color:white">댓글</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="Comment : ${negativeComments}">
+                <td th:text="${Comment.id}" style="color:gray"></td>
+                <td th:text="${Comment.comment}" style="color:red"></td>
+            </tr>
+            </tbody>
+        </table>
+        </div>
     </div>
+
 </body>
 </html>

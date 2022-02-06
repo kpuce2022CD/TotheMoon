@@ -7,9 +7,6 @@ from np_classify import npClassifyProcessing, \
     comment_classify, sentiment_predict, remove_emoji, emoticonToWord
 from em_classify import *
 
-#model = BERTClassifier()
-#model.load_state_dict(torch.load('model_state_dic.pt'))
-
 
 def create_app():
     app = Flask(__name__)
