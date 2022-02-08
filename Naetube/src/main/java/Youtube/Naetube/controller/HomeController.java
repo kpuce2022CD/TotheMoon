@@ -2,6 +2,7 @@ package Youtube.Naetube.controller;
 
 import Youtube.Naetube.entity.*;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,6 +13,7 @@ import org.springframework.web.client.RestTemplate;
 import java.util.ArrayList;
 import java.util.List;
 
+@Slf4j
 @Controller
 public class HomeController {
 
@@ -112,9 +114,10 @@ public class HomeController {
         ResponseEntity<Keyword> response = restTemplate.getForEntity(baseUrl, Keyword.class);
 
         Keyword keyword = response.getBody();
-
-        System.out.println(keyword.getB5()[0]);
-        System.out.println(keyword.getComments()[0][0]);
+        log.info("keyword={}", keyword);
+        log.info("keyword.getB5()[0]={}", keyword.getB5()[0]);
+        log.info("keyword.getComments()[0][0]={}", keyword.getComments()[0][0]);
+        model.addAttribute("keyword",keyword);
         return "keyword";
     }
 
