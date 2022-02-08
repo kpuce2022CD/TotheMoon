@@ -170,10 +170,10 @@
       <method v="2" />
     </configuration>
     <list>
+      <item itemvalue="Python.main" />
       <item itemvalue="Python.app" />
       <item itemvalue="Python.em_classify" />
       <item itemvalue="Python.em_classify_moel" />
-      <item itemvalue="Python.main" />
       <item itemvalue="Python.np_classify" />
       <item itemvalue="Python.test3" />
     </list>
