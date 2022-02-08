@@ -1,10 +1,9 @@
 <!DOCTYPE html>
-<HTML>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
     <style type="text/css">
-
 /*Example CSS for the two demo scrollers*/
 
 #pscroller2{
@@ -20,21 +19,9 @@ text-decoration: none;
 
 .someclass{ //class to apply to your scroller(s) if desired
 }
-</style>
-
-    <script type="text/javascript">
-
-/*Example message arrays for the two demo scrollers*/
 
 
-var pausecontent=new Array()
-pausecontent[0]='1. 베스트1 키워드'
-pausecontent[1]='2. 베스트2 키워드.'
-pausecontent[2]='3. 베스트3 키워드.'
-pausecontent[3]='4. 베스트4 키워드.'
-pausecontent[4]='5. 베스트5 키워드.'
-
-</script>
+    </style>
 
     <script type="text/javascript">
 
@@ -143,18 +130,31 @@ return 0
 }
 
 
-</script>
+
+
+    </script>
 </head>
 
-<BODY>
+<body>
+<!--<tr th:each="kw: ${keyword}">-->
+<!--    <td th:text ="${kw.b5[0]}"></td>-->
+<!--    <td th:text ="${kw.comments[0][0]}"></td>-->
+<!--</tr>-->
+<!--<div th:text ="${keyword.b5[0]}"></div>-->
 
-Best키워드
 <div>
-    <script type="text/javascript">
+    <script type="text/javascript" th:inline="javascript">
+    var pausecontent=new Array()
+    let name ="안녕하세요"
+    pausecontent[0]= '1. '+[[${keyword.b5[0]}]]
+    pausecontent[1]= '2. '+[[${keyword.b5[1]}]]
+    pausecontent[2]= '3. '+[[${keyword.b5[2]}]]
+    pausecontent[3]= '4. '+[[${keyword.b5[3]}]]
+    pausecontent[4]= '5. '+[[${keyword.b5[4]}]]
     //new pausescroller(name_of_message_array, CSS_ID, CSS_classname, pause_in_miliseconds)
     document.write("<br/>")
     new pausescroller(pausecontent, "pscroller2", "someclass", 2000)
-</script>
+    </script>
 </div>
-</BODY>
-</HTML>
+</body>
+</html>
