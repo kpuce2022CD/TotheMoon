@@ -2,8 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="dcfeaba6-ab4e-4548-9932-540f5c2b5d35" name="Changes" comment="model_state_dic.pt commit">
-      <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Naetube/src/main/java/Youtube/Naetube/controller/HomeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Naetube/src/main/java/Youtube/Naetube/controller/HomeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Naetube/src/main/resources/static/index.html" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -169,10 +170,10 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Python.main" />
       <item itemvalue="Python.app" />
       <item itemvalue="Python.em_classify" />
       <item itemvalue="Python.em_classify_moel" />
+      <item itemvalue="Python.main" />
       <item itemvalue="Python.np_classify" />
       <item itemvalue="Python.test3" />
     </list>
