@@ -5,16 +5,30 @@
     <title>Title</title>
     <style type="text/css">
 /*Example CSS for the two demo scrollers*/
-
+body {
+  background-color: black;
+}
 #pscroller2{
-width: 250px;
+width: 150px;
 height: 20px;
-border: 1px solid black;
-padding: 3px;
+border: 1px solid white;
+color: white;
+padding: 7px;
 }
 
 #pscroller2 a{
 text-decoration: none;
+}
+
+.b5title{
+   display: inline-block;
+   padding:10px;
+   position: relative; bottom: 10px;
+}
+
+.b5content{
+   display: inline-block;
+   padding:10px;
 }
 
 .someclass{ //class to apply to your scroller(s) if desired
@@ -129,9 +143,6 @@ else
 return 0
 }
 
-
-
-
     </script>
 </head>
 
@@ -141,20 +152,21 @@ return 0
 <!--    <td th:text ="${kw.comments[0][0]}"></td>-->
 <!--</tr>-->
 <!--<div th:text ="${keyword.b5[0]}"></div>-->
-
-<div>
-    <script type="text/javascript" th:inline="javascript">
-    var pausecontent=new Array()
-    let name ="안녕하세요"
-    pausecontent[0]= '1. '+[[${keyword.b5[0]}]]
-    pausecontent[1]= '2. '+[[${keyword.b5[1]}]]
-    pausecontent[2]= '3. '+[[${keyword.b5[2]}]]
-    pausecontent[3]= '4. '+[[${keyword.b5[3]}]]
-    pausecontent[4]= '5. '+[[${keyword.b5[4]}]]
-    //new pausescroller(name_of_message_array, CSS_ID, CSS_classname, pause_in_miliseconds)
-    document.write("<br/>")
-    new pausescroller(pausecontent, "pscroller2", "someclass", 2000)
+<div class="b5">
+    <div class="b5title" style="color:white"><h3>Best 키워드 5</h3></div>
+    <div class="b5content">
+        <script type="text/javascript" th:inline="javascript">
+        var pausecontent=new Array()
+         pausecontent[0]= '1. '+[[${keyword.b5[0]}]]
+         pausecontent[1]= '2. '+[[${keyword.b5[1]}]]
+         pausecontent[2]= '3. '+[[${keyword.b5[2]}]]
+         pausecontent[3]= '4. '+[[${keyword.b5[3]}]]
+         pausecontent[4]= '5. '+[[${keyword.b5[4]}]]
+          //new pausescroller(name_of_message_array, CSS_ID, CSS_classname, pause_in_miliseconds)
+          document.write("<br/>")
+          new pausescroller(pausecontent, "pscroller2", "someclass", 2000)
     </script>
+    </div>
 </div>
 </body>
 </html>
