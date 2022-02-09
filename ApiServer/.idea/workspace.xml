@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="dcfeaba6-ab4e-4548-9932-540f5c2b5d35" name="Changes" comment="model_state_dic.pt commit">
-      <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
+    <list default="true" id="dcfeaba6-ab4e-4548-9932-540f5c2b5d35" name="Changes" comment="html 테스트 코드 추가">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Naetube/src/main/java/Youtube/Naetube/controller/HomeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Naetube/src/main/java/Youtube/Naetube/controller/HomeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Naetube/src/main/resources/templates/search.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Naetube/src/main/resources/templates/search.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Naetube/src/main/resources/templates/test_search.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Naetube/src/main/resources/templates/test_search.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -335,7 +337,14 @@
       <option name="project" value="LOCAL" />
       <updated>1643876964504</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="html 테스트 코드 추가">
+      <created>1644303704821</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1644303704821</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -381,6 +390,7 @@
     <MESSAGE value="requirements.txt commit" />
     <MESSAGE value="감정분류 데이터 json 전송" />
     <MESSAGE value="model_state_dic.pt commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="model_state_dic.pt commit" />
+    <MESSAGE value="html 테스트 코드 추가" />
+    <option name="LAST_COMMIT_MESSAGE" value="html 테스트 코드 추가" />
   </component>
 </project>
