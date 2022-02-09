@@ -1,6 +1,7 @@
 import pandas as pd
 from bs4 import BeautifulSoup
 from pathlib import Path
+from collections import Counter
 
 
 class timelineExtractor:
@@ -13,8 +14,8 @@ class timelineExtractor:
 # np_classify.py에서 timeline 추출 기능 제거해야함
 # 10등까지
 # 댓글 x 빈도만
+# 타임라인 best 10 추출
 
-# 타임라인 빈도수 뽑기
   def __init__(self):
     self.timeline_list = []
 
@@ -40,8 +41,17 @@ class timelineExtractor:
       timeline_data['length'] = len(timeline)
       self.timeline_list.append(timeline_data)
     return self
-
   
+  def get_best_timelines(self,n=10):
+    timeline = []
+    for i in self.data['comment']:  
+      soup = BeautifulSoup(i,'html.parser')
+      for j in soup.find_all('a'):
+        timeline.append(j.text)
+    best_timelines = Counter(timeline).most_common(n)
+    best_timelines = [{'time':i[0], 'sec':self.standardized_time(i[0]), 'freq':i[1]} for i in best_timelines]
+    return best_timelines
+    
   def sorting_timeline_comments(self):
     self.timeline_list.sort(key = lambda x : (-x['length'], x['timeline']))
     return self
