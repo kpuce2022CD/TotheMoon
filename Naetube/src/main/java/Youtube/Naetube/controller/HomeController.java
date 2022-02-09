@@ -103,6 +103,13 @@ public class HomeController {
         model.addAttribute("neutralPercent",return_neutralPercent);
         model.addAttribute("happyPercent",return_happyPercent);
         model.addAttribute("disgustPercent",return_disgustPercent);
+        model.addAttribute("fearComments",fearComments);
+        model.addAttribute("surprisedComments",surprisedComments);
+        model.addAttribute("angerComments",angerComments);
+        model.addAttribute("sadnessComments",sadnessComments);
+        model.addAttribute("neutralComments",neutralComments);
+        model.addAttribute("happyComments",happyComments);
+        model.addAttribute("disgustComments",disgustComments);
         return "search";
     }
 
@@ -149,38 +156,38 @@ public class HomeController {
         Comment[] comments = new Comment[900];
 
         for(int i=0;i<100;i++){
-            comments[i] = new Comment("0","testId","테스트입니다.테스트입니다.테스트입니다.테스트입니다.테스트입니다.테스트입니다.테스트입니다.","2020-20-20","5");
+            comments[i] = new Comment("0","testId","부정테스트입니다.부정테스트입니다.부정테스트입니다.부정테스트입니다.부정테스트입니다.부정테스트입니다","2020-20-20","5");
         }
         for(int i=100;i<200;i++){
-            comments[i] = new Comment("1","testId","테스트입니다.테스트입니다.테스트입니다.테스트입니다.테스트입니다.테스트입니다.테스트입니다.","2020-20-20","5");
+            comments[i] = new Comment("1","testId","긍정테스트입니다.긍정테스트입니다.긍정테스트입니다.긍정테스트입니다.긍정테스트입니다.긍정테스트입니다.","2020-20-20","5");
 
         }
         for(int i=200;i<300;i++){
-            comments[i] = new Comment("2","testId","테스트입니다.테스트입니다.테스트입니다.테스트입니다.테스트입니다.테스트입니다.테스트입니다.","2020-20-20","5");
+            comments[i] = new Comment("2","testId","공포테스트입니다.공포테스트입니다.공포테스트입니다.공포테스트입니다.공포테스트입니다.공포테스트입니다.","2020-20-20","5");
 
         }
         for(int i=300;i<400;i++){
-            comments[i] = new Comment("3","testId","테스트입니다.테스트입니다.테스트입니다.테스트입니다.테스트입니다.테스트입니다.테스트입니다.","2020-20-20","5");
+            comments[i] = new Comment("3","testId","놀람테스트입니다.놀람테스트입니다.놀람테스트입니다.놀람테스트입니다.놀람테스트입니다.놀람테스트입니다.","2020-20-20","5");
 
         }
         for(int i=400;i<500;i++){
-            comments[i] = new Comment("4","testId","테스트입니다.테스트입니다.테스트입니다.테스트입니다.테스트입니다.테스트입니다.테스트입니다.","2020-20-20","5");
+            comments[i] = new Comment("4","testId","분노테스트입니다.분노테스트입니다.분노테스트입니다.분노테스트입니다.분노테스트입니다.분노테스트입니다.","2020-20-20","5");
 
         }
         for(int i=500;i<600;i++){
-            comments[i] = new Comment("5","testId","테스트입니다.테스트입니다.테스트입니다.테스트입니다.테스트입니다.테스트입니다.테스트입니다.","2020-20-20","5");
+            comments[i] = new Comment("5","testId","슬픔테스트입니다.슬픔테스트입니다.슬픔테스트입니다.슬픔테스트입니다.슬픔테스트입니다.슬픔테스트입니다.","2020-20-20","5");
 
         }
         for(int i=600;i<700;i++){
-            comments[i] = new Comment("6","testId","테스트입니다.테스트입니다.테스트입니다.테스트입니다.테스트입니다.테스트입니다.테스트입니다.","2020-20-20","5");
+            comments[i] = new Comment("6","testId","중립테스트입니다.중립테스트입니다.중립테스트입니다.중립테스트입니다.중립테스트입니다.중립테스트입니다.","2020-20-20","5");
 
         }
         for(int i=700;i<800;i++){
-            comments[i] = new Comment("7","testId","테스트입니다.테스트입니다.테스트입니다.테스트입니다.테스트입니다.테스트입니다.테스트입니다.","2020-20-20","5");
+            comments[i] = new Comment("7","testId","행복테스트입니다.행복테스트입니다.행복테스트입니다.행복테스트입니다.행복테스트입니다.행복테스트입니다.","2020-20-20","5");
 
         }
         for(int i=800;i<900;i++){
-            comments[i] = new Comment("8","testId","테스트입니다.테스트입니다.테스트입니다.테스트입니다.테스트입니다.테스트입니다.테스트입니다.","2020-20-20","5");
+            comments[i] = new Comment("8","testId","혐오테스트입니다.혐오테스트입니다.혐오테스트입니다.혐오테스트입니다.혐오테스트입니다.혐오테스트입니다.","2020-20-20","5");
 
         }
 
@@ -257,6 +264,14 @@ public class HomeController {
         model.addAttribute("neutralPercent",return_neutralPercent);
         model.addAttribute("happyPercent",return_happyPercent);
         model.addAttribute("disgustPercent",return_disgustPercent);
+        model.addAttribute("fearComments",fearComments);
+        model.addAttribute("surprisedComments",surprisedComments);
+        model.addAttribute("angerComments",angerComments);
+        model.addAttribute("sadnessComments",sadnessComments);
+        model.addAttribute("neutralComments",neutralComments);
+        model.addAttribute("happyComments",happyComments);
+        model.addAttribute("disgustComments",disgustComments);
+
         return "test_search";
     }
 

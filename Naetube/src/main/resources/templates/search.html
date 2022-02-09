@@ -49,6 +49,11 @@
         #tb1 {border:none; border-collapse:separate; border-spacing: 0 30px;}
         #tb2 {border:none; border-collapse:separate; border-spacing: 0 30px;}
 
+        .tb {
+                border-spacing: 15px;
+                border-collapse: separate;
+        }
+
         th, td {
              border: none
         }
@@ -84,8 +89,154 @@
             vertical-align: middle;
         }
 
+        #modal0.modal-overlay, #modal1.modal-overlay, #modal2.modal-overlay, #modal3.modal-overlay
+         , #modal4.modal-overlay, #modal5.modal-overlay, #modal6.modal-overlay{
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            left: 0;
+            top: 0;
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.25);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+            backdrop-filter: blur(1.5px);
+            -webkit-backdrop-filter: blur(1.5px);
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.18);
+        }
+        #modal0 .modal-window{
+            background: rgba( 53, 102, 255, 0.70 );
+            box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+            backdrop-filter: blur( 13.5px );
+            -webkit-backdrop-filter: blur( 13.5px );
+            border-radius: 10px;
+            border: 1px solid rgba( 255, 255, 255, 0.18 );
+            width: 600px;
+            height: 500px;
+            position: relative;
+            top: 100px;
+            padding: 10px;
+        }
+        #modal1 .modal-window{
+            background: rgba( 255, 159, 64, 0.70 );
+            box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+            backdrop-filter: blur( 13.5px );
+            -webkit-backdrop-filter: blur( 13.5px );
+            border-radius: 10px;
+            border: 1px solid rgba( 255, 255, 255, 0.18 );
+            width: 600px;
+            height: 500px;
+            position: relative;
+            top: 100px;
+            padding: 10px;
+        }
+        #modal2 .modal-window{
+            background: rgba( 255, 205, 86, 0.70 );
+            box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+            backdrop-filter: blur( 13.5px );
+            -webkit-backdrop-filter: blur( 13.5px );
+            border-radius: 10px;
+            border: 1px solid rgba( 255, 255, 255, 0.18 );
+            width: 600px;
+            height: 500px;
+            position: relative;
+            top: 100px;
+            padding: 10px;
+        }
+        #modal3 .modal-window{
+            background: rgba( 75, 192, 192, 0.70 );
+            box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+            backdrop-filter: blur( 13.5px );
+            -webkit-backdrop-filter: blur( 13.5px );
+            border-radius: 10px;
+            border: 1px solid rgba( 255, 255, 255, 0.18 );
+            width: 600px;
+            height: 500px;
+            position: relative;
+            top: 100px;
+            padding: 10px;
+        }
+        #modal4 .modal-window{
+            background: rgba( 54, 162, 235, 0.70 );
+            box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+            backdrop-filter: blur( 13.5px );
+            -webkit-backdrop-filter: blur( 13.5px );
+            border-radius: 10px;
+            border: 1px solid rgba( 255, 255, 255, 0.18 );
+            width: 600px;
+            height: 500px;
+            position: relative;
+            top: 100px;
+            padding: 10px;
+        }
+        #modal5 .modal-window{
+            background: rgba( 255, 99, 132, 0.70 );
+            box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+            backdrop-filter: blur( 13.5px );
+            -webkit-backdrop-filter: blur( 13.5px );
+            border-radius: 10px;
+            border: 1px solid rgba( 255, 255, 255, 0.18 );
+            width: 600px;
+            height: 500px;
+            position: relative;
+            top: 100px;
+            padding: 10px;
+        }
+        #modal6 .modal-window{
+            background: rgba( 188, 143, 143, 0.70 );
+            box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+            backdrop-filter: blur( 13.5px );
+            -webkit-backdrop-filter: blur( 13.5px );
+            border-radius: 10px;
+            border: 1px solid rgba( 255, 255, 255, 0.18 );
+            width: 600px;
+            height: 500px;
+            position: relative;
+            top: 100px;
+            padding: 10px;
+        }
+        #modal0 .title, #modal1 .title, #modal2 .title, #modal3 .title, #modal4 .title
+         , #modal5 .title, #modal6 .title{
+            padding-left: 10px;
+            display: inline;
+            text-shadow: 1px 1px 2px gray;
+            color: white;
+
+        }
+        #modal0 .title h2, #modal1 .title h2, #modal2 .title h2, #modal3 .title h2
+         , #modal4 .title h2, #modal5 .title h2, #modal6 .title h2{
+            display: inline;
+        }
+        #modal0 .close-area, #modal1 .close-area, #modal2 .close-area, #modal3 .close-area
+         , #modal4 .close-area, #modal5 .close-area, #modal6 .close-area{
+            display: inline;
+            float: right;
+            padding-right: 10px;
+            cursor: pointer;
+            text-shadow: 1px 1px 2px gray;
+            color: white;
+        }
+
+        #modal0 .content, #modal1 .content, #modal2 .content, #modal3 .content
+         , #modal4 .content, #modal5 .content #modal6 .content{
+            margin-top: 20px;
+            padding: 0px 10px;
+            text-shadow: 1px 1px 2px gray;
+            color: white;
+        }
+
     </style>
     <script language="JavaScript" th:inline="javascript">
+
+  const loremIpsum = document.getElementById("lorem-ipsum")
+        fetch("https://baconipsum.com/api/?type=all-meat&paras=200&format=html")
+            .then(response => response.text())
+            .then(result => loremIpsum.innerHTML = result)
+
+
         window.onload = function () {
             pieChartDraw();
             document.getElementById('legend-div').innerHTML = window.pieChart.generateLegend();
@@ -109,7 +260,102 @@
         };
 
         let pieChartDraw = function () {
-            let ctx = document.getElementById('pieChartCanvas').getContext('2d');
+            var ctx = document.getElementById('pieChartCanvas').getContext('2d');
+            const modal = document.getElementById("modal");
+            const btnModal = document.getElementById("btn-modal");
+
+            // X 버튼 누를시 창 꺼짐 - Fear
+            const closeBtn0 = modal0.querySelector(".close-area")
+            closeBtn0.addEventListener("click", e => {
+                modal0.style.display = "none"
+            })
+            // 모달 창 바깥 영역 클릭시 창 꺼짐 - Fear
+            modal0.addEventListener("click", e => {
+                const evTarget = e.target
+                if(evTarget.classList.contains("modal-overlay")) {
+                modal0.style.display = "none"
+              }
+            })
+
+            // X 버튼 누를시 창 꺼짐 - Surprised
+            const closeBtn1 = modal1.querySelector(".close-area")
+            closeBtn1.addEventListener("click", e => {
+                modal1.style.display = "none"
+            })
+            // 모달 창 바깥 영역 클릭시 창 꺼짐 - Surprised
+            modal1.addEventListener("click", e => {
+                const evTarget = e.target
+                if(evTarget.classList.contains("modal-overlay")) {
+                modal1.style.display = "none"
+              }
+            })
+
+            // X 버튼 누를시 창 꺼짐 - anger
+            const closeBtn2 = modal2.querySelector(".close-area")
+            closeBtn2.addEventListener("click", e => {
+                modal2.style.display = "none"
+            })
+            // 모달 창 바깥 영역 클릭시 창 꺼짐 - anger
+            modal2.addEventListener("click", e => {
+                const evTarget = e.target
+                if(evTarget.classList.contains("modal-overlay")) {
+                modal2.style.display = "none"
+              }
+            })
+
+            // X 버튼 누를시 창 꺼짐 - sadness
+            const closeBtn3 = modal3.querySelector(".close-area")
+            closeBtn3.addEventListener("click", e => {
+                modal3.style.display = "none"
+            })
+            // 모달 창 바깥 영역 클릭시 창 꺼짐 - sadness
+            modal3.addEventListener("click", e => {
+                const evTarget = e.target
+                if(evTarget.classList.contains("modal-overlay")) {
+                modal3.style.display = "none"
+              }
+            })
+
+            // X 버튼 누를시 창 꺼짐 - neutral
+            const closeBtn4 = modal4.querySelector(".close-area")
+            closeBtn4.addEventListener("click", e => {
+                modal4.style.display = "none"
+            })
+            // 모달 창 바깥 영역 클릭시 창 꺼짐 - neutral
+            modal4.addEventListener("click", e => {
+                const evTarget = e.target
+                if(evTarget.classList.contains("modal-overlay")) {
+                modal4.style.display = "none"
+              }
+            })
+
+            // X 버튼 누를시 창 꺼짐 - happy
+            const closeBtn5 = modal5.querySelector(".close-area")
+            closeBtn5.addEventListener("click", e => {
+                modal5.style.display = "none"
+            })
+            // 모달 창 바깥 영역 클릭시 창 꺼짐 - happy
+            modal5.addEventListener("click", e => {
+                const evTarget = e.target
+                if(evTarget.classList.contains("modal-overlay")) {
+                modal5.style.display = "none"
+              }
+            })
+
+            // X 버튼 누를시 창 꺼짐 - disgust
+            const closeBtn6 = modal6.querySelector(".close-area")
+            closeBtn6.addEventListener("click", e => {
+                modal6.style.display = "none"
+            })
+            // 모달 창 바깥 영역 클릭시 창 꺼짐 - disgust
+            modal6.addEventListener("click", e => {
+                const evTarget = e.target
+                if(evTarget.classList.contains("modal-overlay")) {
+                modal6.style.display = "none"
+              }
+            })
+
+
 
             window.pieChart = new Chart(ctx, {
                 type: 'pie',
@@ -119,7 +365,41 @@
                     legend: {
                         display: false
                     },
-                    legendCallback: customLegend
+                    legendCallback: customLegend,
+                    onClick : function(evt) {
+                        var activePoints = window.pieChart.getElementAtEvent(evt);
+
+                        var clickedElementIndex = activePoints[0]["_index"];
+
+                        if(clickedElementIndex == 0) {
+                          modal0.style.display = "flex"
+                        }
+                        else if(clickedElementIndex == 1){
+
+                          modal1.style.display = "flex"
+                        }
+                        else if(clickedElementIndex == 2){
+
+                          modal2.style.display = "flex"
+                        }
+                        else if(clickedElementIndex == 3){
+
+                          modal3.style.display = "flex"
+                        }
+                        else if(clickedElementIndex == 4){
+
+                          modal4.style.display = "flex"
+                        }
+                        else if(clickedElementIndex == 5){
+
+                          modal5.style.display = "flex"
+                        }
+                        else if(clickedElementIndex == 6){
+
+                          modal6.style.display = "flex"
+                        }
+
+                    }
                 }
             });
         };
@@ -139,38 +419,234 @@
 
 </head>
 <body>
-    <div>
-        <div class="container" width="100%">
-            <iframe width="50%" height="315" th:src="${url}"></iframe>
-            <div class="chart-div" style="float:right;margin-left:100px" >
-                <div>
-                    <canvas id="pieChartCanvas" width="150%" height="250px" style="float:left"></canvas>
-                    <div id='legend-div' class="legend-div" style="float:right"></div>
-                </div>
+<!-- modal창 설정 - fearComments -->
+<div id="modal0" class="modal-overlay">
+    <div class="modal-window">
+        <div class="title">
+            <h2>Fear</h2>
+        </div>
+        <div class="close-area">X</div>
+        <div class="content">
+            <div style="overflow:scroll;height:400px;float:left;" class="box">
+                <table class="tb" style="margin:10px">
+                    <thead>
+                    <tr>
+                        <th width="30%" style="color:white">작성자 아이디</th>
+                        <th width="70%" style="color:white">댓글</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="Comment : ${fearComments}">
+                        <td th:text="${Comment.id}" style="color:black"></td>
+                        <td th:text="${Comment.comment}" style="color:black"></td>
+                    </tr>
+                    </tbody>
+                </table>
             </div>
-            <script src="script.js"></script>
-        </div>
-
-    </div>
-
-
-    <div class="progress" style="width:50%;height:25px">
-        <div class="progress-bar progress-bar-success" role="progressbar" th:aria-valuenow="${#numbers.formatDecimal(positivePercent,2,2)}"
-             aria-valuemin="0" aria-valuemax="100" th:style="|width:${#numbers.formatDecimal(positivePercent,2,2)}%;text-align:center|" th:text="|긍정적(${#numbers.formatDecimal(positivePercent,2,2)}%)|">
-            긍정적(~%)
-        </div>
-        <div class="progress-bar progress-bar-danger" role="progressbar" th:aria-valuenow="${#numbers.formatDecimal(negativePercent,2,2)}"
-             aria-valuemin="0" aria-valuemax="100" th:style="|width:${#numbers.formatDecimal(negativePercent,2,2)}%|" th:text="|부정적(${#numbers.formatDecimal(negativePercent,2,2)}%)|">
-            부정적(~%)
         </div>
     </div>
-    <div id="btnWrapper">
-        <input type="button" value="긍정 댓글" onClick="view(1)">&nbsp;
-        <input type="button" value="부정 댓글" onClick="view(2)">
+</div>
+
+<!-- modal창 설정 - SurprisedComments -->
+<div id="modal1" class="modal-overlay">
+    <div class="modal-window">
+        <div class="title">
+            <h2>Surprised</h2>
+        </div>
+        <div class="close-area">X</div>
+        <div class="content">
+            <div style="overflow:scroll;height:400px;float:left;" class="box">
+                <table class="tb" style="margin:10px">
+                    <thead>
+                    <tr>
+                        <th width="30%" style="color:white">작성자 아이디</th>
+                        <th width="70%" style="color:white">댓글</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="Comment : ${surprisedComments}">
+                        <td th:text="${Comment.id}" style="color:black"></td>
+                        <td th:text="${Comment.comment}" style="color:black"></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
-    <br><br>
-    <div>
-        <div style="overflow:scroll;height:500px;width:50%;float:left;" class="box">
+</div>
+
+<!-- modal창 설정 - angerComments -->
+<div id="modal2" class="modal-overlay">
+    <div class="modal-window">
+        <div class="title">
+            <h2>Anger</h2>
+        </div>
+        <div class="close-area">X</div>
+        <div class="content">
+            <div style="overflow:scroll;height:400px;float:left;" class="box">
+                <table class="tb" style="margin:10px">
+                    <thead>
+                    <tr>
+                        <th width="30%" style="color:white">작성자 아이디</th>
+                        <th width="70%" style="color:white">댓글</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="Comment : ${angerComments}">
+                        <td th:text="${Comment.id}" style="color:black"></td>
+                        <td th:text="${Comment.comment}" style="color:black"></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- modal창 설정 - sadnessComments -->
+<div id="modal3" class="modal-overlay">
+    <div class="modal-window">
+        <div class="title">
+            <h2>Sadness</h2>
+        </div>
+        <div class="close-area">X</div>
+        <div class="content">
+            <div style="overflow:scroll;height:400px;float:left;" class="box">
+                <table class="tb" style="margin:10px">
+                    <thead>
+                    <tr>
+                        <th width="30%" style="color:white">작성자 아이디</th>
+                        <th width="70%" style="color:white">댓글</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="Comment : ${sadnessComments}">
+                        <td th:text="${Comment.id}" style="color:black"></td>
+                        <td th:text="${Comment.comment}" style="color:black"></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- modal창 설정 - neutralComments -->
+<div id="modal4" class="modal-overlay">
+    <div class="modal-window">
+        <div class="title">
+            <h2>Neutral</h2>
+        </div>
+        <div class="close-area">X</div>
+        <div class="content">
+            <div style="overflow:scroll;height:400px;float:left;" class="box">
+                <table class="tb" style="margin:10px">
+                    <thead>
+                    <tr>
+                        <th width="30%" style="color:white">작성자 아이디</th>
+                        <th width="70%" style="color:white">댓글</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="Comment : ${neutralComments}">
+                        <td th:text="${Comment.id}" style="color:black"></td>
+                        <td th:text="${Comment.comment}" style="color:black"></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- modal창 설정 - happyComments -->
+<div id="modal5" class="modal-overlay">
+    <div class="modal-window">
+        <div class="title">
+            <h2>Happy</h2>
+        </div>
+        <div class="close-area">X</div>
+        <div class="content">
+            <div style="overflow:scroll;height:400px;float:left;" class="box">
+                <table class="tb" style="margin:10px">
+                    <thead>
+                    <tr>
+                        <th width="30%" style="color:white">작성자 아이디</th>
+                        <th width="70%" style="color:white">댓글</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="Comment : ${happyComments}">
+                        <td th:text="${Comment.id}" style="color:black"></td>
+                        <td th:text="${Comment.comment}" style="color:black"></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- modal창 설정 - disgustComments -->
+<div id="modal6" class="modal-overlay">
+    <div class="modal-window">
+        <div class="title">
+            <h2>Disgust</h2>
+        </div>
+        <div class="close-area">X</div>
+        <div class="content">
+            <div style="overflow:scroll;height:400px;float:left;" class="box">
+                <table class="tb" style="margin:10px">
+                    <thead>
+                    <tr>
+                        <th width="30%" style="color:white">작성자 아이디</th>
+                        <th width="70%" style="color:white">댓글</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="Comment : ${disgustComments}">
+                        <td th:text="${Comment.id}" style="color:black"></td>
+                        <td th:text="${Comment.comment}" style="color:black"></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div>
+    <div class="container" width="100%">
+        <iframe width="50%" height="315" th:src="${url}"></iframe>
+        <div class="chart-div" style="float:right;margin-left:100px" >
+            <div>
+                <canvas id="pieChartCanvas" width="150%" height="250px" style="float:left"></canvas>
+                <div id='legend-div' class="legend-div" style="float:right"></div>
+            </div>
+        </div>
+        <script src="script.js"></script>
+    </div>
+
+</div>
+
+
+<div class="progress" style="width:50%;height:25px">
+    <div class="progress-bar progress-bar-success" role="progressbar" th:aria-valuenow="${#numbers.formatDecimal(positivePercent,2,2)}"
+         aria-valuemin="0" aria-valuemax="100" th:style="|width:${#numbers.formatDecimal(positivePercent,2,2)}%;text-align:center|" th:text="|긍정적(${#numbers.formatDecimal(positivePercent,2,2)}%)|">
+        긍정적(~%)
+    </div>
+    <div class="progress-bar progress-bar-danger" role="progressbar" th:aria-valuenow="${#numbers.formatDecimal(negativePercent,2,2)}"
+         aria-valuemin="0" aria-valuemax="100" th:style="|width:${#numbers.formatDecimal(negativePercent,2,2)}%|" th:text="|부정적(${#numbers.formatDecimal(negativePercent,2,2)}%)|">
+        부정적(~%)
+    </div>
+</div>
+<div id="btnWrapper">
+    <input type="button" value="긍정 댓글" onClick="view(1)">&nbsp;
+    <input type="button" value="부정 댓글" onClick="view(2)">
+</div>
+<br><br>
+<div>
+    <div style="overflow:scroll;height:500px;width:50%;float:left;" class="box">
         <table id="tb1" style="margin:50px">
             <thead>
             <tr>
@@ -185,8 +661,8 @@
             </tr>
             </tbody>
         </table>
-        </div>
-        <div style="overflow:scroll;height:500px;width:50%;float:right;" class="box">
+    </div>
+    <div style="overflow:scroll;height:500px;width:50%;float:right;" class="box">
         <table id="tb2" style="margin:50px">
             <thead>
             <tr>
@@ -201,8 +677,8 @@
             </tr>
             </tbody>
         </table>
-        </div>
     </div>
+</div>
 
 </body>
 </html>
