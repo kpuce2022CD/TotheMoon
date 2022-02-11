@@ -121,8 +121,9 @@ public class HomeController {
         ResponseEntity<Keyword> response = restTemplate.getForEntity(baseUrl, Keyword.class);
 
         Keyword keyword = response.getBody();
-        log.info("keyword={}", keyword);
+        log.info("keyeqwerqeeword={}", keyword);
         log.info("keyword.getB5()[0]={}", keyword.getB5()[0]);
+        log.info("keyword.getComments()={}", keyword.getComments());
         log.info("keyword.getComments()[0][0]={}", keyword.getComments()[0][0]);
         model.addAttribute("keyword",keyword);
         return "keyword";

@@ -5,14 +5,13 @@
     <title>Title</title>
     <style type="text/css">
 /*Example CSS for the two demo scrollers*/
-body {
+/*body {
   background-color: black;
-}
+}*/
 #pscroller2{
 width: 150px;
 height: 20px;
-border: 1px solid white;
-color: white;
+border: 1px solid black;
 padding: 7px;
 text-align: center;
 }
@@ -34,7 +33,14 @@ text-decoration: none;
 
 .someclass{ //class to apply to your scroller(s) if desired
 }
-
+#keywordlist{
+          width: 150px;
+          height: 150px;
+          border: 1px solid black;
+          padding: 7px;
+          text-align: center;
+          display: none;
+}
 
     </style>
 
@@ -46,13 +52,28 @@ text-decoration: none;
 * Visit http://www.dynamicdrive.com/ for this script and 100s more.
 ***********************************************/
 
+function view(args){
+   var scroller = document.getElementById("pscroller2");
+   var keywordlist = document.getElementById("keywordlist");
+
+   if(args ==1){
+   scroller.style.display="block";
+   keywordlist.style.display="none";
+   }
+   else{
+   keywordlist.style.display="block";
+   scroller.style.display="none";
+   }
+}
+
+
 function pausescroller(content, divId, divClass, delay){
 this.content=content //message array content
 this.tickerid=divId //ID of ticker div to display information
 this.delay=delay //Delay between msg change, in miliseconds.
 this.mouseoverBol=0 //Boolean to indicate whether mouse is currently over scroller (and pause it if it is)
 this.hiddendivpointer=1 //index of message array for hidden div
-document.write('<div id="'+divId+'" class="'+divClass+'" style="position: relative; overflow: hidden"><div class="innerDiv" style="position: absolute; width: 100%" id="'+divId+'1">'+content[0]+'</div><div class="innerDiv" style="position: absolute; width: 100%; visibility: hidden" id="'+divId+'2">'+content[1]+'</div></div>')
+document.write('<div id="'+divId+'" class="'+divClass+'" style="position: relative; overflow: hidden" ><div class="innerDiv" style="position: absolute; width: 100%" id="'+divId+'1">'+content[0]+'</div><div class="innerDiv" style="position: absolute; width: 100%; visibility: hidden" id="'+divId+'2">'+content[1]+'</div></div>')
 var scrollerinstance=this
 if (window.addEventListener) //run onload in DOM2 browsers
 window.addEventListener("load", function(){scrollerinstance.initialize()}, false)
@@ -124,8 +145,9 @@ div2.style.top=Math.max(div1.parentNode.offsetHeight, div1.offsetHeight)+"px"
 
 pausescroller.prototype.setmessage=function(){
 var scrollerinstance=this
-if (this.mouseoverBol==1) //if mouse is currently over scoller, do nothing (pause it)
+if (this.mouseoverBol==1){ //if mouse is currently over scoller, do nothing (pause it)
 setTimeout(function(){scrollerinstance.setmessage()}, 100)
+}
 else{
 var i=this.hiddendivpointer
 var ceiling=this.content.length
@@ -143,7 +165,6 @@ return window.getComputedStyle(tickerobj, "").getPropertyValue("padding-top")
 else
 return 0
 }
-
     </script>
 </head>
 
@@ -153,8 +174,7 @@ return 0
 <!--    <td th:text ="${kw.comments[0][0]}"></td>-->
 <!--</tr>-->
 <!--<div th:text ="${keyword.b5[0]}"></div>-->
-<div class="b5">
-    <div class="b5title" style="color:white"><h3>Best 키워드 5</h3></div>
+<div class="b5title"><h3>Best 키워드 5</h3></div>
     <div class="b5content">
         <script type="text/javascript" th:inline="javascript">
         var pausecontent=new Array()
@@ -167,7 +187,37 @@ return 0
           document.write("<br/>")
           new pausescroller(pausecontent, "pscroller2", "someclass", 2000)
     </script>
+        <div id="keywordlist">
+            <span th:text ="|1. ${keyword.b5[0]}|"></span><br>
+            <span th:text ="|2. ${keyword.b5[1]}|"></span><br>
+            <span th:text ="|3. ${keyword.b5[2]}|"></span><br>
+            <span th:text ="|4. ${keyword.b5[3]}|"></span><br>
+            <span th:text ="|5. ${keyword.b5[4]}|"></span>
+        </div>
     </div>
-</div>
+    <input type="button" value="펼치기" onClick="
+     if(document.querySelector('body').dataset.mode == '접기'){
+     view(1);
+     document.querySelector('body').dataset.mode='펼치기';
+     this.value= '펼치기';
+     }else{
+     view(2);
+     document.querySelector('body').dataset.mode='접기';
+     this.value='접기';
+     }
+     ">
+     <br>
+<table>
+    <thead>
+    <tr>
+        <th>댓글</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="keyword : ${keyword.getComments()[0]}">           <!--members리스트에 있는 객체들을 하나씩 꺼내서 루프를 돈다.  -->
+        <td th:text="${keyword}"></td>
+    </tr>
+    </tbody>
+</table>
 </body>
 </html>
