@@ -109,6 +109,12 @@ class keywordExtractor: # 키워드 추출 클래스
     for i in best_5_keywords:
       comments.append(self.get_comments_related_to_keyword(i,n))
     # best5 키워드와 관련 댓글들을 반환
-    return best_5_keywords, comments
-  
-
+    keywordMarkComment=[]
+    for i in range(5):  #best5 키워드관련 댓글 키워드 강조 표시 구현.
+          result=[]
+          markedword = "<mark>"+best_5_keywords[i]+"</mark>"
+          for comment in comments[i]:
+              comment =comment.replace(best_5_keywords[i], markedword)
+              result.append(comment)
+          keywordMarkComment.append(result)
+    return best_5_keywords, keywordMarkComment
