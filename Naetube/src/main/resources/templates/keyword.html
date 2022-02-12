@@ -1,19 +1,28 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <meta charset="UTF-8">
     <title>Title</title>
     <style type="text/css">
 /*Example CSS for the two demo scrollers*/
-/*body {
+mark{
+  background-color:#FFFF00;
+}
+body {
   background-color: black;
-}*/
+}
 #pscroller2{
 width: 150px;
-height: 20px;
+height: 40px;
+background-color: white;
 border: 1px solid black;
 padding: 7px;
 text-align: center;
+text-color: black;
 }
 
 #pscroller2 a{
@@ -23,6 +32,7 @@ text-decoration: none;
 .b5title{
    display: inline-block;
    padding:10px;
+   color: white;
    position: relative; bottom: 10px;
 }
 
@@ -35,11 +45,12 @@ text-decoration: none;
 }
 #keywordlist{
           width: 150px;
-          height: 150px;
+          height: 170px;
           border: 1px solid black;
           padding: 7px;
-          text-align: center;
+          text-align: left;
           display: none;
+          background-color: white;
 }
 
     </style>
@@ -188,36 +199,68 @@ return 0
           new pausescroller(pausecontent, "pscroller2", "someclass", 2000)
     </script>
         <div id="keywordlist">
+            <div style="padding-left: 15px">
             <span th:text ="|1. ${keyword.b5[0]}|"></span><br>
             <span th:text ="|2. ${keyword.b5[1]}|"></span><br>
             <span th:text ="|3. ${keyword.b5[2]}|"></span><br>
             <span th:text ="|4. ${keyword.b5[3]}|"></span><br>
             <span th:text ="|5. ${keyword.b5[4]}|"></span>
+            <button type="button" class="btn btn-dark btn-sm" data-toggle="modal" data-target="#exampleModalScrollable">
+                관련 댓글 보기
+            </button>
+            </div>
         </div>
     </div>
-    <input type="button" value="펼치기" onClick="
-     if(document.querySelector('body').dataset.mode == '접기'){
+    <input type="button" class="btn btn-outline-warning btn-sm" value="open" onClick="
+     if(document.querySelector('body').dataset.mode == 'close'){
      view(1);
-     document.querySelector('body').dataset.mode='펼치기';
-     this.value= '펼치기';
+     document.querySelector('body').dataset.mode='open';
+     this.value= 'open';
      }else{
      view(2);
-     document.querySelector('body').dataset.mode='접기';
-     this.value='접기';
+     document.querySelector('body').dataset.mode='close';
+     this.value='close';
      }
      ">
      <br>
-<table>
-    <thead>
-    <tr>
-        <th>댓글</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="keyword : ${keyword.getComments()[0]}">           <!--members리스트에 있는 객체들을 하나씩 꺼내서 루프를 돈다.  -->
-        <td th:text="${keyword}"></td>
-    </tr>
-    </tbody>
-</table>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalScrollable" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h6 class="modal-title" id="exampleModalScrollableTitle1">BEST 키워드 TOP5 관련 댓글 (10개 제공/'좋아요'순)</h6>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <h3 th:text ="|1. ${keyword.b5[0]}|"></h3><br>
+                    <ul th:each="keywordComment : ${keyword.getComments()[0]}">
+                        <li th:utext="${keywordComment}"></li>
+                    </ul>
+                <h3 th:text ="|2. ${keyword.b5[1]}|"></h3><br>
+                <ul th:each="keywordComment : ${keyword.getComments()[1]}">
+                    <li th:utext="${keywordComment}"></li>
+                </ul>
+                <h3 th:text ="|3. ${keyword.b5[2]}|"></h3><br>
+                <ul th:each="keywordComment : ${keyword.getComments()[2]}">
+                    <li th:utext="${keywordComment}"></li>
+                </ul>
+                <h3 th:text ="|4. ${keyword.b5[3]}|"></h3><br>
+                <ul th:each="keywordComment : ${keyword.getComments()[3]}">
+                    <li th:utext="${keywordComment}"></li>
+                </ul>
+                <h3 th:text ="|5. ${keyword.b5[4]}|"></h3><br>
+                <ul th:each="keywordComment : ${keyword.getComments()[4]}">
+                    <li th:utext="${keywordComment}"></li>
+                </ul>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-dark" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
 </body>
 </html>
