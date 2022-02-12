@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>검색기능</title>
+    <style>
+        #modal.modal-overlay {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            left: 0;
+            top: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.25);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+            backdrop-filter: blur(1.5px);
+            -webkit-backdrop-filter: blur(1.5px);
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.18);
+        }
+        #modal .modal-window {
+            background: rgba( 69, 139, 197, 0.70 );
+            box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+            backdrop-filter: blur( 13.5px );
+            -webkit-backdrop-filter: blur( 13.5px );
+            border-radius: 10px;
+            border: 1px solid rgba( 255, 255, 255, 0.18 );
+            width: 700px;
+            height: 600px;
+            position: relative;
+            top: -100px;
+            padding: 10px;
+            overflow:auto;
+        }
+        #modal .title {
+            padding-left: 10px;
+            display: inline;
+            text-shadow: 1px 1px 2px gray;
+            color: white;
+
+        }
+        #modal .title h2 {
+            display: inline;
+        }
+        #modal .close-area {
+            display: inline;
+            float: right;
+            padding-right: 10px;
+            cursor: pointer;
+            text-shadow: 1px 1px 2px gray;
+            color: white;
+        }
+
+        #modal .content {
+            margin-top: 20px;
+            padding: 0px 10px;
+            text-shadow: 1px 1px 2px gray;
+            color: white;
+        }
+
+        #modal.modal-overlay {
+            display: none;
+        }
+    </style>
+
+</head>
+<body>
+    <form id="search">
+        <input type="text" placeholder="검색어를 입력해주세요." name="keyword">
+        <button type="submit">검색</button>
+    </form>
+
+    <div id="modal" class="modal-overlay">
+        <div class="modal-window">
+            <div class="title">
+            </div>
+            <div class="close-area">X</div>
+            <div class="content">
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <script th:inline="javascript">
+        const modal = document.getElementById("modal")
+        document.getElementById('search').addEventListener('submit', function (e){
+            e.preventDefault()
+            const keyword = e.target.keyword.value
+            const url = [[${url}]]
+            if(!keyword){
+                alert('검색어를 입력해주세요')
+            }
+            const xhr = new XMLHttpRequest()
+            xhr.onload = function () {
+                if(xhr.status === 200) {
+                    const comments = JSON.parse(xhr.responseText)
+                    showComments(keyword, comments)
+                }
+            }
+            xhr.open('GET','/findcomment?url='+url+'&keyword='+keyword)
+            xhr.setRequestHeader('Content-Type','application/json')
+            xhr.send()
+
+            const closeBtn = modal.querySelector(".close-area")
+            closeBtn.addEventListener("click", e => {
+                const title = document.querySelector('.title')
+                const content = document.querySelector('.content')
+                title.innerHTML = ''
+                content.innerHTML = ''
+                modal.style.display = "none"
+            })
+        })
+
+        function showComments(keyword, comments){
+            modal.style.display = "flex"
+
+            const title = document.querySelector('.title')
+            const search_word = document.createElement('h2')
+            search_word.textContent = keyword
+            title.appendChild(search_word)
+
+            const content = document.querySelector('.content')
+            comments.map(function (comment){
+                const hr = document.createElement('hr')
+                const result = document.createElement('p')
+                content.appendChild(hr)
+                result.innerHTML = comment
+                content.appendChild(result)
+            })
+
+        }
+
+    </script>
+</body>
+</html>

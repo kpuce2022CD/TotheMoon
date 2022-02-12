@@ -50,5 +50,14 @@ def create_app():
         extractor = timelineExtractor()
         data = extractor.extract_timeline_comments('./0ftF6DYPhUk.xlsx')
         return jsonify(data)
+    
+    @app.route('/find')
+    def find():
+        filepath = collectComment(request.args.get('url'))
+        keywords = keywordExtractor()
+        keywords.get_comments_from_excel(filepath)
+        comments = keywords.get_comments_related_to_keyword(request.args.get('keyword'))
+        return jsonify(comments)
+
 
     return app
