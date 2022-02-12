@@ -45,7 +45,7 @@ text-decoration: none;
 }
 #keywordlist{
           width: 150px;
-          height: 170px;
+          height: 180px;
           border: 1px solid black;
           padding: 7px;
           text-align: left;
@@ -199,13 +199,13 @@ return 0
           new pausescroller(pausecontent, "pscroller2", "someclass", 2000)
     </script>
         <div id="keywordlist">
-            <div style="padding-left: 15px">
+            <div style="padding-left: 12px">
             <span th:text ="|1. ${keyword.b5[0]}|"></span><br>
             <span th:text ="|2. ${keyword.b5[1]}|"></span><br>
             <span th:text ="|3. ${keyword.b5[2]}|"></span><br>
             <span th:text ="|4. ${keyword.b5[3]}|"></span><br>
             <span th:text ="|5. ${keyword.b5[4]}|"></span>
-            <button type="button" class="btn btn-dark btn-sm" data-toggle="modal" data-target="#exampleModalScrollable">
+            <button type="button" class="btn btn-dark btn-sm" style="margin-top: 10px" data-toggle="modal" data-target="#exampleModalScrollable">
                 관련 댓글 보기
             </button>
             </div>
