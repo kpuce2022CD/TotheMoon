@@ -157,6 +157,9 @@ public class HomeController {
 
 
         Comment[] comments = new Comment[900];
+        Interest[] interests = new Interest[10];
+        String[] commentDate = new String[10];
+        String[] commentCount = new String[10];
 
         for(int i=0;i<100;i++){
             comments[i] = new Comment("0","testId","부정테스트입니다.부정테스트입니다.부정테스트입니다.부정테스트입니다.부정테스트입니다.부정테스트입니다","2020-20-20","5");
@@ -192,6 +195,24 @@ public class HomeController {
         for(int i=800;i<900;i++){
             comments[i] = new Comment("8","testId","혐오테스트입니다.혐오테스트입니다.혐오테스트입니다.혐오테스트입니다.혐오테스트입니다.혐오테스트입니다.","2020-20-20","5");
 
+        }
+
+
+
+        interests[0] = new Interest("2021-11-11","0");
+        interests[1] = new Interest("2021-11-12","22");
+        interests[2] = new Interest("2021-11-13","32");
+        interests[3] = new Interest("2021-11-14","25");
+        interests[4] = new Interest("2021-11-15","15");
+        interests[5] = new Interest("2021-11-16","7");
+        interests[6] = new Interest("2021-11-17","15");
+        interests[7] = new Interest("2021-11-18","19");
+        interests[8] = new Interest("2021-11-19","30");
+        interests[9] = new Interest("2021-11-20","45");
+
+        for(int i=0;i<10;i++){
+            commentDate[i]=interests[i].getCommentDate();
+            commentCount[i]=interests[i].getCommentCount();
         }
 
         List<Comment> positiveComments = new ArrayList<>(); // json 구분 인덱스 : 1
@@ -274,6 +295,9 @@ public class HomeController {
         model.addAttribute("neutralComments",neutralComments);
         model.addAttribute("happyComments",happyComments);
         model.addAttribute("disgustComments",disgustComments);
+
+        model.addAttribute("commentDate",commentDate);
+        model.addAttribute("commentCount",commentCount);
 
         return "test_search";
     }
