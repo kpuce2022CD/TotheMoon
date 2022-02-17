@@ -5,6 +5,7 @@ from timeline.timelineExtractor import timelineExtractor
 from findKeyword.keywordExtractor import keywordExtractor
 from np_classify import npClassifyProcessing
 from em_classify import *
+from comment_classify import *
 from interest.interestExtractor import get_interestData
 
 
@@ -25,9 +26,8 @@ def create_app():
     @app.route('/tospring2')
     def test2():
         filepath = collectComment(request.args.get('url'))
-        comment_data = npClassifyProcessing(filepath)
-        comment_data2 = emClassifyProcessing(filepath)
-        result_data = comment_data + comment_data2
+        PosiNegative_comment_data, Emotion_comment_data = CommentClassifyProcessing(filepath)
+        result_data = PosiNegative_comment_data + Emotion_comment_data
         return jsonify(result_data)
 
     @app.route('/searchKeyword')
@@ -64,7 +64,6 @@ def create_app():
         filepath = collectComment(request.args.get('url'))
         interest_data = get_interestData(filepath)
         return jsonify(interest_data)
-
 
 
     return app
