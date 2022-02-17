@@ -30,6 +30,28 @@ public class HomeController {
         ResponseEntity<Comment[]> response = restTemplate.getForEntity(baseUrl, Comment[].class);
 
         Comment comments[] = response.getBody();
+        Interest interests[] = get_interest(url);
+
+        String[] commentDate = new String[interests.length];
+        String[] commentCount = new String[interests.length];
+
+        /*
+        interests[0] = new Interest("2021-11-11","0");
+        interests[1] = new Interest("2021-11-12","22");
+        interests[2] = new Interest("2021-11-13","32");
+        interests[3] = new Interest("2021-11-14","25");
+        interests[4] = new Interest("2021-11-15","15");
+        interests[5] = new Interest("2021-11-16","7");
+        interests[6] = new Interest("2021-11-17","15");
+        interests[7] = new Interest("2021-11-18","19");
+        interests[8] = new Interest("2021-11-19","30");
+        interests[9] = new Interest("2021-11-20","45");
+*/
+        for(int i=0;i< interests.length;i++){
+            commentDate[i]=interests[i].getCommentDate();
+            commentCount[i]=interests[i].getCommentCount();
+        }
+
         List<Comment> positiveComments = new ArrayList<>(); // json 구분 인덱스 : 1
         List<Comment> negativeComments = new ArrayList<>(); // json 구분 인덱스 : 0
         List<Comment> fearComments = new ArrayList<>(); // json 구분 인덱스 : 2
@@ -112,6 +134,10 @@ public class HomeController {
         model.addAttribute("neutralComments",neutralComments);
         model.addAttribute("happyComments",happyComments);
         model.addAttribute("disgustComments",disgustComments);
+
+        model.addAttribute("size",interests.length);
+        model.addAttribute("commentDate",commentDate);
+        model.addAttribute("commentCount",commentCount);
         return "search";
     }
 
@@ -210,7 +236,23 @@ public class HomeController {
         interests[8] = new Interest("2021-11-19","30");
         interests[9] = new Interest("2021-11-20","45");
 
-        for(int i=0;i<10;i++){
+        /*
+        interests[10] = new Interest("2022-11-1","5");
+        interests[11] = new Interest("2022-11-2","12");
+        interests[12] = new Interest("2022-11-3","22");
+        interests[13] = new Interest("2022-11-4","35");
+        interests[14] = new Interest("2022-11-5","18");
+        interests[15] = new Interest("2022-11-6","12");
+        interests[16] = new Interest("2022-11-7","5");
+        interests[17] = new Interest("2022-11-8","39");
+        interests[18] = new Interest("2022-11-9","70");
+        interests[19] = new Interest("2022-11-10","80");
+
+         */
+
+
+
+        for(int i=0;i<interests.length;i++){
             commentDate[i]=interests[i].getCommentDate();
             commentCount[i]=interests[i].getCommentCount();
         }
@@ -296,6 +338,7 @@ public class HomeController {
         model.addAttribute("happyComments",happyComments);
         model.addAttribute("disgustComments",disgustComments);
 
+        model.addAttribute("size",interests.length);
         model.addAttribute("commentDate",commentDate);
         model.addAttribute("commentCount",commentCount);
 
@@ -316,6 +359,18 @@ public class HomeController {
     public String find(@PathVariable String url, Model model){
         model.addAttribute("url",url);
         return "find";
+    }
+
+    @GetMapping("/interest/{url}")
+    public Interest[] get_interest(@PathVariable String url){
+        String baseUrl = "http://localhost:5000/interest?url=" + url;
+        RestTemplate restTemplate = new RestTemplate();
+
+        ResponseEntity<Interest[]> response = restTemplate.getForEntity(baseUrl, Interest[].class);
+
+        Interest interests[] = response.getBody();
+
+        return interests;
     }
 
 

@@ -3,6 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="dcfeaba6-ab4e-4548-9932-540f5c2b5d35" name="Changes" comment="html 테스트 코드 추가">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Naetube/src/main/java/Youtube/Naetube/controller/HomeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Naetube/src/main/java/Youtube/Naetube/controller/HomeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Naetube/src/main/resources/templates/search.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Naetube/src/main/resources/templates/search.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,9 +41,11 @@
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\X\IdeaProjects\TotheMoon\ApiServer" />
+      <recent name="C:\Users\X\IdeaProjects\TotheMoon\ApiServer\interest" />
+      <recent name="C:\Users\X\IdeaProjects\TotheMoon\ApiServer\commentClassify" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.em_classify">
+  <component name="RunManager" selected="Python.app">
     <configuration name="app" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="ApiServer" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -83,7 +88,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="em_classify_moel" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="interestExtractor" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="ApiServer" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -91,11 +96,11 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/interest" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/em_classify_moel.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/interest/interestExtractor.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -146,7 +151,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="test3" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="test" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="ApiServer" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -154,11 +159,11 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/interest" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/test3.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/interest/test.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -171,17 +176,17 @@
       <item itemvalue="Python.main" />
       <item itemvalue="Python.app" />
       <item itemvalue="Python.em_classify" />
-      <item itemvalue="Python.em_classify_moel" />
       <item itemvalue="Python.np_classify" />
-      <item itemvalue="Python.test3" />
+      <item itemvalue="Python.interestExtractor" />
+      <item itemvalue="Python.test" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.em_classify" />
         <item itemvalue="Python.app" />
+        <item itemvalue="Python.interestExtractor" />
+        <item itemvalue="Python.test" />
+        <item itemvalue="Python.em_classify" />
         <item itemvalue="Python.np_classify" />
-        <item itemvalue="Python.test3" />
-        <item itemvalue="Python.em_classify_moel" />
       </list>
     </recent_temporary>
   </component>

@@ -3,9 +3,9 @@ from flask import Flask, request, jsonify
 from comment import collectComment
 from timeline.timelineExtractor import timelineExtractor
 from findKeyword.keywordExtractor import keywordExtractor
-from np_classify import npClassifyProcessing, \
-    comment_classify, sentiment_predict, remove_emoji, emoticonToWord
+from np_classify import npClassifyProcessing
 from em_classify import *
+from interest.interestExtractor import get_interestData
 
 
 def create_app():
@@ -58,6 +58,13 @@ def create_app():
         keywords.get_comments_from_excel(filepath)
         comments = keywords.get_comments_related_to_keyword(request.args.get('keyword'))
         return jsonify(comments)
+
+    @app.route('/interest')
+    def get_interest():
+        filepath = collectComment(request.args.get('url'))
+        interest_data = get_interestData(filepath)
+        return jsonify(interest_data)
+
 
 
     return app

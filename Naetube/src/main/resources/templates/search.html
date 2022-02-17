@@ -31,6 +31,178 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.css">
 
+    <script src="https://cdn.amcharts.com/lib/5/index.js"></script>
+    <script src="https://cdn.amcharts.com/lib/5/xy.js"></script>
+    <script src="https://cdn.amcharts.com/lib/5/themes/Animated.js"></script>
+    <script src="//cdn.amcharts.com/lib/5/themes/Dark.js"></script>
+    <style>
+    #chartdiv {
+      width: 100%;
+      height: 500px;
+      max-width: 100%
+    }
+  </style>
+    <!-- Chart code -->
+    <script type="text/javascript" th:inline="javascript">
+  am5.ready(function() {
+
+// Create root element
+// https://www.amcharts.com/docs/v5/getting-started/#Root_element
+
+  var root = am5.Root.new("chartdiv");
+
+
+// Set themes
+// https://www.amcharts.com/docs/v5/concepts/themes/
+root.setThemes([
+  am5themes_Animated.new(root),
+  am5themes_Dark.new(root)
+]);
+
+
+// Create chart
+// https://www.amcharts.com/docs/v5/charts/xy-chart/
+var chart = root.container.children.push(am5xy.XYChart.new(root, {
+  panX: true,
+  panY: true,
+  wheelX: "panX",
+  wheelY: "zoomX"
+}));
+
+
+// Add cursor
+// https://www.amcharts.com/docs/v5/charts/xy-chart/cursor/
+var cursor = chart.set("cursor", am5xy.XYCursor.new(root, {
+  behavior: "none"
+}));
+cursor.lineY.set("visible", false);
+
+
+// Generate random data
+var date = new Date();
+date.setHours(0, 0, 0, 0);
+var value = 1000;
+var volume = 100000;
+
+function generateData() {
+  value = Math.round((Math.random() * 10 - 5) + value);
+  volume = Math.round((Math.random() * 1000 - 500) + volume);
+
+  am5.time.add(date, "day", 1);
+  // add another if it's saturday
+  if (date.getDay() == 6) {
+    am5.time.add(date, "day", 1);
+  }
+  // add another if it's sunday
+  if (date.getDay() == 0) {
+    am5.time.add(date, "day", 1);
+  }
+
+  return {
+    date: date.getTime(),
+    value: value,
+    volume: volume
+  };
+}
+
+function generateData2(i) {
+
+  var data = new Array();
+  var count = new Array();
+  data = [[${commentDate}]]
+  count = [[${commentCount}]]
+
+/*
+  var data = "2021-11-12";
+  var count = "25";
+*/
+  return {
+    date: data[i],
+    value: count[i]
+  };
+}
+
+function generateDatas(count) {
+  var data = [];
+  for (var i = 0; i < count; ++i) {
+    data.push(generateData());
+  }
+  return data;
+}
+
+function generateDatas2(count) {
+  var data = [];
+  for (var i = 0; i < count; ++i) {
+    data.push(generateData2(i));
+  }
+  return data;
+}
+
+
+// Create axes
+// https://www.amcharts.com/docs/v5/charts/xy-chart/axes/
+var xAxis = chart.xAxes.push(am5xy.GaplessDateAxis.new(root, {
+  maxDeviation: 0,
+  baseInterval: {
+    timeUnit: "day",
+    count: 1
+  },
+  markUnitChange: false,
+  renderer: am5xy.AxisRendererX.new(root, {}),
+  tooltip: am5.Tooltip.new(root, {})
+}));
+xAxis.get("dateFormats")["day"] = "YYYY/MM/dd";
+
+
+
+var yAxis = chart.yAxes.push(am5xy.ValueAxis.new(root, {
+  extraMin: 0.2,
+  renderer: am5xy.AxisRendererY.new(root, {})
+}));
+
+
+// Add series - 마우스 오버시 나타나는 객체
+// https://www.amcharts.com/docs/v5/charts/xy-chart/series/
+var series = chart.series.push(am5xy.LineSeries.new(root, {
+  name: "Series",
+  xAxis: xAxis,
+  yAxis: yAxis,
+  valueYField: "value",
+  valueXField: "date",
+  tooltip: am5.Tooltip.new(root, {
+    labelText: "{valueY}"
+  })
+}));
+
+//series.set("grid", am5.color(0x68dc76)); // set Series color to red
+
+// Add scrollbar
+// https://www.amcharts.com/docs/v5/charts/xy-chart/scrollbars/
+chart.set("scrollbarX", am5.Scrollbar.new(root, {
+  orientation: "horizontal"
+}));
+
+
+series.data.processor = am5.DataProcessor.new(root, {
+  numericFields: ["value"],
+  dateFields: ["date"],
+  dateFormat: "yyyy-MM-dd"
+});
+
+// Set data
+//var data = generateDatas(200);
+var size = [[${size}]]
+var data = generateDatas2(size);
+series.data.setAll(data);
+
+
+// Make stuff animate on load
+// https://www.amcharts.com/docs/v5/concepts/animations/
+series.appear(1000);
+chart.appear(1000, 100);
+
+}); // end am5.ready()
+</script>
     <style>
         .container{
             height: 80vh;
@@ -241,13 +413,13 @@
             pieChartDraw();
             document.getElementById('legend-div').innerHTML = window.pieChart.generateLegend();
         }
-        var fearPercent = "[[${fearPercent}]]";
-        var surprisedPercent = "[[${surprisedPercent}]]";
-        var angerPercent = "[[${angerPercent}]]";
-        var sadnessPercent = "[[${sadnessPercent}]]";
-        var neutralPercent = "[[${neutralPercent}]]";
-        var happyPercent = "[[${happyPercent}]]";
-        var disgustPercent = "[[${disgustPercent}]]";
+        var fearPercent = [[${fearPercent}]]
+        var surprisedPercent = [[${surprisedPercent}]]
+        var angerPercent = [[${angerPercent}]]
+        var sadnessPercent = [[${sadnessPercent}]]
+        var neutralPercent = [[${neutralPercent}]]
+        var happyPercent = [[${happyPercent}]]
+        var disgustPercent = [[${disgustPercent}]]
 
         let pieChartData = {
             labels: ['공포', '놀람', '분노', '슬픔', '중립', '행복', '혐오'],
@@ -679,6 +851,12 @@
         </table>
     </div>
 </div>
+
+<div style="margin-top:100px;display:inline-block;">
+    <h1 style="color:white;margin-left:40px">관심도 분석</h1>
+</div>
+
+<div id="chartdiv" style="clear:both"></div>
 
 </body>
 </html>
