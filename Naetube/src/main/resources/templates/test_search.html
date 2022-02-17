@@ -152,6 +152,8 @@ var xAxis = chart.xAxes.push(am5xy.GaplessDateAxis.new(root, {
   tooltip: am5.Tooltip.new(root, {})
 }));
 xAxis.get("dateFormats")["day"] = "YYYY/MM/dd";
+xAxis.get("dateFormats")["month"] = "YYYY/MM/dd";
+xAxis.get("dateFormats")["year"] = "YYYY/MM/dd";
 
 
 
@@ -170,9 +172,10 @@ var series = chart.series.push(am5xy.LineSeries.new(root, {
   valueYField: "value",
   valueXField: "date",
   tooltip: am5.Tooltip.new(root, {
-    labelText: "{valueY}"
+    labelText: "댓글 수 : {valueY}개"
   })
 }));
+
 
 //series.set("grid", am5.color(0x68dc76)); // set Series color to red
 
@@ -608,10 +611,10 @@ chart.appear(1000, 100);
           </tr>
           </thead>
           <tbody>
-            <tr th:each="Comment : ${fearComments}">
-              <td th:text="${Comment.id}" style="color:black"></td>
-              <td th:text="${Comment.comment}" style="color:black"></td>
-            </tr>
+          <tr th:each="Comment : ${fearComments}">
+            <td th:text="${Comment.id}" style="color:black"></td>
+            <td th:text="${Comment.comment}" style="color:black"></td>
+          </tr>
           </tbody>
         </table>
       </div>

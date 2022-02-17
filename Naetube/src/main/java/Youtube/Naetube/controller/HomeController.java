@@ -236,21 +236,6 @@ public class HomeController {
         interests[8] = new Interest("2021-11-19","30");
         interests[9] = new Interest("2021-11-20","45");
 
-        /*
-        interests[10] = new Interest("2022-11-1","5");
-        interests[11] = new Interest("2022-11-2","12");
-        interests[12] = new Interest("2022-11-3","22");
-        interests[13] = new Interest("2022-11-4","35");
-        interests[14] = new Interest("2022-11-5","18");
-        interests[15] = new Interest("2022-11-6","12");
-        interests[16] = new Interest("2022-11-7","5");
-        interests[17] = new Interest("2022-11-8","39");
-        interests[18] = new Interest("2022-11-9","70");
-        interests[19] = new Interest("2022-11-10","80");
-
-         */
-
-
 
         for(int i=0;i<interests.length;i++){
             commentDate[i]=interests[i].getCommentDate();
