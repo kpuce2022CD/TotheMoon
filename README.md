@@ -29,11 +29,7 @@
 
 ## 개발 계획
 
-  <a href="https://trello.com/b/xjsdTC33/tothemoon">
-    <img src="https://img.shields.io/badge/Trello-3DDC84?style=for-the-badge&logo=Trello&logoColor=white">
-  </a>
-  
-  <a href="https://www.notion.so/865a1642082849d2ad836bc14d92802c">
+  <a href="https://spangle-yak-11c.notion.site/176930cbe8224ba191980ea99194c261">
     <img src="https://img.shields.io/badge/Notion-000000?style=for-the-badge&logo=Notion&logoColor=white">
   </a>
 
