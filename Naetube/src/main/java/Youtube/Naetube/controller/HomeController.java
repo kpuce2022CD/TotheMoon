@@ -157,24 +157,14 @@ public class HomeController {
         return "keyword";
     }
 
-    @GetMapping("/timeline")
-    public String getTimeline(Model model){
-        String baseUrl = "http://localhost:5000/timeline";
+    @GetMapping("/timeline/{url}")
+    public String getTimeline(@PathVariable String url, Model model){
+        String baseUrl = "http://localhost:5000/timeline?url="+url;
         RestTemplate restTemplate = new RestTemplate();
         ResponseEntity<Timeline[]> response = restTemplate.getForEntity(baseUrl, Timeline[].class);
-        Timeline[] timeline = response.getBody();
-        List<Timeline> one_timeline_comments = new ArrayList<>();
-        List<Timeline> many_timeline_comments = new ArrayList<>();
-        for(int i=0; i<timeline.length; i++){
-            if(timeline[i].getLength()>1){
-                many_timeline_comments.add(timeline[i]);
-            } else{
-                one_timeline_comments.add(timeline[i]);
-            }
-        }
-        model.addAttribute("many_timeline_comments",many_timeline_comments);
-        model.addAttribute("one_timeline_comments",one_timeline_comments);
-        model.addAttribute("url","0ftF6DYPhUk");
+        Timeline[] timelines = response.getBody();
+        model.addAttribute("timelines",timelines);
+        model.addAttribute("url",url);
         return "timeline";
     }
 

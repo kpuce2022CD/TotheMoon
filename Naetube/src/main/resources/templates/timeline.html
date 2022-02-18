@@ -33,25 +33,14 @@
 
             </thead>
             <tbody>
-            <tr th:each="Comment : ${many_timeline_comments}">
-                <td th:utext="${Comment.comment}"></td>
+            <tr th:each="timeline : ${timelines}">
+                <td>
+                    <a href="javascript:void(0);" th:onclick="'move('+${timeline.sec}+');'" th:text="${timeline.time}"></a>
+                </td>
             </tr>
             </tbody>
         </table>
     </div>
-    <table>
-        <thead>
-        <tr>
-            <th>단독 타임라인</th>
-        </tr>
-
-        </thead>
-        <tbody>
-        <tr th:each="Comment : ${one_timeline_comments}">
-            <td th:utext="${Comment.comment}"></td>
-        </tr>
-        </tbody>
-    </table>
     <script src='https://www.youtube.com/iframe_api'></script>
     <script th:inline="javascript">
         let player
