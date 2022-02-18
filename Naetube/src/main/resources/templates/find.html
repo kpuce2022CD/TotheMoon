@@ -92,8 +92,9 @@
             e.preventDefault()
             const keyword = e.target.keyword.value
             const url = [[${url}]]
-            if(!keyword){
-                alert('검색어를 입력해주세요')
+            if(!keyword.trim()){
+                e.target.keyword.value = ''
+                return alert('검색어를 입력해주세요')
             }
             const xhr = new XMLHttpRequest()
             xhr.onload = function () {
@@ -123,7 +124,6 @@
             const search_word = document.createElement('h2')
             search_word.textContent = keyword
             title.appendChild(search_word)
-
             const content = document.querySelector('.content')
             comments.map(function (comment){
                 const hr = document.createElement('hr')
