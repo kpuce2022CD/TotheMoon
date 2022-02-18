@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="dcfeaba6-ab4e-4548-9932-540f5c2b5d35" name="Changes" comment="test_search.html commit">
+    <list default="true" id="dcfeaba6-ab4e-4548-9932-540f5c2b5d35" name="Changes" comment="그래프 오류 수정">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/interest/interestExtractor.py" beforeDir="false" afterPath="$PROJECT_DIR$/interest/interestExtractor.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Naetube/src/main/java/Youtube/Naetube/controller/HomeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Naetube/src/main/java/Youtube/Naetube/controller/HomeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Naetube/src/main/resources/templates/search.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Naetube/src/main/resources/templates/search.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Naetube/src/main/resources/templates/test_search.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Naetube/src/main/resources/templates/test_search.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -173,10 +171,10 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Python.main" />
       <item itemvalue="Python.app" />
       <item itemvalue="Python.em_classify" />
       <item itemvalue="Python.interestExtractor" />
+      <item itemvalue="Python.main" />
       <item itemvalue="Python.test" />
       <item itemvalue="Python.testttttt" />
     </list>
