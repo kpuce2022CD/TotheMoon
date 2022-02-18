@@ -239,9 +239,22 @@ chart.appear(1000, 100);
         .box{
             -ms-overflow-style: none;
          }
-        .box::-webkit-scrollbar{
-            display:none;
+
+        .box::-webkit-scrollbar {
+            width: 10px;
         }
+        .box::-webkit-scrollbar-thumb {
+            background-color: #2f3542;
+            border-radius: 10px;
+            background-clip: padding-box;
+            border: 2px solid transparent;
+        }
+        .box::-webkit-scrollbar-track {
+            background-color: grey;
+            border-radius: 10px;
+            box-shadow: inset 0px 0px 5px white;
+        }
+
 
         .legend-div {
 
@@ -821,8 +834,8 @@ chart.appear(1000, 100);
 </div>
 <br><br>
 <div>
-    <div style="overflow:scroll;height:500px;width:50%;float:left;" class="box">
-        <table id="tb1" style="margin:50px">
+    <div style="overflow:scroll;height:500px;width:50%;float:left;overflow-x: hidden" class="box">
+        <table id="tb1" style="margin-left:50px;margin-right:50px">
             <thead>
             <tr>
                 <th width="30%" style="color:white">작성자 아이디</th>
@@ -832,13 +845,13 @@ chart.appear(1000, 100);
             <tbody>
             <tr th:each="Comment : ${positiveComments}">
                 <td th:utext="${Comment.id}" style="color:gray"></td>
-                <td th:utext="${Comment.comment}" style="color:green"></td>
+                <td th:utext="${Comment.comment}" style="color:rgb(50,205,50)"></td>
             </tr>
             </tbody>
         </table>
     </div>
-    <div style="overflow:scroll;height:500px;width:50%;float:right;" class="box">
-        <table id="tb2" style="margin:50px">
+    <div style="overflow:scroll;height:500px;width:50%;float:right;overflow-x: hidden" class="box">
+        <table id="tb2" style="margin-left:50px;margin-right:50px">
             <thead>
             <tr>
                 <th width="30%" style="color:white">작성자 아이디</th>
