@@ -612,8 +612,8 @@ chart.appear(1000, 100);
                     </thead>
                     <tbody>
                     <tr th:each="Comment : ${fearComments}">
-                        <td th:text="${Comment.id}" style="color:black"></td>
-                        <td th:text="${Comment.comment}" style="color:black"></td>
+                        <td th:utext="${Comment.id}" style="color:black"></td>
+                        <td th:utext="${Comment.comment}" style="color:black"></td>
                     </tr>
                     </tbody>
                 </table>
@@ -640,8 +640,8 @@ chart.appear(1000, 100);
                     </thead>
                     <tbody>
                     <tr th:each="Comment : ${surprisedComments}">
-                        <td th:text="${Comment.id}" style="color:black"></td>
-                        <td th:text="${Comment.comment}" style="color:black"></td>
+                        <td th:utext="${Comment.id}" style="color:black"></td>
+                        <td th:utext="${Comment.comment}" style="color:black"></td>
                     </tr>
                     </tbody>
                 </table>
@@ -668,8 +668,8 @@ chart.appear(1000, 100);
                     </thead>
                     <tbody>
                     <tr th:each="Comment : ${angerComments}">
-                        <td th:text="${Comment.id}" style="color:black"></td>
-                        <td th:text="${Comment.comment}" style="color:black"></td>
+                        <td th:utext="${Comment.id}" style="color:black"></td>
+                        <td th:utext="${Comment.comment}" style="color:black"></td>
                     </tr>
                     </tbody>
                 </table>
@@ -696,8 +696,8 @@ chart.appear(1000, 100);
                     </thead>
                     <tbody>
                     <tr th:each="Comment : ${sadnessComments}">
-                        <td th:text="${Comment.id}" style="color:black"></td>
-                        <td th:text="${Comment.comment}" style="color:black"></td>
+                        <td th:utext="${Comment.id}" style="color:black"></td>
+                        <td th:utext="${Comment.comment}" style="color:black"></td>
                     </tr>
                     </tbody>
                 </table>
@@ -724,8 +724,8 @@ chart.appear(1000, 100);
                     </thead>
                     <tbody>
                     <tr th:each="Comment : ${neutralComments}">
-                        <td th:text="${Comment.id}" style="color:black"></td>
-                        <td th:text="${Comment.comment}" style="color:black"></td>
+                        <td th:utext="${Comment.id}" style="color:black"></td>
+                        <td th:utext="${Comment.comment}" style="color:black"></td>
                     </tr>
                     </tbody>
                 </table>
@@ -752,8 +752,8 @@ chart.appear(1000, 100);
                     </thead>
                     <tbody>
                     <tr th:each="Comment : ${happyComments}">
-                        <td th:text="${Comment.id}" style="color:black"></td>
-                        <td th:text="${Comment.comment}" style="color:black"></td>
+                        <td th:utext="${Comment.id}" style="color:black"></td>
+                        <td th:utext="${Comment.comment}" style="color:black"></td>
                     </tr>
                     </tbody>
                 </table>
@@ -780,8 +780,8 @@ chart.appear(1000, 100);
                     </thead>
                     <tbody>
                     <tr th:each="Comment : ${disgustComments}">
-                        <td th:text="${Comment.id}" style="color:black"></td>
-                        <td th:text="${Comment.comment}" style="color:black"></td>
+                        <td th:utext="${Comment.id}" style="color:black"></td>
+                        <td th:utext="${Comment.comment}" style="color:black"></td>
                     </tr>
                     </tbody>
                 </table>
@@ -831,8 +831,8 @@ chart.appear(1000, 100);
             </thead>
             <tbody>
             <tr th:each="Comment : ${positiveComments}">
-                <td th:text="${Comment.id}" style="color:gray"></td>
-                <td th:text="${Comment.comment}" style="color:green"></td>
+                <td th:utext="${Comment.id}" style="color:gray"></td>
+                <td th:utext="${Comment.comment}" style="color:green"></td>
             </tr>
             </tbody>
         </table>
@@ -847,8 +847,8 @@ chart.appear(1000, 100);
             </thead>
             <tbody>
             <tr th:each="Comment : ${negativeComments}">
-                <td th:text="${Comment.id}" style="color:gray"></td>
-                <td th:text="${Comment.comment}" style="color:red"></td>
+                <td th:utext="${Comment.id}" style="color:gray"></td>
+                <td th:utext="${Comment.comment}" style="color:red"></td>
             </tr>
             </tbody>
         </table>

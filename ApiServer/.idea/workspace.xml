@@ -171,10 +171,10 @@
       <method v="2" />
     </configuration>
     <list>
+      <item itemvalue="Python.main" />
       <item itemvalue="Python.app" />
       <item itemvalue="Python.em_classify" />
       <item itemvalue="Python.interestExtractor" />
-      <item itemvalue="Python.main" />
       <item itemvalue="Python.test" />
       <item itemvalue="Python.testttttt" />
     </list>
