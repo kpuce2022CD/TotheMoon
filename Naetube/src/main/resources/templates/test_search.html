@@ -184,7 +184,7 @@ var series = chart.series.push(am5xy.LineSeries.new(root, {
 chart.set("scrollbarX", am5.Scrollbar.new(root, {
   orientation: "horizontal"
 }));
-// asdf
+
 
 series.data.processor = am5.DataProcessor.new(root, {
   numericFields: ["value"],
@@ -239,9 +239,22 @@ chart.appear(1000, 100);
         .box{
             -ms-overflow-style: none;
          }
-        .box::-webkit-scrollbar{
-            display:none;
+
+        .box::-webkit-scrollbar {
+            width: 10px;
         }
+        .box::-webkit-scrollbar-thumb {
+            background-color: #2f3542;
+            border-radius: 10px;
+            background-clip: padding-box;
+            border: 2px solid transparent;
+        }
+        .box::-webkit-scrollbar-track {
+            background-color: grey;
+            border-radius: 10px;
+            box-shadow: inset 0px 0px 5px white;
+        }
+
 
         .legend-div {
 
@@ -602,7 +615,7 @@ chart.appear(1000, 100);
     </div>
     <div class="close-area">X</div>
     <div class="content">
-      <div style="overflow:scroll;height:400px;float:left;" class="box">
+      <div style="overflow:scroll;height:400px;float:left;overflow-x: hidden" class="box">
         <table class="tb" style="margin:10px">
           <thead>
           <tr>
@@ -612,8 +625,8 @@ chart.appear(1000, 100);
           </thead>
           <tbody>
           <tr th:each="Comment : ${fearComments}">
-            <td th:text="${Comment.id}" style="color:black"></td>
-            <td th:text="${Comment.comment}" style="color:black"></td>
+            <td th:utext="${Comment.id}" style="color:black"></td>
+            <td th:utext="${Comment.comment}" style="color:black"></td>
           </tr>
           </tbody>
         </table>
@@ -630,7 +643,7 @@ chart.appear(1000, 100);
     </div>
     <div class="close-area">X</div>
     <div class="content">
-      <div style="overflow:scroll;height:400px;float:left;" class="box">
+      <div style="overflow:scroll;height:400px;float:left;overflow-x: hidden" class="box">
         <table class="tb" style="margin:10px">
           <thead>
           <tr>
@@ -640,8 +653,8 @@ chart.appear(1000, 100);
           </thead>
           <tbody>
           <tr th:each="Comment : ${surprisedComments}">
-            <td th:text="${Comment.id}" style="color:black"></td>
-            <td th:text="${Comment.comment}" style="color:black"></td>
+            <td th:utext="${Comment.id}" style="color:black"></td>
+            <td th:utext="${Comment.comment}" style="color:black"></td>
           </tr>
           </tbody>
         </table>
@@ -658,7 +671,7 @@ chart.appear(1000, 100);
     </div>
     <div class="close-area">X</div>
     <div class="content">
-      <div style="overflow:scroll;height:400px;float:left;" class="box">
+      <div style="overflow:scroll;height:400px;float:left;overflow-x: hidden" class="box">
         <table class="tb" style="margin:10px">
           <thead>
           <tr>
@@ -668,8 +681,8 @@ chart.appear(1000, 100);
           </thead>
           <tbody>
           <tr th:each="Comment : ${angerComments}">
-            <td th:text="${Comment.id}" style="color:black"></td>
-            <td th:text="${Comment.comment}" style="color:black"></td>
+            <td th:utext="${Comment.id}" style="color:black"></td>
+            <td th:utext="${Comment.comment}" style="color:black"></td>
           </tr>
           </tbody>
         </table>
@@ -686,7 +699,7 @@ chart.appear(1000, 100);
     </div>
     <div class="close-area">X</div>
     <div class="content">
-      <div style="overflow:scroll;height:400px;float:left;" class="box">
+      <div style="overflow:scroll;height:400px;float:left;overflow-x: hidden" class="box">
         <table class="tb" style="margin:10px">
           <thead>
           <tr>
@@ -696,8 +709,8 @@ chart.appear(1000, 100);
           </thead>
           <tbody>
           <tr th:each="Comment : ${sadnessComments}">
-            <td th:text="${Comment.id}" style="color:black"></td>
-            <td th:text="${Comment.comment}" style="color:black"></td>
+            <td th:utext="${Comment.id}" style="color:black"></td>
+            <td th:utext="${Comment.comment}" style="color:black"></td>
           </tr>
           </tbody>
         </table>
@@ -714,7 +727,7 @@ chart.appear(1000, 100);
     </div>
     <div class="close-area">X</div>
     <div class="content">
-      <div style="overflow:scroll;height:400px;float:left;" class="box">
+      <div style="overflow:scroll;height:400px;float:left;overflow-x: hidden" class="box">
         <table class="tb" style="margin:10px">
           <thead>
           <tr>
@@ -724,8 +737,8 @@ chart.appear(1000, 100);
           </thead>
           <tbody>
           <tr th:each="Comment : ${neutralComments}">
-            <td th:text="${Comment.id}" style="color:black"></td>
-            <td th:text="${Comment.comment}" style="color:black"></td>
+            <td th:utext="${Comment.id}" style="color:black"></td>
+            <td th:utext="${Comment.comment}" style="color:black"></td>
           </tr>
           </tbody>
         </table>
@@ -742,7 +755,7 @@ chart.appear(1000, 100);
     </div>
     <div class="close-area">X</div>
     <div class="content">
-      <div style="overflow:scroll;height:400px;float:left;" class="box">
+      <div style="overflow:scroll;height:400px;float:left;overflow-x: hidden" class="box">
         <table class="tb" style="margin:10px">
           <thead>
           <tr>
@@ -752,8 +765,8 @@ chart.appear(1000, 100);
           </thead>
           <tbody>
           <tr th:each="Comment : ${happyComments}">
-            <td th:text="${Comment.id}" style="color:black"></td>
-            <td th:text="${Comment.comment}" style="color:black"></td>
+            <td th:utext="${Comment.id}" style="color:black"></td>
+            <td th:utext="${Comment.comment}" style="color:black"></td>
           </tr>
           </tbody>
         </table>
@@ -770,7 +783,7 @@ chart.appear(1000, 100);
     </div>
     <div class="close-area">X</div>
     <div class="content">
-      <div style="overflow:scroll;height:400px;float:left;" class="box">
+      <div style="overflow:scroll;height:400px;float:left;overflow-x: hidden" class="box">
         <table class="tb" style="margin:10px">
           <thead>
           <tr>
@@ -780,8 +793,8 @@ chart.appear(1000, 100);
           </thead>
           <tbody>
           <tr th:each="Comment : ${disgustComments}">
-            <td th:text="${Comment.id}" style="color:black"></td>
-            <td th:text="${Comment.comment}" style="color:black"></td>
+            <td th:utext="${Comment.id}" style="color:black"></td>
+            <td th:utext="${Comment.comment}" style="color:black"></td>
           </tr>
           </tbody>
         </table>
@@ -818,8 +831,8 @@ chart.appear(1000, 100);
 
 <br><br>
 <div>
-  <div style="overflow:scroll;height:500px;width:50%;float:left;" class="box">
-    <table id="tb1" style="margin:50px">
+  <div style="overflow:scroll;height:500px;width:50%;float:left;overflow-x: hidden" class="box">
+    <table id="tb1" style="margin-left:50px;margin-right:50px">
       <thead>
       <tr>
         <th width="30%" style="color:white">작성자 아이디</th>
@@ -828,14 +841,14 @@ chart.appear(1000, 100);
       </thead>
       <tbody>
       <tr th:each="Comment : ${positiveComments}">
-        <td th:text="${Comment.id}" style="color:gray"></td>
-        <td th:text="${Comment.comment}" style="color:rgb(50,205,50)"></td>
+        <td th:utext="${Comment.id}" style="color:gray"></td>
+        <td th:utext="${Comment.comment}" style="color:rgb(50,205,50)"></td>
       </tr>
       </tbody>
     </table>
   </div>
-  <div style="overflow:scroll;height:500px;width:50%;float:right;" class="box">
-    <table id="tb2" style="margin:50px">
+  <div style="overflow:scroll;height:500px;width:50%;float:right;overflow-x: hidden" class="box">
+    <table id="tb2" style="margin-left:50px;margin-right:50px">
       <thead>
       <tr>
         <th width="30%" style="color:white">작성자 아이디</th>
@@ -844,8 +857,8 @@ chart.appear(1000, 100);
       </thead>
       <tbody>
       <tr th:each="Comment : ${negativeComments}">
-        <td th:text="${Comment.id}" style="color:gray"></td>
-        <td th:text="${Comment.comment}" style="color:red"></td>
+        <td th:utext="${Comment.id}" style="color:gray"></td>
+        <td th:utext="${Comment.comment}" style="color:red"></td>
       </tr>
       </tbody>
     </table>
