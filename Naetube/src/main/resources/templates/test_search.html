@@ -35,6 +35,7 @@
   <script src="https://cdn.amcharts.com/lib/5/xy.js"></script>
   <script src="https://cdn.amcharts.com/lib/5/themes/Animated.js"></script>
   <script src="//cdn.amcharts.com/lib/5/themes/Dark.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <style>
     #chartdiv {
       width: 100%;
@@ -210,6 +211,11 @@ chart.appear(1000, 100);
         .container{
             height: 80vh;
             display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        #videoInformation{
+            height: 80vh;
             align-items: center;
             justify-content: center;
         }
@@ -605,6 +611,92 @@ chart.appear(1000, 100);
 
     </script>
 
+
+  <script type="text/javascript" th:inline="javascript">
+  var playlist = [[${videoId}]]
+  //https://www.youtube.com/watch?v=유튜브 영상 고유번호
+  //playlist만 원하는 재생목록에 따라 가져오면 됨
+  //maxResult는 50 이하
+    $(document).ready(function () {
+      $.get(
+        "https://www.googleapis.com/youtube/v3/videos",{
+          part: 'snippet',
+          maxResults: 50,
+          id: playlist,
+          key: 'AIzaSyC02qrZyWZRNMDA60q307mi2S3JrI1pNY0' },
+          function (data) {
+            var output;
+            $.each(data.items, function (i, item) {
+            console.log(item);
+            vTitle = item.snippet.title;
+            vId = item.snippet.channelId;
+            vDe = item.snippet.description;
+            vTh = item.snippet.channelTitle;
+            vPu = item.snippet.publishedAt;
+            vaaa = item.snippet.thumbnails.standard.url;
+            output = '<li>' + vTitle + '<br>--videoid: ' + vId + '<br>--videodescription: ' + vDe + '<br>--videothumbnails: ' + vTh + '<br><img src ="' + vaaa + '"></li>';
+            /*output= '<li>'+vTitle+'<iframe src=\"//www.youtube.com/embed/'+vId+'\"></iframe></li>';*/
+
+            var regex = /-/gi;     // - 문자 전체
+            vPu_r = vPu.toString();
+            vPu_t = vPu_r.replace(regex,'.').substring(0,10);
+
+            var videoTitleInformation = document.getElementById("videoTitle");
+            var videoPublishedAtInformation = document.getElementById("videoPublishedAt");
+
+            var videoTitle = document.createElement("h4");
+            var videoDescription = document.createElement("h5");
+            var videoChannelTitle = document.createElement("h5");
+            var videoPublishedAt = document.createElement("h5");
+
+            videoTitle.setAttribute("style","color:white");
+            videoDescription.setAttribute("style","color:white");
+            videoChannelTitle.setAttribute("style","color:white");
+            videoPublishedAt.setAttribute("style","color:rgb(211,211,211)");
+
+            videoTitle.innerHTML = vTitle;
+            videoDescription.innerHTML = vDe;
+            videoChannelTitle.innerHTML = vTh;
+            videoPublishedAt.innerHTML = vPu_t;
+
+            videoTitleInformation.appendChild(videoTitle);
+            //videoInformation.appendChild(videoDescription);
+            //videoInformation.appendChild(videoChannelTitle);
+            videoPublishedAtInformation.appendChild(videoPublishedAt);
+            })
+        }
+      );
+    });
+
+    $(document).ready(function () {
+      $.get(
+        "https://www.googleapis.com/youtube/v3/videos",{
+          part: 'statistics',
+          maxResults: 50,
+          id: playlist,
+          key: 'AIzaSyC02qrZyWZRNMDA60q307mi2S3JrI1pNY0' },
+          function (data) {
+            var output;
+            $.each(data.items, function (i, item) {
+            console.log(item);
+            vCo = item.statistics.viewCount;
+
+            var videoViewCountInformation = document.getElementById("videoViewCount");
+
+            var videoViewCount = document.createElement("h5");
+
+            videoViewCount.setAttribute("style","color:rgb(211,211,211)");
+
+            videoViewCount.innerHTML = "조회수 "+ vCo + "회";
+
+            videoViewCountInformation.appendChild(videoViewCount);
+
+            })
+        }
+      );
+    });
+</script>
+
 </head>
 <body>
 <!-- modal창 설정 - fearComments -->
@@ -804,9 +896,17 @@ chart.appear(1000, 100);
 </div>
 
 <div>
-  <div class="container" width="100%">
-    <iframe width="50%" height="315" th:src="${url}"></iframe>
-    <div class="chart-div" style="float:right;margin-left:100px" >
+  <div class="container" style="width:100%">
+    <div style="width:600px;height:315px">
+      <iframe width="100%" height="315" th:src="${url}"></iframe>
+      <div id="videoTitle"></div>
+      <div style="float:left">
+        <div id="videoViewCount" style="float:left"></div>
+        <div id="videoPublishedAt" style="float:left;margin-left:10px"></div>
+      </div>
+    </div>
+    <div style="float:right;margin-left:100px" >
+      <h1 style="color:white">감정 분석 결과</h1>
       <div>
         <canvas id="pieChartCanvas" width="150%" height="250px" style="float:left"></canvas>
         <div id='legend-div' class="legend-div" style="float:right"></div>
@@ -872,4 +972,6 @@ chart.appear(1000, 100);
 <div id="chartdiv" style="clear:both"></div>
 
 </body>
+
+
 </html>

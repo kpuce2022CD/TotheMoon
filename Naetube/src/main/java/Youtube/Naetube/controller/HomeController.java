@@ -138,6 +138,8 @@ public class HomeController {
         model.addAttribute("size",interests.length);
         model.addAttribute("commentDate",commentDate);
         model.addAttribute("commentCount",commentCount);
+
+        model.addAttribute("videoId",url);
         return "search";
     }
 
@@ -170,7 +172,6 @@ public class HomeController {
 
     @GetMapping("/test/{url}")
     public String test_search(@PathVariable String url, Model model){
-
 
         Comment[] comments = new Comment[900];
         Interest[] interests = new Interest[10];
@@ -316,6 +317,7 @@ public class HomeController {
         model.addAttribute("size",interests.length);
         model.addAttribute("commentDate",commentDate);
         model.addAttribute("commentCount",commentCount);
+        model.addAttribute("videoId",url);
 
         return "test_search";
     }
