@@ -680,6 +680,7 @@ chart.appear(1000, 100);
             $.each(data.items, function (i, item) {
             console.log(item);
             vCo = item.statistics.viewCount;
+            vCo_r = Number(vCo).toLocaleString();
 
             var videoViewCountInformation = document.getElementById("videoViewCount");
 
@@ -687,7 +688,7 @@ chart.appear(1000, 100);
 
             videoViewCount.setAttribute("style","color:rgb(211,211,211)");
 
-            videoViewCount.innerHTML = "조회수 "+ vCo + "회";
+            videoViewCount.innerHTML = "조회수 "+ vCo_r + "회";
 
             videoViewCountInformation.appendChild(videoViewCount);
 
