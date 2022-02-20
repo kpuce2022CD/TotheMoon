@@ -1,3 +1,4 @@
+import logging
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
@@ -28,6 +29,12 @@ from kobert.pytorch_kobert import get_pytorch_kobert_model
 # transformers
 from transformers import AdamW
 from transformers.optimization import get_cosine_schedule_with_warmup
+
+#debug(개발시)>info(운영시)>warnig(사용자잘못입력)>error(예외발생)>critical(데이터손실,오작동)
+logger = logging.getLogger("main")
+stream_handler = logging.StreamHandler()
+logger.addHandler(stream_handler)
+#logger.setLevel(logging.DEBUG)
 
 #------------------------------------- 긍정 부정 분류 (start)--------------------------------------------
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
@@ -248,57 +255,57 @@ def CommentClassifyProcessing(filename):
         comment_result.append(val)
 
     for i in range(len(comment_result)):  # 배열 크기만큼 실행
-        print("------------------전처리 후-----------------")
-        print("댓글: " + comments[i][0])
-        print("작성자: " + comments[i][1])
-        print("작성 날짜: " + comments[i][2])
-        print("좋아요 개수: " + str(comments[i][3]))
+        logger.debug("------------------전처리 후-----------------")
+        logger.debug("댓글: "+ comments[i][0])
+        logger.debug("작성자: "+comments[i][1])
+        logger.debug("작성 날짜: " + comments[i][2])
+        logger.debug("좋아요 개수: " + str(comments[i][3]))
         score = sentiment_predict(comment_result[i])
         if (score > 0.5):
             if(score > 0.8):
-                print("{:.2f}% 확률로 긍정 리뷰입니다.".format(score * 100))
+                logger.debug("{:.2f}% 확률로 긍정 리뷰입니다.".format(score * 100))
                 dic_temp = {"index": "1", "id": comments[i][1], "comment": comments[i][0],
                             "date": comments[i][2], "num_like": str(comments[i][3])}
                 PositiveNegative_dic_return.append(dic_temp)
         else:
             if(score < 0.2):
-                print("{:.2f}% 확률로 부정 리뷰입니다.".format((1 - score) * 100))
+                logger.debug("{:.2f}% 확률로 부정 리뷰입니다.".format((1 - score) * 100))
                 dic_temp = {"index": "0", "id": comments[i][1], "comment": comments[i][0],
                             "date": comments[i][2], "num_like": str(comments[i][3])}
                 PositiveNegative_dic_return.append(dic_temp)
         index = emotion_predict(comment_result[i])
         if index == 0:
-            print("분석결과 : 공포\n")
+            logger.debug("분석결과 : 공포\n")
             dic_temp = {"index": "2", "id": comments[i][1], "comment": comments[i][0],
                         "date": comments[i][2], "num_like": str(comments[i][3])}
             Emotion_dic_return.append(dic_temp)
         elif index == 1:
-            print("분석결과 : 놀람\n")
+            logger.debug("분석결과 : 놀람\n")
             dic_temp = {"index": "3", "id": comments[i][1], "comment": comments[i][0],
                         "date": comments[i][2], "num_like": str(comments[i][3])}
             Emotion_dic_return.append(dic_temp)
         elif index == 2:
-            print("분석결과 : 분노\n")
+            logger.debug("분석결과 : 분노\n")
             dic_temp = {"index": "4", "id": comments[i][1], "comment": comments[i][0],
                         "date": comments[i][2], "num_like": str(comments[i][3])}
             Emotion_dic_return.append(dic_temp)
         elif index == 3:
-            print("분석결과 : 슬픔\n")
+            logger.debug("분석결과 : 슬픔\n")
             dic_temp = {"index": "5", "id": comments[i][1], "comment": comments[i][0],
                         "date": comments[i][2], "num_like": str(comments[i][3])}
             Emotion_dic_return.append(dic_temp)
         elif index == 4:
-            print("분석결과 : 중립\n")
+            logger.debug("분석결과 : 중립\n")
             dic_temp = {"index": "6", "id": comments[i][1], "comment": comments[i][0],
                         "date": comments[i][2], "num_like": str(comments[i][3])}
             Emotion_dic_return.append(dic_temp)
         elif index == 5:
-            print("분석결과 : 행복\n")
+            logger.debug("분석결과 : 행복\n")
             dic_temp = {"index": "7", "id": comments[i][1], "comment": comments[i][0],
                         "date": comments[i][2], "num_like": str(comments[i][3])}
             Emotion_dic_return.append(dic_temp)
         elif index == 6:
-            print("분석결과 : 혐오\n")
+            logger.debug("분석결과 : 혐오\n")
             dic_temp = {"index": "8", "id": comments[i][1], "comment": comments[i][0],
                         "date": comments[i][2], "num_like": str(comments[i][3])}
             Emotion_dic_return.append(dic_temp)
