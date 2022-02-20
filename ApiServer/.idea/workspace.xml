@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="dcfeaba6-ab4e-4548-9932-540f5c2b5d35" name="Changes" comment="긍정 부정 button 삭제">
-      <change beforePath="$PROJECT_DIR$/../Naetube/src/main/resources/templates/search.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Naetube/src/main/resources/templates/search.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

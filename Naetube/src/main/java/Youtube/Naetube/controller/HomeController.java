@@ -385,6 +385,12 @@ public class HomeController {
             }
         }
     }
+
+    @GetMapping("/loading")
+    public String loading(){
+
+        return "loading";
+    }
 }
 
 
