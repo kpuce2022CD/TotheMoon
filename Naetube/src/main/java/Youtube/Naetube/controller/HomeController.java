@@ -352,17 +352,17 @@ public class HomeController {
         return "find";
     }
 
-    @GetMapping("/interest/{url}")
-    public Interest[] get_interest(@PathVariable String url){
-        String baseUrl = "http://localhost:5000/interest?url=" + url;
-        RestTemplate restTemplate = new RestTemplate();
-
-        ResponseEntity<Interest[]> response = restTemplate.getForEntity(baseUrl, Interest[].class);
-
-        Interest interests[] = response.getBody();
-
-        return interests;
-    }
+//    @GetMapping("/interest/{url}")
+//    public Interest[] get_interest(@PathVariable String url){
+//        String baseUrl = "http://localhost:5000/interest?url=" + url;
+//        RestTemplate restTemplate = new RestTemplate();
+//
+//        ResponseEntity<Interest[]> response = restTemplate.getForEntity(baseUrl, Interest[].class);
+//
+//        Interest interests[] = response.getBody();
+//
+//        return interests;
+//    }
 
 
     //댓글 분류
