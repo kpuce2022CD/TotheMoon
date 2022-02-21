@@ -24,33 +24,50 @@ public class HomeController {
     //결과 화면
     @GetMapping("/search/{url}")
     public String Search(@PathVariable String url, Model model){
-        String baseUrl = "http://localhost:5000/tospring2?url=" + url;
-        RestTemplate restTemplate = new RestTemplate();
 
-        ResponseEntity<Comment[]> response = restTemplate.getForEntity(baseUrl, Comment[].class);
+        /**베스트 키워드 start*/
+        String KeywordBaseUrl = "http://localhost:5000/searchKeyword?url=" + url;
+        RestTemplate KeywordRestTemplate = new RestTemplate();
 
-        Comment comments[] = response.getBody();
-        Interest interests[] = get_interest(url);
+        ResponseEntity<Keyword> KeywordResponse = KeywordRestTemplate.getForEntity(KeywordBaseUrl, Keyword.class);
+
+        Keyword keyword = KeywordResponse.getBody();
+        log.info("keyeqwerqeeword={}", keyword);
+        log.info("keyword.getB5()[0]={}", keyword.getB5()[0]);
+        log.info("keyword.getComments()={}", keyword.getComments());
+        log.info("keyword.getComments()[0][0]={}", keyword.getComments()[0][0]);
+        model.addAttribute("keyword",keyword);
+        /** 베스트 키워드 end */
+
+
+        /**관심도 start*/
+        String InterestBaseUrl = "http://localhost:5000/interest?url=" + url;
+        RestTemplate InterestRestTemplate = new RestTemplate();
+
+        ResponseEntity<Interest[]> InterestResponse = InterestRestTemplate.getForEntity(InterestBaseUrl, Interest[].class);
+
+        Interest interests[] = InterestResponse.getBody();
 
         String[] commentDate = new String[interests.length];
         String[] commentCount = new String[interests.length];
 
-        /*
-        interests[0] = new Interest("2021-11-11","0");
-        interests[1] = new Interest("2021-11-12","22");
-        interests[2] = new Interest("2021-11-13","32");
-        interests[3] = new Interest("2021-11-14","25");
-        interests[4] = new Interest("2021-11-15","15");
-        interests[5] = new Interest("2021-11-16","7");
-        interests[6] = new Interest("2021-11-17","15");
-        interests[7] = new Interest("2021-11-18","19");
-        interests[8] = new Interest("2021-11-19","30");
-        interests[9] = new Interest("2021-11-20","45");
-*/
         for(int i=0;i< interests.length;i++){
             commentDate[i]=interests[i].getCommentDate();
             commentCount[i]=interests[i].getCommentCount();
         }
+
+        model.addAttribute("size",interests.length);
+        model.addAttribute("commentDate",commentDate);
+        model.addAttribute("commentCount",commentCount);
+        /**관심도 end*/
+
+
+        /**긍정부정, 6가지 감정 start*/
+        String baseUrl = "http://localhost:5000/tospring2?url=" + url;
+        RestTemplate restTemplate = new RestTemplate();
+        ResponseEntity<Comment[]> response = restTemplate.getForEntity(baseUrl, Comment[].class);
+
+        Comment comments[] = response.getBody();
 
         List<Comment> positiveComments = new ArrayList<>(); // json 구분 인덱스 : 1
         List<Comment> negativeComments = new ArrayList<>(); // json 구분 인덱스 : 0
@@ -62,7 +79,7 @@ public class HomeController {
         List<Comment> happyComments = new ArrayList<>(); // json 구분 인덱스 : 7
         List<Comment> disgustComments = new ArrayList<>(); // json 구분 인덱스 : 8
 
-        //댓글 분류
+        //긍정 부정, 6가지 감정 댓글 분류
         classifyComment(comments, positiveComments, negativeComments, fearComments, surprisedComments, angerComments, sadnessComments, neutralComments, happyComments, disgustComments);
 
 
@@ -107,8 +124,6 @@ public class HomeController {
         System.out.println("혐오 댓글 비율 = " + return_disgustPercent);
 
 
-
-
         // "행복" 댓글 출력 테스트
         //for(int i=0;i<happyComments.size();i++){
         //    System.out.println(happyComments.get(i).getComment());
@@ -135,29 +150,28 @@ public class HomeController {
         model.addAttribute("happyComments",happyComments);
         model.addAttribute("disgustComments",disgustComments);
 
-        model.addAttribute("size",interests.length);
-        model.addAttribute("commentDate",commentDate);
-        model.addAttribute("commentCount",commentCount);
+        /**긍정부정, 6가지 감정 end*/
 
         model.addAttribute("videoId",url);
+
         return "search";
     }
 
-    @GetMapping("/keyword/{url}")
-    public String getKeyword(@PathVariable String url, Model model){
-        String baseUrl = "http://localhost:5000/searchKeyword?url=" + url;
-        RestTemplate restTemplate = new RestTemplate();
-
-        ResponseEntity<Keyword> response = restTemplate.getForEntity(baseUrl, Keyword.class);
-
-        Keyword keyword = response.getBody();
-        log.info("keyeqwerqeeword={}", keyword);
-        log.info("keyword.getB5()[0]={}", keyword.getB5()[0]);
-        log.info("keyword.getComments()={}", keyword.getComments());
-        log.info("keyword.getComments()[0][0]={}", keyword.getComments()[0][0]);
-        model.addAttribute("keyword",keyword);
-        return "keyword";
-    }
+//    @GetMapping("/keyword/{url}")
+//    public String getKeyword(@PathVariable String url, Model model){
+//        String baseUrl = "http://localhost:5000/searchKeyword?url=" + url;
+//        RestTemplate restTemplate = new RestTemplate();
+//
+//        ResponseEntity<Keyword> response = restTemplate.getForEntity(baseUrl, Keyword.class);
+//
+//        Keyword keyword = response.getBody();
+//        log.info("keyeqwerqeeword={}", keyword);
+//        log.info("keyword.getB5()[0]={}", keyword.getB5()[0]);
+//        log.info("keyword.getComments()={}", keyword.getComments());
+//        log.info("keyword.getComments()[0][0]={}", keyword.getComments()[0][0]);
+//        model.addAttribute("keyword",keyword);
+//        return "keyword";
+//    }
 
     @GetMapping("/timeline/{url}")
     public String getTimeline(@PathVariable String url, Model model){

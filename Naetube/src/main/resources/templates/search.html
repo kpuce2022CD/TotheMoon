@@ -3,27 +3,196 @@
 <head>
     <meta charset="UTF-8">
     <title>댓글 분석</title>
+    <!-- 베스트 키워드 라이브러리 시작-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <!-- 베스트 키워드 라이브러리 끝-->
+    <!-- 베스트 키워드 스타일 시작-->
+    <style type="text/css">
+/*Example CSS for the two demo scrollers*/
+mark{
+  background-color:#FFFF00;
+}
+body {
+  background-color: black;
+}
+#pscroller2{
+width: 150px;
+height: 40px;
+background-color: white;
+border: 1px solid black;
+padding: 7px;
+text-align: center;
+text-color: black;
+font-weight: 600;
+font-size:20px;
+}
+
+#pscroller2 a{
+text-decoration: none;
+}
+.bestKeywordContent{
+     display: flex;
+     position: absolute;
+     margin-left:70%;
+     margin-top:5%;
+}
+.b5title{
+   color: white;
+   margin-right:20px;
+   text-align: center;
+}
+
+.someclass{ //class to apply to your scroller(s) if desired
+}
+#keywordlist{
+          width: 150px;
+          height: 180px;
+          border: 1px solid black;
+          padding: 7px;
+          text-align: left;
+          display: none;
+          font-weight: 900;
+          background-color: white;
+}
+    </style>
+    <!-- 베스트 키워드 스타일 끝-->
+    <!-- 베스트 키워드 js 시작-->
+    <script type="text/javascript">
+
+/***********************************************
+* Pausing up-down scroller- ⓒ Dynamic Drive (www.dynamicdrive.com)
+* This notice MUST stay intact for legal use
+* Visit http://www.dynamicdrive.com/ for this script and 100s more.
+***********************************************/
+
+function view(args){
+   var scroller = document.getElementById("pscroller2");
+   var keywordlist = document.getElementById("keywordlist");
+
+   if(args ==1){
+   scroller.style.display="block";
+   keywordlist.style.display="none";
+   }
+   else{
+   keywordlist.style.display="block";
+   scroller.style.display="none";
+   }
+}
+
+
+function pausescroller(content, divId, divClass, delay){
+this.content=content //message array content
+this.tickerid=divId //ID of ticker div to display information
+this.delay=delay //Delay between msg change, in miliseconds.
+this.mouseoverBol=0 //Boolean to indicate whether mouse is currently over scroller (and pause it if it is)
+this.hiddendivpointer=1 //index of message array for hidden div
+document.write('<div id="'+divId+'" class="'+divClass+'" style="position: relative; overflow: hidden" ><div class="innerDiv" style="position: absolute; width: 100%" id="'+divId+'1">'+content[0]+'</div><div class="innerDiv" style="position: absolute; width: 100%; visibility: hidden" id="'+divId+'2">'+content[1]+'</div></div>')
+var scrollerinstance=this
+if (window.addEventListener) //run onload in DOM2 browsers
+window.addEventListener("load", function(){scrollerinstance.initialize()}, false)
+else if (window.attachEvent) //run onload in IE5.5+
+window.attachEvent("onload", function(){scrollerinstance.initialize()})
+else if (document.getElementById) //if legacy DOM browsers, just start scroller after 0.5 sec
+setTimeout(function(){scrollerinstance.initialize()}, 500)
+}
+
+// -------------------------------------------------------------------
+// initialize()- Initialize scroller method.
+// -Get div objects, set initial positions, start up down animation
+// -------------------------------------------------------------------
+
+pausescroller.prototype.initialize=function(){
+this.tickerdiv=document.getElementById(this.tickerid)
+this.visiblediv=document.getElementById(this.tickerid+"1")
+this.hiddendiv=document.getElementById(this.tickerid+"2")
+this.visibledivtop=parseInt(pausescroller.getCSSpadding(this.tickerdiv))
+//set width of inner DIVs to outer DIV's width minus padding (padding assumed to be top padding x 2)
+this.visiblediv.style.width=this.hiddendiv.style.width=this.tickerdiv.offsetWidth-(this.visibledivtop*2)+"px"
+this.getinline(this.visiblediv, this.hiddendiv)
+this.hiddendiv.style.visibility="visible"
+var scrollerinstance=this
+document.getElementById(this.tickerid).onmouseover=function(){scrollerinstance.mouseoverBol=1}
+document.getElementById(this.tickerid).onmouseout=function(){scrollerinstance.mouseoverBol=0}
+if (window.attachEvent) //Clean up loose references in IE
+window.attachEvent("onunload", function(){scrollerinstance.tickerdiv.onmouseover=scrollerinstance.tickerdiv.onmouseout=null})
+setTimeout(function(){scrollerinstance.animateup()}, this.delay)
+}
+
+
+// -------------------------------------------------------------------
+// animateup()- Move the two inner divs of the scroller up and in sync
+// -------------------------------------------------------------------
+
+pausescroller.prototype.animateup=function(){
+var scrollerinstance=this
+if (parseInt(this.hiddendiv.style.top)>(this.visibledivtop+5)){
+this.visiblediv.style.top=parseInt(this.visiblediv.style.top)-5+"px"
+this.hiddendiv.style.top=parseInt(this.hiddendiv.style.top)-5+"px"
+setTimeout(function(){scrollerinstance.animateup()}, 50)
+}
+else{
+this.getinline(this.hiddendiv, this.visiblediv)
+this.swapdivs()
+setTimeout(function(){scrollerinstance.setmessage()}, this.delay)
+}
+}
+
+// -------------------------------------------------------------------
+// swapdivs()- Swap between which is the visible and which is the hidden div
+// -------------------------------------------------------------------
+
+pausescroller.prototype.swapdivs=function(){
+var tempcontainer=this.visiblediv
+this.visiblediv=this.hiddendiv
+this.hiddendiv=tempcontainer
+}
+
+pausescroller.prototype.getinline=function(div1, div2){
+div1.style.top=this.visibledivtop+"px"
+div2.style.top=Math.max(div1.parentNode.offsetHeight, div1.offsetHeight)+"px"
+}
+
+// -------------------------------------------------------------------
+// setmessage()- Populate the hidden div with the next message before it's visible
+// -------------------------------------------------------------------
+
+pausescroller.prototype.setmessage=function(){
+var scrollerinstance=this
+if (this.mouseoverBol==1){ //if mouse is currently over scoller, do nothing (pause it)
+setTimeout(function(){scrollerinstance.setmessage()}, 100)
+}
+else{
+var i=this.hiddendivpointer
+var ceiling=this.content.length
+this.hiddendivpointer=(i+1>ceiling-1)? 0 : i+1
+this.hiddendiv.innerHTML=this.content[this.hiddendivpointer]
+this.animateup()
+}
+}
+
+pausescroller.getCSSpadding=function(tickerobj){ //get CSS padding value, if any
+if (tickerobj.currentStyle)
+return tickerobj.currentStyle["paddingTop"]
+else if (window.getComputedStyle) //if DOM2
+return window.getComputedStyle(tickerobj, "").getPropertyValue("padding-top")
+else
+return 0
+}
+    </script>
+    <!-- 베스트 키워드 js 끝-->
+
     <!-- 합쳐지고 최소화된 최신 CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<!--    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">-->
 
     <!-- 부가적인 테마 -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
 
     <!-- 합쳐지고 최소화된 최신 자바스크립트 -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-    <!-- CSS only -->
-    <!--
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link th:href="@{/css/layout1.css}" rel="stylesheet">
+<!--    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>-->
 
-
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
-    <th:block layout:fragment="script"></th:block>
-    <th:block layout:fragment="css"></th:block>
-    -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.bundle.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.css">
 
@@ -700,6 +869,88 @@ chart.appear(1000, 100);
 
 </head>
 <body>
+<!--베스트 키워드 기능 시작 -->
+<div class="bestKeywordContent">
+    <div class="b5title"><h2>Best 키워드 5</h2></div>
+    <div class="scroller">
+        <script type="text/javascript" th:inline="javascript">
+        var pausecontent=new Array()
+         pausecontent[0]= '1. '+[[${keyword.b5[0]}]]
+         pausecontent[1]= '2. '+[[${keyword.b5[1]}]]
+         pausecontent[2]= '3. '+[[${keyword.b5[2]}]]
+         pausecontent[3]= '4. '+[[${keyword.b5[3]}]]
+         pausecontent[4]= '5. '+[[${keyword.b5[4]}]]
+          //new pausescroller(name_of_message_array, CSS_ID, CSS_classname, pause_in_miliseconds)
+          new pausescroller(pausecontent, "pscroller2", "someclass", 2000)
+         </script>
+    </div>
+    <div id="keywordlist">
+        <div style="padding-left: 12px">
+            <span th:text ="|1. ${keyword.b5[0]}|"></span><br>
+            <span th:text ="|2. ${keyword.b5[1]}|"></span><br>
+            <span th:text ="|3. ${keyword.b5[2]}|"></span><br>
+            <span th:text ="|4. ${keyword.b5[3]}|"></span><br>
+            <span th:text ="|5. ${keyword.b5[4]}|"></span>
+            <button type="button" class="btn btn-dark btn-sm" style="margin-top: 10px" data-toggle="modal" data-target="#exampleModalScrollable">
+                관련 댓글 보기
+            </button>
+        </div>
+    </div>
+    <div id ="keywordBtn">
+        <input type="button" class="btn btn-outline-warning" value="∇" onClick="
+     if(document.querySelector('body').dataset.mode == '∆'){
+     view(1);
+     document.querySelector('body').dataset.mode='∇';
+     this.value= '∇';
+     }else{
+     view(2);
+     document.querySelector('body').dataset.mode='∆';
+     this.value='∆';
+     }
+     ">
+    </div>
+</div>
+<br>
+
+<!-- 베스트키워드 Modal -->
+<div class="modal fade" id="exampleModalScrollable" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h6 class="modal-title" id="exampleModalScrollableTitle1">BEST 키워드 TOP5 관련 댓글 (10개 제공/'좋아요'순)</h6>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <h3 th:text ="|1. ${keyword.b5[0]}|"></h3><br>
+                <ul th:each="keywordComment : ${keyword.getComments()[0]}">
+                    <li th:utext="${keywordComment}"></li>
+                </ul>
+                <h3 th:text ="|2. ${keyword.b5[1]}|"></h3><br>
+                <ul th:each="keywordComment : ${keyword.getComments()[1]}">
+                    <li th:utext="${keywordComment}"></li>
+                </ul>
+                <h3 th:text ="|3. ${keyword.b5[2]}|"></h3><br>
+                <ul th:each="keywordComment : ${keyword.getComments()[2]}">
+                    <li th:utext="${keywordComment}"></li>
+                </ul>
+                <h3 th:text ="|4. ${keyword.b5[3]}|"></h3><br>
+                <ul th:each="keywordComment : ${keyword.getComments()[3]}">
+                    <li th:utext="${keywordComment}"></li>
+                </ul>
+                <h3 th:text ="|5. ${keyword.b5[4]}|"></h3><br>
+                <ul th:each="keywordComment : ${keyword.getComments()[4]}">
+                    <li th:utext="${keywordComment}"></li>
+                </ul>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-dark" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--베스트 키워드 기능 끝 -->
 <!-- modal창 설정 - fearComments -->
 <div id="modal0" class="modal-overlay">
     <div class="modal-window">
