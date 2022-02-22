@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.client.RestTemplate;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -69,6 +70,24 @@ public class HomeController {
         model.addAttribute("commentCount",commentCount);
         /**관심도 end*/
 
+        /**비디오 정보 가져오기 start */
+        String VIbaseUrl = "http://localhost:5000/getVideoInformation?url=" + url;
+        RestTemplate VIrestTemplate = new RestTemplate();
+        ResponseEntity<VideoInformation[]> VIresponse = VIrestTemplate.getForEntity(VIbaseUrl, VideoInformation[].class);
+        VideoInformation[] videoInformation = VIresponse.getBody();
+        DecimalFormat decFormat = new DecimalFormat("###,###");
+
+
+        int view = Integer.parseInt(videoInformation[0].getView());
+        String viewData = decFormat.format(view);
+
+        String DateDate = videoInformation[0].getDate().replace('-','.');
+
+        model.addAttribute("videoTitle",videoInformation[0].getTitle());
+        model.addAttribute("videoDate",DateDate);
+        model.addAttribute("videoView",viewData);
+
+        /**비디오 정보 가져오기 end */
 
         /**긍정부정, 6가지 감정 start*/
         String baseUrl = "http://localhost:5000/tospring2?url=" + url;
@@ -183,6 +202,21 @@ public class HomeController {
 
     @GetMapping("/timeline/{url}")
     public String getTimeline(@PathVariable String url, Model model){
+
+        /**베스트 키워드 start*/
+        String KeywordBaseUrl = "http://localhost:5000/searchKeyword?url=" + url;
+        RestTemplate KeywordRestTemplate = new RestTemplate();
+
+        ResponseEntity<Keyword> KeywordResponse = KeywordRestTemplate.getForEntity(KeywordBaseUrl, Keyword.class);
+
+        Keyword keyword = KeywordResponse.getBody();
+        log.info("keyeqwerqeeword={}", keyword);
+        log.info("keyword.getB5()[0]={}", keyword.getB5()[0]);
+        log.info("keyword.getComments()={}", keyword.getComments());
+        log.info("keyword.getComments()[0][0]={}", keyword.getComments()[0][0]);
+        model.addAttribute("keyword",keyword);
+        /** 베스트 키워드 end */
+
         String baseUrl = "http://localhost:5000/timeline?url="+url;
         RestTemplate restTemplate = new RestTemplate();
         ResponseEntity<Timeline[]> response = restTemplate.getForEntity(baseUrl, Timeline[].class);
@@ -358,6 +392,15 @@ public class HomeController {
     public String find(@PathVariable String url, Model model){
         model.addAttribute("url",url);
         return "find";
+    }
+
+    @GetMapping("/getVideoInformation/{url}")
+    public VideoInformation getVideoInformation(@PathVariable String url, Model model){
+        String baseUrl = "http://localhost:5000/getVideoInformation?url=" + url;
+        RestTemplate restTemplate = new RestTemplate();
+        ResponseEntity<VideoInformation> response = restTemplate.getForEntity(baseUrl, VideoInformation.class);
+        VideoInformation videoInformation = response.getBody();
+        return videoInformation;
     }
 
 //    @GetMapping("/interest/{url}")

@@ -854,93 +854,6 @@ chart.appear(1000, 100);
 
     </script>
 
-
-    <script type="text/javascript" th:inline="javascript">
-  var playlist = [[${videoId}]]
-  //https://www.youtube.com/watch?v=유튜브 영상 고유번호
-  //playlist만 원하는 재생목록에 따라 가져오면 됨
-  //maxResult는 50 이하
-    $(document).ready(function () {
-      $.get(
-        "https://www.googleapis.com/youtube/v3/videos",{
-          part: 'snippet',
-          maxResults: 50,
-          id: playlist,
-          key: 'AIzaSyC02qrZyWZRNMDA60q307mi2S3JrI1pNY0' },
-          function (data) {
-            var output;
-            $.each(data.items, function (i, item) {
-            console.log(item);
-            vTitle = item.snippet.title;
-            vId = item.snippet.channelId;
-            vDe = item.snippet.description;
-            vTh = item.snippet.channelTitle;
-            vPu = item.snippet.publishedAt;
-            vaaa = item.snippet.thumbnails.standard.url;
-            output = '<li>' + vTitle + '<br>--videoid: ' + vId + '<br>--videodescription: ' + vDe + '<br>--videothumbnails: ' + vTh + '<br><img src ="' + vaaa + '"></li>';
-            /*output= '<li>'+vTitle+'<iframe src=\"//www.youtube.com/embed/'+vId+'\"></iframe></li>';*/
-
-            var regex = /-/gi;     // - 문자 전체
-            vPu_r = vPu.toString();
-            vPu_t = vPu_r.replace(regex,'.').substring(0,10);
-
-            var videoTitleInformation = document.getElementById("videoTitle");
-            var videoPublishedAtInformation = document.getElementById("videoPublishedAt");
-
-            var videoTitle = document.createElement("h4");
-            var videoDescription = document.createElement("h5");
-            var videoChannelTitle = document.createElement("h5");
-            var videoPublishedAt = document.createElement("h5");
-
-            videoTitle.setAttribute("style","color:white");
-            videoDescription.setAttribute("style","color:white");
-            videoChannelTitle.setAttribute("style","color:white");
-            videoPublishedAt.setAttribute("style","color:rgb(211,211,211)");
-
-            videoTitle.innerHTML = vTitle;
-            videoDescription.innerHTML = vDe;
-            videoChannelTitle.innerHTML = vTh;
-            videoPublishedAt.innerHTML = vPu_t;
-
-            videoTitleInformation.appendChild(videoTitle);
-            //videoInformation.appendChild(videoDescription);
-            //videoInformation.appendChild(videoChannelTitle);
-            videoPublishedAtInformation.appendChild(videoPublishedAt);
-            })
-        }
-      );
-    });
-
-    $(document).ready(function () {
-      $.get(
-        "https://www.googleapis.com/youtube/v3/videos",{
-          part: 'statistics',
-          maxResults: 50,
-          id: playlist,
-          key: 'AIzaSyC02qrZyWZRNMDA60q307mi2S3JrI1pNY0' },
-          function (data) {
-            var output;
-            $.each(data.items, function (i, item) {
-            console.log(item);
-            vCo = item.statistics.viewCount;
-            vCo_r = Number(vCo).toLocaleString();
-
-            var videoViewCountInformation = document.getElementById("videoViewCount");
-
-            var videoViewCount = document.createElement("h5");
-
-            videoViewCount.setAttribute("style","color:rgb(211,211,211)");
-
-            videoViewCount.innerHTML = "조회수 "+ vCo_r + "회";
-
-            videoViewCountInformation.appendChild(videoViewCount);
-
-            })
-        }
-      );
-    });
-</script>
-
 </head>
 <body>
 <!--베스트 키워드 기능 시작 -->
@@ -1294,10 +1207,12 @@ chart.appear(1000, 100);
     <div class="container" style="width:100%">
         <div style="width:600px;height:315px">
             <div id="myplayer"></div>
-            <div id="videoTitle"></div>
-            <div style="float:left">
-                <div id="videoViewCount" style="float:left"></div>
-                <div id="videoPublishedAt" style="float:left;margin-left:10px"></div>
+            <div>
+                <h4 th:text = "${videoTitle}" style="color:white"></h4>
+                <div>
+                    <h5 th:text = "|조회수 ${videoView}회|" style="float:left;color:rgb(211,211,211)"></h5>
+                    <h5 th:text = "${videoDate}" style="float:left;color:rgb(211,211,211);margin-left:10px"></h5>
+                </div>
             </div>
             <div style="margin-top: 40px">
                 <th:block th:each="timeline : ${timelines}">
@@ -1332,7 +1247,7 @@ chart.appear(1000, 100);
 </div>
 
 
-<div class="progress" style="width:50%;height:25px">
+<div class="progress" style="width:50%;height:25px;margin-top:30px">
     <div class="progress-bar progress-bar-success" role="progressbar" th:aria-valuenow="${#numbers.formatDecimal(positivePercent,2,2)}"
          aria-valuemin="0" aria-valuemax="100" th:style="|width:${#numbers.formatDecimal(positivePercent,2,2)}%;text-align:center|" th:text="|긍정적(${#numbers.formatDecimal(positivePercent,2,2)}%)|">
         긍정적(~%)

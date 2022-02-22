@@ -7,6 +7,7 @@ from np_classify import npClassifyProcessing
 from em_classify import *
 from comment_classify import *
 from interest.interestExtractor import get_interestData
+from getVideoInformation import getVideoInformation
 
 
 def create_app():
@@ -64,6 +65,11 @@ def create_app():
         filepath = collectComment(request.args.get('url'))
         interest_data = get_interestData(filepath)
         return jsonify(interest_data)
+
+    @app.route('/getVideoInformation')
+    def getVideoData():
+        videoInformation = getVideoInformation(request.args.get('url'))
+        return jsonify(videoInformation)
 
 
     return app
