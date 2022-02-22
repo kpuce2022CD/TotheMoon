@@ -1293,13 +1293,32 @@ chart.appear(1000, 100);
 <div>
     <div class="container" style="width:100%">
         <div style="width:600px;height:315px">
-            <iframe width="100%" height="315" th:src="${url}"></iframe>
+            <div id="myplayer"></div>
             <div id="videoTitle"></div>
             <div style="float:left">
                 <div id="videoViewCount" style="float:left"></div>
                 <div id="videoPublishedAt" style="float:left;margin-left:10px"></div>
             </div>
+            <div style="margin-top: 40px">
+                <th:block th:each="timeline : ${timelines}">
+                    <a href="javascript:void(0);" th:onclick="'move('+${timeline.sec}+');'" th:text="${timeline.time}" style="font-size:25px; margin-right: 50px;"></a>
+                </th:block>
+            </div>
         </div>
+        <script src='https://www.youtube.com/iframe_api'></script>
+        <script th:inline="javascript">
+            let player
+            function onYouTubeIframeAPIReady() {
+                player = new YT.Player("myplayer", {
+                    // width: 360,
+                    // height: 180,
+                    videoId: [[${videoId}]],
+                });
+            }
+            function move(time){
+                player.seekTo(time)
+            }
+        </script>
         <div style="float:right;margin-left:100px" >
             <h1 style="color:white">감정 분석 결과</h1>
             <div>
