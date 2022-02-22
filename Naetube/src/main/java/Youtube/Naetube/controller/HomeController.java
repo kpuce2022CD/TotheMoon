@@ -39,6 +39,14 @@ public class HomeController {
         model.addAttribute("keyword",keyword);
         /** 베스트 키워드 end */
 
+        /**타임라인 start*/
+        String TimelineBaseUrl = "http://localhost:5000/timeline?url="+url;
+        RestTemplate TimelineRestTemplate = new RestTemplate();
+        ResponseEntity<Timeline[]> TimelineResponse = TimelineRestTemplate.getForEntity(TimelineBaseUrl, Timeline[].class);
+        Timeline[] timelines = TimelineResponse.getBody();
+        model.addAttribute("timelines",timelines);
+        /** 타임라인 end */
+
 
         /**관심도 start*/
         String InterestBaseUrl = "http://localhost:5000/interest?url=" + url;

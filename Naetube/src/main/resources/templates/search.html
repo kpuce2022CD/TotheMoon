@@ -36,7 +36,7 @@ text-decoration: none;
 .bestKeywordContent{
      display: flex;
      position: absolute;
-     margin-left:70%;
+     margin-left:20%;
      margin-top:5%;
 }
 .b5title{
@@ -591,6 +591,80 @@ chart.appear(1000, 100);
             color: white;
         }
 
+        #word{
+            width: 600px;
+            height: 50px;
+            font-size: 16px;
+        }
+
+        #find{
+            margin-left: 7px;
+            margin-right: 20px;
+            height: 56px;
+        }
+
+
+        #find-modal.find-modal-overlay {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            left: 0;
+            top: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.25);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+            backdrop-filter: blur(1.5px);
+            -webkit-backdrop-filter: blur(1.5px);
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.18);
+        }
+        #find-modal .find-modal-window {
+            background: rgba( 69, 139, 197, 0.70 );
+            box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+            backdrop-filter: blur( 13.5px );
+            -webkit-backdrop-filter: blur( 13.5px );
+            border-radius: 10px;
+            border: 1px solid rgba( 255, 255, 255, 0.18 );
+            width: 700px;
+            height: 600px;
+            position: relative;
+            top: -100px;
+            padding: 10px;
+            overflow:auto;
+        }
+        #find-modal .find-title {
+            padding-left: 10px;
+            display: inline;
+            text-shadow: 1px 1px 2px gray;
+            color: white;
+
+        }
+        #find-modal .find-title h2 {
+            display: inline;
+        }
+        #find-modal .find-close-area {
+            display: inline;
+            float: right;
+            padding-right: 10px;
+            cursor: pointer;
+            text-shadow: 1px 1px 2px gray;
+            color: white;
+        }
+
+        #find-modal .find-content {
+            margin-top: 20px;
+            padding: 0px 10px;
+            text-shadow: 1px 1px 2px gray;
+            color: white;
+        }
+
+        #find-modal.find-modal-overlay {
+            display: none;
+        }
+
     </style>
     <script language="JavaScript" th:inline="javascript">
 
@@ -871,6 +945,10 @@ chart.appear(1000, 100);
 <body>
 <!--베스트 키워드 기능 시작 -->
 <div class="bestKeywordContent">
+    <form id="search">
+        <input id="word" type="text" placeholder="검색어를 입력해주세요." name="keyword">
+        <button id="find" type="submit">검색</button>
+    </form>
     <div class="b5title"><h2>Best 키워드 5</h2></div>
     <div class="scroller">
         <script type="text/javascript" th:inline="javascript">
@@ -951,6 +1029,71 @@ chart.appear(1000, 100);
     </div>
 </div>
 <!--베스트 키워드 기능 끝 -->
+
+<!--검색 기능 -->
+<div id="find-modal" class="find-modal-overlay">
+    <div class="find-modal-window">
+        <div class="find-title">
+        </div>
+        <div class="find-close-area">X</div>
+        <div class="find-content">
+        </div>
+    </div>
+</div>
+
+<script th:inline="javascript">
+    const modal = document.getElementById("find-modal")
+    document.getElementById('search').addEventListener('submit', function (e){
+        e.preventDefault()
+        const keyword = e.target.keyword.value
+        const url = [[${videoId}]]
+        if(!keyword.trim()){
+            e.target.keyword.value = ''
+            return alert('검색어를 입력해주세요')
+        }
+        const xhr = new XMLHttpRequest()
+        xhr.onload = function () {
+            if(xhr.status === 200) {
+                const comments = JSON.parse(xhr.responseText)
+                showComments(keyword, comments)
+            }
+        }
+        xhr.open('GET','/findcomment?url='+url+'&keyword='+keyword)
+        xhr.setRequestHeader('Content-Type','application/json')
+        xhr.send()
+
+        const closeBtn = modal.querySelector(".find-close-area")
+        closeBtn.addEventListener("click", e => {
+            const title = document.querySelector('.find-title')
+            const content = document.querySelector('.find-content')
+            title.innerHTML = ''
+            content.innerHTML = ''
+            modal.style.display = "none"
+        })
+    })
+
+    function showComments(keyword, comments){
+        modal.style.display = "flex"
+
+        const title = document.querySelector('.find-title')
+        const search_word = document.createElement('h2')
+        search_word.textContent = keyword
+        title.appendChild(search_word)
+        const content = document.querySelector('.find-content')
+        comments.map(function (comment){
+            const hr = document.createElement('hr')
+            const result = document.createElement('p')
+            content.appendChild(hr)
+            result.innerHTML = comment
+            content.appendChild(result)
+        })
+
+    }
+
+</script>
+
+<!--검색 기능 끝 -->
+
 <!-- modal창 설정 - fearComments -->
 <div id="modal0" class="modal-overlay">
     <div class="modal-window">
@@ -1150,13 +1293,32 @@ chart.appear(1000, 100);
 <div>
     <div class="container" style="width:100%">
         <div style="width:600px;height:315px">
-            <iframe width="100%" height="315" th:src="${url}"></iframe>
+            <div id="myplayer"></div>
             <div id="videoTitle"></div>
             <div style="float:left">
                 <div id="videoViewCount" style="float:left"></div>
                 <div id="videoPublishedAt" style="float:left;margin-left:10px"></div>
             </div>
+            <div style="margin-top: 40px">
+                <th:block th:each="timeline : ${timelines}">
+                    <a href="javascript:void(0);" th:onclick="'move('+${timeline.sec}+');'" th:text="${timeline.time}" style="font-size:25px; margin-right: 50px;"></a>
+                </th:block>
+            </div>
         </div>
+        <script src='https://www.youtube.com/iframe_api'></script>
+        <script th:inline="javascript">
+            let player
+            function onYouTubeIframeAPIReady() {
+                player = new YT.Player("myplayer", {
+                    // width: 360,
+                    // height: 180,
+                    videoId: [[${videoId}]],
+                });
+            }
+            function move(time){
+                player.seekTo(time)
+            }
+        </script>
         <div style="float:right;margin-left:100px" >
             <h1 style="color:white">감정 분석 결과</h1>
             <div>

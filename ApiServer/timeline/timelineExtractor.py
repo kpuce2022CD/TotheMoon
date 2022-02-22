@@ -42,7 +42,7 @@ class timelineExtractor:
       self.timeline_list.append(timeline_data)
     return self
   
-  def get_best_timelines(self,n=10):
+  def get_best_timelines(self,n=5):
     timeline = []
     for i in self.data['comment']:  
       soup = BeautifulSoup(i,'html.parser')

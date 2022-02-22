@@ -46,9 +46,9 @@ def create_app():
 
     @app.route('/timeline')
     def getTimeline():
-        # filepath = collectComment(request.args.get('url'))
+        filepath = collectComment(request.args.get('url'))
         extractor = timelineExtractor()
-        data = extractor.extract_timeline_comments('./0ftF6DYPhUk.xlsx')
+        data = extractor.get_comments_from_excel(filepath).get_best_timelines()
         return jsonify(data)
     
     @app.route('/find')
