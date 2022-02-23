@@ -47,7 +47,8 @@ class timelineExtractor:
     for i in self.data['comment']:  
       soup = BeautifulSoup(i,'html.parser')
       for j in soup.find_all('a'):
-        timeline.append(j.text)
+        if 'https://www.youtube.com/watch?v='+self.url in j['href']:
+          timeline.append(j.text)
     best_timelines = Counter(timeline).most_common(n)
     best_timelines = [{'time':i[0], 'sec':self.standardized_time(i[0])} for i in best_timelines]
     return best_timelines
