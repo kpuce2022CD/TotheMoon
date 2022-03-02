@@ -1,4 +1,5 @@
 *.pyc
 *.xlsx
+*/__pycache__/*
 
 ApiServer/.cache

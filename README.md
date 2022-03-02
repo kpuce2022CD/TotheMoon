@@ -30,7 +30,7 @@
 
 ## 개발 계획
 
-  <a href="https://spangle-yak-11c.notion.site/176930cbe8224ba191980ea99194c261">
+  <a href="https://tothemoon2022.notion.site/tothemoon2022/32c22d27ec51429791695834cf736fe0">
     <img src="https://img.shields.io/badge/Notion-000000?style=for-the-badge&logo=Notion&logoColor=white">
   </a>
 
