@@ -90,7 +90,7 @@ public class HomeController {
         /**비디오 정보 가져오기 end */
 
         /**긍정부정, 6가지 감정 start*/
-        String baseUrl = "http://localhost:5000/tospring2?url=" + url;
+        String baseUrl = "http://localhost:5000/classifyComments?url=" + url;
         RestTemplate restTemplate = new RestTemplate();
         ResponseEntity<Comment[]> response = restTemplate.getForEntity(baseUrl, Comment[].class);
 

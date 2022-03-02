@@ -18,13 +18,7 @@ def create_app():
         collectComment(request.args.get('url'))
         return "success"
 
-    @app.route('/tospring')
-    def test():
-        array = ["1", "a", "3", "j", "1"]
-
-        return jsonify(array)
-
-    @app.route('/tospring2')
+    @app.route('/classifyComments')
     def test2():
         filepath = collectComment(request.args.get('url'))
         PosiNegative_comment_data, Emotion_comment_data = CommentClassifyProcessing(filepath)
@@ -51,7 +45,7 @@ def create_app():
         extractor = timelineExtractor()
         data = extractor.get_comments_from_excel(filepath).get_best_timelines()
         return jsonify(data)
-    
+
     @app.route('/find')
     def find():
         filepath = collectComment(request.args.get('url'))
@@ -70,6 +64,5 @@ def create_app():
     def getVideoData():
         videoInformation = getVideoInformation(request.args.get('url'))
         return jsonify(videoInformation)
-
 
     return app
