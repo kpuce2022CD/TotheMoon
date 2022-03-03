@@ -15,7 +15,7 @@ from tensorflow.keras.models import Sequential
 from tensorflow.keras.models import load_model
 from tensorflow.keras.callbacks import EarlyStopping, ModelCheckpoint
 import pickle
-#tt
+# tt
 import torch
 from torch import nn
 import torch.nn.functional as F
@@ -29,14 +29,15 @@ from kobert.pytorch_kobert import get_pytorch_kobert_model
 # transformers
 from transformers import AdamW
 from transformers.optimization import get_cosine_schedule_with_warmup
+import tensorflow as tf
 
-#debug(개발시)>info(운영시)>warnig(사용자잘못입력)>error(예외발생)>critical(데이터손실,오작동)
+# debug(개발시)>info(운영시)>warnig(사용자잘못입력)>error(예외발생)>critical(데이터손실,오작동)
 logger = logging.getLogger("main")
 stream_handler = logging.StreamHandler()
 logger.addHandler(stream_handler)
 logger.setLevel(logging.DEBUG)
 
-#------------------------------------- 긍정 부정 분류 (start)--------------------------------------------
+# ------------------------------------- 긍정 부정 분류 (start)--------------------------------------------
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 
 okt = Okt()
@@ -61,16 +62,17 @@ def sentiment_predict(new_sentence):
     pad_new = pad_sequences(encoded, maxlen=max_len)  # 패딩
     score = float(loaded_model.predict(pad_new))  # 예측
     return score
+
+
 # ----------------------------------------------------------------------------------------------------
 
-#----------------------------------------- kobert (감정 분류 start)---------------------------------------
+# ----------------------------------------- kobert (감정 분류 start)---------------------------------------
 
 # GPU 사용
 USE_CUDA = torch.cuda.is_available()  # gpu 세팅 확인 -> true or false
 print(USE_CUDA)
-#device = torch.device('cuda:0')  # gpu 사용 코드
-device = torch.device('cpu') # cpu 사용 코드
-
+# device = torch.device('cuda:0')  # gpu 사용 코드
+device = torch.device('cpu')  # cpu 사용 코드
 
 # BERT 모델, Vocabulary 불러오기
 bertmodel, vocab = get_pytorch_kobert_model()
@@ -105,6 +107,7 @@ class BERTDataset(Dataset):
     def __len__(self):
         return (len(self.labels))
 
+
 class BERTClassifier(nn.Module):
     def __init__(self,
                  bert,
@@ -136,9 +139,11 @@ class BERTClassifier(nn.Module):
         return self.classifier(out)
 
 
-model = BERTClassifier(bertmodel,  dr_rate=0.5).to(device)
-model.load_state_dict(torch.load('model_state_dic.pt',map_location=device))
-#model = torch.load('em_classify_model.pt',map_location=device)  # 파이토치 모델 로드
+model = BERTClassifier(bertmodel, dr_rate=0.5).to(device)
+model.load_state_dict(torch.load('model_state_dic.pt', map_location=device))
+
+
+# model = torch.load('em_classify_model.pt',map_location=device)  # 파이토치 모델 로드
 
 def emotion_predict(predict_sentence):
     data = [predict_sentence, '0']
@@ -158,29 +163,57 @@ def emotion_predict(predict_sentence):
 
         out = model(token_ids, valid_length, segment_ids)
 
-        test_eval = []
+        test_eval = ["공포가", "놀람이", "분노가", "슬픔이", "중립이", "행복이", "혐오가"]
         for i in out:
             logits = i
             logits = logits.detach().cpu().numpy()
+            probabilities = tf.nn.softmax(logits, axis=-1)
+            probabilitiyValue = probabilities.numpy()
+            probabilitiyIndexValue = probabilitiyValue[np.argmax(logits)] * 100
+            probabilitiyFormatValue = round(probabilitiyIndexValue, 0)
 
             if np.argmax(logits) == 0:
-                test_eval.append("공포가")
+                if (probabilitiyFormatValue > 80):
+                    print(
+                        ">> 입력하신 내용에서 " + f"{probabilitiyFormatValue}의 확률로 " + test_eval[np.argmax(logits)] + " 느껴집니다.")
+                    return np.argmax(logits)
             elif np.argmax(logits) == 1:
-                test_eval.append("놀람이")
+                if (probabilitiyFormatValue > 80):
+                    print(
+                        "댓글 내용에서 " + f"{probabilitiyFormatValue}의 확률로 " + test_eval[np.argmax(logits)] + " 느껴집니다.")
+                    return np.argmax(logits)
             elif np.argmax(logits) == 2:
-                test_eval.append("분노가")
+                if (probabilitiyFormatValue > 80):
+                    print(
+                        "댓글 내용에서 " + f"{probabilitiyFormatValue}의 확률로 " + test_eval[np.argmax(logits)] + " 느껴집니다.")
+                    return np.argmax(logits)
             elif np.argmax(logits) == 3:
-                test_eval.append("슬픔이")
+                if (probabilitiyFormatValue > 80):
+                    print(
+                        "댓글 내용에서 " + f"{probabilitiyFormatValue}의 확률로 " + test_eval[np.argmax(logits)] + " 느껴집니다.")
+                    return np.argmax(logits)
             elif np.argmax(logits) == 4:
-                test_eval.append("중립이")
+                if (probabilitiyFormatValue > 80):
+                    print(
+                        "댓글 내용에서 " + f"{probabilitiyFormatValue}의 확률로 " + test_eval[np.argmax(logits)] + " 느껴집니다.")
+                    return np.argmax(logits)
             elif np.argmax(logits) == 5:
-                test_eval.append("행복이")
+                if (probabilitiyFormatValue > 80):
+                    print(
+                        "댓글 내용에서 " + f"{probabilitiyFormatValue}의 확률로 " + test_eval[np.argmax(logits)] + " 느껴집니다.")
+                    return np.argmax(logits)
             elif np.argmax(logits) == 6:
-                test_eval.append("혐오가")
+                if (probabilitiyFormatValue > 80):
+                    print(
+                        "댓글 내용에서 " + f"{probabilitiyFormatValue}의 확률로 " + test_eval[np.argmax(logits)] + " 느껴집니다.")
+                    return np.argmax(logits)
 
-        return np.argmax(logits)
 
-#-----------------------------------------------------------------------------------------------
+
+
+
+
+# -----------------------------------------------------------------------------------------------
 
 
 # 이모티콘 제거 함수(ASCII 코드에 해당하지 않는 경우)
@@ -235,40 +268,40 @@ def emoticonToWord(comment):
 def CommentClassifyProcessing(filename):
     df = pd.read_excel(filename)
 
-    comments = df.values    # 댓글 데이터(댓글, 작성자, 날짜, 좋아요 수)
+    comments = df.values  # 댓글 데이터(댓글, 작성자, 날짜, 좋아요 수)
     comment_result = []  # 전처리 후 데이터
-    PositiveNegative_dic_return = [] # 스프링으로 전송할 json 데이터
-    Emotion_dic_return = [] # 스프링으로 전송할 json 데이터
+    PositiveNegative_dic_return = []  # 스프링으로 전송할 json 데이터
+    Emotion_dic_return = []  # 스프링으로 전송할 json 데이터
 
     for i in comments:
         val = i[0]
         timeInComment = []
-        #print(val)
+        # print(val)
         val = re.sub("<br>", " ", val)  # <br> 한줄띄기 -> 스페이스 공백으로 변환 , 제거 이모티콘 추가
         val = emoticonToWord(val)  # 이모티콘 텍스트로 변환
         val = re.sub(emoji_pattern, "", val)  # 이모티콘 제거
-        remove_emoji(val) #이모티콘 제거
-        soup = BeautifulSoup(val,'html.parser')
-        for j in soup.find_all('a') : # 타임라인 처리
+        remove_emoji(val)  # 이모티콘 제거
+        soup = BeautifulSoup(val, 'html.parser')
+        for j in soup.find_all('a'):  # 타임라인 처리
             timeInComment.append(j.text)
-        #print(timeInComment)
+        # print(timeInComment)
         comment_result.append(val)
 
     for i in range(len(comment_result)):  # 배열 크기만큼 실행
         logger.debug("------------------전처리 후-----------------")
-        logger.debug("댓글: "+ comments[i][0])
-        logger.debug("작성자: "+comments[i][1])
+        logger.debug("댓글: " + comments[i][0])
+        logger.debug("작성자: " + comments[i][1])
         logger.debug("작성 날짜: " + comments[i][2])
         logger.debug("좋아요 개수: " + str(comments[i][3]))
         score = sentiment_predict(comment_result[i])
         if (score > 0.5):
-            if(score > 0.8):
+            if (score > 0.8):
                 logger.debug("{:.2f}% 확률로 긍정 리뷰입니다.".format(score * 100))
                 dic_temp = {"index": "1", "id": comments[i][1], "comment": comments[i][0],
                             "date": comments[i][2], "num_like": str(comments[i][3])}
                 PositiveNegative_dic_return.append(dic_temp)
         else:
-            if(score < 0.2):
+            if (score < 0.2):
                 logger.debug("{:.2f}% 확률로 부정 리뷰입니다.".format((1 - score) * 100))
                 dic_temp = {"index": "0", "id": comments[i][1], "comment": comments[i][0],
                             "date": comments[i][2], "num_like": str(comments[i][3])}
@@ -309,7 +342,7 @@ def CommentClassifyProcessing(filename):
             dic_temp = {"index": "8", "id": comments[i][1], "comment": comments[i][0],
                         "date": comments[i][2], "num_like": str(comments[i][3])}
             Emotion_dic_return.append(dic_temp)
-    
-    return PositiveNegative_dic_return , Emotion_dic_return
 
-#CommentClassifyProcessing("bCA060Tb5pI.xlsx")
+    return PositiveNegative_dic_return, Emotion_dic_return
+
+# CommentClassifyProcessing("bCA060Tb5pI.xlsx")

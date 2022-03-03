@@ -16,13 +16,13 @@ import pandas as pd
 import re
 from konlpy.tag import Okt
 from bs4 import BeautifulSoup
+import tensorflow as tf
 
 # GPU 사용
 USE_CUDA = torch.cuda.is_available()  # gpu 세팅 확인 -> true or false
 print(USE_CUDA)
-#device = torch.device('cuda:0')  # gpu 사용 코드
-device = torch.device('cpu') # cpu 사용 코드
-
+# device = torch.device('cuda:0')  # gpu 사용 코드
+device = torch.device('cpu')  # cpu 사용 코드
 
 # BERT 모델, Vocabulary 불러오기
 bertmodel, vocab = get_pytorch_kobert_model()
@@ -61,6 +61,7 @@ class BERTDataset(Dataset):
     def __len__(self):
         return (len(self.labels))
 
+
 class BERTClassifier(nn.Module):
     def __init__(self,
                  bert,
@@ -92,9 +93,11 @@ class BERTClassifier(nn.Module):
         return self.classifier(out)
 
 
-model = BERTClassifier(bertmodel,  dr_rate=0.5).to(device)
-model.load_state_dict(torch.load('model_state_dic.pt',map_location=device))
-#model = torch.load('em_classify_model.pt',map_location=device)  # 파이토치 모델 로드
+model = BERTClassifier(bertmodel, dr_rate=0.5).to(device)
+model.load_state_dict(torch.load('model_state_dic.pt', map_location=device))
+
+
+# model = torch.load('em_classify_model.pt',map_location=device)  # 파이토치 모델 로드
 
 
 def emotion_predict(predict_sentence):
@@ -119,7 +122,7 @@ def emotion_predict(predict_sentence):
         for i in out:
             logits = i
             logits = logits.detach().cpu().numpy()
-
+            probabilities = tf.nn.softmax(logits, axis=-1)
             if np.argmax(logits) == 0:
                 test_eval.append("공포가")
             elif np.argmax(logits) == 1:
@@ -134,6 +137,12 @@ def emotion_predict(predict_sentence):
                 test_eval.append("행복이")
             elif np.argmax(logits) == 6:
                 test_eval.append("혐오가")
+        print(f'logits : {logits}')
+        print(f'softmax : {probabilities}')
+        probabilitiyValue = probabilities.numpy()
+        probabilitiyIndexValue = probabilitiyValue[np.argmax(logits)]*100
+        probabilitiyFormatValue = round(probabilitiyIndexValue,0)
+        print(">> 입력하신 내용에서 " + f"{probabilitiyFormatValue}의 확률로 " + test_eval[0] + " 느껴집니다.")
 
         return np.argmax(logits)
 
@@ -253,14 +262,14 @@ def emClassifyProcessing(filename):
     return dic_return
 
 
-#emClassifyProcessing("test.xlsx")
+# emClassifyProcessing("tvMgdDuGZ5U.xlsx")
 
-"""# 질문 무한반복하기! 0 입력시 종료
+'''# 질문 무한반복하기! 0 입력시 종료
 end = 1
 while end == 1:
     sentence = input("하고싶은 말을 입력해주세요 : ")
     if sentence == 0:
         break
-    predict(sentence)
+    emotion_predict(sentence)
     print("\n")
-"""
+'''
