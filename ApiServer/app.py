@@ -19,7 +19,7 @@ def create_app():
         return "success"
 
     @app.route('/classifyComments')
-    def test2():
+    def classifyComments():
         filepath = collectComment(request.args.get('url'))
         PosiNegative_comment_data, Emotion_comment_data = CommentClassifyProcessing(filepath)
         result_data = PosiNegative_comment_data + Emotion_comment_data

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="dcfeaba6-ab4e-4548-9932-540f5c2b5d35" name="Changes" comment="app.py refactoring">
+    <list default="true" id="dcfeaba6-ab4e-4548-9932-540f5c2b5d35" name="Changes" comment="댓글 감정 분류 신뢰도 80%이상 설정">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/comment_classify.py" beforeDir="false" afterPath="$PROJECT_DIR$/comment_classify.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/em_classify.py" beforeDir="false" afterPath="$PROJECT_DIR$/em_classify.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -380,7 +380,14 @@
       <option name="project" value="LOCAL" />
       <updated>1645557596230</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="댓글 감정 분류 신뢰도 80%이상 설정">
+      <created>1646318506027</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1646318506027</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -432,6 +439,7 @@
     <MESSAGE value="th:utext 적용" />
     <MESSAGE value="긍정 부정 button 삭제" />
     <MESSAGE value="getVideoInformation 구현 flask" />
-    <option name="LAST_COMMIT_MESSAGE" value="getVideoInformation 구현 flask" />
+    <MESSAGE value="댓글 감정 분류 신뢰도 80%이상 설정" />
+    <option name="LAST_COMMIT_MESSAGE" value="댓글 감정 분류 신뢰도 80%이상 설정" />
   </component>
 </project>
