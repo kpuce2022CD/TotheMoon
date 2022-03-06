@@ -5,6 +5,11 @@
 
 ------------
 
+## 시스템 시나리오
+![system](https://user-images.githubusercontent.com/71515740/156916714-b400ebd5-b846-4199-81d3-4bd3a09775f8.png)
+
+------------
+
 ## 시스템 구성도
 ![systemDiagram](https://user-images.githubusercontent.com/72335632/156916456-dc40bbc2-af74-4250-98f8-33ec3e42d0f3.png)
 
