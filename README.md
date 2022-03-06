@@ -6,7 +6,7 @@
 ------------
 
 ## 시스템 구성도
-![20220103_163746](https://user-images.githubusercontent.com/70521476/147908142-249d7b0c-74eb-4f37-86b0-a911cf0928f7.png)
+![systemDiagram](https://user-images.githubusercontent.com/72335632/156916456-dc40bbc2-af74-4250-98f8-33ec3e42d0f3.png)
 
 ------------
 ## 기술 스택
