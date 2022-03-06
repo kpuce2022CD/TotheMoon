@@ -46,7 +46,32 @@
   </a>
 
 <br>
-<br>
+
+## 필요 기술 및 참고 문헌
+
+### 참고 서적
+
+- (텐서플로2와 머신러닝으로 시작하는) 자연어 처리 : 로지틱스 회기부터 BERT와 GPT2까지
+- (BERT와 GPT로 배우는) 자연어 처리 : 트랜스포머 핵심 원리와 허깅 페이스 패키지 활용법
+- 백견불여일타 이젠 프로젝트다! 스프링부트 쇼핑몰 프로젝트 with JPA
+
+### 논문 자료
+
+- 변현진. (2018). 유튜브 콘텐츠의 제작·이용 환경 특성과 인기 채널 분석 및 함의점 고찰. 조형미디어학, 21(4), 227-239.
+- 이한범, 구자환, 김응모. (2020). BERT를 활용한 문장 감정 분석 연구. 한국정보처리학회 학술대회논문집, 27(2), 909-911.
+
+### 참고 기술
+
+- [https://github.com/SKTBrain/KoBERT](https://github.com/SKTBrain/KoBERT)(KoBERT)
+
+- [https://github.com/lovit/soynlp](https://github.com/lovit/soynlp)(soynlp)
+
+- [https://developers.google.com/youtube/v3](https://developers.google.com/youtube/v3)(Youtube Data Api reference)
+
+- [https://keras.io/](https://keras.io/)(Keras)
+
+
+
 
 ## 팀원 구성
 
