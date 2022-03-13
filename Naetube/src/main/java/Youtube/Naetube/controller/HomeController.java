@@ -22,6 +22,7 @@ public class HomeController {
 
     private ObjectMapper objectMapper = new ObjectMapper();
 
+
     //결과 화면
     @GetMapping("/search/{url}")
     public String Search(@PathVariable String url, Model model){

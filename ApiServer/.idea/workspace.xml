@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="dcfeaba6-ab4e-4548-9932-540f5c2b5d35" name="Changes" comment="댓글 감정 분류 신뢰도 80%이상 설정">
+    <list default="true" id="dcfeaba6-ab4e-4548-9932-540f5c2b5d35" name="Changes" comment="app.py refactoring">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/em_classify.py" beforeDir="false" afterPath="$PROJECT_DIR$/em_classify.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -387,7 +385,14 @@
       <option name="project" value="LOCAL" />
       <updated>1646318506027</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="app.py refactoring">
+      <created>1646400652113</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1646400652113</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -415,7 +420,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="판다스 프로파일링 EDA 코드" />
     <MESSAGE value="np_classify.py (분류 코드) commit" />
     <MESSAGE value="youtube_comment_processing function commit (유튜브 댓글 전처리)" />
     <MESSAGE value="flask, spring json 통신 구현" />
@@ -440,6 +444,7 @@
     <MESSAGE value="긍정 부정 button 삭제" />
     <MESSAGE value="getVideoInformation 구현 flask" />
     <MESSAGE value="댓글 감정 분류 신뢰도 80%이상 설정" />
-    <option name="LAST_COMMIT_MESSAGE" value="댓글 감정 분류 신뢰도 80%이상 설정" />
+    <MESSAGE value="app.py refactoring" />
+    <option name="LAST_COMMIT_MESSAGE" value="app.py refactoring" />
   </component>
 </project>
