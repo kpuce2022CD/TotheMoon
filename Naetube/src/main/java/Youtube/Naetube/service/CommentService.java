@@ -1,12 +1,14 @@
 package Youtube.Naetube.service;
 
 import Youtube.Naetube.domain.Comment;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+@Slf4j
 @Service
 public class CommentService {
 
@@ -54,11 +56,11 @@ public class CommentService {
                 negativeComments.add(comments[i]);
             }
         }
-        System.out.println("positiveComments = " + positiveComments);
+        log.info("positiveComments = {}",positiveComments);
         //[Comment(index=1, id=상휘1퍼센트, comment=첫곡 미쳤다, date=2022-01-19T04:29:36Z, num_like=0) , ...]
-        System.out.println("positiveComments[0] = " + positiveComments.get(0));
+        log.info("positiveComments[0] = {}",positiveComments.get(0));
         //Comment(index=1, id=상휘1퍼센트, comment=첫곡 미쳤다, date=2022-01-19T04:29:36Z, num_like=0)
-        System.out.println("전체 댓글 수 = " + comments.length);
+        log.info("전체 댓글 수 = {}",comments.length);
 
         commentMap.put("positiveComments",positiveComments);
         commentMap.put("negativeComments",negativeComments);
@@ -83,11 +85,10 @@ public class CommentService {
         positiveNegativePercentMap.put("positivePercent",positivePercent);
         positiveNegativePercentMap.put("negativePercent",negativePercent);
 
-        System.out.println("긍정 댓글 수 = " + positiveComments.size());
-        System.out.println("부정 댓글 수  = " + negativeComments.size());
-        System.out.println("긍정 댓글 비율 = " + positivePercent);
-        System.out.println("부정 댓글 비율 = " + negativePercent);
-
+        log.info("긍정 댓글 수 = {}", positiveComments.size());
+        log.info("부정 댓글 수 = {}", negativeComments.size());
+        log.info("긍정 댓글 비율 = {}", positivePercent);
+        log.info("부정 댓글 비율 = {}", negativePercent);
 
         return positiveNegativePercentMap;
     }
@@ -115,13 +116,13 @@ public class CommentService {
         double refined_happyPercent = Double.parseDouble(String.format("%.1f",happyPercent));
         double refined_disgustPercent = Double.parseDouble(String.format("%.1f",disgustPercent));
 
-        System.out.println("공포 댓글 비율 = " + refined_fearPercent);
-        System.out.println("놀람 댓글 비율 = " + refined_surprisedPercent);
-        System.out.println("분노 댓글 비율 = " + refined_angerPercent);
-        System.out.println("슬픔 댓글 비율 = " + refined_sadnessPercent);
-        System.out.println("중립 댓글 비율 = " + refined_neutralPercent);
-        System.out.println("행복 댓글 비율 = " + refined_happyPercent);
-        System.out.println("혐오 댓글 비율 = " + refined_disgustPercent);
+        log.info("공포 댓글 비율 = {}", refined_fearPercent);
+        log.info("놀람 댓글 비율 = {}", refined_surprisedPercent);
+        log.info("분노 댓글 비율 = {}", refined_angerPercent);
+        log.info("슬픔 댓글 비율 = {}", refined_sadnessPercent);
+        log.info("중립 댓글 비율 = {}", refined_neutralPercent);
+        log.info("행복 댓글 비율 = {}", refined_happyPercent);
+        log.info("혐오 댓글 비율 = {}", refined_disgustPercent);
 
         sentimentPercentMap.put("refined_fearPercent",refined_fearPercent);
         sentimentPercentMap.put("refined_surprisedPercent", refined_surprisedPercent);
