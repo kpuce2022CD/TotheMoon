@@ -1,9 +1,8 @@
 package Youtube.Naetube.controller;
 
-import Youtube.Naetube.entity.Keyword;
+import Youtube.Naetube.domain.Keyword;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;

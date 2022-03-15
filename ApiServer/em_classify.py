@@ -264,11 +264,11 @@ def emClassifyProcessing(filename):
 
 # emClassifyProcessing("tvMgdDuGZ5U.xlsx")
 
-# 질문 무한반복하기! 0 입력시 종료
-end = 1
-while end == 1:
-    sentence = input("하고싶은 말을 입력해주세요 : ")
-    if sentence == 0:
-        break
-    emotion_predict(sentence)
-    print("\n")
+# # 질문 무한반복하기! 0 입력시 종료
+# end = 1
+# while end == 1:
+#     sentence = input("하고싶은 말을 입력해주세요 : ")
+#     if sentence == 0:
+#         break
+#     emotion_predict(sentence)
+#     print("\n")

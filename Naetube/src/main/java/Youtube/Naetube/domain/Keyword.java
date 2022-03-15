@@ -1,8 +1,6 @@
-package Youtube.Naetube.entity;
+package Youtube.Naetube.domain;
 
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
 import lombok.ToString;
 
 @Data
