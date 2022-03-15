@@ -10,16 +10,17 @@ import java.util.List;
 @Service
 public class CommentService {
 
-    List<Comment> positiveComments = new ArrayList<>(); // json 구분 인덱스 : 1
-    List<Comment> negativeComments = new ArrayList<>(); // json 구분 인덱스 : 0
-    List<Comment> fearComments = new ArrayList<>(); // json 구분 인덱스 : 2
-    List<Comment> surprisedComments = new ArrayList<>(); // json 구분 인덱스 : 3
-    List<Comment> angerComments = new ArrayList<>(); // json 구분 인덱스 : 4
-    List<Comment> sadnessComments = new ArrayList<>(); // json 구분 인덱스 : 5
-    List<Comment> neutralComments = new ArrayList<>(); // json 구분 인덱스 : 6
-    List<Comment> happyComments = new ArrayList<>(); // json 구분 인덱스 : 7
-    List<Comment> disgustComments = new ArrayList<>(); // json 구분 인덱스 : 8
+    private List<Comment> positiveComments = new ArrayList<>(); // json 구분 인덱스 : 1
+    private List<Comment> negativeComments = new ArrayList<>(); // json 구분 인덱스 : 0
+    private List<Comment> fearComments = new ArrayList<>(); // json 구분 인덱스 : 2
+    private List<Comment> surprisedComments = new ArrayList<>(); // json 구분 인덱스 : 3
+    private List<Comment> angerComments = new ArrayList<>(); // json 구분 인덱스 : 4
+    private List<Comment> sadnessComments = new ArrayList<>(); // json 구분 인덱스 : 5
+    private List<Comment> neutralComments = new ArrayList<>(); // json 구분 인덱스 : 6
+    private List<Comment> happyComments = new ArrayList<>(); // json 구분 인덱스 : 7
+    private List<Comment> disgustComments = new ArrayList<>(); // json 구분 인덱스 : 8
 
+    //댓글 분류
     public HashMap<String, List> classifyComment(Comment comments[]){
 
         HashMap<String, List> commentMap = new HashMap<>();
@@ -72,14 +73,15 @@ public class CommentService {
         return commentMap;
     }
 
-    public HashMap<String, Double> posiNegativePercent(){
+    //긍정부정 퍼센트 계산
+    public HashMap<String, Double> positiveNegativePercent(){
 
-        HashMap<String, Double> posinegaPercentMap = new HashMap<>();
+        HashMap<String, Double> positiveNegativePercentMap = new HashMap<>();
         double positivePercent = ((double)positiveComments.size() / ((double)positiveComments.size()+(double)negativeComments.size()))*100;
         double negativePercent = ((double)negativeComments.size() / ((double)positiveComments.size()+(double)negativeComments.size()))*100;
 
-        posinegaPercentMap.put("positivePercent",positivePercent);
-        posinegaPercentMap.put("negativePercent",negativePercent);
+        positiveNegativePercentMap.put("positivePercent",positivePercent);
+        positiveNegativePercentMap.put("negativePercent",negativePercent);
 
         System.out.println("긍정 댓글 수 = " + positiveComments.size());
         System.out.println("부정 댓글 수  = " + negativeComments.size());
@@ -87,9 +89,10 @@ public class CommentService {
         System.out.println("부정 댓글 비율 = " + negativePercent);
 
 
-        return posinegaPercentMap;
+        return positiveNegativePercentMap;
     }
 
+    //감정 분석 퍼센트 계산
     public HashMap<String, Double> sentimentPercent(){
 
         HashMap<String, Double> sentimentPercentMap = new HashMap<>();
@@ -111,8 +114,6 @@ public class CommentService {
         double refined_neutralPercent = Double.parseDouble(String.format("%.1f",neutralPercent));
         double refined_happyPercent = Double.parseDouble(String.format("%.1f",happyPercent));
         double refined_disgustPercent = Double.parseDouble(String.format("%.1f",disgustPercent));
-
-
 
         System.out.println("공포 댓글 비율 = " + refined_fearPercent);
         System.out.println("놀람 댓글 비율 = " + refined_surprisedPercent);

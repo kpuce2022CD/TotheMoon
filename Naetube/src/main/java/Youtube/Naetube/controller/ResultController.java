@@ -4,7 +4,6 @@ import Youtube.Naetube.domain.*;
 import Youtube.Naetube.service.CommentService;
 import Youtube.Naetube.service.InterestService;
 import Youtube.Naetube.service.VideoService;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.*;
@@ -16,8 +15,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.client.RestTemplate;
 
-import java.text.DecimalFormat;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -87,7 +84,7 @@ public class ResultController {
         Comment comments[] = response.getBody();
 
         HashMap<String, List> commentMap = commentService.classifyComment(comments);
-        HashMap<String, Double> posiNegativePercentMap = commentService.posiNegativePercent();
+        HashMap<String, Double> posiNegativePercentMap = commentService.positiveNegativePercent();
         HashMap<String, Double> sentimentPercentMap = commentService.sentimentPercent();
 
         model.addAttribute("url", "https://www.youtube.com/embed/"+url);    //search.html에 url 전달.
