@@ -1,7 +1,10 @@
 package Youtube.Naetube.controller;
 
 import Youtube.Naetube.domain.*;
+import Youtube.Naetube.service.InterestService;
+import Youtube.Naetube.service.VideoService;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.*;
 import org.springframework.stereotype.Controller;
@@ -18,10 +21,12 @@ import java.util.List;
 
 @Slf4j
 @Controller
+@RequiredArgsConstructor
 public class HomeController {
 
     private ObjectMapper objectMapper = new ObjectMapper();
-
+    private final InterestService interestService;
+    private final VideoService videoService;
 
     //결과 화면
     @GetMapping("/search/{url}")
@@ -53,22 +58,12 @@ public class HomeController {
         /**관심도 start*/
         String InterestBaseUrl = "http://localhost:5000/interest?url=" + url;
         RestTemplate InterestRestTemplate = new RestTemplate();
-
         ResponseEntity<Interest[]> InterestResponse = InterestRestTemplate.getForEntity(InterestBaseUrl, Interest[].class);
-
         Interest interests[] = InterestResponse.getBody();
 
-        String[] commentDate = new String[interests.length];
-        String[] commentCount = new String[interests.length];
-
-        for(int i=0;i< interests.length;i++){
-            commentDate[i]=interests[i].getCommentDate();
-            commentCount[i]=interests[i].getCommentCount();
-        }
-
         model.addAttribute("size",interests.length);
-        model.addAttribute("commentDate",commentDate);
-        model.addAttribute("commentCount",commentCount);
+        model.addAttribute("commentDate",interestService.countDate(interests));
+        model.addAttribute("commentCount",interestService.countComment(interests));
         /**관심도 end*/
 
         /**비디오 정보 가져오기 start */
@@ -76,18 +71,10 @@ public class HomeController {
         RestTemplate VIrestTemplate = new RestTemplate();
         ResponseEntity<VideoInformation[]> VIresponse = VIrestTemplate.getForEntity(VIbaseUrl, VideoInformation[].class);
         VideoInformation[] videoInformation = VIresponse.getBody();
-        DecimalFormat decFormat = new DecimalFormat("###,###");
-
-
-        int view = Integer.parseInt(videoInformation[0].getView());
-        String viewData = decFormat.format(view);
-
-        String DateDate = videoInformation[0].getDate().replace('-','.');
 
         model.addAttribute("videoTitle",videoInformation[0].getTitle());
-        model.addAttribute("videoDate",DateDate);
-        model.addAttribute("videoView",viewData);
-
+        model.addAttribute("videoDate",videoService.dateData(videoInformation));
+        model.addAttribute("videoView",videoService.viewData(videoInformation));
         /**비디오 정보 가져오기 end */
 
         /**긍정부정, 6가지 감정 start*/
