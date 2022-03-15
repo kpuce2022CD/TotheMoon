@@ -84,15 +84,15 @@ public class ResultController {
         Comment comments[] = response.getBody();
 
         HashMap<String, List> commentMap = commentService.classifyComment(comments);
-        HashMap<String, Double> posiNegativePercentMap = commentService.positiveNegativePercent();
+        HashMap<String, Double> positiveNegativePercentMap = commentService.positiveNegativePercent();
         HashMap<String, Double> sentimentPercentMap = commentService.sentimentPercent();
 
         model.addAttribute("url", "https://www.youtube.com/embed/"+url);    //search.html에 url 전달.
         model.addAttribute("positiveComments",commentMap.get("positiveComments"));
         model.addAttribute("negativeComments",commentMap.get("negativeComments"));
         model.addAttribute("comments",comments);
-        model.addAttribute("positivePercent", posiNegativePercentMap.get("positivePercent"));
-        model.addAttribute("negativePercent", posiNegativePercentMap.get("negativePercent"));
+        model.addAttribute("positivePercent", positiveNegativePercentMap.get("positivePercent"));
+        model.addAttribute("negativePercent", positiveNegativePercentMap.get("negativePercent"));
         model.addAttribute("fearPercent",sentimentPercentMap.get("refined_fearPercent"));
         model.addAttribute("surprisedPercent",sentimentPercentMap.get("refined_surprisedPercent"));
         model.addAttribute("angerPercent",sentimentPercentMap.get("refined_angerPercent"));
