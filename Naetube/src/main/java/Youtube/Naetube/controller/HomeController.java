@@ -1,6 +1,7 @@
 package Youtube.Naetube.controller;
 
 import Youtube.Naetube.domain.*;
+import Youtube.Naetube.service.CommentService;
 import Youtube.Naetube.service.InterestService;
 import Youtube.Naetube.service.VideoService;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -17,6 +18,7 @@ import org.springframework.web.client.RestTemplate;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 @Slf4j
@@ -27,7 +29,6 @@ public class HomeController {
     private ObjectMapper objectMapper = new ObjectMapper();
     private final InterestService interestService;
     private final VideoService videoService;
-
     //결과 화면
     @GetMapping("/search/{url}")
     public String Search(@PathVariable String url, Model model){
@@ -81,8 +82,8 @@ public class HomeController {
         String baseUrl = "http://localhost:5000/classifyComments?url=" + url;
         RestTemplate restTemplate = new RestTemplate();
         ResponseEntity<Comment[]> response = restTemplate.getForEntity(baseUrl, Comment[].class);
-
         Comment comments[] = response.getBody();
+
 
         List<Comment> positiveComments = new ArrayList<>(); // json 구분 인덱스 : 1
         List<Comment> negativeComments = new ArrayList<>(); // json 구분 인덱스 : 0
@@ -105,6 +106,7 @@ public class HomeController {
 
         double positivePercent = ((double)positiveComments.size() / ((double)positiveComments.size()+(double)negativeComments.size()))*100;
         double negativePercent = ((double)negativeComments.size() / ((double)positiveComments.size()+(double)negativeComments.size()))*100;
+
         double emTotalSize = fearComments.size()+ surprisedComments.size()+ angerComments.size()+ sadnessComments.size()+ neutralComments.size()+ happyComments.size()+ disgustComments.size();
         double fearPercent = (((double)fearComments.size()/emTotalSize)*100);
         double surprisedPercent = ((double)surprisedComments.size()/emTotalSize)*100;
@@ -172,48 +174,6 @@ public class HomeController {
         return "search";
     }
 
-//    @GetMapping("/keyword/{url}")
-//    public String getKeyword(@PathVariable String url, Model model){
-//        String baseUrl = "http://localhost:5000/searchKeyword?url=" + url;
-//        RestTemplate restTemplate = new RestTemplate();
-//
-//        ResponseEntity<Keyword> response = restTemplate.getForEntity(baseUrl, Keyword.class);
-//
-//        Keyword keyword = response.getBody();
-//        log.info("keyeqwerqeeword={}", keyword);
-//        log.info("keyword.getB5()[0]={}", keyword.getB5()[0]);
-//        log.info("keyword.getComments()={}", keyword.getComments());
-//        log.info("keyword.getComments()[0][0]={}", keyword.getComments()[0][0]);
-//        model.addAttribute("keyword",keyword);
-//        return "keyword";
-//    }
-
-    @GetMapping("/timeline/{url}")
-    public String getTimeline(@PathVariable String url, Model model){
-
-        /**베스트 키워드 start*/
-        String KeywordBaseUrl = "http://localhost:5000/searchKeyword?url=" + url;
-        RestTemplate KeywordRestTemplate = new RestTemplate();
-
-        ResponseEntity<Keyword> KeywordResponse = KeywordRestTemplate.getForEntity(KeywordBaseUrl, Keyword.class);
-
-        Keyword keyword = KeywordResponse.getBody();
-        log.info("keyeqwerqeeword={}", keyword);
-        log.info("keyword.getB5()[0]={}", keyword.getB5()[0]);
-        log.info("keyword.getComments()={}", keyword.getComments());
-        log.info("keyword.getComments()[0][0]={}", keyword.getComments()[0][0]);
-        model.addAttribute("keyword",keyword);
-        /** 베스트 키워드 end */
-
-        String baseUrl = "http://localhost:5000/timeline?url="+url;
-        RestTemplate restTemplate = new RestTemplate();
-        ResponseEntity<Timeline[]> response = restTemplate.getForEntity(baseUrl, Timeline[].class);
-        Timeline[] timelines = response.getBody();
-        model.addAttribute("timelines",timelines);
-        model.addAttribute("url",url);
-        return "timeline";
-    }
-
 
     @GetMapping("/findcomment")
     @ResponseBody
@@ -230,28 +190,6 @@ public class HomeController {
         model.addAttribute("url",url);
         return "find";
     }
-
-    @GetMapping("/getVideoInformation/{url}")
-    public VideoInformation getVideoInformation(@PathVariable String url, Model model){
-        String baseUrl = "http://localhost:5000/getVideoInformation?url=" + url;
-        RestTemplate restTemplate = new RestTemplate();
-        ResponseEntity<VideoInformation> response = restTemplate.getForEntity(baseUrl, VideoInformation.class);
-        VideoInformation videoInformation = response.getBody();
-        return videoInformation;
-    }
-
-//    @GetMapping("/interest/{url}")
-//    public Interest[] get_interest(@PathVariable String url){
-//        String baseUrl = "http://localhost:5000/interest?url=" + url;
-//        RestTemplate restTemplate = new RestTemplate();
-//
-//        ResponseEntity<Interest[]> response = restTemplate.getForEntity(baseUrl, Interest[].class);
-//
-//        Interest interests[] = response.getBody();
-//
-//        return interests;
-//    }
-
 
     //댓글 분류
     private void classifyComment(Comment[] comments, List<Comment> positiveComments, List<Comment> negativeComments, List<Comment> fearComments,
