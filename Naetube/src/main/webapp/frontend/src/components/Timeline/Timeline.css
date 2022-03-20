@@ -1,0 +1,18 @@
+.timeline {
+  display: block;
+  padding: 0 8px;
+  font-size: 25px;
+  line-height: 42px;
+  height: 42px;
+  border-radius: 11px;
+  cursor: pointer;
+  background-color: #585858;
+  color: #ffffff;
+  margin-right: 8px;
+  /* margin-bottom: 8px; */
+  /* transition: 0.2s; */
+}
+
+.timeline:hover {
+  background-color: #e6e6e6;
+}
