@@ -6,6 +6,8 @@ import { BrowserRouter } from "react-router-dom";
 import "./bootstrap.css";
 import "./css/npchart.css"
 import "./css/npcomments.css";
+import "./css/emchart.css";
+import "./css/emcomments.css"
 
 ReactDOM.render(
   <BrowserRouter>

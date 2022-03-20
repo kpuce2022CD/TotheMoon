@@ -3,11 +3,11 @@ import Analyze from "./components/Analyze/Analyze";
 
 function App() {
   return (
-    <Switch>
-      <Route path="/analyze">
-        <Analyze />}
+    <Routes>
+      <Route path="/analyze" element={<Analyze />}>
+
       </Route>
-    </Switch>
+    </Routes>
   );
 }
 
