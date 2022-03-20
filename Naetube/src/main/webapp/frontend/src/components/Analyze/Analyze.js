@@ -1,6 +1,8 @@
 import React from "react";
 import NavItem from "../Navbar/NavItem";
 import Home from "../Home/Home";
+import NpCharts from "../NpChart/NpChart";
+import NpComments from "../NpChart/NpComments";
 
 const Analyze = () => {
   return (
@@ -46,7 +48,8 @@ const Analyze = () => {
           <hr className="m-0" />
 
           <section className="resume-section" id="np">
-            <div className="resume-section-content"></div>
+            <NpCharts></NpCharts>
+            <NpComments></NpComments>
           </section>
           <hr className="m-0" />
 

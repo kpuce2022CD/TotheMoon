@@ -4,6 +4,8 @@ import "./index.css";
 import App from "./App";
 import { BrowserRouter } from "react-router-dom";
 import "./bootstrap.css";
+import "./css/npchart.css"
+import "./css/npcomments.css";
 
 ReactDOM.render(
   <BrowserRouter>
