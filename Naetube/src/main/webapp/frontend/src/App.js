@@ -5,7 +5,6 @@ function App() {
   return (
     <Routes>
       <Route path="/analyze" element={<Analyze />}>
-
       </Route>
     </Routes>
   );
