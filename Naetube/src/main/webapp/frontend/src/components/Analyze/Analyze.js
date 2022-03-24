@@ -22,6 +22,14 @@ const Analyze = () => {
   let [neutralComments, setNeutralComments] = useState([]);
   let [angerComments, setAngerComments] = useState([]);
 
+  let [happyPercent, setHappyPercent] = useState(10);
+  let [surprisedPercent, setSurprisedPercent] = useState(10);
+  let [angerPercent, setAngerPercent] = useState(10);
+  let [neutralPercent, setNeutralPercent] = useState(10);
+  let [disgustPercent, setDisgustPercent] = useState(10);
+  let [sadnessPercent, setSadnessPercent] = useState(10);
+  let [fearPercent, setFearPercent] = useState(10);
+
 
 
   return (
@@ -87,13 +95,25 @@ const Analyze = () => {
           <hr className="m-0" />
 
           <section className="resume-section" id="emotion">
-            <EmChart></EmChart>
+            <EmChart happyPercent={happyPercent} setHappyPercent={setHappyPercent}
+            surprisedPercent={surprisedPercent} setSurprisedPercent={setSurprisedPercent}
+            angerPercent={angerPercent} setAngerPercent={setAngerPercent}
+            sadnessPercent={setSadnessPercent} setSadnessPercent={setSadnessPercent}
+            disgustPercent={setDisgustPercent} setDisgustPercent={setDisgustPercent}
+            neutralPercent={neutralPercent} setNeutralPercent={setNeutralPercent}
+            fearPercent={fearPercent} setFearPercent={setFearPercent}>
+
+            </EmChart>
+
             <EmComments happyComments={happyComments} sadnessComments={sadnessComments} disgustComments={disgustComments}
           angerComments={angerComments} neutralComments={neutralComments} surprisedComments={surprisedComments}
           fearComments={fearComments} setHappyComments={setHappyComments}
           setSadnessComments={setSadnessComments} setDisgustComments={setDisgustComments}
           setAngerComments={setAngerComments} setNeutralComments={setNeutralComments}
-          setSurprisedComments={setSurprisedComments} setFearComments={setFearComments}></EmComments>
+          setSurprisedComments={setSurprisedComments} setFearComments={setFearComments}>
+
+          </EmComments>
+
           </section>
           <hr className="m-0" />
 
@@ -112,11 +132,12 @@ function GetCommentsData(props) {
   let [loading, setLoading] = useState(false);
 
 
+
       useEffect(() => {
 
           const fetchData = async () => {
               const result = await axios.get(
-                  "http://localhost:8080/getComments/kKcTnnMjUT0"
+                  "http://localhost:8080/getComments/XbXupN0S6Bs"
               );
               setData(result.data);
 
@@ -159,6 +180,8 @@ function GetCommentsData(props) {
 
       fetchData();
       }, []);
+
+
 
         return(
           null

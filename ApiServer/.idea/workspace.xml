@@ -3,10 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="dcfeaba6-ab4e-4548-9932-540f5c2b5d35" name="Changes" comment="app.py refactoring">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Naetube/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Naetube/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Naetube/src/main/java/Youtube/Naetube/controller/ResponseJsonController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Naetube/src/main/java/Youtube/Naetube/controller/ResponseJsonController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Naetube/src/main/java/Youtube/Naetube/controller/ResultController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Naetube/src/main/java/Youtube/Naetube/controller/ResultController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Naetube/src/main/webapp/frontend/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/../Naetube/src/main/webapp/frontend/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Naetube/src/main/resources/static/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Naetube/src/main/resources/static/index.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
