@@ -98,8 +98,8 @@ const Analyze = () => {
             <EmChart happyPercent={happyPercent} setHappyPercent={setHappyPercent}
             surprisedPercent={surprisedPercent} setSurprisedPercent={setSurprisedPercent}
             angerPercent={angerPercent} setAngerPercent={setAngerPercent}
-            sadnessPercent={setSadnessPercent} setSadnessPercent={setSadnessPercent}
-            disgustPercent={setDisgustPercent} setDisgustPercent={setDisgustPercent}
+            sadnessPercent={sadnessPercent} setSadnessPercent={setSadnessPercent}
+            disgustPercent={disgustPercent} setDisgustPercent={setDisgustPercent}
             neutralPercent={neutralPercent} setNeutralPercent={setNeutralPercent}
             fearPercent={fearPercent} setFearPercent={setFearPercent}>
 
