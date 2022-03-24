@@ -1,9 +1,10 @@
 import React from "react";
 
-function NpCharts () {
+function NpCharts (props) {
 
-    let num1 = "25%";
-    let num2 = "75%";
+    let positivePercentValue = props.positivePercent + "%";
+    let negativePercentValue = props.negativePercent + "%";
+
 
     return(
 
@@ -11,11 +12,11 @@ function NpCharts () {
             <div class="np-div">
                 <section class="graph-section">
                     <div class="graph stack1">
-                        <span style={{height:num1}}>{num1}</span>
+                        <span style={{height:negativePercentValue}}>{negativePercentValue}</span>
                     </div>
                     <div class="graph stack2">
 
-                        <span style={{height:num2}}>{num2}</span>
+                        <span style={{height:positivePercentValue}}>{positivePercentValue}</span>
                     </div>
                 </section>
                 <div>

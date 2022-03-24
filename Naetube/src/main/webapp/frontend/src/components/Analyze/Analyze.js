@@ -9,7 +9,6 @@ import axios from "axios"
 import { useState, useEffect } from "react";
 
 
-
 const Analyze = () => {
 
   let [positiveComments, setPositiveComments] = useState([]);
@@ -22,13 +21,16 @@ const Analyze = () => {
   let [neutralComments, setNeutralComments] = useState([]);
   let [angerComments, setAngerComments] = useState([]);
 
-  let [happyPercent, setHappyPercent] = useState(10);
-  let [surprisedPercent, setSurprisedPercent] = useState(10);
-  let [angerPercent, setAngerPercent] = useState(10);
-  let [neutralPercent, setNeutralPercent] = useState(10);
-  let [disgustPercent, setDisgustPercent] = useState(10);
-  let [sadnessPercent, setSadnessPercent] = useState(10);
-  let [fearPercent, setFearPercent] = useState(10);
+  let [positivePercent, setPositivePercent] = useState(0);
+  let [negativePercent, setNegativePercent] = useState(0);
+
+  let [happyPercent, setHappyPercent] = useState(0);
+  let [surprisedPercent, setSurprisedPercent] = useState(0);
+  let [angerPercent, setAngerPercent] = useState(0);
+  let [neutralPercent, setNeutralPercent] = useState(0);
+  let [disgustPercent, setDisgustPercent] = useState(0);
+  let [sadnessPercent, setSadnessPercent] = useState(0);
+  let [fearPercent, setFearPercent] = useState(0);
 
 
 
@@ -77,7 +79,12 @@ const Analyze = () => {
           setNegativeComments={setNegativeComments} setHappyComments={setHappyComments}
           setSadnessComments={setSadnessComments} setDisgustComments={setDisgustComments}
           setAngerComments={setAngerComments} setNeutralComments={setNeutralComments}
-          setSurprisedComments={setSurprisedComments} setFearComments={setFearComments}/>
+          setSurprisedComments={setSurprisedComments} setFearComments={setFearComments}
+          setPositivePercent={setPositivePercent} setNegativePercent={setNegativePercent}
+          setHappyPercent={setHappyPercent} setSurprisedPercent={setSurprisedPercent}
+          setAngerPercent={setAngerPercent} setSadnessPercent={setSadnessPercent}
+          setNeutralPercent={setNeutralPercent} setDisgustPercent={setDisgustPercent}
+          setFearPercent={setFearPercent}/>
 
         <div className="container-fluid p-0">
           <Home />
@@ -86,7 +93,7 @@ const Analyze = () => {
 
 
           <section className="resume-section" id="np">
-            <NpCharts></NpCharts>
+            <NpCharts positivePercent={positivePercent} negativePercent={negativePercent}></NpCharts>
             <NpComments positiveComments={positiveComments} setPositiveComments={setPositiveComments}
             negativeComments={negativeComments} setNegativeComments={setNegativeComments}></NpComments>
 
@@ -137,10 +144,20 @@ function GetCommentsData(props) {
 
           const fetchData = async () => {
               const result = await axios.get(
-                  "http://localhost:8080/getComments/XbXupN0S6Bs"
+                  "http://localhost:8080/getComments/jauOBHKdVho"
               );
               setData(result.data);
 
+              // 데이터 초기화
+              props.setPositiveComments([]);
+              props.setNegativeComments([]);
+              props.setSurprisedComments([]);
+              props.setFearComments([]);
+              props.setSadnessComments([]);
+              props.setNeutralComments([]);
+              props.setHappyComments([]);
+              props.setDisgustComments([]);
+              props.setAngerComments([]);
 
               result.data.map((a,i)=>{
                   if(a.index==="1") {
@@ -169,6 +186,33 @@ function GetCommentsData(props) {
                   }
                   else if(a.index==="8") {
                     props.setDisgustComments((comment)=>[...comment,a]);
+                  }
+                  else if(a.index==="9") {
+                    props.setPositivePercent(a.positivePercent);
+                  }
+                  else if(a.index==="10") {
+                    props.setNegativePercent(a.negativePercent);
+                  }
+                  else if(a.index==="11") {
+                    props.setHappyPercent(a.happyPercent);
+                  }
+                  else if(a.index==="12") {
+                    props.setSurprisedPercent(a.surprisedPercent);
+                  }
+                  else if(a.index==="13") {
+                    props.setAngerPercent(a.angerPercent);
+                  }
+                  else if(a.index==="14") {
+                    props.setSadnessPercent(a.sadnessPercent);
+                  }
+                  else if(a.index==="15") {
+                    props.setNeutralPercent(a.neutralPercent);
+                  }
+                  else if(a.index==="16") {
+                    props.setDisgustPercent(a.disgustPercent);
+                  }
+                  else if(a.index==="17") {
+                    props.setFearPercent(a.fearPercent);
                   }
 
 
