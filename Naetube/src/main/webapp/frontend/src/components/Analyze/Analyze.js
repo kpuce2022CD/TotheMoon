@@ -1,6 +1,7 @@
 import React from "react";
 import NavItem from "../Navbar/NavItem";
 import Home from "../Home/Home";
+import Interest from "../Interest/Interest";
 
 const Analyze = () => {
   return (
@@ -55,9 +56,7 @@ const Analyze = () => {
           </section>
           <hr className="m-0" />
 
-          <section className="resume-section" id="interest">
-            <div className="resume-section-content"></div>
-          </section>
+          <Interest />
         </div>
       </div>
     </>

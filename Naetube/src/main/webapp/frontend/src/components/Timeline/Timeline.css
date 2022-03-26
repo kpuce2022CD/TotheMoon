@@ -1,9 +1,8 @@
 .timeline {
-  display: block;
   padding: 0 8px;
-  font-size: 25px;
-  line-height: 42px;
-  height: 42px;
+  font-size: 16px;
+  line-height: 30px;
+  height: 30px;
   border-radius: 11px;
   cursor: pointer;
   background-color: #585858;
