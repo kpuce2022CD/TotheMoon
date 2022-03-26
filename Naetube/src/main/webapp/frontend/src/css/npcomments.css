@@ -1,0 +1,104 @@
+@charset "UTF-8";
+
+@font-face {
+    font-family: "NanumGothic";
+    src: url("../fonts/NanumGothic.otf");
+  }
+
+
+.comments-div {
+
+    height: 584px;
+    margin-left: 100px;
+
+
+  }
+
+div {
+    font-family: "NanumGothic";
+
+}
+
+p {
+    font-family: "NanumGothic";
+}
+
+h3 {
+    font-family: "NanumGothic";
+
+}
+
+.tb {
+    border-spacing: 20px;
+    border-collapse: separate;
+}
+
+
+
+.box{
+    -ms-overflow-style: none;
+ }
+
+.box::-webkit-scrollbar {
+    width: 10px;
+}
+.box::-webkit-scrollbar-thumb {
+    background-color: #292424;
+    border-radius: 10px;
+}
+.box::-webkit-scrollbar-track {
+    background-color: rgba(128, 128, 128, 0.219);
+    border-radius: 10px;
+    box-shadow: inset 0px 0px 5px white;
+}
+
+
+#nav-menu-negative {
+
+    background: rgb(250,128,114);
+    border-radius: 10px;
+    color: white;
+    margin-left: 5px;
+    margin-right: 5px;
+
+}
+
+#nav-menu-positive {
+    border-radius: 10px;
+    background: rgb(135,206,250);
+    color: white;
+    margin-left: 5px;
+
+}
+
+#nav-menu-positive:hover {
+    box-shadow:200px 0 0 0 rgba(0,0,0,0.2) inset;
+    color: black;
+
+}
+
+#nav-menu-negative:hover {
+    box-shadow:200px 0 0 0 rgba(0,0,0,0.2) inset;
+    color: black;
+}
+
+#nav-menu-positive:focus {
+    box-shadow:200px 0 0 0 rgba(0,0,0,0.2) inset;
+    color: black;
+}
+
+#nav-menu-negative:focus {
+    box-shadow:200px 0 0 0 rgba(0,0,0,0.2) inset;
+    color: black;
+}
+
+.effect-enter {
+
+    opacity: 0;
+}
+
+
+.effect-enter-active {
+    opacity: 1;
+    transition: all 500ms;
+}

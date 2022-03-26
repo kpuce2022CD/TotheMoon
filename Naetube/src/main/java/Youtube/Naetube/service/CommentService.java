@@ -82,8 +82,11 @@ public class CommentService {
         double positivePercent = ((double)positiveComments.size() / ((double)positiveComments.size()+(double)negativeComments.size()))*100;
         double negativePercent = ((double)negativeComments.size() / ((double)positiveComments.size()+(double)negativeComments.size()))*100;
 
-        positiveNegativePercentMap.put("positivePercent",positivePercent);
-        positiveNegativePercentMap.put("negativePercent",negativePercent);
+        double refined_positivePercent = Double.parseDouble(String.format("%.1f",positivePercent));
+        double refined_negativePercent = Double.parseDouble(String.format("%.1f",negativePercent));
+
+        positiveNegativePercentMap.put("refined_positivePercent",refined_positivePercent);
+        positiveNegativePercentMap.put("refined_negativePercent",refined_negativePercent);
 
         log.info("긍정 댓글 수 = {}", positiveComments.size());
         log.info("부정 댓글 수 = {}", negativeComments.size());

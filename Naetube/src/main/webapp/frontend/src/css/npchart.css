@@ -1,0 +1,95 @@
+@charset "UTF-8";
+
+@font-face {
+  font-family: "NanumGothic";
+  src: url("../fonts/NanumGothic.otf");
+}
+/* statistics start */
+.graph{
+    background-color:rgb(245,245,245);
+    height: 100vh;
+    border-radius: 10px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    margin-left: 60px;
+    margin-right: 60px;
+  }
+  /*
+  @keyframes stack{
+    0%{ height: 0; opacity:0;}
+    100%{ height: 75%; opacity:1;}
+  }
+  @keyframes stack2{
+    0%{ height: 0; opacity:0;}
+    100%{ height: 25%; opacity:1;}
+  }
+  */
+
+  .np-div{
+
+
+
+  }
+
+  .graph-section{
+    display:flex;
+  /*   flex-direction:column;   */
+    justify-content:center;
+    height: 80%;
+    transform:rotate(180deg);
+    align-content: center;
+  }
+
+  .graph {
+    height:400px;
+  }
+
+  .graph span{
+    display:flex;
+    height:40px;
+    line-height:40px;
+    text-align:right;
+    /*   width: 75%; */
+    /*   background-color:pink; */
+    border-radius: 10px;
+    padding: 0 10px;
+    box-sizing: border-box;
+    color:white;
+    transform:rotate(180deg);
+
+  }
+  .graph.stack1 span{
+    background-color:rgb(250,128,114);
+    height:75%;
+    animation:stack 2s 1;
+  }
+  .graph.stack2 span{
+    background-color:rgb(135,206,250);
+    height:25%;
+    animation:stack2 2s 1;
+  }
+
+  .description-negative {
+    width: 20px;
+    height: 20px;
+    background-color: rgb(250,128,114);
+    border-radius: 5px;
+    margin: 10px;
+
+  }
+  .description-positive {
+    width: 20px;
+    height: 20px;
+    background-color:rgb(135,206,250);
+    border-radius: 5px;
+    margin: 10px;
+
+  }
+
+  .description-font {
+    font-family: "NanumGothic";
+    src: url("../fonts/NanumGothic.otf");
+    margin: 8px;
+  }
+
+  /* statistics end */

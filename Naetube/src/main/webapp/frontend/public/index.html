@@ -24,6 +24,11 @@
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
+
+    <!-- 도넛 차트 라이브러리-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.bundle.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.css">
+
     <title>React App</title>
   </head>
   <body>
@@ -63,6 +68,47 @@
             });
           });
       });
+
+        // EM 도넛 차트 스크립트 코드
+      window.onload = function () {
+        pieChartDraw();
+        document.getElementById('legend-div').innerHTML = window.pieChart.generateLegend();
+    }
+
+      let pieChartData = {
+          labels: ['공포', '놀람', '분노', '슬픔', '중립', '행복', '혐오'],
+          datasets: [{
+              data: [95, 12, 13, 7, 13, 10, 15],
+              backgroundColor: ['rgb(153, 102, 255)', 'rgb(255, 159, 64)', 'rgb(255, 205, 86)', 'rgb(75, 192, 192)', 'rgb(54, 162, 235)', 'rgb(255, 99, 132)', 'rgb(188,143,143)']
+          }]
+      };
+
+      let pieChartDraw = function () {
+          let ctx = document.getElementById('pieChartCanvas').getContext('2d');
+
+          window.pieChart = new Chart(ctx, {
+              type: 'pie',
+              data: pieChartData,
+              options: {
+                  responsive: false,
+                  legend: {
+                      display: false
+                  },
+                  legendCallback: customLegend
+              }
+          });
+      };
+
+      let customLegend = function (chart) {
+          let ul = document.createElement('ul');
+          let color = chart.data.datasets[0].backgroundColor;
+
+          chart.data.labels.forEach(function (label, index) {
+              ul.innerHTML += `<li><span style="background-color: ${color[index]}"></span>${label}</li>`;
+          });
+
+          return ul.outerHTML;
+      };
     </script>
   </body>
 </html>
