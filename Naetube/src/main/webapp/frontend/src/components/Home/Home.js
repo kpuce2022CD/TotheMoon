@@ -1,5 +1,4 @@
 import React from "react";
-import Timeline from "../Timeline/Timeline";
 import Video from "../Video/Video";
 import VideoInfo from "../Video/VideoInfo";
 
