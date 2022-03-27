@@ -3,7 +3,6 @@ import { Button, Navbar, Nav, Tab, Container } from 'react-bootstrap'
 import {CSSTransition} from 'react-transition-group'
 
 
-
 function NpComments(props) {
 
 
@@ -11,6 +10,7 @@ function NpComments(props) {
 
     let [clickedTab, setClickedTab] = useState(0);
 
+    const InnerHTML = require('dangerously-set-inner-html')
 
     return(
         <div className="comments-div">
@@ -58,6 +58,8 @@ function TabContent(props) {
             <div className="box" style={{overflow:"scroll",overflowX:"hidden",height:"400px"}}>
             {
                 props.positiveComments.map(function(positiveComments) {
+
+
                     return(
                         <div>
                             <table style={{width:"600px"}} className="tb">
@@ -68,7 +70,9 @@ function TabContent(props) {
                                 <tbody>
                                     <tr>
                                         <th scope="col">{positiveComments.id}</th>
-                                        <th style={{width:"60%"}}>{positiveComments.comment}</th>
+                                        <th style={{width:"60%"}}>
+                                            <div dangerouslySetInnerHTML={{__html: positiveComments.comment}}></div>
+                                        </th>
                                     </tr>
                                 </tbody>
                             </table>
@@ -95,7 +99,11 @@ function TabContent(props) {
                                 <tbody>
                                     <tr>
                                         <th scope="col">{negativeComments.id}</th>
-                                        <th style={{width:"60%"}}>{negativeComments.comment}</th>
+                                        <th style={{width:"60%"}}>
+
+                                        <div dangerouslySetInnerHTML={{__html: negativeComments.comment}}></div>
+
+                                        </th>
                                     </tr>
                                 </tbody>
                             </table>

@@ -91,7 +91,9 @@ function TabContent(props) {
                                 <tbody>
                                     <tr>
                                         <th style={{width:"40%"}}>{happyComments.id}</th>
-                                        <th style={{width:"60%"}}>{happyComments.comment}</th>
+                                        <th style={{width:"60%"}}>
+                                            <div dangerouslySetInnerHTML={{__html: happyComments.comment}}></div>
+                                        </th>
                                     </tr>
                                 </tbody>
                             </table>
@@ -118,7 +120,9 @@ function TabContent(props) {
                                 <tbody>
                                     <tr>
                                         <th scope="col">{surprisedComments.id}</th>
-                                        <th style={{width:"60%"}}>{surprisedComments.comment}</th>
+                                        <th style={{width:"60%"}}>
+                                            <div dangerouslySetInnerHTML={{__html: surprisedComments.comment}}></div>
+                                        </th>
                                     </tr>
                                 </tbody>
                             </table>
@@ -145,7 +149,9 @@ function TabContent(props) {
                                 <tbody>
                                     <tr>
                                         <th scope="col">{angerComments.id}</th>
-                                        <th style={{width:"60%"}}>{angerComments.comment}</th>
+                                        <th style={{width:"60%"}}>
+                                            <div dangerouslySetInnerHTML={{__html: angerComments.comment}}></div>
+                                        </th>
                                     </tr>
                                 </tbody>
                             </table>
@@ -172,7 +178,9 @@ function TabContent(props) {
                                 <tbody>
                                     <tr>
                                         <th scope="col">{sadnessComments.id}</th>
-                                        <th style={{width:"60%"}}>{sadnessComments.comment}</th>
+                                        <th style={{width:"60%"}}>
+                                            <div dangerouslySetInnerHTML={{__html: sadnessComments.comment}}></div>
+                                        </th>
                                     </tr>
                                 </tbody>
                             </table>
@@ -199,7 +207,9 @@ function TabContent(props) {
                                 <tbody>
                                     <tr>
                                         <th scope="col">{neutralComments.id}</th>
-                                        <th style={{width:"60%"}}>{neutralComments.comment}</th>
+                                        <th style={{width:"60%"}}>
+                                            <div dangerouslySetInnerHTML={{__html: neutralComments.comment}}></div>
+                                        </th>
                                     </tr>
                                 </tbody>
                             </table>
@@ -226,7 +236,9 @@ function TabContent(props) {
                                 <tbody>
                                     <tr>
                                         <th scope="col">{fearComments.id}</th>
-                                        <th style={{width:"60%"}}>{fearComments.comment}</th>
+                                        <th style={{width:"60%"}}>
+                                            <div dangerouslySetInnerHTML={{__html: fearComments.comment}}></div>
+                                        </th>
                                     </tr>
                                 </tbody>
                             </table>
@@ -253,7 +265,9 @@ function TabContent(props) {
                                 <tbody>
                                     <tr>
                                         <th scope="col">{disgustComments.id}</th>
-                                        <th style={{width:"60%"}}>{disgustComments.comment}</th>
+                                        <th style={{width:"60%"}}>
+                                            <div dangerouslySetInnerHTML={{__html: disgustComments.comment}}></div>
+                                        </th>
                                     </tr>
                                 </tbody>
                             </table>

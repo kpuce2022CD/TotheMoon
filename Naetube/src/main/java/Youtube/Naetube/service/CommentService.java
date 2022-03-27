@@ -26,7 +26,15 @@ public class CommentService {
     public HashMap<String, List> classifyComment(Comment comments[]){
 
         HashMap<String, List> commentMap = new HashMap<>();
-
+        positiveComments.clear();
+        negativeComments.clear();
+        fearComments.clear();
+        surprisedComments.clear();
+        angerComments.clear();
+        sadnessComments.clear();
+        neutralComments.clear();
+        happyComments.clear();
+        disgustComments.clear();
         for(int i = 0; i< comments.length; i++){    //인덱스 번호를 통해서 긍정, 부정 , 감정 댓글 분류
             if(comments[i].getIndex().equals("1")) {
                 positiveComments.add(comments[i]);
@@ -79,6 +87,7 @@ public class CommentService {
     public HashMap<String, Double> positiveNegativePercent(){
 
         HashMap<String, Double> positiveNegativePercentMap = new HashMap<>();
+
         double positivePercent = ((double)positiveComments.size() / ((double)positiveComments.size()+(double)negativeComments.size()))*100;
         double negativePercent = ((double)negativeComments.size() / ((double)positiveComments.size()+(double)negativeComments.size()))*100;
 
