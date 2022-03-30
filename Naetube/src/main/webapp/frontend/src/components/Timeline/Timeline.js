@@ -1,8 +1,8 @@
 import React from "react";
 import "./Timeline.css";
 
-const Timeline = ({ children, href }) => {
-  return <span className="timeline">00:00:00</span>;
+const Timeline = ({ clickfunc, children }) => {
+  return <span className="timeline" onClick={clickfunc}>{children}</span>;
 };
 
 export default Timeline;

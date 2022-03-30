@@ -2,7 +2,13 @@ import React from "react";
 import "./Video.css";
 import Timeline from "../Timeline/Timeline";
 
-const VideoInfo = () => {
+const VideoInfo = ({player}) => {
+
+  const clickfunc = (para)=>{
+    return ()=>{
+      player.seekTo(para)
+    }
+  }
   const text = `조회수 : 20,242,037회\t\t\t댓글수 : 20,793개\t\t\t업로드날짜 : 2022. 1. 17.`;
   return (
     <div className="content" style={{ marginBottom: "30px" }}>
@@ -19,11 +25,11 @@ const VideoInfo = () => {
         >
           인기 타임라인
         </span>
-        <Timeline href="#hello">00:00:00</Timeline>
-        <Timeline href="#hello">00:00:00</Timeline>
-        <Timeline href="#hello">00:00:00</Timeline>
-        <Timeline href="#hello">00:00:00</Timeline>
-        <Timeline href="#hello">00:00:00</Timeline>
+        <Timeline clickfunc={clickfunc(60)}>00:00:00</Timeline>
+        <Timeline clickfunc={clickfunc(120)}>00:00:00</Timeline>
+        <Timeline clickfunc={clickfunc(180)}>00:00:00</Timeline>
+        <Timeline clickfunc={clickfunc(210)}>00:00:00</Timeline>
+        <Timeline clickfunc={clickfunc(270)}>00:00:00</Timeline>
       </div>
     </div>
   );
