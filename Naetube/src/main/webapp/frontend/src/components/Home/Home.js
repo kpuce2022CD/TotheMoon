@@ -1,8 +1,9 @@
-import React from "react";
+import React, {useState} from "react";
 import Video from "../Video/Video";
 import VideoInfo from "../Video/VideoInfo";
 
-const Home = () => {
+const Home = ({url}) => {
+  const [player, setPlayer] = useState()
   return (
     <section
       className="resume-section"
@@ -44,11 +45,11 @@ const Home = () => {
           </div>
         </div>
         <div className="row h-50">
-          <Video videoId="y9kkXTucnLU" />
+          <Video videoId={url} setPlayer={setPlayer}/>
         </div>
 
         <div className="row">
-          <VideoInfo />
+          <VideoInfo player={player}/>
         </div>
       </div>
     </section>
