@@ -3,76 +3,14 @@ import { Button, Navbar, Nav, Tab, Container } from 'react-bootstrap'
 import {CSSTransition} from 'react-transition-group'
 
 
-
-function NpComments() {
+function NpComments(props) {
 
 
     let [스위치, 스위치변경] = useState(false);
 
     let [clickedTab, setClickedTab] = useState(0);
 
-    let [positiveComments, setPositiveComments] = useState([
-        {
-            id: "가나다라",
-            comment: "긍정 긍정 안녕하세요 안녕하세요 안녕하세요"
-        },
-        {
-            id: "베짱이 2222",
-            comment: "반갑습니다 긍정 긍정 반갑습니다"
-        },
-        {
-            id: "코카콜라 제로",
-            comment: "코카콜라 긍정 긍정 코카콜라 코카콜라"
-        },
-        {
-            id: "코카콜라 제로",
-            comment: "긍정 긍정 코카콜라 긍정 긍정 코카콜라 아이에오오오 아이에오오오 아이에오오오 아이에오오오"
-        },
-        {
-            id: "기기기기기무무무무무나나나나나",
-            comment: "과자 바나나나나나나나나나 긍정 긍정 코카콜라 아이에오오오 아이에오오오 아이에오오오 아이에오오오"
-        },
-        {
-            id: "마늘요리",
-            comment: "긍정 긍정긍정 긍정긍정 긍정오오"
-        },
-        {
-            id: "아아아아무무뭄 아아긍정 긍정무긍정 긍정긍정 긍정무무뭄",
-            comment: " 가나다라가나다라가나긍정 긍정다라가나다라 긍정 긍정라가나다라가나다라가나다라"
-        }
-      ]);
-
-      let [negativeComments, setNegativeComments] = useState([
-        {
-            id: "마바사아",
-            comment: "부정 부정 안녕하세요 안녕하세요 안녕하세요"
-        },
-        {
-            id: "123124125 2222",
-            comment: "부정 부정 긍정 긍정 반갑습니다"
-        },
-        {
-            id: "펩베ㅔ페펩시 제로",
-            comment: "코카콜라 부정 부정 코카콜라 코카콜라"
-        },
-        {
-            id: "자잦라ㅜ루루루루",
-            comment: "부정 부정 코카콜라 부정 부정 코카콜라 아이에오오오 아이에오오오 아이에오오오 아이에오오오"
-        },
-        {
-            id: "기기기기기무무무무무나나나나나",
-            comment: "부정 부정나나나나나나 긍정 긍정 코카콜라 아이에오오오 아이에오오오 아이에오오오 아이에오오오"
-        },
-        {
-            id: "마늘요리",
-            comment: "긍정 부정 부정 긍정긍정 긍정오오"
-        },
-        {
-            id: "아아아아무무뭄 아아긍정 긍정무긍정 긍정긍정 긍정무무뭄",
-            comment: " 가나다라가부정 부정긍정 긍정다라가나다라 긍정 긍정라가나다라가나다라가나다라"
-        }
-      ]);
-
+    const InnerHTML = require('dangerously-set-inner-html')
 
     return(
         <div className="comments-div">
@@ -103,7 +41,7 @@ function NpComments() {
                 </thead>
             </table>
             <CSSTransition in={스위치} classNames="effect" timeout={500}>
-            <TabContent positiveComments={positiveComments} negativeComments={negativeComments} clickedTab={clickedTab} 스위치변경={스위치변경}></TabContent>
+            <TabContent positiveComments={props.positiveComments} negativeComments={props.negativeComments} clickedTab={clickedTab} 스위치변경={스위치변경}></TabContent>
             </CSSTransition>
         </div>
     );
@@ -120,9 +58,11 @@ function TabContent(props) {
             <div className="box" style={{overflow:"scroll",overflowX:"hidden",height:"400px"}}>
             {
                 props.positiveComments.map(function(positiveComments) {
+
+
                     return(
                         <div>
-                            <table style={{width:"100%"}} className="tb">
+                            <table style={{width:"600px"}} className="tb">
                                 <colgroup>
                                     <col style={{width:"40%"}}></col>
                                     <col style={{width:"60%"}}></col>
@@ -130,7 +70,9 @@ function TabContent(props) {
                                 <tbody>
                                     <tr>
                                         <th scope="col">{positiveComments.id}</th>
-                                        <th style={{width:"60%"}}>{positiveComments.comment}</th>
+                                        <th style={{width:"60%"}}>
+                                            <div dangerouslySetInnerHTML={{__html: positiveComments.comment}}></div>
+                                        </th>
                                     </tr>
                                 </tbody>
                             </table>
@@ -149,7 +91,7 @@ function TabContent(props) {
                 props.negativeComments.map(function(negativeComments) {
                     return(
                         <div>
-                            <table style={{width:"100%"}} className="tb">
+                            <table style={{width:"600px"}} className="tb">
                                 <colgroup>
                                     <col style={{width:"40%"}}></col>
                                     <col style={{width:"60%"}}></col>
@@ -157,7 +99,11 @@ function TabContent(props) {
                                 <tbody>
                                     <tr>
                                         <th scope="col">{negativeComments.id}</th>
-                                        <th style={{width:"60%"}}>{negativeComments.comment}</th>
+                                        <th style={{width:"60%"}}>
+
+                                        <div dangerouslySetInnerHTML={{__html: negativeComments.comment}}></div>
+
+                                        </th>
                                     </tr>
                                 </tbody>
                             </table>

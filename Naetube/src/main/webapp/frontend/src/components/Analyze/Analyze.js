@@ -3,8 +3,6 @@ import NavItem from "../Navbar/NavItem";
 import Home from "../Home/Home";
 import NpCharts from "../NpChart/NpChart";
 import NpComments from "../NpChart/NpComments";
-import EmChart from "../EmChart/EmChart";
-import EmComments from "../EmChart/EmComments";
 
 const Analyze = () => {
   return (
@@ -56,8 +54,7 @@ const Analyze = () => {
           <hr className="m-0" />
 
           <section className="resume-section" id="emotion">
-            <EmChart></EmChart>
-            <EmComments></EmComments>
+            <div className="resume-section-content"></div>
           </section>
           <hr className="m-0" />
 
