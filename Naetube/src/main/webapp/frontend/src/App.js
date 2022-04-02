@@ -5,8 +5,7 @@ import Search from "./components/SearchPage/Search"
 function App() {
   return (
     <Routes>
-      <Route path="/analyze/:url" element={<Analyze />}>
-      </Route>
+      <Route path="/analyze/:url" element={<Analyze />}/>
       <Route path="/" element={<Search />} />
     </Routes>
   );

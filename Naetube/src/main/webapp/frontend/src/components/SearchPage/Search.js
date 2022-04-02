@@ -1,8 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React, { useRef } from "react";
+import {useNavigate} from 'react-router-dom'
 
 
 function Search() {
-
+    const navigate = useNavigate()
+    const input = useRef()
+    const onClick = ()=>{
+        const videoId = new URL(input.current.value).pathname
+        const url = `/analyze${videoId}`
+        navigate(url)
+    }
 
     return(
         <div style={{position:"absolute",left:"0",right:"0"}}>
@@ -34,14 +41,14 @@ function Search() {
                                 {/* <!-- Email address input--> */}
                                 <div class="row">
                                     <div class="col">
-                                        <input class="form-control form-control-lg" id="emailAddress" type="email" placeholder="유튜브 영상의 URL을 입력해주세요" data-sb-validations="required,email" />
+                                        <input class="form-control form-control-lg" id="emailAddress" type="email" placeholder="유튜브 영상의 URL을 입력해주세요" data-sb-validations="required,email" ref={input}/>
                                         <div class="invalid-feedback text-white" data-sb-feedback="emailAddress:required">Email Address is required.</div>
                                         <div class="invalid-feedback text-white" data-sb-feedback="emailAddress:email">Email Address Email is not valid.</div>
 
                                     </div>
                                     <div class="col-auto">
                                         {/* <button class="btn btn-danger btn-lg" id="submitButton" type="submit">분석</button> */}
-                                        <a style={{marginTop:"0"}} href="/analyze" id="a-search" className="button">분석</a>
+                                        <a style={{marginTop:"0"}} href="#!" onClick={onClick}  id="a-search" className="button">분석</a>
                                         </div>
                                 </div>
                                 {/* <!-- Submit success message--> */}
@@ -94,9 +101,6 @@ function Search() {
                 </div>
             </div>
         </section>
-
-
-
         </div>
 
     );
