@@ -18,14 +18,14 @@ def create_app():
         collectComment(request.args.get('url'))
         return "success"
 
-    @app.route('/classifyComments')
+    @app.route('/classifycomments')
     def classifyComments():
         filepath = collectComment(request.args.get('url'))
         PosiNegative_comment_data, Emotion_comment_data = CommentClassifyProcessing(filepath)
         result_data = PosiNegative_comment_data + Emotion_comment_data
         return jsonify(result_data)
 
-    @app.route('/searchKeyword')
+    @app.route('/searchkeyword')
     def searchKeyword():
         filepath = collectComment(request.args.get('url'))
         common_words = ['많이', '영상', '너무', '이번', '내가', 'ㅋㅋ', '남자', '조합', '이거', '있는', '아닌', '진짜', '아니', 'ㅠㅠ', '계속', '좋아',
@@ -60,7 +60,7 @@ def create_app():
         interest_data = get_interestData(filepath)
         return jsonify(interest_data)
 
-    @app.route('/getVideoInformation')
+    @app.route('/getvideoinformation')
     def getVideoData():
         videoInformation = getVideoInformation(request.args.get('url'))
         return jsonify(videoInformation)
