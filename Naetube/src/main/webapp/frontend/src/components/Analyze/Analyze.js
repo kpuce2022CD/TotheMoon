@@ -157,7 +157,7 @@ const Analyze = () => {
           </section>
           <hr className="m-0" />
 
-          <Interest />
+          <Interest url={url}/>
         </div>
       </div>
     </>

@@ -1,20 +1,15 @@
 package Youtube.Naetube.controller;
 
-import Youtube.Naetube.domain.Comment;
-import Youtube.Naetube.domain.Keyword;
+import Youtube.Naetube.domain.*;
 import Youtube.Naetube.service.CommentService;
-import Youtube.Naetube.service.InterestService;
 import Youtube.Naetube.service.VideoService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.google.gson.JsonObject;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.json.simple.JSONObject;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -27,6 +22,8 @@ import java.util.HashMap;
 import java.util.List;
 import org.json.simple.JSONArray;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 
 @Slf4j
@@ -35,21 +32,24 @@ import org.json.simple.JSONArray;
 public class ResponseJsonController {
 
     //서비스 클래스 DI
-    private final InterestService interestService;
     private final VideoService videoService;
     private final CommentService commentService;
 
     private ObjectMapper objectMapper = new ObjectMapper();
-
+    private String link = "http://localhost:5000";
+    private RestTemplate restTemplate = new RestTemplate();
 
     @CrossOrigin("*")
-    @GetMapping("/test")
-    public ResponseEntity<String> test(@PathVariable String url, Model model) {
-        String data = "abcddddd";
-
-        return ResponseEntity.status(HttpStatus.OK).body(data);
+    @GetMapping("/youtube-video-id/{videoId}")
+    public String setVideoId(@PathVariable String videoId, HttpServletRequest request){
+        String baseUrl = link + "/";
+        ResponseEntity<String> response = restTemplate.getForEntity(baseUrl, String.class);
+        String comments = response.getBody();
+        HttpSession httpSession = request.getSession();
+        //String to comments domain
+        //        httpSession
+        return null;
     }
-
 
     @CrossOrigin("*")
     @GetMapping("/getKeyword/{url}")
@@ -139,5 +139,44 @@ public class ResponseJsonController {
 
 
         return jsonDataArrayToGson;
+    }
+
+    @CrossOrigin("*")
+    @GetMapping("/videoInfo/{videoId}")
+    public String getVideoInfo(@PathVariable String videoId){
+        String baseurl = "http://localhost:5000/getVideoInformation?url=" + videoId;
+        RestTemplate restTemplate = new RestTemplate();
+        ResponseEntity<VideoInformation[]> response = restTemplate.getForEntity(baseurl, VideoInformation[].class);
+        VideoInformation[] videoInfo = response.getBody();
+
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        String json = gson.toJson(videoInfo);
+        return json;
+    }
+
+    @CrossOrigin("*")
+    @GetMapping("/timeline/{videoId}")
+    public String getTimeline(@PathVariable String videoId){
+        String baseurl = "http://localhost:5000/timeline?url="+videoId;
+        RestTemplate restTemplate = new RestTemplate();
+        ResponseEntity<Timeline[]> response = restTemplate.getForEntity(baseurl, Timeline[].class);
+        Timeline[] timeline = response.getBody();
+
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        String json = gson.toJson(timeline);
+        return json;
+    }
+
+    @CrossOrigin("*")
+    @GetMapping("/interest/{videoId}")
+    public String getInterest(@PathVariable String videoId){
+        String baseurl = "http://localhost:5000/interest?url=" + videoId;
+        RestTemplate restTemplate = new RestTemplate();
+        ResponseEntity<Interest[]> InterestResponse = restTemplate.getForEntity(baseurl, Interest[].class);
+        Interest[] interests = InterestResponse.getBody();
+
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        String json = gson.toJson(interests);
+        return json;
     }
 }

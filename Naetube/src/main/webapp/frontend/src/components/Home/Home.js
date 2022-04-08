@@ -49,7 +49,7 @@ const Home = ({url}) => {
         </div>
 
         <div className="row">
-          <VideoInfo player={player}/>
+          <VideoInfo player={player} url={url}/>
         </div>
       </div>
     </section>

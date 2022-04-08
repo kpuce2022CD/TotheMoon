@@ -4,12 +4,11 @@ import "./index.css";
 import App from "./App";
 import { BrowserRouter } from "react-router-dom";
 import "./bootstrap.css";
-import "./css/npchart.css"
+import "./css/npchart.css";
 import "./css/npcomments.css";
 import "./css/emchart.css";
-import "./css/emcomments.css"
+import "./css/emcomments.css";
 import "./css/searchpagestyle.css";
-
 
 ReactDOM.render(
   <BrowserRouter>

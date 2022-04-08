@@ -2,7 +2,7 @@ import React from "react";
 import "./Interest.css";
 import Chart from "../Chart/Chart";
 
-const Interest = () => {
+const Interest = ({url}) => {
   return (
     <section
       className="resume-section"
@@ -13,7 +13,7 @@ const Interest = () => {
         className="resume-section-content interest"
         style={{ height: "100vh" }}
       >
-        <Chart />
+        <Chart url={url}/>
       </div>
     </section>
   );
