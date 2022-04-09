@@ -1,9 +1,10 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import Video from "../Video/Video";
 import VideoInfo from "../Video/VideoInfo";
+import DropDown from "../DropDown/DropDown";
 
-const Home = ({url}) => {
-  const [player, setPlayer] = useState()
+const Home = ({ url }) => {
+  const [player, setPlayer] = useState();
   return (
     <section
       className="resume-section"
@@ -11,7 +12,7 @@ const Home = ({url}) => {
       id="home"
     >
       <div className="resume-section-content" style={{ height: "100vh" }}>
-        <div className="row" style={{ height: "10%", padding: "1rem" }}>
+        <div className="row" style={{ padding: "1rem" }}>
           <div
             className="col-9"
             style={{
@@ -20,7 +21,7 @@ const Home = ({url}) => {
               justifyContent: "center",
             }}
           >
-            <div className="input-group" style={{ height: "90%" }}>
+            <div className="input-group" style={{ height: "60px" }}>
               <input
                 type="search"
                 className="form-control rounded"
@@ -34,22 +35,22 @@ const Home = ({url}) => {
             </div>
           </div>
           <div
-            className="col-3 border border-dark"
+            className="col-3"
             style={{
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
             }}
           >
-            베스트 키워드
+            <DropDown />
           </div>
         </div>
         <div className="row h-50">
-          <Video videoId={url} setPlayer={setPlayer}/>
+          <Video videoId={url} setPlayer={setPlayer} />
         </div>
 
         <div className="row">
-          <VideoInfo player={player} url={url}/>
+          <VideoInfo player={player} url={url} />
         </div>
       </div>
     </section>
