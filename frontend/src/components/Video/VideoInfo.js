@@ -22,7 +22,7 @@ const VideoInfo = ({ player, url }) => {
       player.seekTo(para);
     };
   };
-  const text = `조회수 : ${videoInfo.view},037회\t\t\t좋아요 수 : ${videoInfo.like},793개\t\t\t업로드날짜 : ${videoInfo.date}`;
+  const text = `조회수 : ${videoInfo.view}회\t\t\t좋아요 수 : ${videoInfo.like}개\t\t\t업로드날짜 : ${videoInfo.date}`;
   return (
     <div className="content" style={{ marginBottom: "30px" }}>
       <div className="infoContainer">
