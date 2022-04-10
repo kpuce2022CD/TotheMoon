@@ -1,10 +1,11 @@
-import React, { useLayoutEffect } from "react";
+import React, { useLayoutEffect, useEffect } from "react";
 import * as am5 from "@amcharts/amcharts5";
 import * as am5xy from "@amcharts/amcharts5/xy";
 import am5themes_Animated from "@amcharts/amcharts5/themes/Animated";
+import axios from "axios";
 
-const Chart = () => {
-  useLayoutEffect(() => {
+const Chart = ({ url }) => {
+  useEffect(() => {
     const root = am5.Root.new("chartdiv");
 
     root.setThemes([am5themes_Animated.new(root)]);
@@ -25,27 +26,6 @@ const Chart = () => {
       })
     );
     cursor.lineY.set("visible", false);
-
-    const date = new Date();
-    date.setHours(0, 0, 0, 0);
-    let value = 100;
-
-    function generateData() {
-      value = Math.round(Math.random() * 10 - 5 + value);
-      am5.time.add(date, "day", 1);
-      return {
-        date: date.getTime(),
-        value: value,
-      };
-    }
-
-    function generateDatas(count) {
-      const data = [];
-      for (var i = 0; i < count; ++i) {
-        data.push(generateData());
-      }
-      return data;
-    }
 
     const xAxis = chart.xAxes.push(
       am5xy.DateAxis.new(root, {
@@ -85,16 +65,23 @@ const Chart = () => {
       })
     );
 
-    const data = generateDatas(1200);
-    series.data.setAll(data);
-
-    series.appear(1000);
-    chart.appear(1000, 100);
+    (async function () {
+      const result = await axios.get(`http://localhost:8080/interest/${url}`);
+      const data = result.data.map(function (cur, index) {
+        const date = new Date(cur.commentDate);
+        date.setHours(0, 0, 0, 0);
+        am5.time.add(date, "day", 0);
+        return { date: date.getTime(), value: Number(cur.commentCount) };
+      });
+      series.data.setAll(data);
+      series.appear(1000);
+      chart.appear(1000, 100);
+    })();
 
     return () => {
       root.dispose();
     };
-  }, []);
+  }, [url]);
   return <div id="chartdiv" style={{ width: "80%", height: "700px" }}></div>;
 };
 

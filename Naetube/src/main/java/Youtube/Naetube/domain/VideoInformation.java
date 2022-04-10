@@ -13,7 +13,4 @@ public class VideoInformation {
     private String view;
     private String like;
 
-    public VideoInformation(){
-
-    }
 }

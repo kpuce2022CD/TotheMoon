@@ -5,13 +5,17 @@ import NpCharts from "../NpChart/NpChart";
 import NpComments from "../NpChart/NpComments";
 import EmChart from "../EmChart/EmChart";
 import EmComments from "../EmChart/EmComments";
-import axios from "axios"
+import Interest from "../Interest/Interest";
+import { useParams } from "react-router-dom";
+import axios from "axios";
 import { useState, useEffect } from "react";
 import { bootstrap } from 'react-bootstrap';
 import Spinner from '../Spinner/Spinner';
 
 
 const Analyze = () => {
+  const params = useParams();
+  const url = params.url;
 
   const [loading, setLoading] = useState(true);
 
@@ -171,7 +175,7 @@ const Analyze = () => {
 
 
         <div className="container-fluid p-0">
-          <Home />
+          <Home url={url} />
           <hr className="m-0" />
 
 
@@ -208,9 +212,7 @@ const Analyze = () => {
           </section>
           <hr className="m-0" />
 
-          <section className="resume-section" id="interest">
-            <div className="resume-section-content"></div>
-          </section>
+          <Interest url={url} />
         </div>
       </div>
 

@@ -127,15 +127,15 @@ public class ResultController {
     }
 
 
-    @GetMapping("/findcomment")
-    @ResponseBody
-    public String[] findComment(@RequestParam("url") String url, @RequestParam("keyword") String keyword){
-        String baseUrl = "http://localhost:5000/find?url=" + url+"&keyword="+keyword;
-        RestTemplate restTemplate = new RestTemplate();
-        ResponseEntity<String[]> response = restTemplate.getForEntity(baseUrl, String[].class);
-        String[] result = response.getBody();
-        return result;
-    }
+//    @GetMapping("/findcomment")
+//    @ResponseBody
+//    public String[] findComment(@RequestParam("url") String url, @RequestParam("keyword") String keyword){
+//        String baseUrl = "http://localhost:5000/find?url=" + url+"&keyword="+keyword;
+//        RestTemplate restTemplate = new RestTemplate();
+//        ResponseEntity<String[]> response = restTemplate.getForEntity(baseUrl, String[].class);
+//        String[] result = response.getBody();
+//        return result;
+//    }
 
     @GetMapping("/find/{url}")
     public String find(@PathVariable String url, Model model){
