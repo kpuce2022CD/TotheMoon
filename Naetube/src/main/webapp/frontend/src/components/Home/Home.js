@@ -12,15 +12,8 @@ const Home = ({ url }) => {
       id="home"
     >
       <div className="resume-section-content" style={{ height: "100vh" }}>
-        <div className="row" style={{ padding: "1rem" }}>
-          <div
-            className="col-9"
-            style={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-            }}
-          >
+        <div className="row">
+          <div className="col-9">
             <div className="input-group" style={{ height: "60px" }}>
               <input
                 type="search"
@@ -34,14 +27,7 @@ const Home = ({ url }) => {
               </button>
             </div>
           </div>
-          <div
-            className="col-3"
-            style={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-            }}
-          >
+          <div className="col-3">
             <DropDown />
           </div>
         </div>

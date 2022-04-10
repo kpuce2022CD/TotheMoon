@@ -1,132 +1,134 @@
 import React, { useState } from "react";
 import TextLoop from "react-text-loop";
 import { AiOutlineCaretUp, AiOutlineCaretDown } from "react-icons/ai";
+import "./DropDown.css";
 
 const DropDown = () => {
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(true);
+  const onClick = () => {
+    setOpen(!open);
+  };
   return (
-    <div style={{ width: "100%", height: "100%" }}>
+    <div
+      style={{
+        width: "16rem",
+        height: "100%",
+        display: "flex",
+        marginLeft: "1rem",
+      }}
+    >
       <div
         style={{
+          width: "16rem",
           display: "flex",
-          flex: 1,
-          height: "100%",
-          flexDirection: "row",
+          flexDirection: "column",
+          position: "absolute",
+          border: "solid",
         }}
       >
         <div
           style={{
-            width: "300px",
-            height: "100%",
+            height: "60px",
+            width: "100%",
             display: "flex",
             alignItems: "center",
-            justifyContent: "center",
-            visibility: "hidden",
+            flexDirection: "row",
           }}
         >
-          <TextLoop>
-            <span>1. 스물하나 스물다섯</span>
-            <span>2. 백이진</span>
-            <span>3. 나희도</span>
-            <span>4. 이별</span>
-            <span>5. 남주혁</span>
+          <TextLoop className="textLoop">
+            <span className="loopContent">1. 네카라쿠베</span>
+            <span className="loopContent">2. helloworld</span>
           </TextLoop>
+          <div
+            style={{
+              width: "20%",
+              height: "60px",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+            onClick={onClick}
+          >
+            {open ? (
+              <AiOutlineCaretUp size="40" />
+            ) : (
+              <AiOutlineCaretDown size="40" />
+            )}
+          </div>
         </div>
-        <div
-          style={{
-            width: "300px",
-            height: "360px",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            position: "absolute",
+        {open ? (
+          <>
+            <div
+              style={{
+                height: "60px",
 
-            flexDirection: "column",
-          }}
-        >
-          <div
-            style={{
-              width: "100%",
-              height: "60px",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-            }}
-          >
-            <p style={{ margin: 0 }}>hello</p>
-          </div>
-          <div
-            style={{
-              width: "100%",
-              height: "60px",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-            }}
-          >
-            <p style={{ margin: 0 }}>hello</p>
-          </div>
-          <div
-            style={{
-              width: "100%",
-              height: "60px",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-            }}
-          >
-            <p style={{ margin: 0 }}>hello</p>
-          </div>
-          <div
-            style={{
-              width: "100%",
-              height: "60px",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-            }}
-          >
-            <p style={{ margin: 0 }}>hello</p>
-          </div>
-          <div
-            style={{
-              width: "100%",
-              height: "60px",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-            }}
-          >
-            <p style={{ margin: 0 }}>hello</p>
-          </div>
-          <div
-            style={{
-              width: "100%",
-              height: "60px",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-            }}
-          >
-            <p style={{ margin: 0 }}>hello</p>
-          </div>
-        </div>
-        <div
-          style={{
-            width: "20%",
-            height: "100%",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            backgroundColor: "#bd5d38",
-          }}
-        >
-          {open ? (
-            <AiOutlineCaretUp size="40" color="#FFFFFF" />
-          ) : (
-            <AiOutlineCaretDown size="40" color="#FFFFFF" />
-          )}
-        </div>
+                display: "flex",
+                alignItems: "center",
+              }}
+            >
+              <p
+                style={{ margin: 0, paddingLeft: "2.5rem", fontSize: "1.1rem" }}
+              >
+                2. 안녕하세요
+              </p>
+            </div>
+            <div
+              style={{
+                height: "60px",
+
+                display: "flex",
+                alignItems: "center",
+              }}
+            >
+              <p
+                style={{ margin: 0, paddingLeft: "2.5rem", fontSize: "1.1rem" }}
+              >
+                3. 안녕하세요
+              </p>
+            </div>
+            <div
+              style={{
+                height: "60px",
+
+                display: "flex",
+                alignItems: "center",
+              }}
+            >
+              <p
+                style={{ margin: 0, paddingLeft: "2.5rem", fontSize: "1.1rem" }}
+              >
+                4. 안녕하세요
+              </p>
+            </div>
+            <div
+              style={{
+                height: "60px",
+
+                display: "flex",
+                alignItems: "center",
+              }}
+            >
+              <p
+                style={{ margin: 0, paddingLeft: "2.5rem", fontSize: "1.1rem" }}
+              >
+                5. 안녕하세요
+              </p>
+            </div>
+            <div
+              style={{
+                height: "60px",
+                display: "flex",
+                alignItems: "center",
+              }}
+            >
+              <p
+                style={{ margin: 0, paddingLeft: "2.5rem", fontSize: "1.1rem" }}
+              >
+                1. 안녕하세요
+              </p>
+            </div>
+          </>
+        ) : null}
       </div>
     </div>
   );
