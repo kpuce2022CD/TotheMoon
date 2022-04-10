@@ -12,7 +12,7 @@ const VideoInfo = ({ player, url }) => {
       setTimeline(result.data);
     })();
     (async function () {
-      const result = await axios.get(`http://localhost:8080/videoInfo/${url}`);
+      const result = await axios.get(`http://localhost:8080/videoinfo/${url}`);
       setVideoInfo(result.data[0]);
     })();
   }, [url]);

@@ -139,9 +139,9 @@ public class ResponseJsonController {
     }
 
     @CrossOrigin("*")
-    @GetMapping("/videoInfo/{videoId}")
+    @GetMapping("/videoinfo/{videoId}")
     public String getVideoInfo(@PathVariable String videoId){
-        String baseurl = "http://localhost:5000/getVideoInformation?url=" + videoId;
+        String baseurl = "http://localhost:5000/getvideoinformation?url=" + videoId;
         RestTemplate restTemplate = new RestTemplate();
         ResponseEntity<VideoInformation[]> response = restTemplate.getForEntity(baseurl, VideoInformation[].class);
         VideoInformation[] videoInfo = response.getBody();
