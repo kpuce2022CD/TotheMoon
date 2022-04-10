@@ -1,11 +1,11 @@
-import React, { useLayoutEffect } from "react";
+import React, { useLayoutEffect, useEffect } from "react";
 import * as am5 from "@amcharts/amcharts5";
 import * as am5xy from "@amcharts/amcharts5/xy";
 import am5themes_Animated from "@amcharts/amcharts5/themes/Animated";
-import axios from 'axios'
+import axios from "axios";
 
-const Chart = ({url}) => {
-  useLayoutEffect(() => {
+const Chart = ({ url }) => {
+  useEffect(() => {
     const root = am5.Root.new("chartdiv");
 
     root.setThemes([am5themes_Animated.new(root)]);
@@ -64,20 +64,19 @@ const Chart = ({url}) => {
         orientation: "horizontal",
       })
     );
-    
-    (async function(){
-      const result = await axios.get(`http://localhost:8080/interest/${url}`)
-      const data = result.data.map(function(cur, index){
-        const date =  new Date(cur.commentDate)
+
+    (async function () {
+      const result = await axios.get(`http://localhost:8080/interest/${url}`);
+      const data = result.data.map(function (cur, index) {
+        const date = new Date(cur.commentDate);
         date.setHours(0, 0, 0, 0);
         am5.time.add(date, "day", 0);
-        return {date: date.getTime(), value: Number(cur.commentCount)}
-      })
+        return { date: date.getTime(), value: Number(cur.commentCount) };
+      });
       series.data.setAll(data);
       series.appear(1000);
       chart.appear(1000, 100);
-
-    })()
+    })();
 
     return () => {
       root.dispose();

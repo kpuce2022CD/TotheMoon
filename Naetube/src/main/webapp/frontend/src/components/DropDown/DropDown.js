@@ -1,10 +1,20 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import TextLoop from "react-text-loop";
 import { AiOutlineCaretUp, AiOutlineCaretDown } from "react-icons/ai";
 import "./DropDown.css";
+import axios from "axios";
 
-const DropDown = () => {
-  const [open, setOpen] = useState(true);
+const DropDown = ({ url, setPopUp, setVisible }) => {
+  const [data, setData] = useState([]);
+  const [comments, setComments] = useState([]);
+  useEffect(() => {
+    (async function () {
+      const result = await axios.get(`http://localhost:8080/getKeyword/${url}`);
+      setData(result.data.b5);
+      setComments(result.data.comments);
+    })();
+  }, [url]);
+  const [open, setOpen] = useState(false);
   const onClick = () => {
     setOpen(!open);
   };
@@ -35,10 +45,18 @@ const DropDown = () => {
             flexDirection: "row",
           }}
         >
-          <TextLoop className="textLoop">
-            <span className="loopContent">1. 네카라쿠베</span>
-            <span className="loopContent">2. helloworld</span>
-          </TextLoop>
+          {data.length !== 0 ? (
+            <TextLoop className="textLoop">
+              {data.map((cur, index) => (
+                <span key={index} className="loopContent">
+                  {`${index + 1}. ${cur}`}
+                </span>
+              ))}
+            </TextLoop>
+          ) : (
+            <div className="textLoop" />
+          )}
+
           <div
             style={{
               width: "20%",
@@ -56,79 +74,34 @@ const DropDown = () => {
             )}
           </div>
         </div>
-        {open ? (
-          <>
-            <div
-              style={{
-                height: "60px",
-
-                display: "flex",
-                alignItems: "center",
-              }}
-            >
-              <p
-                style={{ margin: 0, paddingLeft: "2.5rem", fontSize: "1.1rem" }}
+        {open
+          ? data.map((cur, index) => (
+              <div
+                style={{
+                  height: "60px",
+                  display: "flex",
+                  alignItems: "center",
+                }}
+                key={index}
               >
-                2. 안녕하세요
-              </p>
-            </div>
-            <div
-              style={{
-                height: "60px",
-
-                display: "flex",
-                alignItems: "center",
-              }}
-            >
-              <p
-                style={{ margin: 0, paddingLeft: "2.5rem", fontSize: "1.1rem" }}
-              >
-                3. 안녕하세요
-              </p>
-            </div>
-            <div
-              style={{
-                height: "60px",
-
-                display: "flex",
-                alignItems: "center",
-              }}
-            >
-              <p
-                style={{ margin: 0, paddingLeft: "2.5rem", fontSize: "1.1rem" }}
-              >
-                4. 안녕하세요
-              </p>
-            </div>
-            <div
-              style={{
-                height: "60px",
-
-                display: "flex",
-                alignItems: "center",
-              }}
-            >
-              <p
-                style={{ margin: 0, paddingLeft: "2.5rem", fontSize: "1.1rem" }}
-              >
-                5. 안녕하세요
-              </p>
-            </div>
-            <div
-              style={{
-                height: "60px",
-                display: "flex",
-                alignItems: "center",
-              }}
-            >
-              <p
-                style={{ margin: 0, paddingLeft: "2.5rem", fontSize: "1.1rem" }}
-              >
-                1. 안녕하세요
-              </p>
-            </div>
-          </>
-        ) : null}
+                <p
+                  style={{
+                    margin: 0,
+                    paddingLeft: "2.5rem",
+                    fontSize: "1.1rem",
+                  }}
+                  onClick={() => {
+                    setPopUp({ title: cur, comments: comments[index] });
+                    console.log("hi");
+                    setVisible(true);
+                  }}
+                  key={index}
+                >
+                  {`${index + 1}. ${cur}`}
+                </p>
+              </div>
+            ))
+          : null}
       </div>
     </div>
   );

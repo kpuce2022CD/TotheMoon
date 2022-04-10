@@ -12,10 +12,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.json.simple.JSONObject;
 import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.HashMap;
@@ -178,5 +175,15 @@ public class ResponseJsonController {
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         String json = gson.toJson(interests);
         return json;
+    }
+
+    @CrossOrigin("*")
+    @GetMapping("/findcomment")
+    public String[] findComment(@RequestParam("url") String url, @RequestParam("keyword") String keyword){
+        String baseUrl = "http://localhost:5000/find?url=" + url+"&keyword="+keyword;
+        RestTemplate restTemplate = new RestTemplate();
+        ResponseEntity<String[]> response = restTemplate.getForEntity(baseUrl, String[].class);
+        String[] result = response.getBody();
+        return result;
     }
 }

@@ -6,13 +6,14 @@ import NpCharts from "../NpChart/NpChart";
 import NpComments from "../NpChart/NpComments";
 import EmChart from "../EmChart/EmChart";
 import EmComments from "../EmChart/EmComments";
-import {useParams} from 'react-router-dom'
+import { useParams } from "react-router-dom";
 import axios from "axios";
 import { useState, useEffect } from "react";
+import Modal from "../Modal/Modal";
 
 const Analyze = () => {
-  const params = useParams()
-  const url = params.url
+  const params = useParams();
+  const url = params.url;
   let [positiveComments, setPositiveComments] = useState([]);
   let [negativeComments, setNegativeComments] = useState([]);
   let [happyComments, setHappyComments] = useState([]);
@@ -103,7 +104,7 @@ const Analyze = () => {
         />
 
         <div className="container-fluid p-0">
-          <Home url={url}/>
+          <Home url={url} />
           <hr className="m-0" />
 
           <section className="resume-section" id="np">
@@ -157,7 +158,7 @@ const Analyze = () => {
           </section>
           <hr className="m-0" />
 
-          <Interest url={url}/>
+          <Interest url={url} />
         </div>
       </div>
     </>
