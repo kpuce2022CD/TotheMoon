@@ -7,8 +7,9 @@ import "./bootstrap.css";
 import "./css/npchart.css";
 import "./css/npcomments.css";
 import "./css/emchart.css";
-import "./css/emcomments.css";
-import "./css/searchpagestyle.css";
+import "./css/emcomments.css"
+import "./css/searchpagestyle.css"
+import "./css/loading.css"
 
 ReactDOM.render(
   <BrowserRouter>

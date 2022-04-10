@@ -49,9 +49,9 @@ public class ResponseJsonController {
     }
 
     @CrossOrigin("*")
-    @GetMapping("/getKeyword/{url}")
+    @GetMapping("/getkeyword/{url}")
     public Keyword getKeyword(@PathVariable String url, Model model) {
-        String KeywordBaseUrl = "http://localhost:5000/searchKeyword?url=" + url;
+        String KeywordBaseUrl = "http://localhost:5000/searchkeyword?url=" + url;
         RestTemplate KeywordRestTemplate = new RestTemplate();
 
         ResponseEntity<Keyword> KeywordResponse = KeywordRestTemplate.getForEntity(KeywordBaseUrl, Keyword.class);
@@ -63,10 +63,10 @@ public class ResponseJsonController {
     }
 
     @CrossOrigin("*")
-    @GetMapping("/getComments/{url}")
+    @GetMapping("/getcomments/{url}")
     public String getComments(@PathVariable String url, Model model) {
 
-        String baseUrl = "http://localhost:5000/classifyComments?url=" + url;
+        String baseUrl = "http://localhost:5000/classifycomments?url=" + url;
         RestTemplate restTemplate = new RestTemplate();
         ResponseEntity<Comment[]> response = restTemplate.getForEntity(baseUrl, Comment[].class);
         Comment comments[] = response.getBody();

@@ -26,43 +26,41 @@ public class CommentService {
     public HashMap<String, List> classifyComment(Comment comments[]){
 
         HashMap<String, List> commentMap = new HashMap<>();
-        positiveComments.clear();
-        negativeComments.clear();
-        fearComments.clear();
-        surprisedComments.clear();
-        angerComments.clear();
-        sadnessComments.clear();
-        neutralComments.clear();
-        happyComments.clear();
-        disgustComments.clear();
+
+        clear();
+
         for(int i = 0; i< comments.length; i++){    //인덱스 번호를 통해서 긍정, 부정 , 감정 댓글 분류
-            if(comments[i].getIndex().equals("1")) {
-                positiveComments.add(comments[i]);
+            String index = comments[i].getIndex();
+            switch (index){
+                case "0" :
+                    negativeComments.add(comments[i]);
+                    break;
+                case "1" :
+                    positiveComments.add(comments[i]);
+                    break;
+                case "2" :
+                    fearComments.add(comments[i]);
+                    break;
+                case "3" :
+                    surprisedComments.add(comments[i]);
+                    break;
+                case "4" :
+                    angerComments.add(comments[i]);
+                    break;
+                case "5" :
+                    sadnessComments.add(comments[i]);
+                    break;
+                case "6" :
+                    neutralComments.add(comments[i]);
+                    break;
+                case "7" :
+                    happyComments.add(comments[i]);
+                    break;
+                case "8" :
+                    disgustComments.add(comments[i]);
+                    break;
             }
-            else if(comments[i].getIndex().equals("2")){
-                fearComments.add(comments[i]);
-            }
-            else if(comments[i].getIndex().equals("3")){
-                surprisedComments.add(comments[i]);
-            }
-            else if(comments[i].getIndex().equals("4")){
-                angerComments.add(comments[i]);
-            }
-            else if(comments[i].getIndex().equals("5")){
-                sadnessComments.add(comments[i]);
-            }
-            else if(comments[i].getIndex().equals("6")){
-                neutralComments.add(comments[i]);
-            }
-            else if(comments[i].getIndex().equals("7")){
-                happyComments.add(comments[i]);
-            }
-            else if(comments[i].getIndex().equals("8")){
-                disgustComments.add(comments[i]);
-            }
-            else if(comments[i].getIndex().equals("0")){
-                negativeComments.add(comments[i]);
-            }
+
         }
         log.info("positiveComments = {}",positiveComments);
         //[Comment(index=1, id=상휘1퍼센트, comment=첫곡 미쳤다, date=2022-01-19T04:29:36Z, num_like=0) , ...]
@@ -147,5 +145,15 @@ public class CommentService {
         return sentimentPercentMap;
     }
 
-
+    public void clear(){
+        positiveComments.clear();
+        negativeComments.clear();
+        fearComments.clear();
+        surprisedComments.clear();
+        angerComments.clear();
+        sadnessComments.clear();
+        neutralComments.clear();
+        happyComments.clear();
+        disgustComments.clear();
+    }
 }
