@@ -1,6 +1,7 @@
-package Youtube.Naetube.service;
+package Youtube.SpringbootServer.service;
 
-import Youtube.Naetube.domain.Comment;
+import Youtube.SpringbootServer.TestClass;
+import Youtube.SpringbootServer.domain.Comment;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
@@ -68,6 +69,7 @@ public class CommentService {
         //Comment(index=1, id=상휘1퍼센트, comment=첫곡 미쳤다, date=2022-01-19T04:29:36Z, num_like=0)
         log.info("전체 댓글 수 = {}",comments.length);
 
+        TestClass testClass = new TestClass(positiveComments,negativeComments);
         commentMap.put("positiveComments",positiveComments);
         commentMap.put("negativeComments",negativeComments);
         commentMap.put("fearComments",fearComments);

@@ -1,6 +1,6 @@
-package Youtube.Naetube.service;
+package Youtube.SpringbootServer.service;
 
-import Youtube.Naetube.domain.VideoInformation;
+import Youtube.SpringbootServer.domain.VideoInformation;
 import org.springframework.stereotype.Service;
 
 import java.text.DecimalFormat;

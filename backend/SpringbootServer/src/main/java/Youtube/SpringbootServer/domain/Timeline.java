@@ -1,4 +1,4 @@
-package Youtube.Naetube.domain;
+package Youtube.SpringbootServer.domain;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;

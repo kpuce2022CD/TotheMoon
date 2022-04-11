@@ -1,9 +1,9 @@
-package Youtube.Naetube.controller;
+package Youtube.SpringbootServer.controller;
 
-import Youtube.Naetube.domain.*;
-import Youtube.Naetube.service.CommentService;
-import Youtube.Naetube.service.InterestService;
-import Youtube.Naetube.service.VideoService;
+import Youtube.SpringbootServer.domain.*;
+import Youtube.SpringbootServer.service.CommentService;
+import Youtube.SpringbootServer.service.InterestService;
+import Youtube.SpringbootServer.service.VideoService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.json.simple.JSONObject;
@@ -12,8 +12,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.HashMap;

@@ -1,4 +1,4 @@
-package Youtube.Naetube.domain;
+package Youtube.SpringbootServer.domain;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;

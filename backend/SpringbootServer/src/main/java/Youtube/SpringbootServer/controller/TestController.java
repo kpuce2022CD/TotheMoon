@@ -1,7 +1,7 @@
-package Youtube.Naetube.controller;
+package Youtube.SpringbootServer.controller;
 
-import Youtube.Naetube.domain.Comment;
-import Youtube.Naetube.domain.Interest;
+import Youtube.SpringbootServer.domain.Comment;
+import Youtube.SpringbootServer.domain.Interest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;

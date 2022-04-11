@@ -1,6 +1,6 @@
-package Youtube.Naetube.service;
+package Youtube.SpringbootServer.service;
 
-import Youtube.Naetube.domain.Interest;
+import Youtube.SpringbootServer.domain.Interest;
 import org.springframework.stereotype.Service;
 
 @Service

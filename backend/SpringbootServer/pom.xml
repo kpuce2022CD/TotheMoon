@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>Youtube</groupId>
-	<artifactId>Naetube</artifactId>
+	<artifactId>SpringbootServer</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>Naetube</name>
+	<name>SpringbootServer</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>
 		<java.version>11</java.version>

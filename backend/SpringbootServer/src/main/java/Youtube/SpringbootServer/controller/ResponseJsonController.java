@@ -1,8 +1,8 @@
-package Youtube.Naetube.controller;
+package Youtube.SpringbootServer.controller;
 
-import Youtube.Naetube.domain.*;
-import Youtube.Naetube.service.CommentService;
-import Youtube.Naetube.service.VideoService;
+import Youtube.SpringbootServer.domain.*;
+import Youtube.SpringbootServer.service.CommentService;
+import Youtube.SpringbootServer.service.VideoService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import com.google.gson.Gson;
