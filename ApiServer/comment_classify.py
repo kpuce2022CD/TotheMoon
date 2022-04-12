@@ -163,7 +163,7 @@ def emotion_predict(predict_sentence):
 
         out = model(token_ids, valid_length, segment_ids)
 
-        test_eval = ["공포가", "놀람이", "분노가", "슬픔이", "중립이", "행복이", "혐오가"]
+        test_eval = ["공포 리뷰", "놀람 리뷰", "분노 리뷰", "슬픔 리뷰", "중립 리뷰", "행복 리뷰", "혐오 리뷰"]
         for i in out:
             logits = i
             logits = logits.detach().cpu().numpy()
@@ -175,37 +175,37 @@ def emotion_predict(predict_sentence):
             if np.argmax(logits) == 0:
                 if (probabilitiyFormatValue > 80):
                     print(
-                        ">> 입력하신 내용에서 " + f"{probabilitiyFormatValue}의 확률로 " + test_eval[np.argmax(logits)] + " 느껴집니다.")
+                        f"{probabilitiyFormatValue}의 확률로 " + test_eval[np.argmax(logits)])
                     return np.argmax(logits)
             elif np.argmax(logits) == 1:
                 if (probabilitiyFormatValue > 80):
                     print(
-                        "댓글 내용에서 " + f"{probabilitiyFormatValue}의 확률로 " + test_eval[np.argmax(logits)] + " 느껴집니다.")
+                        f"{probabilitiyFormatValue}의 확률로 " + test_eval[np.argmax(logits)])
                     return np.argmax(logits)
             elif np.argmax(logits) == 2:
                 if (probabilitiyFormatValue > 80):
                     print(
-                        "댓글 내용에서 " + f"{probabilitiyFormatValue}의 확률로 " + test_eval[np.argmax(logits)] + " 느껴집니다.")
+                        f"{probabilitiyFormatValue}의 확률로 " + test_eval[np.argmax(logits)])
                     return np.argmax(logits)
             elif np.argmax(logits) == 3:
                 if (probabilitiyFormatValue > 80):
                     print(
-                        "댓글 내용에서 " + f"{probabilitiyFormatValue}의 확률로 " + test_eval[np.argmax(logits)] + " 느껴집니다.")
+                        f"{probabilitiyFormatValue}의 확률로 " + test_eval[np.argmax(logits)])
                     return np.argmax(logits)
             elif np.argmax(logits) == 4:
                 if (probabilitiyFormatValue > 80):
                     print(
-                        "댓글 내용에서 " + f"{probabilitiyFormatValue}의 확률로 " + test_eval[np.argmax(logits)] + " 느껴집니다.")
+                        f"{probabilitiyFormatValue}의 확률로 " + test_eval[np.argmax(logits)])
                     return np.argmax(logits)
             elif np.argmax(logits) == 5:
                 if (probabilitiyFormatValue > 80):
                     print(
-                        "댓글 내용에서 " + f"{probabilitiyFormatValue}의 확률로 " + test_eval[np.argmax(logits)] + " 느껴집니다.")
+                        f"{probabilitiyFormatValue}의 확률로 " + test_eval[np.argmax(logits)])
                     return np.argmax(logits)
             elif np.argmax(logits) == 6:
                 if (probabilitiyFormatValue > 80):
                     print(
-                        "댓글 내용에서 " + f"{probabilitiyFormatValue}의 확률로 " + test_eval[np.argmax(logits)] + " 느껴집니다.")
+                        f"{probabilitiyFormatValue}의 확률로 " + test_eval[np.argmax(logits)])
                     return np.argmax(logits)
 
 
@@ -296,13 +296,13 @@ def CommentClassifyProcessing(filename):
         score = sentiment_predict(comment_result[i])
         if (score > 0.5):
             if (score > 0.8):
-                logger.debug("{:.2f}% 확률로 긍정 리뷰입니다.".format(score * 100))
+                logger.debug("{:.2f}% 확률로 긍정 리뷰".format(score * 100))
                 dic_temp = {"index": "1", "id": comments[i][1], "comment": comments[i][0],
                             "date": comments[i][2], "num_like": str(comments[i][3])}
                 PositiveNegative_dic_return.append(dic_temp)
         else:
             if (score < 0.2):
-                logger.debug("{:.2f}% 확률로 부정 리뷰입니다.".format((1 - score) * 100))
+                logger.debug("{:.2f}% 확률로 부정 리뷰".format((1 - score) * 100))
                 dic_temp = {"index": "0", "id": comments[i][1], "comment": comments[i][0],
                             "date": comments[i][2], "num_like": str(comments[i][3])}
                 PositiveNegative_dic_return.append(dic_temp)

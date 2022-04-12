@@ -9,11 +9,10 @@ function EmComments(props) {
 
   return (
     <div className="emcomments-div">
-      <h3
-        style={{
+      <h3 style={{
           fontFamily: "NanumGothic",
-          marginLeft: "40px",
           marginTop: "15px",
+          marginLeft: "30%"
         }}
       >
         Comments
