@@ -9,8 +9,9 @@ import Interest from "../Interest/Interest";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import { useState, useEffect } from "react";
-import { bootstrap } from "react-bootstrap";
+import {bootstrap} from "react-bootstrap";
 import Spinner from "../Spinner/Spinner";
+import { ScrollSpy } from "bootstrap";
 
 const Analyze = () => {
   const params = useParams();
@@ -42,6 +43,8 @@ const Analyze = () => {
   let [data, setData] = useState([]);
 
   useEffect(() => {
+
+
     const fetchData = async () => {
       const result = await axios.get(
         `http://localhost:8080/getcomments/${url}`
@@ -117,11 +120,11 @@ const Analyze = () => {
             <a className="navbar-brand js-scroll-trigger" href="#page-top">
               <span className="d-block d-lg-none">ToTheMoon</span>
               <span className="d-none d-lg-block">
-                <img
+                {/* <img
                   className="img-fluid img-profile rounded-circle mx-auto mb-2"
                   src="assets/logo.png"
                   alt="..."
-                />
+                /> */}
               </span>
             </a>
             <button
@@ -149,7 +152,7 @@ const Analyze = () => {
             <Home url={url} />
             <hr className="m-0" />
 
-            <section className="resume-section" id="np">
+            <section className="resume-section" id="np" style={{ justifyContent: "center" }}>
               <NpCharts
                 positivePercent={positivePercent}
                 negativePercent={negativePercent}

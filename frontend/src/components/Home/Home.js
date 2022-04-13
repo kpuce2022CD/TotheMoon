@@ -27,7 +27,7 @@ const Home = ({ url }) => {
         style={{ display: "block", alignItems: "stretch", padding: "2rem" }}
         id="home"
       >
-        <div className="resume-section-content" style={{ height: "100vh" }}>
+        <div className="resume-section-content" style={{ height: "100vh" ,width:"100%" }}>
           <div className="row">
             <div className="col-9">
               <div className="input-group" style={{ height: "60px" }}>

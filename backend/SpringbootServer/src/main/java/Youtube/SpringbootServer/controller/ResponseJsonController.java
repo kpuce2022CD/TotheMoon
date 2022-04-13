@@ -58,6 +58,17 @@ public class ResponseJsonController {
 
         Keyword keyword = KeywordResponse.getBody();
 
+        log.info("대표 키워드 1 = {}", keyword.getB5()[0]);
+        log.info("대표 키워드 2 = {}", keyword.getB5()[1]);
+        log.info("대표 키워드 3 = {}", keyword.getB5()[2]);
+        log.info("대표 키워드 4 = {}", keyword.getB5()[3]);
+        log.info("대표 키워드 5 = {}", keyword.getB5()[4]);
+        log.info("키워드 1 대표 댓글 = {}", keyword.getComments()[0][0]);
+        log.info("키워드 2 대표 댓글 = {}", keyword.getComments()[1][0]);
+        log.info("키워드 3 대표 댓글 = {}", keyword.getComments()[2][0]);
+        log.info("키워드 4 대표 댓글 = {}", keyword.getComments()[3][0]);
+        log.info("키워드 5 대표 댓글 = {}", keyword.getComments()[4][0]);
+
 
         return keyword;
     }
@@ -171,6 +182,11 @@ public class ResponseJsonController {
         RestTemplate restTemplate = new RestTemplate();
         ResponseEntity<Interest[]> InterestResponse = restTemplate.getForEntity(baseurl, Interest[].class);
         Interest[] interests = InterestResponse.getBody();
+
+        for(int i=0;i<interests.length;i++){
+            log.info("날짜별 댓글 개수 = {}", interests[i]);
+        }
+
 
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         String json = gson.toJson(interests);
