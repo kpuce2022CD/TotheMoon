@@ -62,6 +62,8 @@ const Analyze = () => {
       setDisgustComments([]);
       setAngerComments([]);
 
+      
+
       result.data.map((a, i) => {
         if (a.index === "1") {
           setPositiveComments((comment) => [...comment, a]);
@@ -101,6 +103,7 @@ const Analyze = () => {
           setFearPercent(a.fearPercent);
         }
       });
+
       setLoading(false);
     };
 
