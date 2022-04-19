@@ -53,7 +53,7 @@ const Chart = ({ url }) => {
         valueYField: "value",
         valueXField: "date",
         tooltip: am5.Tooltip.new(root, {
-          labelText: "{valueY}",
+          labelText: "댓글 수 : {valueY}",
         }),
       })
     );
