@@ -41,8 +41,8 @@
       <recent name="C:\Users\X\IdeaProjects\TotheMoon\ApiServer\commentClassify" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.np_classify_model">
-    <configuration name="app" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Python.comment">
+    <configuration name="comment" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="ApiServer" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -54,7 +54,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/app.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/comment.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -170,19 +170,19 @@
     </configuration>
     <list>
       <item itemvalue="Python.main" />
-      <item itemvalue="Python.app" />
       <item itemvalue="Python.getVideoInformation" />
       <item itemvalue="Python.testttttt" />
       <item itemvalue="Python.em_classify" />
       <item itemvalue="Python.np_classify_model" />
+      <item itemvalue="Python.comment" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.comment" />
         <item itemvalue="Python.np_classify_model" />
         <item itemvalue="Python.em_classify" />
         <item itemvalue="Python.getVideoInformation" />
         <item itemvalue="Python.testttttt" />
-        <item itemvalue="Python.app" />
       </list>
     </recent_temporary>
   </component>
