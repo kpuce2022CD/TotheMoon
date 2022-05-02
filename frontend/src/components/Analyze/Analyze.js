@@ -16,6 +16,7 @@ import { ScrollSpy } from "bootstrap";
 const Analyze = () => {
   const params = useParams();
   const url = params.url;
+  let [clickedMenuTab, setClickedMenuTab] = useState(0);
 
   const [loading, setLoading] = useState(true);
 
@@ -41,6 +42,11 @@ const Analyze = () => {
   let [fearPercent, setFearPercent] = useState(0);
 
   let [data, setData] = useState([]);
+
+  useEffect(() => {
+    console.log(clickedMenuTab);
+
+  },[clickedMenuTab])
 
   useEffect(() => {
 
@@ -143,10 +149,30 @@ const Analyze = () => {
             </button>
             <div className="collapse navbar-collapse" id="navbarResponsive">
               <ul className="navbar-nav">
-                <NavItem href="#home">Home</NavItem>
-                <NavItem href="#np">댓글 긍정 부정 분석</NavItem>
-                <NavItem href="#emotion">댓글 감정 분석</NavItem>
-                <NavItem href="#interest">댓글 관심도</NavItem>
+                {
+                  clickedMenuTab===1 ? 
+                  <li style={{backgroundColor:"rgb(250,128,114)",margin:"10px"}} onClick={() => {setClickedMenuTab(1)}} class="nav-item"><a style={{color:"white"}} class="nav-link js-scroll-trigger" href="#home">Home</a></li>
+                  :
+                  <li style={{margin:"10px"}} class="nav-item" onClick={() => {setClickedMenuTab(1)}}><a style={{color:"white"}} class="nav-link js-scroll-trigger" href="#home">Home</a></li>
+                }
+                {
+                  clickedMenuTab===2 ? 
+                  <li style={{backgroundColor:"rgb(250,128,114)",margin:"10px"}} class="nav-item" onClick={() => {setClickedMenuTab(2)}}><a style={{color:"white"}} class="nav-link js-scroll-trigger" href="#np">댓글 긍정 부정 분석</a></li>
+                  :
+                  <li style={{margin:"10px"}} class="nav-item" onClick={() => {setClickedMenuTab(2)}}><a style={{color:"white"}} class="nav-link js-scroll-trigger" href="#np">댓글 긍정 부정 분석</a></li>
+                }
+                {
+                  clickedMenuTab===3 ? 
+                  <li style={{backgroundColor:"rgb(250,128,114)",margin:"10px"}} class="nav-item" onClick={() => {setClickedMenuTab(3)}}><a style={{color:"white"}} class="nav-link js-scroll-trigger" href="#emotion">댓글 감정 분석</a></li>
+                  :
+                  <li style={{margin:"10px"}} class="nav-item" onClick={() => {setClickedMenuTab(3)}}><a style={{color:"white"}} class="nav-link js-scroll-trigger" href="#emotion">댓글 감정 분석</a></li>
+                }
+                {
+                  clickedMenuTab===4 ? 
+                  <li style={{backgroundColor:"rgb(250,128,114)",margin:"10px"}} class="nav-item" onClick={() => {setClickedMenuTab(4)}}><a style={{color:"white"}} class="nav-link js-scroll-trigger" href="#interest">댓글 관심도</a></li>
+                  :
+                  <li style={{margin:"10px"}} class="nav-item" onClick={() => {setClickedMenuTab(4)}}><a style={{color:"white"}} class="nav-link js-scroll-trigger" href="#interest">댓글 관심도</a></li>
+                }
               </ul>
             </div>
           </nav>
