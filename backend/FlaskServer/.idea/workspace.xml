@@ -1,12 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="dcfeaba6-ab4e-4548-9932-540f5c2b5d35" name="Changes" comment="app.py refactoring">
-      <change beforePath="$PROJECT_DIR$/../Naetube/src/main/webapp/frontend/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/../Naetube/src/main/webapp/frontend/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Naetube/src/main/webapp/frontend/src/components/EmChart/EmChart.js" beforeDir="false" afterPath="$PROJECT_DIR$/../Naetube/src/main/webapp/frontend/src/components/EmChart/EmChart.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Naetube/src/main/webapp/frontend/src/components/EmChart/EmComments.js" beforeDir="false" afterPath="$PROJECT_DIR$/../Naetube/src/main/webapp/frontend/src/components/EmChart/EmComments.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Naetube/src/main/webapp/frontend/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/../Naetube/src/main/webapp/frontend/src/index.js" afterDir="false" />
-    </list>
+    <list default="true" id="dcfeaba6-ab4e-4548-9932-540f5c2b5d35" name="Changes" comment="app.py refactoring" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -20,7 +15,7 @@
     </option>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
     <option name="RESET_MODE" value="MIXED" />
   </component>
   <component name="ProjectId" id="23KSRXVr0MQWsJUYlAYMTbgEJW1" />
@@ -33,10 +28,11 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\X\IdeaProjects\TotheMoon\backend\FlaskServer" />
       <recent name="C:\Users\X\IdeaProjects\TotheMoon\ApiServer" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
@@ -45,8 +41,8 @@
       <recent name="C:\Users\X\IdeaProjects\TotheMoon\ApiServer\commentClassify" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.np_classify_model">
-    <configuration name="app" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Python.comment">
+    <configuration name="comment" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="ApiServer" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -58,7 +54,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/app.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/comment.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -173,20 +169,20 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Python.app" />
-      <item itemvalue="Python.em_classify" />
-      <item itemvalue="Python.getVideoInformation" />
       <item itemvalue="Python.main" />
-      <item itemvalue="Python.np_classify_model" />
+      <item itemvalue="Python.getVideoInformation" />
       <item itemvalue="Python.testttttt" />
+      <item itemvalue="Python.em_classify" />
+      <item itemvalue="Python.np_classify_model" />
+      <item itemvalue="Python.comment" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.comment" />
         <item itemvalue="Python.np_classify_model" />
         <item itemvalue="Python.em_classify" />
         <item itemvalue="Python.getVideoInformation" />
         <item itemvalue="Python.testttttt" />
-        <item itemvalue="Python.app" />
       </list>
     </recent_temporary>
   </component>

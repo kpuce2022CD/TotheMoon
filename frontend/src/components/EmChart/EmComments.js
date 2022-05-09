@@ -9,11 +9,10 @@ function EmComments(props) {
 
   return (
     <div className="emcomments-div">
-      <h3
-        style={{
+      <h3 style={{
           fontFamily: "NanumGothic",
-          marginLeft: "40px",
           marginTop: "15px",
+          marginLeft: "30%"
         }}
       >
         Comments
@@ -148,7 +147,10 @@ function TabContent(props) {
 
   if (props.clickedTab === 0) {
     return (
-      <div
+      <div>
+        {
+          props.happyComments.length===0 ?
+          <div
         className="box"
         style={{ overflow: "scroll", overflowX: "hidden", height: "400px" }}
       >
@@ -162,13 +164,10 @@ function TabContent(props) {
                 </colgroup>
                 <tbody>
                   <tr>
-                    <th style={{ width: "40%" }}>{happyComments.id}</th>
+                    <th style={{ width: "40%" }}> </th>
                     <th style={{ width: "60%" }}>
                       <div
-                        dangerouslySetInnerHTML={{
-                          __html: happyComments.comment,
-                        }}
-                      ></div>
+                      > </div>
                     </th>
                   </tr>
                 </tbody>
@@ -177,16 +176,52 @@ function TabContent(props) {
             </div>
           );
         })}
+      </div> : <div
+           className="box"
+           style={{ overflow: "scroll", overflowX: "hidden", height: "400px" }}
+         >
+           {props.happyComments.map(function (happyComments) {
+             return (
+               <div>
+                 <table style={{ width: "600px" }} className="tb">
+                   <colgroup>
+                     <col style={{ width: "40%" }}></col>
+                     <col style={{ width: "60%" }}></col>
+                   </colgroup>
+                   <tbody>
+                     <tr>
+                       <th style={{ width: "40%" }}>{happyComments.id}</th>
+                       <th style={{ width: "60%" }}>
+                         <div
+                           dangerouslySetInnerHTML={{
+                             __html: happyComments.comment,
+                           }}
+                         ></div>
+                       </th>
+                     </tr>
+                   </tbody>
+                 </table>
+                 <hr></hr>
+               </div>
+             );
+           })}
+         </div>
+        }
       </div>
-    );
+  
+      );
+  
   } else if (props.clickedTab === 1) {
     return (
-      <div
+      <div>
+        {
+          props.surprisedComments.length===0 ?
+          <div
         className="box"
         style={{ overflow: "scroll", overflowX: "hidden", height: "400px" }}
       >
-        {props.surprisedComments.map(function (surprisedComments) {
-          return (
+        
+      
             <div>
               <table style={{ width: "600px" }} className="tb">
                 <colgroup>
@@ -195,31 +230,62 @@ function TabContent(props) {
                 </colgroup>
                 <tbody>
                   <tr>
-                    <th scope="col">{surprisedComments.id}</th>
+                    <th scope="col"> </th>
                     <th style={{ width: "60%" }}>
                       <div
-                        dangerouslySetInnerHTML={{
-                          __html: surprisedComments.comment,
-                        }}
-                      ></div>
+                      > </div>
                     </th>
                   </tr>
                 </tbody>
               </table>
               <hr></hr>
             </div>
-          );
-        })}
+          
+        
+      </div> : <div
+          className="box"
+          style={{ overflow: "scroll", overflowX: "hidden", height: "400px" }}
+        >
+          {props.surprisedComments.map(function (surprisedComments) {
+            return (
+              <div>
+                <table style={{ width: "600px" }} className="tb">
+                  <colgroup>
+                    <col style={{ width: "40%" }}></col>
+                    <col style={{ width: "60%" }}></col>
+                  </colgroup>
+                  <tbody>
+                    <tr>
+                      <th scope="col">{surprisedComments.id}</th>
+                      <th style={{ width: "60%" }}>
+                        <div
+                          dangerouslySetInnerHTML={{
+                            __html: surprisedComments.comment,
+                          }}
+                        ></div>
+                      </th>
+                    </tr>
+                  </tbody>
+                </table>
+                <hr></hr>
+              </div>
+            );
+          })}
+        </div>
+        }
       </div>
     );
   } else if (props.clickedTab === 2) {
     return (
-      <div
+      <div>
+        {
+          props.angerComments.length===0 ?
+          <div
         className="box"
         style={{ overflow: "scroll", overflowX: "hidden", height: "400px" }}
       >
-        {props.angerComments.map(function (angerComments) {
-          return (
+        
+      
             <div>
               <table style={{ width: "600px" }} className="tb">
                 <colgroup>
@@ -228,31 +294,62 @@ function TabContent(props) {
                 </colgroup>
                 <tbody>
                   <tr>
-                    <th scope="col">{angerComments.id}</th>
+                    <th scope="col"> </th>
                     <th style={{ width: "60%" }}>
                       <div
-                        dangerouslySetInnerHTML={{
-                          __html: angerComments.comment,
-                        }}
-                      ></div>
+                      > </div>
                     </th>
                   </tr>
                 </tbody>
               </table>
               <hr></hr>
             </div>
-          );
-        })}
+          
+        
+      </div> : <div
+          className="box"
+          style={{ overflow: "scroll", overflowX: "hidden", height: "400px" }}
+        >
+          {props.angerComments.map(function (angerComments) {
+            return (
+              <div>
+                <table style={{ width: "600px" }} className="tb">
+                  <colgroup>
+                    <col style={{ width: "40%" }}></col>
+                    <col style={{ width: "60%" }}></col>
+                  </colgroup>
+                  <tbody>
+                    <tr>
+                      <th scope="col">{angerComments.id}</th>
+                      <th style={{ width: "60%" }}>
+                        <div
+                          dangerouslySetInnerHTML={{
+                            __html: angerComments.comment,
+                          }}
+                        ></div>
+                      </th>
+                    </tr>
+                  </tbody>
+                </table>
+                <hr></hr>
+              </div>
+            );
+          })}
+        </div>
+        }
       </div>
     );
   } else if (props.clickedTab === 3) {
     return (
-      <div
+      <div>
+        {
+          props.sadnessComments.length===0 ?
+          <div
         className="box"
         style={{ overflow: "scroll", overflowX: "hidden", height: "400px" }}
       >
-        {props.sadnessComments.map(function (sadnessComments) {
-          return (
+        
+      
             <div>
               <table style={{ width: "600px" }} className="tb">
                 <colgroup>
@@ -261,31 +358,62 @@ function TabContent(props) {
                 </colgroup>
                 <tbody>
                   <tr>
-                    <th scope="col">{sadnessComments.id}</th>
+                    <th scope="col"> </th>
                     <th style={{ width: "60%" }}>
                       <div
-                        dangerouslySetInnerHTML={{
-                          __html: sadnessComments.comment,
-                        }}
-                      ></div>
+                      > </div>
                     </th>
                   </tr>
                 </tbody>
               </table>
               <hr></hr>
             </div>
-          );
-        })}
+          
+        
+      </div> : <div
+          className="box"
+          style={{ overflow: "scroll", overflowX: "hidden", height: "400px" }}
+        >
+          {props.sadnessComments.map(function (sadnessComments) {
+            return (
+              <div>
+                <table style={{ width: "600px" }} className="tb">
+                  <colgroup>
+                    <col style={{ width: "40%" }}></col>
+                    <col style={{ width: "60%" }}></col>
+                  </colgroup>
+                  <tbody>
+                    <tr>
+                      <th scope="col">{sadnessComments.id}</th>
+                      <th style={{ width: "60%" }}>
+                        <div
+                          dangerouslySetInnerHTML={{
+                            __html: sadnessComments.comment,
+                          }}
+                        ></div>
+                      </th>
+                    </tr>
+                  </tbody>
+                </table>
+                <hr></hr>
+              </div>
+            );
+          })}
+        </div>
+        }
       </div>
     );
   } else if (props.clickedTab === 4) {
     return (
-      <div
+      <div>
+        {
+          props.neutralComments.length===0 ?
+          <div
         className="box"
         style={{ overflow: "scroll", overflowX: "hidden", height: "400px" }}
       >
-        {props.neutralComments.map(function (neutralComments) {
-          return (
+        
+      
             <div>
               <table style={{ width: "600px" }} className="tb">
                 <colgroup>
@@ -294,31 +422,62 @@ function TabContent(props) {
                 </colgroup>
                 <tbody>
                   <tr>
-                    <th scope="col">{neutralComments.id}</th>
+                    <th scope="col"> </th>
                     <th style={{ width: "60%" }}>
                       <div
-                        dangerouslySetInnerHTML={{
-                          __html: neutralComments.comment,
-                        }}
-                      ></div>
+                      > </div>
                     </th>
                   </tr>
                 </tbody>
               </table>
               <hr></hr>
             </div>
-          );
-        })}
+          
+        
+      </div> : <div
+          className="box"
+          style={{ overflow: "scroll", overflowX: "hidden", height: "400px" }}
+        >
+          {props.neutralComments.map(function (neutralComments) {
+            return (
+              <div>
+                <table style={{ width: "600px" }} className="tb">
+                  <colgroup>
+                    <col style={{ width: "40%" }}></col>
+                    <col style={{ width: "60%" }}></col>
+                  </colgroup>
+                  <tbody>
+                    <tr>
+                      <th scope="col">{neutralComments.id}</th>
+                      <th style={{ width: "60%" }}>
+                        <div
+                          dangerouslySetInnerHTML={{
+                            __html: neutralComments.comment,
+                          }}
+                        ></div>
+                      </th>
+                    </tr>
+                  </tbody>
+                </table>
+                <hr></hr>
+              </div>
+            );
+          })}
+        </div>
+        }
       </div>
     );
   } else if (props.clickedTab === 5) {
     return (
-      <div
+      <div>
+        {
+          props.fearComments.length===0 ?
+          <div
         className="box"
         style={{ overflow: "scroll", overflowX: "hidden", height: "400px" }}
       >
-        {props.fearComments.map(function (fearComments) {
-          return (
+        
+      
             <div>
               <table style={{ width: "600px" }} className="tb">
                 <colgroup>
@@ -327,31 +486,62 @@ function TabContent(props) {
                 </colgroup>
                 <tbody>
                   <tr>
-                    <th scope="col">{fearComments.id}</th>
+                    <th scope="col"> </th>
                     <th style={{ width: "60%" }}>
                       <div
-                        dangerouslySetInnerHTML={{
-                          __html: fearComments.comment,
-                        }}
-                      ></div>
+                      > </div>
                     </th>
                   </tr>
                 </tbody>
               </table>
               <hr></hr>
             </div>
-          );
-        })}
+          
+        
+      </div> : <div
+          className="box"
+          style={{ overflow: "scroll", overflowX: "hidden", height: "400px" }}
+        >
+          {props.fearComments.map(function (fearComments) {
+            return (
+              <div>
+                <table style={{ width: "600px" }} className="tb">
+                  <colgroup>
+                    <col style={{ width: "40%" }}></col>
+                    <col style={{ width: "60%" }}></col>
+                  </colgroup>
+                  <tbody>
+                    <tr>
+                      <th scope="col">{fearComments.id}</th>
+                      <th style={{ width: "60%" }}>
+                        <div
+                          dangerouslySetInnerHTML={{
+                            __html: fearComments.comment,
+                          }}
+                        ></div>
+                      </th>
+                    </tr>
+                  </tbody>
+                </table>
+                <hr></hr>
+              </div>
+            );
+          })}
+        </div>
+        }
       </div>
     );
   } else if (props.clickedTab === 6) {
     return (
-      <div
+      <div>
+        {
+          props.disgustComments.length===0 ?
+          <div
         className="box"
         style={{ overflow: "scroll", overflowX: "hidden", height: "400px" }}
       >
-        {props.disgustComments.map(function (disgustComments) {
-          return (
+        
+      
             <div>
               <table style={{ width: "600px" }} className="tb">
                 <colgroup>
@@ -360,21 +550,49 @@ function TabContent(props) {
                 </colgroup>
                 <tbody>
                   <tr>
-                    <th scope="col">{disgustComments.id}</th>
+                    <th scope="col"> </th>
                     <th style={{ width: "60%" }}>
                       <div
-                        dangerouslySetInnerHTML={{
-                          __html: disgustComments.comment,
-                        }}
-                      ></div>
+                      > </div>
                     </th>
                   </tr>
                 </tbody>
               </table>
               <hr></hr>
             </div>
-          );
-        })}
+          
+        
+      </div> : <div
+          className="box"
+          style={{ overflow: "scroll", overflowX: "hidden", height: "400px" }}
+        >
+          {props.disgustComments.map(function (disgustComments) {
+            return (
+              <div>
+                <table style={{ width: "600px" }} className="tb">
+                  <colgroup>
+                    <col style={{ width: "40%" }}></col>
+                    <col style={{ width: "60%" }}></col>
+                  </colgroup>
+                  <tbody>
+                    <tr>
+                      <th scope="col">{disgustComments.id}</th>
+                      <th style={{ width: "60%" }}>
+                        <div
+                          dangerouslySetInnerHTML={{
+                            __html: disgustComments.comment,
+                          }}
+                        ></div>
+                      </th>
+                    </tr>
+                  </tbody>
+                </table>
+                <hr></hr>
+              </div>
+            );
+          })}
+        </div>
+        }
       </div>
     );
   }

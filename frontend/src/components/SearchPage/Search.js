@@ -1,8 +1,10 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import {useNavigate} from 'react-router-dom'
 
 
 function Search() {
+    const [urlError, setUrlError] = useState(false);
+    const [urlName, setUrlName] = useState("");
     const navigate = useNavigate()
     const input = useRef()
     const onClick = ()=>{
@@ -10,6 +12,16 @@ function Search() {
         const url = `/analyze${videoId}`
         navigate(url)
     }
+
+    const onChangeUrl = (e) => {
+        const youtubeUrlRegex = /(http:|https:)?(\/\/)?(www\.)?(youtube.com|youtu.be)\/(watch|embed)?(\?v=|\/)?(\S+)?/g
+        if ((!e.target.value || (youtubeUrlRegex.test(e.target.value)))) setUrlError(false);
+        else setUrlError(true);
+        setUrlName(e.target.value);
+        console.log(urlError);
+    };
+
+    
 
     return(
         <div style={{position:"absolute",left:"0",right:"0"}}>
@@ -41,7 +53,8 @@ function Search() {
                                 {/* <!-- Email address input--> */}
                                 <div class="row">
                                     <div class="col">
-                                        <input class="form-control form-control-lg" id="emailAddress" type="email" placeholder="유튜브 영상의 URL을 입력해주세요" data-sb-validations="required,email" ref={input}/>
+                                        <input class="form-control form-control-lg" id="emailAddress" type="email" placeholder="유튜브 영상의 URL을 입력해주세요" data-sb-validations="required,email" ref={input} onChange={onChangeUrl}/>
+                                        {urlError && <div style={{marginTop:"10px"}} class="invalid-input">정확한 URL 정보를 입력해주세요.</div>}
                                         <div class="invalid-feedback text-white" data-sb-feedback="emailAddress:required">Email Address is required.</div>
                                         <div class="invalid-feedback text-white" data-sb-feedback="emailAddress:email">Email Address Email is not valid.</div>
 

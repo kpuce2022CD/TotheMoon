@@ -9,12 +9,14 @@ import Interest from "../Interest/Interest";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import { useState, useEffect } from "react";
-import { bootstrap } from "react-bootstrap";
+import {bootstrap} from "react-bootstrap";
 import Spinner from "../Spinner/Spinner";
+import { ScrollSpy } from "bootstrap";
 
 const Analyze = () => {
   const params = useParams();
   const url = params.url;
+  let [clickedMenuTab, setClickedMenuTab] = useState(0);
 
   const [loading, setLoading] = useState(true);
 
@@ -42,6 +44,13 @@ const Analyze = () => {
   let [data, setData] = useState([]);
 
   useEffect(() => {
+    console.log(clickedMenuTab);
+
+  },[clickedMenuTab])
+
+  useEffect(() => {
+
+
     const fetchData = async () => {
       const result = await axios.get(
         `http://localhost:8080/getcomments/${url}`
@@ -58,6 +67,8 @@ const Analyze = () => {
       setHappyComments([]);
       setDisgustComments([]);
       setAngerComments([]);
+
+      
 
       result.data.map((a, i) => {
         if (a.index === "1") {
@@ -98,6 +109,7 @@ const Analyze = () => {
           setFearPercent(a.fearPercent);
         }
       });
+
       setLoading(false);
     };
 
@@ -117,11 +129,11 @@ const Analyze = () => {
             <a className="navbar-brand js-scroll-trigger" href="#page-top">
               <span className="d-block d-lg-none">ToTheMoon</span>
               <span className="d-none d-lg-block">
-                <img
+                {/* <img
                   className="img-fluid img-profile rounded-circle mx-auto mb-2"
                   src="assets/logo.png"
                   alt="..."
-                />
+                /> */}
               </span>
             </a>
             <button
@@ -137,10 +149,30 @@ const Analyze = () => {
             </button>
             <div className="collapse navbar-collapse" id="navbarResponsive">
               <ul className="navbar-nav">
-                <NavItem href="#home">Home</NavItem>
-                <NavItem href="#np">댓글 긍정 부정 분석</NavItem>
-                <NavItem href="#emotion">댓글 감정 분석</NavItem>
-                <NavItem href="#interest">댓글 관심도</NavItem>
+                {
+                  clickedMenuTab===1 ? 
+                  <li style={{backgroundColor:"rgb(250,128,114)",margin:"10px"}} onClick={() => {setClickedMenuTab(1)}} class="nav-item"><a style={{color:"white"}} class="nav-link js-scroll-trigger" href="#home">Home</a></li>
+                  :
+                  <li style={{margin:"10px"}} class="nav-item" onClick={() => {setClickedMenuTab(1)}}><a style={{color:"white"}} class="nav-link js-scroll-trigger" href="#home">Home</a></li>
+                }
+                {
+                  clickedMenuTab===2 ? 
+                  <li style={{backgroundColor:"rgb(250,128,114)",margin:"10px"}} class="nav-item" onClick={() => {setClickedMenuTab(2)}}><a style={{color:"white"}} class="nav-link js-scroll-trigger" href="#np">댓글 긍정 부정 분석</a></li>
+                  :
+                  <li style={{margin:"10px"}} class="nav-item" onClick={() => {setClickedMenuTab(2)}}><a style={{color:"white"}} class="nav-link js-scroll-trigger" href="#np">댓글 긍정 부정 분석</a></li>
+                }
+                {
+                  clickedMenuTab===3 ? 
+                  <li style={{backgroundColor:"rgb(250,128,114)",margin:"10px"}} class="nav-item" onClick={() => {setClickedMenuTab(3)}}><a style={{color:"white"}} class="nav-link js-scroll-trigger" href="#emotion">댓글 감정 분석</a></li>
+                  :
+                  <li style={{margin:"10px"}} class="nav-item" onClick={() => {setClickedMenuTab(3)}}><a style={{color:"white"}} class="nav-link js-scroll-trigger" href="#emotion">댓글 감정 분석</a></li>
+                }
+                {
+                  clickedMenuTab===4 ? 
+                  <li style={{backgroundColor:"rgb(250,128,114)",margin:"10px"}} class="nav-item" onClick={() => {setClickedMenuTab(4)}}><a style={{color:"white"}} class="nav-link js-scroll-trigger" href="#interest">댓글 관심도</a></li>
+                  :
+                  <li style={{margin:"10px"}} class="nav-item" onClick={() => {setClickedMenuTab(4)}}><a style={{color:"white"}} class="nav-link js-scroll-trigger" href="#interest">댓글 관심도</a></li>
+                }
               </ul>
             </div>
           </nav>
@@ -149,7 +181,7 @@ const Analyze = () => {
             <Home url={url} />
             <hr className="m-0" />
 
-            <section className="resume-section" id="np">
+            <section className="resume-section" id="np" style={{ justifyContent: "center" }}>
               <NpCharts
                 positivePercent={positivePercent}
                 negativePercent={negativePercent}
