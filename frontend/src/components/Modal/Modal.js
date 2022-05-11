@@ -7,8 +7,7 @@ const Modal = ({ setVisible, visible, popUp }) => {
       <div className="modal-window">
         <div className="title">
           <h2>{popUp.title}</h2>
-        </div>
-        <div
+          <div
           className="close-area"
           onClick={() => {
             setVisible(false);
@@ -16,11 +15,13 @@ const Modal = ({ setVisible, visible, popUp }) => {
         >
           X
         </div>
+        </div>
+        
         <div className="content">
           {popUp.comments.map((cur, index) => (
             <>
-              <p key={index} dangerouslySetInnerHTML={{ __html: cur }} />
-              <hr />
+              <p style={{margin:"10px"}} key={index} dangerouslySetInnerHTML={{ __html: cur }} />    
+              <hr></hr>        
             </>
           ))}
         </div>

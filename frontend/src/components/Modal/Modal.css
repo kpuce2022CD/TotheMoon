@@ -16,7 +16,7 @@
   border: 1px solid rgba(255, 255, 255, 0.18);
 }
 #modal .modal-window {
-  background: rgba(69, 139, 197, 0.7);
+  background: white;
   box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
   backdrop-filter: blur(13.5px);
   -webkit-backdrop-filter: blur(13.5px);
@@ -30,13 +30,19 @@
   overflow: auto;
 }
 #modal .title {
-  padding-left: 10px;
-  display: inline;
-  text-shadow: 1px 1px 2px gray;
+  padding-left: 20px;
+  border-radius: 10px;
+  text-shadow: 5px 5px 10px gray;
   color: white;
+  background: #CD5C5C;
+  height: 70px;
+  align-items: center;
+  justify-content: center;
 }
 #modal .title h2 {
   display: inline;
+  color:white;
+  
 }
 #modal .close-area {
   display: inline;
@@ -45,14 +51,16 @@
   cursor: pointer;
   text-shadow: 1px 1px 2px gray;
   color: white;
+  
 }
 
 #modal .content {
   margin-top: 20px;
   padding: 0px 10px;
   text-shadow: 1px 1px 2px gray;
-  color: white;
+  color: black;
   flex-direction: column;
+  
 }
 
 #modal.modal-overlay {
