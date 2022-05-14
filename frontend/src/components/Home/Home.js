@@ -38,13 +38,15 @@ const Home = ({ url }) => {
                   aria-label="Search"
                   aria-describedby="search-addon"
                   ref={input}
+                  style={{borderColor:"black",border:"3px solid rgb(178,34,34)"}}
                 />
                 <button
                   type="button"
                   className="btn btn-outline-primary"
                   onClick={onClick}
+                  style={{width:"100px"}}
                 >
-                  검색
+                  <i class="bi bi-search"></i>
                 </button>
               </div>
             </div>
