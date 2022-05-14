@@ -48,14 +48,19 @@ class timelineExtractor:
       soup = BeautifulSoup(i,'html.parser')
       for j in soup.find_all('a'):
         if 'https://www.youtube.com/watch?v='+self.url in j['href']:
-          timeline.append(j.text)
-    best_timelines = Counter(timeline).most_common(n)
-    best_timelines = [{'time':i[0], 'sec':self.standardized_time(i[0])} for i in best_timelines]
-    return best_timelines
+          timeline.append(self.standardized_time(j.text))
+    best_timelines = Counter(timeline).most_common()
+    best_timelines = [{'count':i[1], 'sec':i[0]} for i in best_timelines]
+    best_timelines = self.merge_timeline(best_timelines)
+    best_timelines = self.sorting_timeline_comments(best_timelines)
+    for i in best_timelines:
+      i['label'] = self.get_section(i['sec'])
+
+    return best_timelines[:n]
     
-  def sorting_timeline_comments(self):
-    self.timeline_list.sort(key = lambda x : (-x['length'], x['timeline']))
-    return self
+  def sorting_timeline_comments(self, timeline_list, para='count'):
+    timeline_list.sort(key = lambda x : -x[para])
+    return timeline_list
   
   def standardized_time(self,time):
     time = time.split(':')
@@ -71,6 +76,41 @@ class timelineExtractor:
       seconds+=int(time[1])
     result = hour*3600+minutes*60+seconds
     return result
+
+  def sec_to_time(self, sec):
+    hour = str(sec//3600)
+    minutes = str(sec%3600//60)
+    seconds = str(sec%3600%60)
+    result = ''
+    if(hour == '0'):
+      result = '0'*(len(minutes)%2)+minutes + ':' +'0'*(len(seconds)%2) +seconds
+    else:
+      result = str(hour) +':'+'0'*(len(minutes)%2)+minutes + ':' +'0'*(len(seconds)%2) +seconds
+    return result
+
+  def get_section(self, sec):
+    head = ''
+    tail = ''
+    head = self.sec_to_time(sec)
+    tail = self.sec_to_time(sec+10)
+    return head + '~' + tail
+  
+  def merge_timeline(self, timeline_list):
+    timeline_list.sort(key = lambda x : x['sec'])
+    for i in range(len(timeline_list)):
+      if(timeline_list[i] == None):
+        continue;
+      target = timeline_list[i]['sec']
+      for j in range(i, len(timeline_list)):
+        if(timeline_list[j] == None):
+          continue;
+        if(target < timeline_list[j]['sec'] <= target+10):
+          if(i!=j):
+            timeline_list[i]['count'] += timeline_list[j]['count']
+            timeline_list[j] = None
+    return list(filter(None, timeline_list))
+      
+
   
   def extract_timeline_comments(self, url):
     self.get_comments_from_excel(url).get_timeline().sorting_timeline_comments()
