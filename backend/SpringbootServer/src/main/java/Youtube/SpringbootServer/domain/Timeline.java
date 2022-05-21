@@ -7,7 +7,8 @@ import lombok.ToString;
 @Setter
 @ToString
 public class Timeline {
-    private String time;
+    private String count;
     private int sec;
+    private String label;
 
 }

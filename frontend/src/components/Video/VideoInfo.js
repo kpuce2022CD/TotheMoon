@@ -39,8 +39,12 @@ const VideoInfo = ({ player, url }) => {
           인기 타임라인
         </span>
         {timeline.map((cur, index) => (
-          <Timeline clickfunc={clickfunc(cur.sec)} key={index}>
-            {cur.time}
+          <Timeline
+            clickfunc={clickfunc(cur.sec)}
+            key={index}
+            count={cur.count}
+          >
+            {cur.label}
           </Timeline>
         ))}
       </div>
