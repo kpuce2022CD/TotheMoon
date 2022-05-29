@@ -3,20 +3,18 @@ from flask import Flask, request, jsonify
 from comment import collectComment
 from timeline.timelineExtractor import timelineExtractor
 from findKeyword.keywordExtractor import keywordExtractor
-from np_classify import npClassifyProcessing
-from em_classify import *
 from comment_classify import *
 from interest.interestExtractor import get_interestData
 from getVideoInformation import getVideoInformation
 
-
 def create_app():
+    
     app = Flask(__name__)
-
+    
     @app.route('/', methods=['GET'])
     def start():
-        collectComment(request.args.get('url'))
-        return "success"
+       collectComment(request.args.get('url'))
+       return "success"
 
     @app.route('/classifycomments')
     def classifyComments():
@@ -66,3 +64,8 @@ def create_app():
         return jsonify(videoInformation)
 
     return app
+
+
+if __name__=="__main__":
+    
+    create_app().run()
