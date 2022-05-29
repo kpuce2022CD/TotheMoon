@@ -16,7 +16,7 @@
 <br>
 
 ## 시스템 구성도
-![systemDiagram](https://user-images.githubusercontent.com/72335632/156916456-dc40bbc2-af74-4250-98f8-33ec3e42d0f3.png)
+![systemDiagram](https://user-images.githubusercontent.com/72335632/170873023-d41384f6-2ec1-40e4-8008-0b6857983da5.png)
 
 <br>
 
