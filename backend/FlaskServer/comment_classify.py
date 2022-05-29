@@ -35,7 +35,7 @@ import tensorflow as tf
 logger = logging.getLogger("main")
 stream_handler = logging.StreamHandler()
 logger.addHandler(stream_handler)
-logger.setLevel(logging.DEBUG)
+#logger.setLevel(logging.DEBUG)
 
 # ------------------------------------- 긍정 부정 분류 (start)--------------------------------------------
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
@@ -47,13 +47,13 @@ stopwords = f.read()
 
 max_len = 30
 
-# loading
+# 버트 모델 로딩. 
 with open('np_tokenizer.pickle', 'rb') as handle:
     NP_tokenizer = pickle.load(handle)
 
 loaded_model = load_model('np_classify_model.h5')
 
-
+#감정 예측
 def sentiment_predict(new_sentence):
     new_sentence = re.sub(r'[^ㄱ-ㅎㅏ-ㅣ가-힣 ]', '', new_sentence)
     new_sentence = okt.morphs(new_sentence, stem=True)  # 토큰화
@@ -91,7 +91,7 @@ log_interval = 200
 learning_rate = 5e-5
 num_workers = 0
 
-
+#버트 데이터 셋에 맞게 전처리
 class BERTDataset(Dataset):
     def __init__(self, dataset, sent_idx, label_idx, bert_tokenizer, max_len,
                  pad, pair):
@@ -140,11 +140,11 @@ class BERTClassifier(nn.Module):
 
 
 model = BERTClassifier(bertmodel, dr_rate=0.5).to(device)
-model.load_state_dict(torch.load('model_state_dic.pt', map_location=device))
+model.load_state_dict(torch.load('model_state_dic.pt', map_location=device)) #매개변수랑 pt파일 등록
 
 
 # model = torch.load('em_classify_model.pt',map_location=device)  # 파이토치 모델 로드
-
+#감정 예측
 def emotion_predict(predict_sentence):
     data = [predict_sentence, '0']
     dataset_another = [data]
@@ -171,63 +171,56 @@ def emotion_predict(predict_sentence):
             probabilitiyValue = probabilities.numpy()
             probabilitiyIndexValue = probabilitiyValue[np.argmax(logits)] * 100
             probabilitiyFormatValue = round(probabilitiyIndexValue, 0)
-
+            
+            #공포
             if np.argmax(logits) == 0:
                 if (probabilitiyFormatValue > 80):
-                    print(
-                        f"{probabilitiyFormatValue}의 확률로 " + test_eval[np.argmax(logits)])
+                    logger.debug(f"{probabilitiyFormatValue}의 확률로 " + test_eval[np.argmax(logits)])
                     return np.argmax(logits)
                 else :
-                    print(
-                        f"{probabilitiyFormatValue}의 확률로 " + test_eval[np.argmax(logits)])
+                    logger.debug(f"{probabilitiyFormatValue}의 확률로 " + test_eval[np.argmax(logits)])
+            #놀람
             elif np.argmax(logits) == 1:
                 if (probabilitiyFormatValue > 80):
-                    print(
-                        f"{probabilitiyFormatValue}의 확률로 " + test_eval[np.argmax(logits)])
+                    logger.debug(f"{probabilitiyFormatValue}의 확률로 " + test_eval[np.argmax(logits)])
                     return np.argmax(logits)
                 else :
-                    print(
-                        f"{probabilitiyFormatValue}의 확률로 " + test_eval[np.argmax(logits)])
+                    logger.debug(f"{probabilitiyFormatValue}의 확률로 " + test_eval[np.argmax(logits)])
+            #분노
             elif np.argmax(logits) == 2:
                 if (probabilitiyFormatValue > 80):
-                    print(
-                        f"{probabilitiyFormatValue}의 확률로 " + test_eval[np.argmax(logits)])
+                    logger.debug(f"{probabilitiyFormatValue}의 확률로 " + test_eval[np.argmax(logits)])
                     return np.argmax(logits)
                 else :
-                    print(
-                        f"{probabilitiyFormatValue}의 확률로 " + test_eval[np.argmax(logits)])
+                    logger.debug(f"{probabilitiyFormatValue}의 확률로 " + test_eval[np.argmax(logits)])
+            #슬픔
             elif np.argmax(logits) == 3:
                 if (probabilitiyFormatValue > 80):
-                    print(
-                        f"{probabilitiyFormatValue}의 확률로 " + test_eval[np.argmax(logits)])
+                    logger.debug(f"{probabilitiyFormatValue}의 확률로 " + test_eval[np.argmax(logits)])
                     return np.argmax(logits)
                 else :
-                    print(
-                        f"{probabilitiyFormatValue}의 확률로 " + test_eval[np.argmax(logits)])
+                    logger.debug(f"{probabilitiyFormatValue}의 확률로 " + test_eval[np.argmax(logits)])
+            #중랍
             elif np.argmax(logits) == 4:
                 if (probabilitiyFormatValue > 80):
-                    print(
-                        f"{probabilitiyFormatValue}의 확률로 " + test_eval[np.argmax(logits)])
+                    logger.debug(f"{probabilitiyFormatValue}의 확률로 " + test_eval[np.argmax(logits)])
                     return np.argmax(logits)
                 else :
-                    print(
-                        f"{probabilitiyFormatValue}의 확률로 " + test_eval[np.argmax(logits)])
+                    logger.debug(f"{probabilitiyFormatValue}의 확률로 " + test_eval[np.argmax(logits)])
+            #행복
             elif np.argmax(logits) == 5:
                 if (probabilitiyFormatValue > 80):
-                    print(
-                        f"{probabilitiyFormatValue}의 확률로 " + test_eval[np.argmax(logits)])
+                    logger.debug(f"{probabilitiyFormatValue}의 확률로 " + test_eval[np.argmax(logits)])
                     return np.argmax(logits)
                 else :
-                    print(
-                        f"{probabilitiyFormatValue}의 확률로 " + test_eval[np.argmax(logits)])
+                    logger.debug(f"{probabilitiyFormatValue}의 확률로 " + test_eval[np.argmax(logits)])
+            #혐오
             elif np.argmax(logits) == 6:
                 if (probabilitiyFormatValue > 80):
-                    print(
-                        f"{probabilitiyFormatValue}의 확률로 " + test_eval[np.argmax(logits)])
+                    logger.debug(f"{probabilitiyFormatValue}의 확률로 " + test_eval[np.argmax(logits)])
                     return np.argmax(logits)
                 else :
-                    print(
-                        f"{probabilitiyFormatValue}의 확률로 " + test_eval[np.argmax(logits)])
+                    logger.debug(f"{probabilitiyFormatValue}의 확률로 " + test_eval[np.argmax(logits)])
 
 
 # -----------------------------------------------------------------------------------------------
@@ -281,7 +274,7 @@ def emoticonToWord(comment):
     return comment
 
 
-# 유튜브 데이터 전처리
+# 댓글 긍정부정,감정분석 결과 반환 함수.
 def CommentClassifyProcessing(filename):
     df = pd.read_excel(filename)
 
@@ -366,6 +359,6 @@ def CommentClassifyProcessing(filename):
                         "date": comments[i][2], "num_like": str(comments[i][3])}
             Emotion_dic_return.append(dic_temp)
 
-    return PositiveNegative_dic_return, Emotion_dic_return
+    return PositiveNegative_dic_return, Emotion_dic_return   
 
 # CommentClassifyProcessing("bCA060Tb5pI.xlsx")
