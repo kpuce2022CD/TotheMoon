@@ -1,0 +1,20 @@
+language: generic
+
+sudo: required
+
+servies:
+  - docker
+
+script:
+  -echo "Success!!"
+
+after_sucess:
+  - docker build -t jh83370/frontend ./frontend
+  - docker build -t jh83370/flaskserver ./backend/FlaskServer
+  - docker build -t jh83370/springserver ./backend/SpringbootServer
+
+  - echo "$DOCKER_HUB_PASSWORD" | docker login -u "$DOCKER_HUB_ID" --password-stdin 
+
+  - docker push jh83370/frontend
+  - docker push jh83370/flaskserver
+  - docker push jh83370/springserver
