@@ -32,7 +32,7 @@ public class ResultController {
     public String Search(@PathVariable String url, Model model){
 
         /**베스트 키워드 start*/
-        String KeywordBaseUrl = "http://localhost:5000/searchkeyword?url=" + url;
+        String KeywordBaseUrl = "http://host.docker.internal:5000/searchkeyword?url=" + url;
         RestTemplate KeywordRestTemplate = new RestTemplate();
 
         ResponseEntity<Keyword> KeywordResponse = KeywordRestTemplate.getForEntity(KeywordBaseUrl, Keyword.class);
@@ -46,7 +46,7 @@ public class ResultController {
         /** 베스트 키워드 end */
 
         /**타임라인 start*/
-        String TimelineBaseUrl = "http://localhost:5000/timeline?url="+url;
+        String TimelineBaseUrl = "http://host.docker.internal:5000/timeline?url="+url;
         RestTemplate TimelineRestTemplate = new RestTemplate();
         ResponseEntity<Timeline[]> TimelineResponse = TimelineRestTemplate.getForEntity(TimelineBaseUrl, Timeline[].class);
         Timeline[] timelines = TimelineResponse.getBody();
@@ -55,7 +55,7 @@ public class ResultController {
 
 
         /**관심도 start*/
-        String InterestBaseUrl = "http://localhost:5000/interest?url=" + url;
+        String InterestBaseUrl = "http://host.docker.internal:5000/interest?url=" + url;
         RestTemplate InterestRestTemplate = new RestTemplate();
         ResponseEntity<Interest[]> InterestResponse = InterestRestTemplate.getForEntity(InterestBaseUrl, Interest[].class);
         Interest interests[] = InterestResponse.getBody();
@@ -66,7 +66,7 @@ public class ResultController {
         /**관심도 end*/
 
         /**비디오 정보 가져오기 start */
-        String VIbaseUrl = "http://localhost:5000/getvideoinformation?url=" + url;
+        String VIbaseUrl = "http://host.docker.internal:5000/getvideoinformation?url=" + url;
         RestTemplate VIrestTemplate = new RestTemplate();
         ResponseEntity<VideoInformation[]> VIresponse = VIrestTemplate.getForEntity(VIbaseUrl, VideoInformation[].class);
         VideoInformation[] videoInformation = VIresponse.getBody();
@@ -77,7 +77,7 @@ public class ResultController {
         /**비디오 정보 가져오기 end */
 
         /**긍정부정, 6가지 감정 start*/
-        String baseUrl = "http://localhost:5000/classifycomments?url=" + url;
+        String baseUrl = "http://host.docker.internal:5000/classifycomments?url=" + url;
         RestTemplate restTemplate = new RestTemplate();
         ResponseEntity<Comment[]> response = restTemplate.getForEntity(baseUrl, Comment[].class);
         Comment comments[] = response.getBody();

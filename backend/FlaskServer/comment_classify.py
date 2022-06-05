@@ -35,7 +35,7 @@ import tensorflow as tf
 logger = logging.getLogger("main")
 stream_handler = logging.StreamHandler()
 logger.addHandler(stream_handler)
-#logger.setLevel(logging.DEBUG)
+logger.setLevel(logging.DEBUG)
 
 # ------------------------------------- 긍정 부정 분류 (start)--------------------------------------------
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
