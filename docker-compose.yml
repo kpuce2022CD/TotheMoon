@@ -1,0 +1,42 @@
+version: '3'
+services:
+  frontend:
+    container_name: frontend
+    image: jh83370/frontend
+    build: ./frontend
+    restart: always
+    ports:
+      - "3000:3000"  
+    stdin_open: true
+    networks:
+      - tothemoon_network
+     
+  flaskserver:
+    container_name: flaskserver
+    image: jh83370/flaskserver
+    build: ./backend/FlaskServer
+    restart: always
+    ports: 
+      - "5000:5000"
+    environment:
+      - "REST_API_URL= http://host.docker.internal:5000"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"  
+    networks:
+      - tothemoon_network
+  
+  springserver:
+    container_name: springserver
+    image: jh83370/springserver
+    build: ./backend/SpringbootServer
+    restart: always
+    ports:
+      - "8080:8080"
+    networks:
+      - tothemoon_network
+
+networks:
+  tothemoon_network:
+    driver: bridge
+
+    
