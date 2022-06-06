@@ -10,6 +10,9 @@ services:
     stdin_open: true
     networks:
       - tothemoon_network
+    depends_on:
+      - flaskserver
+      - springserver
      
   flaskserver:
     container_name: flaskserver
