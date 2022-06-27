@@ -39,6 +39,13 @@
 
 <br>
 
+### DevOps
+<div> 
+  <img src="https://img.shields.io/badge/Amazon AWS-232F3E?style=for-the-badge&logo=Amazon%20AWS&logoColor=white">
+  <img alt="Docker" src="https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=Docker&logoColor=white">
+</div>
+
+<br>
 
 ## 개발 계획
 
