@@ -33,7 +33,7 @@ public class ResponseJsonController {
     private final CommentService commentService;
 
     private ObjectMapper objectMapper = new ObjectMapper();
-    private String link = "http://host.docker.internal:5000";
+    private String link = "http://localhost:5000";
     private RestTemplate restTemplate = new RestTemplate();
 
     @CrossOrigin("*")
@@ -51,7 +51,7 @@ public class ResponseJsonController {
     @CrossOrigin("*")
     @GetMapping("/getkeyword/{url}")
     public Keyword getKeyword(@PathVariable String url, Model model) {
-        String KeywordBaseUrl = "http://host.docker.internal:5000/searchkeyword?url=" + url;
+        String KeywordBaseUrl = "http://localhost:5000/searchkeyword?url=" + url;
         RestTemplate KeywordRestTemplate = new RestTemplate();
 
         ResponseEntity<Keyword> KeywordResponse = KeywordRestTemplate.getForEntity(KeywordBaseUrl, Keyword.class);
@@ -77,7 +77,7 @@ public class ResponseJsonController {
     @GetMapping("/getcomments/{url}")
     public String getComments(@PathVariable String url, Model model) {
 
-        String baseUrl = "http://host.docker.internal:5000/classifycomments?url=" + url;
+        String baseUrl = "http://localhost:5000/classifycomments?url=" + url;
         RestTemplate restTemplate = new RestTemplate();
         ResponseEntity<Comment[]> response = restTemplate.getForEntity(baseUrl, Comment[].class);
         Comment comments[] = response.getBody();
@@ -152,7 +152,7 @@ public class ResponseJsonController {
     @CrossOrigin("*")
     @GetMapping("/videoinfo/{videoId}")
     public String getVideoInfo(@PathVariable String videoId){
-        String baseurl = "http://host.docker.internal:5000/getvideoinformation?url=" + videoId;
+        String baseurl = "http://localhost:5000/getvideoinformation?url=" + videoId;
         RestTemplate restTemplate = new RestTemplate();
         ResponseEntity<VideoInformation[]> response = restTemplate.getForEntity(baseurl, VideoInformation[].class);
         VideoInformation[] videoInfo = response.getBody();
@@ -165,7 +165,7 @@ public class ResponseJsonController {
     @CrossOrigin("*")
     @GetMapping("/timeline/{videoId}")
     public String getTimeline(@PathVariable String videoId){
-        String baseurl = "http://host.docker.internal:5000/timeline?url="+videoId;
+        String baseurl = "http://localhost:5000/timeline?url="+videoId;
         RestTemplate restTemplate = new RestTemplate();
         ResponseEntity<Timeline[]> response = restTemplate.getForEntity(baseurl, Timeline[].class);
         Timeline[] timeline = response.getBody();
@@ -178,7 +178,7 @@ public class ResponseJsonController {
     @CrossOrigin("*")
     @GetMapping("/interest/{videoId}")
     public String getInterest(@PathVariable String videoId){
-        String baseurl = "http://host.docker.internal:5000/interest?url=" + videoId;
+        String baseurl = "http://localhost:5000/interest?url=" + videoId;
         RestTemplate restTemplate = new RestTemplate();
         ResponseEntity<Interest[]> InterestResponse = restTemplate.getForEntity(baseurl, Interest[].class);
         Interest[] interests = InterestResponse.getBody();
@@ -196,7 +196,7 @@ public class ResponseJsonController {
     @CrossOrigin("*")
     @GetMapping("/findcomment")
     public String[] findComment(@RequestParam("url") String url, @RequestParam("keyword") String keyword){
-        String baseUrl = "http://host.docker.internal:5000/find?url=" + url+"&keyword="+keyword;
+        String baseUrl = "http://localhost:5000/find?url=" + url+"&keyword="+keyword;
         RestTemplate restTemplate = new RestTemplate();
         ResponseEntity<String[]> response = restTemplate.getForEntity(baseUrl, String[].class);
         String[] result = response.getBody();
