@@ -143,41 +143,34 @@ public class ResponseJsonController {
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         String jsonDataArrayToGson = gson.toJson(jsonDataArray);
 
-
-
-
         return jsonDataArrayToGson;
     }
 
     @CrossOrigin("*")
     @GetMapping("/videoinfo/{videoId}")
-    public String getVideoInfo(@PathVariable String videoId){
+    public VideoInformation[] getVideoInfo(@PathVariable String videoId){
         String baseurl = "http://localhost:5000/getvideoinformation?url=" + videoId;
         RestTemplate restTemplate = new RestTemplate();
         ResponseEntity<VideoInformation[]> response = restTemplate.getForEntity(baseurl, VideoInformation[].class);
         VideoInformation[] videoInfo = response.getBody();
 
-        Gson gson = new GsonBuilder().setPrettyPrinting().create();
-        String json = gson.toJson(videoInfo);
-        return json;
+        return videoInfo;
     }
 
     @CrossOrigin("*")
     @GetMapping("/timeline/{videoId}")
-    public String getTimeline(@PathVariable String videoId){
+    public Timeline[] getTimeline(@PathVariable String videoId){
         String baseurl = "http://localhost:5000/timeline?url="+videoId;
         RestTemplate restTemplate = new RestTemplate();
         ResponseEntity<Timeline[]> response = restTemplate.getForEntity(baseurl, Timeline[].class);
         Timeline[] timeline = response.getBody();
 
-        Gson gson = new GsonBuilder().setPrettyPrinting().create();
-        String json = gson.toJson(timeline);
-        return json;
+        return timeline;
     }
 
     @CrossOrigin("*")
     @GetMapping("/interest/{videoId}")
-    public String getInterest(@PathVariable String videoId){
+    public Interest[] getInterest(@PathVariable String videoId){
         String baseurl = "http://localhost:5000/interest?url=" + videoId;
         RestTemplate restTemplate = new RestTemplate();
         ResponseEntity<Interest[]> InterestResponse = restTemplate.getForEntity(baseurl, Interest[].class);
@@ -187,10 +180,7 @@ public class ResponseJsonController {
             log.info("날짜별 댓글 개수 = {}", interests[i]);
         }
 
-
-        Gson gson = new GsonBuilder().setPrettyPrinting().create();
-        String json = gson.toJson(interests);
-        return json;
+        return interests;
     }
 
     @CrossOrigin("*")
