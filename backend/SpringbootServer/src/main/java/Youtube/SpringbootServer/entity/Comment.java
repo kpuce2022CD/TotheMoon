@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import static javax.persistence.FetchType.*;
 
 @Entity
 @Getter
@@ -15,8 +16,9 @@ public class Comment {
     @Column(name = "comment_id")
     private Long id;
 
-//    @OneToOne(mappedBy = "comment", fetch = FetchType.LAZY)
-//    private Record record;
+    @ManyToOne( fetch = LAZY)
+    @JoinColumn(name= "record_id")
+    private Record record;
 
     //댓글 작성자 아이디
     private String commentUserId;
@@ -39,11 +41,11 @@ public class Comment {
 
     }
 
-    public Comment(String commentUserId, String date, String index, String content, String goodnum) {
+    public Comment(String commentUserId, String date, String index, String content, String commentLike) {
         this.commentUserId = commentUserId;
         this.commentDate = date;
         this.commentIndex = index;
         this.content = content;
-        this.commentLike = goodnum;
+        this.commentLike = commentLike;
     }
 }

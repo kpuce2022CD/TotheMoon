@@ -1,6 +1,8 @@
 package Youtube.SpringbootServer.controller;
 
 import Youtube.SpringbootServer.dto.*;
+import Youtube.SpringbootServer.entity.Keyword;
+import Youtube.SpringbootServer.service.BoardService;
 import Youtube.SpringbootServer.service.CommentService;
 import Youtube.SpringbootServer.service.VideoService;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -31,6 +33,8 @@ public class ResponseJsonController {
     //서비스 클래스 DI
     private final VideoService videoService;
     private final CommentService commentService;
+    private final KeywordDTO keywordDTO;
+    private final CommentListDTO commentListDTO;
 
     private ObjectMapper objectMapper = new ObjectMapper();
     private String link = "http://localhost:5000";
@@ -57,7 +61,8 @@ public class ResponseJsonController {
         ResponseEntity<KeywordDTO> KeywordResponse = KeywordRestTemplate.getForEntity(KeywordBaseUrl, KeywordDTO.class);
 
         KeywordDTO keyword = KeywordResponse.getBody();
-
+        keywordDTO.setB5(keyword.getB5());
+        keywordDTO.setComments(keyword.getComments());
         log.info("대표 키워드 1 = {}", keyword.getB5()[0]);
         log.info("대표 키워드 2 = {}", keyword.getB5()[1]);
         log.info("대표 키워드 3 = {}", keyword.getB5()[2]);
@@ -81,7 +86,7 @@ public class ResponseJsonController {
         RestTemplate restTemplate = new RestTemplate();
         ResponseEntity<CommentDTO[]> response = restTemplate.getForEntity(baseUrl, CommentDTO[].class);
         CommentDTO comments[] = response.getBody();
-
+        commentListDTO.setComments(comments);
         HashMap<String, List> commentMap = commentService.classifyComment(comments);
         HashMap<String, Double> positiveNegativePercentMap = commentService.positiveNegativePercent();
         HashMap<String, Double> sentimentPercentMap = commentService.sentimentPercent();
@@ -153,7 +158,7 @@ public class ResponseJsonController {
         RestTemplate restTemplate = new RestTemplate();
         ResponseEntity<VideoInformationDTO[]> response = restTemplate.getForEntity(baseurl, VideoInformationDTO[].class);
         VideoInformationDTO[] videoInfo = response.getBody();
-
+        System.out.println(videoInfo);
         return videoInfo;
     }
 
@@ -164,7 +169,7 @@ public class ResponseJsonController {
         RestTemplate restTemplate = new RestTemplate();
         ResponseEntity<TimelineDTO[]> response = restTemplate.getForEntity(baseurl, TimelineDTO[].class);
         TimelineDTO[] timeline = response.getBody();
-
+        System.out.println("timeline = " + timeline);
         return timeline;
     }
 
@@ -179,7 +184,7 @@ public class ResponseJsonController {
         for(int i=0;i<interests.length;i++){
             log.info("날짜별 댓글 개수 = {}", interests[i]);
         }
-
+        System.out.println("interests = " + interests);
         return interests;
     }
 

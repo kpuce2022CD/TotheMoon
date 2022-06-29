@@ -1,23 +1,13 @@
 package Youtube.SpringbootServer.repository;
 
-import Youtube.SpringbootServer.dto.CommentDTO;
-import Youtube.SpringbootServer.entity.Comment;
-import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Repository;
+import Youtube.SpringbootServer.entity.Record;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.transaction.annotation.Transactional;
 
-import javax.persistence.EntityManager;
+public interface RecordRepository extends JpaRepository<Record,Long> {
 
-@Repository
-@RequiredArgsConstructor
-public class RecordRepository {
-
-    private final EntityConverter entityConverter;
-    private final EntityManager em;
-
-    /** 댓글 분석 저장하기 **/
-    public void save(CommentDTO commentDTO){
-        Comment comment = entityConverter.toCommentEntity(commentDTO);
-        em.persist(comment);
-    }
-
+    @Modifying
+    @Transactional
+    void deleteById(long id);
 }

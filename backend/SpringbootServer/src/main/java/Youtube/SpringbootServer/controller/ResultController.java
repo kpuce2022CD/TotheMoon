@@ -27,7 +27,7 @@ public class ResultController {
     private final InterestService interestService;
     private final VideoService videoService;
     private final CommentService commentService;
-    private final CommentListDTO commentListDTO;
+//    private final CommentListDTO commentListDTO;
 
     //결과 화면
     @GetMapping("/search/{url}")
@@ -82,8 +82,9 @@ public class ResultController {
         String baseUrl = "http://localhost:5000/classifycomments?url=" + url;
         RestTemplate restTemplate = new RestTemplate();
         ResponseEntity<CommentDTO[]> response = restTemplate.getForEntity(baseUrl, CommentDTO[].class);
+
         CommentDTO comments[] = response.getBody();
-        commentListDTO.setComments(comments);
+//        commentListDTO.setComments(comments);
 
         HashMap<String, List> commentMap = commentService.classifyComment(comments);
         HashMap<String, Double> positiveNegativePercentMap = commentService.positiveNegativePercent();
