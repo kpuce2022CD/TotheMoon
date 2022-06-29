@@ -1,6 +1,6 @@
 package Youtube.SpringbootServer.service;
 
-import Youtube.SpringbootServer.domain.Comment;
+import Youtube.SpringbootServer.dto.CommentDTO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
@@ -12,18 +12,18 @@ import java.util.List;
 @Service
 public class CommentService {
 
-    private List<Comment> positiveComments = new ArrayList<>(); // json 구분 인덱스 : 1
-    private List<Comment> negativeComments = new ArrayList<>(); // json 구분 인덱스 : 0
-    private List<Comment> fearComments = new ArrayList<>(); // json 구분 인덱스 : 2
-    private List<Comment> surprisedComments = new ArrayList<>(); // json 구분 인덱스 : 3
-    private List<Comment> angerComments = new ArrayList<>(); // json 구분 인덱스 : 4
-    private List<Comment> sadnessComments = new ArrayList<>(); // json 구분 인덱스 : 5
-    private List<Comment> neutralComments = new ArrayList<>(); // json 구분 인덱스 : 6
-    private List<Comment> happyComments = new ArrayList<>(); // json 구분 인덱스 : 7
-    private List<Comment> disgustComments = new ArrayList<>(); // json 구분 인덱스 : 8
+    private List<CommentDTO> positiveComments = new ArrayList<>(); // json 구분 인덱스 : 1
+    private List<CommentDTO> negativeComments = new ArrayList<>(); // json 구분 인덱스 : 0
+    private List<CommentDTO> fearComments = new ArrayList<>(); // json 구분 인덱스 : 2
+    private List<CommentDTO> surprisedComments = new ArrayList<>(); // json 구분 인덱스 : 3
+    private List<CommentDTO> angerComments = new ArrayList<>(); // json 구분 인덱스 : 4
+    private List<CommentDTO> sadnessComments = new ArrayList<>(); // json 구분 인덱스 : 5
+    private List<CommentDTO> neutralComments = new ArrayList<>(); // json 구분 인덱스 : 6
+    private List<CommentDTO> happyComments = new ArrayList<>(); // json 구분 인덱스 : 7
+    private List<CommentDTO> disgustComments = new ArrayList<>(); // json 구분 인덱스 : 8
 
     //댓글 분류
-    public HashMap<String, List> classifyComment(Comment comments[]){
+    public HashMap<String, List> classifyComment(CommentDTO comments[]){
 
         HashMap<String, List> commentMap = new HashMap<>();
 

@@ -1,4 +1,4 @@
-package Youtube.SpringbootServer.domain;
+package Youtube.SpringbootServer.dto;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -7,7 +7,7 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class VideoInformation {
+public class VideoInformationDTO {
     private String title;
     private String date;
     private String view;

@@ -857,6 +857,10 @@ chart.appear(1000, 100);
 </head>
 <body>
 <!--베스트 키워드 기능 시작 -->
+<div>
+    <a th:href="@{/persist/{id}(id = ${videoId})}" class="btn btn-outline-info" onclick="alert('DB저장')">DB 저장</a>
+</div>
+
 <div class="bestKeywordContent">
     <form id="search">
         <input id="word" type="text" placeholder="검색어를 입력해주세요." name="keyword">

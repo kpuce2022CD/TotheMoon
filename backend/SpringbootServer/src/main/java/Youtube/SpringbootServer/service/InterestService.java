@@ -1,13 +1,13 @@
 package Youtube.SpringbootServer.service;
 
-import Youtube.SpringbootServer.domain.Interest;
+import Youtube.SpringbootServer.dto.InterestDTO;
 import org.springframework.stereotype.Service;
 
 @Service
 public class InterestService {
 
     //댓글 날짜
-    public String[] countDate(Interest[] interests){
+    public String[] countDate(InterestDTO[] interests){
         String[] commentDate = new String[interests.length];
 
         for(int i=0;i< interests.length;i++){
@@ -17,7 +17,7 @@ public class InterestService {
     }
 
     //댓글 갯수
-    public String[] countComment(Interest[] interests){
+    public String[] countComment(InterestDTO[] interests){
         String[] commentCount = new String[interests.length];
 
         for(int i=0;i< interests.length;i++){

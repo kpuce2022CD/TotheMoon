@@ -1,11 +1,11 @@
-package Youtube.SpringbootServer.domain;
+package Youtube.SpringbootServer.dto;
 
 import lombok.Data;
 import lombok.ToString;
 
 @Data
 @ToString
-public class Keyword {
+public class KeywordDTO {
     private String [] b5 ;
     private String [][] comments;
 }

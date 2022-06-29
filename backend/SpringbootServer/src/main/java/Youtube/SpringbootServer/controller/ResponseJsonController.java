@@ -1,6 +1,6 @@
 package Youtube.SpringbootServer.controller;
 
-import Youtube.SpringbootServer.domain.*;
+import Youtube.SpringbootServer.dto.*;
 import Youtube.SpringbootServer.service.CommentService;
 import Youtube.SpringbootServer.service.VideoService;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -50,13 +50,13 @@ public class ResponseJsonController {
 
     @CrossOrigin("*")
     @GetMapping("/getkeyword/{url}")
-    public Keyword getKeyword(@PathVariable String url, Model model) {
+    public KeywordDTO getKeyword(@PathVariable String url, Model model) {
         String KeywordBaseUrl = "http://localhost:5000/searchkeyword?url=" + url;
         RestTemplate KeywordRestTemplate = new RestTemplate();
 
-        ResponseEntity<Keyword> KeywordResponse = KeywordRestTemplate.getForEntity(KeywordBaseUrl, Keyword.class);
+        ResponseEntity<KeywordDTO> KeywordResponse = KeywordRestTemplate.getForEntity(KeywordBaseUrl, KeywordDTO.class);
 
-        Keyword keyword = KeywordResponse.getBody();
+        KeywordDTO keyword = KeywordResponse.getBody();
 
         log.info("대표 키워드 1 = {}", keyword.getB5()[0]);
         log.info("대표 키워드 2 = {}", keyword.getB5()[1]);
@@ -79,8 +79,8 @@ public class ResponseJsonController {
 
         String baseUrl = "http://localhost:5000/classifycomments?url=" + url;
         RestTemplate restTemplate = new RestTemplate();
-        ResponseEntity<Comment[]> response = restTemplate.getForEntity(baseUrl, Comment[].class);
-        Comment comments[] = response.getBody();
+        ResponseEntity<CommentDTO[]> response = restTemplate.getForEntity(baseUrl, CommentDTO[].class);
+        CommentDTO comments[] = response.getBody();
 
         HashMap<String, List> commentMap = commentService.classifyComment(comments);
         HashMap<String, Double> positiveNegativePercentMap = commentService.positiveNegativePercent();
@@ -148,33 +148,33 @@ public class ResponseJsonController {
 
     @CrossOrigin("*")
     @GetMapping("/videoinfo/{videoId}")
-    public VideoInformation[] getVideoInfo(@PathVariable String videoId){
+    public VideoInformationDTO[] getVideoInfo(@PathVariable String videoId){
         String baseurl = "http://localhost:5000/getvideoinformation?url=" + videoId;
         RestTemplate restTemplate = new RestTemplate();
-        ResponseEntity<VideoInformation[]> response = restTemplate.getForEntity(baseurl, VideoInformation[].class);
-        VideoInformation[] videoInfo = response.getBody();
+        ResponseEntity<VideoInformationDTO[]> response = restTemplate.getForEntity(baseurl, VideoInformationDTO[].class);
+        VideoInformationDTO[] videoInfo = response.getBody();
 
         return videoInfo;
     }
 
     @CrossOrigin("*")
     @GetMapping("/timeline/{videoId}")
-    public Timeline[] getTimeline(@PathVariable String videoId){
+    public TimelineDTO[] getTimeline(@PathVariable String videoId){
         String baseurl = "http://localhost:5000/timeline?url="+videoId;
         RestTemplate restTemplate = new RestTemplate();
-        ResponseEntity<Timeline[]> response = restTemplate.getForEntity(baseurl, Timeline[].class);
-        Timeline[] timeline = response.getBody();
+        ResponseEntity<TimelineDTO[]> response = restTemplate.getForEntity(baseurl, TimelineDTO[].class);
+        TimelineDTO[] timeline = response.getBody();
 
         return timeline;
     }
 
     @CrossOrigin("*")
     @GetMapping("/interest/{videoId}")
-    public Interest[] getInterest(@PathVariable String videoId){
+    public InterestDTO[] getInterest(@PathVariable String videoId){
         String baseurl = "http://localhost:5000/interest?url=" + videoId;
         RestTemplate restTemplate = new RestTemplate();
-        ResponseEntity<Interest[]> InterestResponse = restTemplate.getForEntity(baseurl, Interest[].class);
-        Interest[] interests = InterestResponse.getBody();
+        ResponseEntity<InterestDTO[]> InterestResponse = restTemplate.getForEntity(baseurl, InterestDTO[].class);
+        InterestDTO[] interests = InterestResponse.getBody();
 
         for(int i=0;i<interests.length;i++){
             log.info("날짜별 댓글 개수 = {}", interests[i]);
