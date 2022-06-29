@@ -1,0 +1,20 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/tothemoon?serverTimezone=Asia/Seoul
+    username: tothemoon
+    password: passwd123
+
+  jpa:
+    hibernate:
+      ddl-auto: create     # create - 애플리케이션 실행 시점에 내가 가지고 있는 테이블을 다 지우고 재 생성. / none - 안 지우고 계속 사용
+    properties:
+      hibernate:
+        default_batch_fetch_size: 100
+      #  show_sql: true     #system.out.print로 출력하는 것
+        format_sql: true
+
+  logging:
+    level:
+      org.hibernate.SQL: debug                #log출력.
+      org.hibernate.type: trace
