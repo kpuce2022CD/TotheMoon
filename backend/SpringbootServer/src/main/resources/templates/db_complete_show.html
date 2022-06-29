@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h2>DB에 저장되었습니다.</h2>
+
+<div align="center">
+    <header>댓글 분석 결과</header>
+    <table border="1">
+        <thead>
+        <tr>
+            <th>작성자 id</th>
+            <th>내용</th>
+            <th>작성 날짜</th>
+            <th>댓글 index</th>
+            <th>좋아요 수</th>
+
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="comment: ${comments}">
+            <td th:text="${comment.commentUserId}"></td>
+            <td th:text="${comment.content}"></td>
+            <td th:text="${comment.commentDate}"></td>
+            <td th:text="${comment.commentIndex}"></td>
+            <td th:text="${comment.commentLike}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
