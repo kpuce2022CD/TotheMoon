@@ -49,12 +49,14 @@ public class BoardController {
         List<Interest> interest = boardService.findInterest(longRecordId);
         List<Keyword> keyword = boardService.findKeyword(longRecordId);
         List<Timeline> timeLine = boardService.findTimeLine(longRecordId);
+        List<KeywordComment> keywordComments = boardService.findKeywordComment(longRecordId);
         model.addAttribute("comments",comments);
         model.addAttribute("percent",percent);
         model.addAttribute("videoInfo",videoInfo);
         model.addAttribute("interests",interest);
         model.addAttribute("keywords",keyword);
         model.addAttribute("timelines",timeLine);
+        model.addAttribute("keywordComments", keywordComments);
         return "db_complete_show";
     }
 

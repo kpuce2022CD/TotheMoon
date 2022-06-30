@@ -5,7 +5,6 @@ import Youtube.SpringbootServer.entity.*;
 import Youtube.SpringbootServer.repository.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -116,6 +115,9 @@ public class BoardService {
         return videoInfoRepository.findVideoInfo(recordId);
     }
 
+    public List<KeywordComment> findKeywordComment(Long recordId){
+        return keywordCommentRepository.findKeywordComments(recordId);
+    }
 
     //분석 1건 삭제
     public void delete(Long recordId){
@@ -124,7 +126,9 @@ public class BoardService {
         percentRepository.deletePercents(recordId);
         timeLineRepository.deleteTimelines(recordId);
         videoInfoRepository.deleteVideoInfo(recordId);
-//        recordRepository.deleteById(recordId);
+        keywordCommentRepository.deleteKeywordComments(recordId);
+        keywordRepository.deleteKeywords(recordId);
+        recordRepository.deleteById(recordId);
     }
 
 }

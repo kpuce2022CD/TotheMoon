@@ -26,6 +26,9 @@ public class KeywordComment {
     @Column(length = 1000)
     private String content;
 
+    public KeywordComment() {
+    }
+
     public KeywordComment(String content) {
         this.content = content;
     }

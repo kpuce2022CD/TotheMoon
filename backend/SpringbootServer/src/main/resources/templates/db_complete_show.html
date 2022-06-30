@@ -43,6 +43,22 @@
         </tbody>
     </table>
     <br>
+    <header>키워드 댓글</header>
+    <table border="1">
+        <thead>
+        <tr>
+            <th>순위</th>
+            <th>키워드 댓글</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="keywordComment: ${keywordComments}">
+            <td th:text="${keywordComment.keyword.keywordRank}"></td>
+            <td th:text="${keywordComment.content}"></td>
+        </tr>
+        </tbody>
+    </table>
+    <br>
     <header>관심도</header>
     <table border="1">
         <thead>
