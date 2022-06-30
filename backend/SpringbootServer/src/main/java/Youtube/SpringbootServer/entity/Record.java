@@ -32,4 +32,7 @@ public class Record {
     @OneToOne(mappedBy = "record", fetch = FetchType.LAZY)
     private Percent percent;
 
+    @OneToOne(mappedBy = "record", fetch = FetchType.LAZY)
+    private VideoInformation videoInformation;
+
 }

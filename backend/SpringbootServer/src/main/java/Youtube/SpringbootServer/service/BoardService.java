@@ -1,9 +1,6 @@
 package Youtube.SpringbootServer.service;
 
-import Youtube.SpringbootServer.dto.CommentDTO;
-import Youtube.SpringbootServer.dto.CommentListDTO;
-import Youtube.SpringbootServer.dto.KeywordDTO;
-import Youtube.SpringbootServer.dto.PercentDTO;
+import Youtube.SpringbootServer.dto.*;
 import Youtube.SpringbootServer.entity.*;
 import Youtube.SpringbootServer.repository.*;
 import lombok.RequiredArgsConstructor;
@@ -21,6 +18,7 @@ public class BoardService {
     private final KeywordRepository keywordRepository;
     private final KeywordCommentRepository keywordCommentRepository;
     private final PercentRepository percentRepository;
+    private final VideoInfoRepository videoInfoRepository;
     private final EntityConverter entityConverter;
 
 //    //분석결과 등록(순수JPA)
@@ -30,7 +28,8 @@ public class BoardService {
 //    }
 
     //분석 결과 등록(스프링데이터 JPA)
-    public void registerDB(CommentListDTO commentListDTO, Record record, KeywordDTO keywordDTO, PercentDTO percentDTO){
+    public void registerDB(CommentListDTO commentListDTO, Record record, KeywordDTO keywordDTO, PercentDTO percentDTO,
+                           VideoInformationDTO videoInformationDTO){
 
         //record 저장
         recordRepository.save(record);
@@ -62,6 +61,10 @@ public class BoardService {
         percent.setRecord(record);
         percentRepository.save(percent);
 
+        //videoInformation 저장.
+        VideoInformation videoInformation = entityConverter.toVideoInfoEntity(videoInformationDTO);
+        videoInformation.setRecord(record);
+        videoInfoRepository.save(videoInformation);
     }
 
 

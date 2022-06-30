@@ -3,10 +3,8 @@ package Youtube.SpringbootServer.repository;
 import Youtube.SpringbootServer.dto.CommentDTO;
 import Youtube.SpringbootServer.dto.KeywordDTO;
 import Youtube.SpringbootServer.dto.PercentDTO;
-import Youtube.SpringbootServer.entity.Comment;
-import Youtube.SpringbootServer.entity.Keyword;
-import Youtube.SpringbootServer.entity.KeywordComment;
-import Youtube.SpringbootServer.entity.Percent;
+import Youtube.SpringbootServer.dto.VideoInformationDTO;
+import Youtube.SpringbootServer.entity.*;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -27,5 +25,9 @@ public class EntityConverter {
     public Percent toPercentEntity(PercentDTO percentDTO){
         return new Percent(percentDTO.getPositive(), percentDTO.getNegative(), percentDTO.getHappy(), percentDTO.getSurprise(), percentDTO.getAnger(), percentDTO.getSadness(),
                 percentDTO.getNeutral(),percentDTO.getDisgust(), percentDTO.getFear());
+    }
+
+    public VideoInformation toVideoInfoEntity(VideoInformationDTO viDTO){
+        return new VideoInformation(viDTO.getTitle(), viDTO.getDate(), viDTO.getView(), viDTO.getLike());
     }
 }

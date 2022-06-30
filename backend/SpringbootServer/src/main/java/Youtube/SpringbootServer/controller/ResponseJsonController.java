@@ -36,6 +36,7 @@ public class ResponseJsonController {
     private final KeywordDTO keywordDTO;
     private final CommentListDTO commentListDTO;
     private final PercentDTO percentDTO;
+    private final VideoInformationDTO videoInformationDTO;
 
     private ObjectMapper objectMapper = new ObjectMapper();
     private String link = "http://localhost:5000";
@@ -163,6 +164,9 @@ public class ResponseJsonController {
         RestTemplate restTemplate = new RestTemplate();
         ResponseEntity<VideoInformationDTO[]> response = restTemplate.getForEntity(baseurl, VideoInformationDTO[].class);
         VideoInformationDTO[] videoInfo = response.getBody();
+        for (VideoInformationDTO vi : videoInfo) {
+            videoInformationDTO.setVideoInfo(vi.getTitle(),vi.getDate(),vi.getView(),vi.getLike());
+        }
         System.out.println(videoInfo);
         return videoInfo;
     }
