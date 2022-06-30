@@ -9,6 +9,112 @@
 <h2>DB에 저장되었습니다.</h2>
 
 <div align="center">
+    <header>영상 정보</header>
+    <table border="1">
+        <thead>
+        <tr>
+            <th>제목</th>
+            <th>날짜</th>
+            <th>조회 수</th>
+            <th>좋아요 수</th>
+        </tr>
+        </thead>
+        <tbody>
+        <td th:text="${videoInfo.title}"></td>
+        <td th:text="${videoInfo.videoDate}"></td>
+        <td th:text="${videoInfo.view}"></td>
+        <td th:text="${videoInfo.videoLike}"></td>
+        </tbody>
+    </table>
+    <br>
+    <header>베스트 키워드</header>
+    <table border="1">
+        <thead>
+        <tr>
+            <th>순위</th>
+            <th>키워드</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="keyword: ${keywords}">
+            <td th:text="${keyword.keywordRank}"></td>
+            <td th:text="${keyword.word}"></td>
+        </tr>
+        </tbody>
+    </table>
+    <br>
+    <header>관심도</header>
+    <table border="1">
+        <thead>
+        <tr>
+            <th>댓글 날짜</th>
+            <th>댓글 수 </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="interest: ${interests}">
+            <td th:text="${interest.commentDate}"></td>
+            <td th:text="${interest.commentCount}"></td>
+        </tr>
+        </tbody>
+    </table>
+    <br>
+    <header>타임라인</header>
+    <table border="1">
+        <thead>
+        <tr>
+            <th>count</th>
+            <th>label</th>
+            <th>sec</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="timeline: ${timelines}">
+            <td th:text="${timeline.count}"></td>
+            <td th:text="${timeline.label}"></td>
+            <td th:text="${timeline.sec}"></td>
+        </tr>
+        </tbody>
+    </table>
+    <br>
+    <header>긍정/부정 지수</header>
+    <table border="1">
+        <thead>
+        <tr>
+            <th>긍정</th>
+            <th>부정</th>
+        </tr>
+        </thead>
+        <tbody>
+        <td th:text="${percent.positive}"></td>
+        <td th:text="${percent.negative}"></td>
+        </tbody>
+    </table>
+    <br>
+    <header>감정 지수</header>
+    <table border="1">
+        <thead>
+        <tr>
+            <th>행복</th>
+            <th>놀람</th>
+            <th>화남</th>
+            <th>슬픔</th>
+            <th>중립</th>
+            <th>혐오</th>
+            <th>두려움</th>
+        </tr>
+        </thead>
+        <tbody>
+            <td th:text="${percent.happy}"></td>
+            <td th:text="${percent.surprise}"></td>
+            <td th:text="${percent.anger}"></td>
+            <td th:text="${percent.sadness}"></td>
+            <td th:text="${percent.neutral}"></td>
+            <td th:text="${percent.disgust}"></td>
+            <td th:text="${percent.fear}"></td>
+        </tbody>
+    </table>
+    <br>
     <header>댓글 분석 결과</header>
     <table border="1">
         <thead>
