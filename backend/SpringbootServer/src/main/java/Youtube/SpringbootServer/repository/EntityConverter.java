@@ -31,4 +31,8 @@ public class EntityConverter {
     public Interest toInterestEntity(InterestDTO interestDTO){
         return new Interest(interestDTO.getCommentDate(),interestDTO.getCommentCount());
     }
+
+    public Timeline toTimelineEntity(TimelineDTO timelineDTO){
+        return new Timeline(timelineDTO.getCount(),timelineDTO.getSec(),timelineDTO.getLabel());
+    }
 }

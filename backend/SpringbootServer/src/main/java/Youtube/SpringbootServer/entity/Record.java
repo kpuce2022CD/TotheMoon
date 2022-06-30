@@ -1,13 +1,10 @@
 package Youtube.SpringbootServer.entity;
 
-import Youtube.SpringbootServer.dto.CommentDTO;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -38,5 +35,10 @@ public class Record {
     @JsonIgnore
     @OneToMany(mappedBy = "record")
     private List<Interest> interests = new ArrayList<>();
+
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "record")
+    private List<Timeline> timelines = new ArrayList<>();
 
 }

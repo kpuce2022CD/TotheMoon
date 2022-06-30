@@ -22,6 +22,7 @@ public class BoardController {
     private final PercentDTO percentDTO;
     private final VideoInformationDTO videoInformationDTO;
     private final InterestListDTO interestListDTO;
+    private final TimeLineListDTO timeLineListDTO;
 
     //목록 조회
     @GetMapping("/list")
@@ -35,7 +36,7 @@ public class BoardController {
     @GetMapping("/persist")
     public String persistComment(){
         Record record = new Record();
-        boardService.registerDB(commentListDTO,record,keywordDTO,percentDTO, videoInformationDTO,interestListDTO);
+        boardService.registerDB(commentListDTO,record,keywordDTO,percentDTO, videoInformationDTO,interestListDTO,timeLineListDTO);
         return "redirect:/list";
     }
 

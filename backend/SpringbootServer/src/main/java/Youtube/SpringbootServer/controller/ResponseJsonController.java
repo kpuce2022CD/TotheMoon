@@ -38,6 +38,7 @@ public class ResponseJsonController {
     private final PercentDTO percentDTO;
     private final VideoInformationDTO videoInformationDTO;
     private final InterestListDTO interestListDTO;
+    private final TimeLineListDTO timeLineListDTO;
 
     private ObjectMapper objectMapper = new ObjectMapper();
     private String link = "http://localhost:5000";
@@ -179,6 +180,7 @@ public class ResponseJsonController {
         RestTemplate restTemplate = new RestTemplate();
         ResponseEntity<TimelineDTO[]> response = restTemplate.getForEntity(baseurl, TimelineDTO[].class);
         TimelineDTO[] timeline = response.getBody();
+        timeLineListDTO.setTimeline(timeline);
         System.out.println("timeline = " + timeline);
         return timeline;
     }

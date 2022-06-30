@@ -10,5 +10,4 @@ public class TimelineDTO {
     private String count;
     private int sec;
     private String label;
-
 }
