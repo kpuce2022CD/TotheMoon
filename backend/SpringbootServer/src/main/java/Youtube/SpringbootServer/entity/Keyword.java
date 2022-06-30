@@ -39,4 +39,7 @@ public class Keyword {
         this.keywordRank = keywordRank;
         this.word = word;
     }
+
+    public Keyword() {
+    }
 }

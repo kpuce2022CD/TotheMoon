@@ -1,8 +1,7 @@
 package Youtube.SpringbootServer.controller;
 
 import Youtube.SpringbootServer.dto.*;
-import Youtube.SpringbootServer.entity.Comment;
-import Youtube.SpringbootServer.entity.Record;
+import Youtube.SpringbootServer.entity.*;
 import Youtube.SpringbootServer.service.BoardService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -45,7 +44,17 @@ public class BoardController {
     public String showComments(@PathVariable String recordId,  Model model){
         long longRecordId = Long.parseLong(recordId);
         List<Comment> comments = boardService.findComment(longRecordId);
+        Percent percent = boardService.findPercent(longRecordId);
+        VideoInformation videoInfo = boardService.findVideoInfo(longRecordId);
+        List<Interest> interest = boardService.findInterest(longRecordId);
+        List<Keyword> keyword = boardService.findKeyword(longRecordId);
+        List<Timeline> timeLine = boardService.findTimeLine(longRecordId);
         model.addAttribute("comments",comments);
+        model.addAttribute("percent",percent);
+        model.addAttribute("videoInfo",videoInfo);
+        model.addAttribute("interests",interest);
+        model.addAttribute("keywords",keyword);
+        model.addAttribute("timelines",timeLine);
         return "db_complete_show";
     }
 
