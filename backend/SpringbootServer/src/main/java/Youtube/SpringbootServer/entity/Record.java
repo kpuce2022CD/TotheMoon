@@ -35,4 +35,8 @@ public class Record {
     @OneToOne(mappedBy = "record", fetch = FetchType.LAZY)
     private VideoInformation videoInformation;
 
+    @JsonIgnore
+    @OneToMany(mappedBy = "record")
+    private List<Interest> interests = new ArrayList<>();
+
 }

@@ -9,6 +9,7 @@ import static javax.persistence.FetchType.*;
 @Entity
 @Getter
 @Setter
+@Table(name="analysis_comment")
 public class Comment {
 
     @Id

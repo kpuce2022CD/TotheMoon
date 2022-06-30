@@ -37,6 +37,7 @@ public class ResponseJsonController {
     private final CommentListDTO commentListDTO;
     private final PercentDTO percentDTO;
     private final VideoInformationDTO videoInformationDTO;
+    private final InterestListDTO interestListDTO;
 
     private ObjectMapper objectMapper = new ObjectMapper();
     private String link = "http://localhost:5000";
@@ -189,6 +190,7 @@ public class ResponseJsonController {
         RestTemplate restTemplate = new RestTemplate();
         ResponseEntity<InterestDTO[]> InterestResponse = restTemplate.getForEntity(baseurl, InterestDTO[].class);
         InterestDTO[] interests = InterestResponse.getBody();
+        interestListDTO.setInterests(interests);
 
         for(int i=0;i<interests.length;i++){
             log.info("날짜별 댓글 개수 = {}", interests[i]);

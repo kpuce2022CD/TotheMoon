@@ -1,9 +1,6 @@
 package Youtube.SpringbootServer.repository;
 
-import Youtube.SpringbootServer.dto.CommentDTO;
-import Youtube.SpringbootServer.dto.KeywordDTO;
-import Youtube.SpringbootServer.dto.PercentDTO;
-import Youtube.SpringbootServer.dto.VideoInformationDTO;
+import Youtube.SpringbootServer.dto.*;
 import Youtube.SpringbootServer.entity.*;
 import org.springframework.stereotype.Component;
 
@@ -29,5 +26,9 @@ public class EntityConverter {
 
     public VideoInformation toVideoInfoEntity(VideoInformationDTO viDTO){
         return new VideoInformation(viDTO.getTitle(), viDTO.getDate(), viDTO.getView(), viDTO.getLike());
+    }
+
+    public Interest toInterestEntity(InterestDTO interestDTO){
+        return new Interest(interestDTO.getCommentDate(),interestDTO.getCommentCount());
     }
 }

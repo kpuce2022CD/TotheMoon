@@ -19,6 +19,7 @@ public class BoardService {
     private final KeywordCommentRepository keywordCommentRepository;
     private final PercentRepository percentRepository;
     private final VideoInfoRepository videoInfoRepository;
+    private final InterestRepository interestRepository;
     private final EntityConverter entityConverter;
 
 //    //분석결과 등록(순수JPA)
@@ -29,7 +30,7 @@ public class BoardService {
 
     //분석 결과 등록(스프링데이터 JPA)
     public void registerDB(CommentListDTO commentListDTO, Record record, KeywordDTO keywordDTO, PercentDTO percentDTO,
-                           VideoInformationDTO videoInformationDTO){
+                           VideoInformationDTO videoInformationDTO, InterestListDTO interestListDTO){
 
         //record 저장
         recordRepository.save(record);
@@ -65,6 +66,14 @@ public class BoardService {
         VideoInformation videoInformation = entityConverter.toVideoInfoEntity(videoInformationDTO);
         videoInformation.setRecord(record);
         videoInfoRepository.save(videoInformation);
+
+        //interest 저장
+        InterestDTO[] interests = interestListDTO.getInterests();
+        for (InterestDTO interestDTO : interests) {
+            Interest interest = entityConverter.toInterestEntity(interestDTO); //InterestDTO -> interest 엔티티로 변환.
+            interest.setRecord(record);
+            interestRepository.save(interest);
+        }
     }
 
 

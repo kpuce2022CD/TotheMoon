@@ -1,9 +1,6 @@
 package Youtube.SpringbootServer.controller;
 
-import Youtube.SpringbootServer.dto.CommentListDTO;
-import Youtube.SpringbootServer.dto.KeywordDTO;
-import Youtube.SpringbootServer.dto.PercentDTO;
-import Youtube.SpringbootServer.dto.VideoInformationDTO;
+import Youtube.SpringbootServer.dto.*;
 import Youtube.SpringbootServer.entity.Comment;
 import Youtube.SpringbootServer.entity.Record;
 import Youtube.SpringbootServer.service.BoardService;
@@ -24,6 +21,7 @@ public class BoardController {
     private final KeywordDTO keywordDTO;
     private final PercentDTO percentDTO;
     private final VideoInformationDTO videoInformationDTO;
+    private final InterestListDTO interestListDTO;
 
     //목록 조회
     @GetMapping("/list")
@@ -37,7 +35,7 @@ public class BoardController {
     @GetMapping("/persist")
     public String persistComment(){
         Record record = new Record();
-        boardService.registerDB(commentListDTO,record,keywordDTO,percentDTO, videoInformationDTO);
+        boardService.registerDB(commentListDTO,record,keywordDTO,percentDTO, videoInformationDTO,interestListDTO);
         return "redirect:/list";
     }
 
