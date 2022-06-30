@@ -29,4 +29,7 @@ public class Record {
     @OneToMany(mappedBy = "record")
     private List<Keyword> keywords = new ArrayList<>();
 
+    @OneToOne(mappedBy = "record", fetch = FetchType.LAZY)
+    private Percent percent;
+
 }

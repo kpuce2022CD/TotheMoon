@@ -2,6 +2,7 @@ package Youtube.SpringbootServer.controller;
 
 import Youtube.SpringbootServer.dto.CommentListDTO;
 import Youtube.SpringbootServer.dto.KeywordDTO;
+import Youtube.SpringbootServer.dto.PercentDTO;
 import Youtube.SpringbootServer.entity.Comment;
 import Youtube.SpringbootServer.entity.Record;
 import Youtube.SpringbootServer.service.BoardService;
@@ -20,6 +21,7 @@ public class BoardController {
     private final BoardService boardService;
     private final CommentListDTO commentListDTO;
     private final KeywordDTO keywordDTO;
+    private final PercentDTO percentDTO;
 
     //목록 조회
     @GetMapping("/list")
@@ -33,8 +35,7 @@ public class BoardController {
     @GetMapping("/persist")
     public String persistComment(){
         Record record = new Record();
-        System.out.println("/////////////////////keywordDTO = " + keywordDTO.getB5()[0]);
-        boardService.registerDB(commentListDTO,record,keywordDTO);
+        boardService.registerDB(commentListDTO,record,keywordDTO,percentDTO);
         return "redirect:/list";
     }
 

@@ -30,11 +30,12 @@ import javax.servlet.http.HttpSession;
 @RequiredArgsConstructor
 public class ResponseJsonController {
 
-    //서비스 클래스 DI
+    // DI
     private final VideoService videoService;
     private final CommentService commentService;
     private final KeywordDTO keywordDTO;
     private final CommentListDTO commentListDTO;
+    private final PercentDTO percentDTO;
 
     private ObjectMapper objectMapper = new ObjectMapper();
     private String link = "http://localhost:5000";
@@ -144,6 +145,10 @@ public class ResponseJsonController {
         fearPercent.put("fearPercent", sentimentPercentMap.get("refined_fearPercent"));
         jsonDataArray.add(fearPercent);
 
+        percentDTO.SetPercentDTO(positiveNegativePercentMap.get("refined_positivePercent"),positiveNegativePercentMap.get("refined_negativePercent"),
+                sentimentPercentMap.get("refined_happyPercent"),sentimentPercentMap.get("refined_surprisedPercent"),sentimentPercentMap.get("refined_angerPercent"),
+                sentimentPercentMap.get("refined_sadnessPercent"),sentimentPercentMap.get("refined_neutralPercent"),sentimentPercentMap.get("refined_disgustPercent"),
+                sentimentPercentMap.get("refined_fearPercent"));
 
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         String jsonDataArrayToGson = gson.toJson(jsonDataArray);
