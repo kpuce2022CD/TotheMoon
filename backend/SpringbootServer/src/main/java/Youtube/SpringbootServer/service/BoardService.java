@@ -91,15 +91,40 @@ public class BoardService {
         return recordRepository.findAll();
     }
 
-    //분석 1건 조회
+    //분석 1건 comment 조회
     public List<Comment> findComment(Long recordId){
         return commentRepository.findComments(recordId);
     }
 
+    public List<Interest> findInterest(Long recordId){
+        return interestRepository.findInterests(recordId);
+    }
+
+    public List<Keyword> findKeyword(Long recordId){
+        return keywordRepository.findKeywords(recordId);
+    }
+
+    public Percent findPercent(Long recordId){
+        return percentRepository.findPercents(recordId);
+    }
+
+    public List<Timeline> findTimeLine(Long recordId){
+        return timeLineRepository.findTimelines(recordId);
+    }
+
+    public VideoInformation findVideoInfo(Long recordId){
+        return videoInfoRepository.findVideoInfo(recordId);
+    }
+
+
     //분석 1건 삭제
     public void delete(Long recordId){
         commentRepository.deleteComments(recordId);
-        recordRepository.deleteById(recordId);
+        interestRepository.deleteInterests(recordId);
+        percentRepository.deletePercents(recordId);
+        timeLineRepository.deleteTimelines(recordId);
+        videoInfoRepository.deleteVideoInfo(recordId);
+//        recordRepository.deleteById(recordId);
     }
 
 }
