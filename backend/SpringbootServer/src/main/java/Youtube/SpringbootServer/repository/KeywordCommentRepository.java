@@ -11,7 +11,7 @@ import java.util.List;
 
 public interface KeywordCommentRepository extends JpaRepository<KeywordComment, Long> {
 
-    @Query("select c from KeywordComment c join fetch c.keyword k where k.record.id= :id")
+    @Query("select distinct c from KeywordComment c join fetch c.keyword k where k.record.id= :id")
     List<KeywordComment> findKeywordComments(@Param("id") long id);
 
     @Modifying
