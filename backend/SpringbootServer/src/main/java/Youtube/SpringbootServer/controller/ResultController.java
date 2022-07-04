@@ -1,6 +1,6 @@
 package Youtube.SpringbootServer.controller;
 
-import Youtube.SpringbootServer.domain.*;
+import Youtube.SpringbootServer.dto.*;
 import Youtube.SpringbootServer.service.CommentService;
 import Youtube.SpringbootServer.service.InterestService;
 import Youtube.SpringbootServer.service.VideoService;
@@ -22,10 +22,12 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ResultController {
 
+
     //서비스 클래스 DI
     private final InterestService interestService;
     private final VideoService videoService;
     private final CommentService commentService;
+//    private final CommentListDTO commentListDTO;
 
     //결과 화면
     @GetMapping("/search/{url}")
@@ -35,9 +37,9 @@ public class ResultController {
         String KeywordBaseUrl = "http://localhost:5000/searchkeyword?url=" + url;
         RestTemplate KeywordRestTemplate = new RestTemplate();
 
-        ResponseEntity<Keyword> KeywordResponse = KeywordRestTemplate.getForEntity(KeywordBaseUrl, Keyword.class);
+        ResponseEntity<KeywordDTO> KeywordResponse = KeywordRestTemplate.getForEntity(KeywordBaseUrl, KeywordDTO.class);
 
-        Keyword keyword = KeywordResponse.getBody();
+        KeywordDTO keyword = KeywordResponse.getBody();
         log.info("keyeqwerqeeword={}", keyword);
         log.info("keyword.getB5()[0]={}", keyword.getB5()[0]);
         log.info("keyword.getComments()={}", keyword.getComments());
@@ -48,8 +50,8 @@ public class ResultController {
         /**타임라인 start*/
         String TimelineBaseUrl = "http://localhost:5000/timeline?url="+url;
         RestTemplate TimelineRestTemplate = new RestTemplate();
-        ResponseEntity<Timeline[]> TimelineResponse = TimelineRestTemplate.getForEntity(TimelineBaseUrl, Timeline[].class);
-        Timeline[] timelines = TimelineResponse.getBody();
+        ResponseEntity<TimelineDTO[]> TimelineResponse = TimelineRestTemplate.getForEntity(TimelineBaseUrl, TimelineDTO[].class);
+        TimelineDTO[] timelines = TimelineResponse.getBody();
         model.addAttribute("timelines",timelines);
         /** 타임라인 end */
 
@@ -57,8 +59,8 @@ public class ResultController {
         /**관심도 start*/
         String InterestBaseUrl = "http://localhost:5000/interest?url=" + url;
         RestTemplate InterestRestTemplate = new RestTemplate();
-        ResponseEntity<Interest[]> InterestResponse = InterestRestTemplate.getForEntity(InterestBaseUrl, Interest[].class);
-        Interest interests[] = InterestResponse.getBody();
+        ResponseEntity<InterestDTO[]> InterestResponse = InterestRestTemplate.getForEntity(InterestBaseUrl, InterestDTO[].class);
+        InterestDTO interests[] = InterestResponse.getBody();
 
         model.addAttribute("size",interests.length);
         model.addAttribute("commentDate",interestService.countDate(interests));
@@ -68,8 +70,8 @@ public class ResultController {
         /**비디오 정보 가져오기 start */
         String VIbaseUrl = "http://localhost:5000/getvideoinformation?url=" + url;
         RestTemplate VIrestTemplate = new RestTemplate();
-        ResponseEntity<VideoInformation[]> VIresponse = VIrestTemplate.getForEntity(VIbaseUrl, VideoInformation[].class);
-        VideoInformation[] videoInformation = VIresponse.getBody();
+        ResponseEntity<VideoInformationDTO[]> VIresponse = VIrestTemplate.getForEntity(VIbaseUrl, VideoInformationDTO[].class);
+        VideoInformationDTO[] videoInformation = VIresponse.getBody();
 
         model.addAttribute("videoTitle",videoInformation[0].getTitle());
         model.addAttribute("videoDate",videoService.dateData(videoInformation));
@@ -79,8 +81,10 @@ public class ResultController {
         /**긍정부정, 6가지 감정 start*/
         String baseUrl = "http://localhost:5000/classifycomments?url=" + url;
         RestTemplate restTemplate = new RestTemplate();
-        ResponseEntity<Comment[]> response = restTemplate.getForEntity(baseUrl, Comment[].class);
-        Comment comments[] = response.getBody();
+        ResponseEntity<CommentDTO[]> response = restTemplate.getForEntity(baseUrl, CommentDTO[].class);
+
+        CommentDTO comments[] = response.getBody();
+//        commentListDTO.setComments(comments);
 
         HashMap<String, List> commentMap = commentService.classifyComment(comments);
         HashMap<String, Double> positiveNegativePercentMap = commentService.positiveNegativePercent();

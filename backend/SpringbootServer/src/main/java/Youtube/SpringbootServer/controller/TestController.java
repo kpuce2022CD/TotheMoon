@@ -1,7 +1,7 @@
 package Youtube.SpringbootServer.controller;
 
-import Youtube.SpringbootServer.domain.Comment;
-import Youtube.SpringbootServer.domain.Interest;
+import Youtube.SpringbootServer.dto.CommentDTO;
+import Youtube.SpringbootServer.dto.InterestDTO;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,58 +16,58 @@ public class TestController {
     @GetMapping("/test/{url}")
     public String test_search(@PathVariable String url, Model model) {
 
-        Comment[] comments = new Comment[900];
-        Interest[] interests = new Interest[10];
+        CommentDTO[] comments = new CommentDTO[900];
+        InterestDTO[] interests = new InterestDTO[10];
         String[] commentDate = new String[10];
         String[] commentCount = new String[10];
 
         for (int i = 0; i < 100; i++) {
-            comments[i] = new Comment("0", "testId", "부정테스트입니다.부정테스트입니다.부정테스트입니다.부정테스트입니다.부정테스트입니다.부정테스트입니다", "2020-20-20", "5");
+            comments[i] = new CommentDTO("0", "testId", "부정테스트입니다.부정테스트입니다.부정테스트입니다.부정테스트입니다.부정테스트입니다.부정테스트입니다", "2020-20-20", "5");
         }
         for (int i = 100; i < 200; i++) {
-            comments[i] = new Comment("1", "testId", "긍정테스트입니다.긍정테스트입니다.긍정테스트입니다.긍정테스트입니다.긍정테스트입니다.긍정테스트입니다.", "2020-20-20", "5");
+            comments[i] = new CommentDTO("1", "testId", "긍정테스트입니다.긍정테스트입니다.긍정테스트입니다.긍정테스트입니다.긍정테스트입니다.긍정테스트입니다.", "2020-20-20", "5");
 
         }
         for (int i = 200; i < 300; i++) {
-            comments[i] = new Comment("2", "testId", "공포테스트입니다.공포테스트입니다.공포테스트입니다.공포테스트입니다.공포테스트입니다.공포테스트입니다.", "2020-20-20", "5");
+            comments[i] = new CommentDTO("2", "testId", "공포테스트입니다.공포테스트입니다.공포테스트입니다.공포테스트입니다.공포테스트입니다.공포테스트입니다.", "2020-20-20", "5");
 
         }
         for (int i = 300; i < 400; i++) {
-            comments[i] = new Comment("3", "testId", "놀람테스트입니다.놀람테스트입니다.놀람테스트입니다.놀람테스트입니다.놀람테스트입니다.놀람테스트입니다.", "2020-20-20", "5");
+            comments[i] = new CommentDTO("3", "testId", "놀람테스트입니다.놀람테스트입니다.놀람테스트입니다.놀람테스트입니다.놀람테스트입니다.놀람테스트입니다.", "2020-20-20", "5");
 
         }
         for (int i = 400; i < 500; i++) {
-            comments[i] = new Comment("4", "testId", "분노테스트입니다.분노테스트입니다.분노테스트입니다.분노테스트입니다.분노테스트입니다.분노테스트입니다.", "2020-20-20", "5");
+            comments[i] = new CommentDTO("4", "testId", "분노테스트입니다.분노테스트입니다.분노테스트입니다.분노테스트입니다.분노테스트입니다.분노테스트입니다.", "2020-20-20", "5");
 
         }
         for (int i = 500; i < 600; i++) {
-            comments[i] = new Comment("5", "testId", "슬픔테스트입니다.슬픔테스트입니다.슬픔테스트입니다.슬픔테스트입니다.슬픔테스트입니다.슬픔테스트입니다.", "2020-20-20", "5");
+            comments[i] = new CommentDTO("5", "testId", "슬픔테스트입니다.슬픔테스트입니다.슬픔테스트입니다.슬픔테스트입니다.슬픔테스트입니다.슬픔테스트입니다.", "2020-20-20", "5");
 
         }
         for (int i = 600; i < 700; i++) {
-            comments[i] = new Comment("6", "testId", "중립테스트입니다.중립테스트입니다.중립테스트입니다.중립테스트입니다.중립테스트입니다.중립테스트입니다.", "2020-20-20", "5");
+            comments[i] = new CommentDTO("6", "testId", "중립테스트입니다.중립테스트입니다.중립테스트입니다.중립테스트입니다.중립테스트입니다.중립테스트입니다.", "2020-20-20", "5");
 
         }
         for (int i = 700; i < 800; i++) {
-            comments[i] = new Comment("7", "testId", "행복테스트입니다.행복테스트입니다.행복테스트입니다.행복테스트입니다.행복테스트입니다.행복테스트입니다.", "2020-20-20", "5");
+            comments[i] = new CommentDTO("7", "testId", "행복테스트입니다.행복테스트입니다.행복테스트입니다.행복테스트입니다.행복테스트입니다.행복테스트입니다.", "2020-20-20", "5");
 
         }
         for (int i = 800; i < 900; i++) {
-            comments[i] = new Comment("8", "testId", "혐오테스트입니다.혐오테스트입니다.혐오테스트입니다.혐오테스트입니다.혐오테스트입니다.혐오테스트입니다.", "2020-20-20", "5");
+            comments[i] = new CommentDTO("8", "testId", "혐오테스트입니다.혐오테스트입니다.혐오테스트입니다.혐오테스트입니다.혐오테스트입니다.혐오테스트입니다.", "2020-20-20", "5");
 
         }
 
 
-        interests[0] = new Interest("2021-11-11", "0");
-        interests[1] = new Interest("2021-11-12", "22");
-        interests[2] = new Interest("2021-11-13", "32");
-        interests[3] = new Interest("2021-11-14", "25");
-        interests[4] = new Interest("2021-11-15", "15");
-        interests[5] = new Interest("2021-11-16", "7");
-        interests[6] = new Interest("2021-11-17", "15");
-        interests[7] = new Interest("2021-11-18", "19");
-        interests[8] = new Interest("2021-11-19", "30");
-        interests[9] = new Interest("2021-11-20", "45");
+        interests[0] = new InterestDTO("2021-11-11", "0");
+        interests[1] = new InterestDTO("2021-11-12", "22");
+        interests[2] = new InterestDTO("2021-11-13", "32");
+        interests[3] = new InterestDTO("2021-11-14", "25");
+        interests[4] = new InterestDTO("2021-11-15", "15");
+        interests[5] = new InterestDTO("2021-11-16", "7");
+        interests[6] = new InterestDTO("2021-11-17", "15");
+        interests[7] = new InterestDTO("2021-11-18", "19");
+        interests[8] = new InterestDTO("2021-11-19", "30");
+        interests[9] = new InterestDTO("2021-11-20", "45");
 
 
         for (int i = 0; i < interests.length; i++) {
@@ -75,15 +75,15 @@ public class TestController {
             commentCount[i] = interests[i].getCommentCount();
         }
 
-        List<Comment> positiveComments = new ArrayList<>(); // json 구분 인덱스 : 1
-        List<Comment> negativeComments = new ArrayList<>(); // json 구분 인덱스 : 0
-        List<Comment> fearComments = new ArrayList<>(); // json 구분 인덱스 : 2
-        List<Comment> surprisedComments = new ArrayList<>(); // json 구분 인덱스 : 3
-        List<Comment> angerComments = new ArrayList<>(); // json 구분 인덱스 : 4
-        List<Comment> sadnessComments = new ArrayList<>(); // json 구분 인덱스 : 5
-        List<Comment> neutralComments = new ArrayList<>(); // json 구분 인덱스 : 6
-        List<Comment> happyComments = new ArrayList<>(); // json 구분 인덱스 : 7
-        List<Comment> disgustComments = new ArrayList<>(); // json 구분 인덱스 : 8
+        List<CommentDTO> positiveComments = new ArrayList<>(); // json 구분 인덱스 : 1
+        List<CommentDTO> negativeComments = new ArrayList<>(); // json 구분 인덱스 : 0
+        List<CommentDTO> fearComments = new ArrayList<>(); // json 구분 인덱스 : 2
+        List<CommentDTO> surprisedComments = new ArrayList<>(); // json 구분 인덱스 : 3
+        List<CommentDTO> angerComments = new ArrayList<>(); // json 구분 인덱스 : 4
+        List<CommentDTO> sadnessComments = new ArrayList<>(); // json 구분 인덱스 : 5
+        List<CommentDTO> neutralComments = new ArrayList<>(); // json 구분 인덱스 : 6
+        List<CommentDTO> happyComments = new ArrayList<>(); // json 구분 인덱스 : 7
+        List<CommentDTO> disgustComments = new ArrayList<>(); // json 구분 인덱스 : 8
 
         //댓글 분류
         classifyComment(comments, positiveComments, negativeComments, fearComments, surprisedComments, angerComments, sadnessComments, neutralComments, happyComments, disgustComments);
@@ -164,9 +164,9 @@ public class TestController {
     }
 
     //댓글 분류
-    private void classifyComment(Comment[] comments, List<Comment> positiveComments, List<Comment> negativeComments, List<Comment> fearComments,
-                                 List<Comment> surprisedComments, List<Comment> angerComments, List<Comment> sadnessComments, List<Comment> neutralComments,
-                                 List<Comment> happyComments, List<Comment> disgustComments) {
+    private void classifyComment(CommentDTO[] comments, List<CommentDTO> positiveComments, List<CommentDTO> negativeComments, List<CommentDTO> fearComments,
+                                 List<CommentDTO> surprisedComments, List<CommentDTO> angerComments, List<CommentDTO> sadnessComments, List<CommentDTO> neutralComments,
+                                 List<CommentDTO> happyComments, List<CommentDTO> disgustComments) {
         for(int i = 0; i< comments.length; i++){    //인덱스 번호를 통해서 긍정, 부정 , 감정 댓글 분류
             if(comments[i].getIndex().equals("1")) {
                 positiveComments.add(comments[i]);

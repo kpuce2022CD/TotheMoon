@@ -1,6 +1,6 @@
 package Youtube.SpringbootServer.service;
 
-import Youtube.SpringbootServer.domain.VideoInformation;
+import Youtube.SpringbootServer.dto.VideoInformationDTO;
 import org.springframework.stereotype.Service;
 
 import java.text.DecimalFormat;
@@ -9,7 +9,7 @@ import java.text.DecimalFormat;
 public class VideoService {
 
     //조회수 포맷팅
-    public String viewData(VideoInformation[] videoInformation){
+    public String viewData(VideoInformationDTO[] videoInformation){
         DecimalFormat decFormat = new DecimalFormat("###,###");
         int view = Integer.parseInt(videoInformation[0].getView());
 
@@ -17,7 +17,7 @@ public class VideoService {
     }
 
     //게시일 포맷팅
-    public String dateData(VideoInformation[] videoInformation){
+    public String dateData(VideoInformationDTO[] videoInformation){
 
         return videoInformation[0].getDate().replace('-','.');
     }

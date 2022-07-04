@@ -1,6 +1,8 @@
 package Youtube.SpringbootServer.controller;
 
-import Youtube.SpringbootServer.domain.*;
+import Youtube.SpringbootServer.dto.*;
+import Youtube.SpringbootServer.entity.Keyword;
+import Youtube.SpringbootServer.service.BoardService;
 import Youtube.SpringbootServer.service.CommentService;
 import Youtube.SpringbootServer.service.VideoService;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -28,9 +30,15 @@ import javax.servlet.http.HttpSession;
 @RequiredArgsConstructor
 public class ResponseJsonController {
 
-    //서비스 클래스 DI
+    // DI
     private final VideoService videoService;
     private final CommentService commentService;
+    private final KeywordDTO keywordDTO;
+    private final CommentListDTO commentListDTO;
+    private final PercentDTO percentDTO;
+    private final VideoInformationDTO videoInformationDTO;
+    private final InterestListDTO interestListDTO;
+    private final TimeLineListDTO timeLineListDTO;
 
     private ObjectMapper objectMapper = new ObjectMapper();
     private String link = "http://localhost:5000";
@@ -50,14 +58,15 @@ public class ResponseJsonController {
 
     @CrossOrigin("*")
     @GetMapping("/getkeyword/{url}")
-    public Keyword getKeyword(@PathVariable String url, Model model) {
+    public KeywordDTO getKeyword(@PathVariable String url, Model model) {
         String KeywordBaseUrl = "http://localhost:5000/searchkeyword?url=" + url;
         RestTemplate KeywordRestTemplate = new RestTemplate();
 
-        ResponseEntity<Keyword> KeywordResponse = KeywordRestTemplate.getForEntity(KeywordBaseUrl, Keyword.class);
+        ResponseEntity<KeywordDTO> KeywordResponse = KeywordRestTemplate.getForEntity(KeywordBaseUrl, KeywordDTO.class);
 
-        Keyword keyword = KeywordResponse.getBody();
-
+        KeywordDTO keyword = KeywordResponse.getBody();
+        keywordDTO.setB5(keyword.getB5());
+        keywordDTO.setComments(keyword.getComments());
         log.info("대표 키워드 1 = {}", keyword.getB5()[0]);
         log.info("대표 키워드 2 = {}", keyword.getB5()[1]);
         log.info("대표 키워드 3 = {}", keyword.getB5()[2]);
@@ -79,9 +88,9 @@ public class ResponseJsonController {
 
         String baseUrl = "http://localhost:5000/classifycomments?url=" + url;
         RestTemplate restTemplate = new RestTemplate();
-        ResponseEntity<Comment[]> response = restTemplate.getForEntity(baseUrl, Comment[].class);
-        Comment comments[] = response.getBody();
-
+        ResponseEntity<CommentDTO[]> response = restTemplate.getForEntity(baseUrl, CommentDTO[].class);
+        CommentDTO comments[] = response.getBody();
+        commentListDTO.setComments(comments);
         HashMap<String, List> commentMap = commentService.classifyComment(comments);
         HashMap<String, Double> positiveNegativePercentMap = commentService.positiveNegativePercent();
         HashMap<String, Double> sentimentPercentMap = commentService.sentimentPercent();
@@ -139,6 +148,10 @@ public class ResponseJsonController {
         fearPercent.put("fearPercent", sentimentPercentMap.get("refined_fearPercent"));
         jsonDataArray.add(fearPercent);
 
+        percentDTO.SetPercentDTO(positiveNegativePercentMap.get("refined_positivePercent"),positiveNegativePercentMap.get("refined_negativePercent"),
+                sentimentPercentMap.get("refined_happyPercent"),sentimentPercentMap.get("refined_surprisedPercent"),sentimentPercentMap.get("refined_angerPercent"),
+                sentimentPercentMap.get("refined_sadnessPercent"),sentimentPercentMap.get("refined_neutralPercent"),sentimentPercentMap.get("refined_disgustPercent"),
+                sentimentPercentMap.get("refined_fearPercent"));
 
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         String jsonDataArrayToGson = gson.toJson(jsonDataArray);
@@ -148,38 +161,43 @@ public class ResponseJsonController {
 
     @CrossOrigin("*")
     @GetMapping("/videoinfo/{videoId}")
-    public VideoInformation[] getVideoInfo(@PathVariable String videoId){
+    public VideoInformationDTO[] getVideoInfo(@PathVariable String videoId){
         String baseurl = "http://localhost:5000/getvideoinformation?url=" + videoId;
         RestTemplate restTemplate = new RestTemplate();
-        ResponseEntity<VideoInformation[]> response = restTemplate.getForEntity(baseurl, VideoInformation[].class);
-        VideoInformation[] videoInfo = response.getBody();
-
+        ResponseEntity<VideoInformationDTO[]> response = restTemplate.getForEntity(baseurl, VideoInformationDTO[].class);
+        VideoInformationDTO[] videoInfo = response.getBody();
+        for (VideoInformationDTO vi : videoInfo) {
+            videoInformationDTO.setVideoInfo(vi.getTitle(),vi.getDate(),vi.getView(),vi.getLike());
+        }
+        System.out.println(videoInfo);
         return videoInfo;
     }
 
     @CrossOrigin("*")
     @GetMapping("/timeline/{videoId}")
-    public Timeline[] getTimeline(@PathVariable String videoId){
+    public TimelineDTO[] getTimeline(@PathVariable String videoId){
         String baseurl = "http://localhost:5000/timeline?url="+videoId;
         RestTemplate restTemplate = new RestTemplate();
-        ResponseEntity<Timeline[]> response = restTemplate.getForEntity(baseurl, Timeline[].class);
-        Timeline[] timeline = response.getBody();
-
+        ResponseEntity<TimelineDTO[]> response = restTemplate.getForEntity(baseurl, TimelineDTO[].class);
+        TimelineDTO[] timeline = response.getBody();
+        timeLineListDTO.setTimeline(timeline);
+        System.out.println("timeline = " + timeline);
         return timeline;
     }
 
     @CrossOrigin("*")
     @GetMapping("/interest/{videoId}")
-    public Interest[] getInterest(@PathVariable String videoId){
+    public InterestDTO[] getInterest(@PathVariable String videoId){
         String baseurl = "http://localhost:5000/interest?url=" + videoId;
         RestTemplate restTemplate = new RestTemplate();
-        ResponseEntity<Interest[]> InterestResponse = restTemplate.getForEntity(baseurl, Interest[].class);
-        Interest[] interests = InterestResponse.getBody();
+        ResponseEntity<InterestDTO[]> InterestResponse = restTemplate.getForEntity(baseurl, InterestDTO[].class);
+        InterestDTO[] interests = InterestResponse.getBody();
+        interestListDTO.setInterests(interests);
 
         for(int i=0;i<interests.length;i++){
             log.info("날짜별 댓글 개수 = {}", interests[i]);
         }
-
+        System.out.println("interests = " + interests);
         return interests;
     }
 
