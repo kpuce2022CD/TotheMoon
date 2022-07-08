@@ -11,12 +11,12 @@
 
 
 ## 시스템 시나리오
-![system](https://user-images.githubusercontent.com/71515740/156916714-b400ebd5-b846-4199-81d3-4bd3a09775f8.png)
+![시스템 시나리오](https://user-images.githubusercontent.com/70521476/178017335-996e0549-9656-4cd8-8e37-37595bbffa71.png)
 
 <br>
 
 ## 시스템 구성도
-![systemDiagram](https://user-images.githubusercontent.com/72335632/170873023-d41384f6-2ec1-40e4-8008-0b6857983da5.png)
+![설계도](https://user-images.githubusercontent.com/70521476/178016709-08b950eb-2e52-4e76-ba66-d745f6f3e978.png)
 
 <br>
 
