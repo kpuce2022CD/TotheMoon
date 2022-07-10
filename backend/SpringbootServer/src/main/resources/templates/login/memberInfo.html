@@ -1,0 +1,28 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>Naetube</title>
+</head>
+<body>
+<div class="container" style="max-width: 600px">
+    <div class="py-5 text-center">
+        <h2>my page</h2>
+    </div>
+    <h4 class="mb-3" th:text="|나의 ID : ${member.loginId}|">로그인 사용자 아이디</h4>
+    <h4 class="mb-3">저장된 분석 결과 : <a th:href="@{/list/}">조회하기</a></h4>
+    <hr class="my-4">
+    <div class="row">
+        <div class="col">
+            <form th:action="@{/logout}" method="post">
+                <button class="w-100 btn btn-dark btn-lg" onclick="location.href='items.html'" type="submit">
+                    로그아웃
+                </button>
+            </form>
+        </div>
+    </div>
+    <hr class="my-4">
+</div> <!-- /container -->
+</body>
+</html>
