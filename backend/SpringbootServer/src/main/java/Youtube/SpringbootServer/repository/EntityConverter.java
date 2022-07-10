@@ -35,4 +35,8 @@ public class EntityConverter {
     public Timeline toTimelineEntity(TimelineDTO timelineDTO){
         return new Timeline(timelineDTO.getCount(),timelineDTO.getSec(),timelineDTO.getLabel());
     }
+
+    public Member toMemberEntity(MemberDTO memberDTO){
+        return new Member(memberDTO.getLoginId(), memberDTO.getPassword());
+    }
 }
