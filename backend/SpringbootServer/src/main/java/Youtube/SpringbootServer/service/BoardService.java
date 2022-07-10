@@ -86,8 +86,8 @@ public class BoardService {
 
 
     //분석 리스트 출력.
-    public List<Record> findRecords(){
-        return recordRepository.findAll();
+    public List<Record> findRecords(Long id){
+        return recordRepository.findByMemberId(id);
     }
 
     //분석 1건 comment 조회
@@ -118,6 +118,11 @@ public class BoardService {
     public List<KeywordComment> findKeywordComment(Long recordId){
         return keywordCommentRepository.findKeywordComments(recordId);
     }
+
+//    //멤버와 관련된 vidoeinfo 조회
+//    public VideoInformation findRecordVideoInfo(Long memberId){
+//        return videoInfoRepository.findRecordVideoInfo(memberId);
+//    }
 
     //분석 1건 삭제
     public void delete(Long recordId){

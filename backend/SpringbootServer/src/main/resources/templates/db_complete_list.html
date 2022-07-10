@@ -3,24 +3,42 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>Naetube</title>
 </head>
+<style>
+    .container {
+ max-width: 560px;
+ }
+ .field-error {
+ border-color: #dc3545;
+ color: #dc3545;
+ }
+ table{
+    margin-left:auto;
+    margin-right:auto;
+ }
+</style>
 <body>
-<h2>DB에 저장되었습니다.</h2>
-
-<div align="center">
-    <header>분석 리스트</header>
-    <table border="1">
-        <thead>
+<div class="container">
+    <div class="py-5 text-center">
+        <h2>분석 목록</h2>
+    </div>
+    <table class="table">
+        <thead class="thead-dark">
         <tr>
-            <th>id</th>
+            <th scope="col">#</th>
+            <th scope="col">TIME</th>
+            <th scope="col"></th>
+            <th scope="col"></th>
         </tr>
         </thead>
         <tbody>
-        <tr th:each="record: ${records}">
-            <td th:text="${record.id}"></td>
-            <td><a th:href="@{/persist/{id}(id = ${record.id})}">분석 보기</a></td>
-            <td><a th:href="@{/delete/{id}(id = ${record.id})}">삭제 하기 </a></td>
+        <tr th:each="record,num: ${records}">
+            <th scope="row">[[${num.count}]]</th>
+            <td th:text="${record.createDate}"></td>
+            <td><a th:href="@{/persist/{id}(id = ${record.id})}">자세히 보기</a></td>
+            <td><a th:href="@{/delete/{id}(id = ${record.id})}">삭제</a></td>
         </tr>
         </tbody>
     </table>

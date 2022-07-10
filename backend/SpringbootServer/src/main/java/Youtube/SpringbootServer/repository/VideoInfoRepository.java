@@ -19,4 +19,7 @@ public interface VideoInfoRepository extends JpaRepository<VideoInformation,Long
     @Transactional
     @Query("delete from VideoInformation v where v.record.id = :id")
     void deleteVideoInfo(@Param("id") long id);
+
+//    @Query(value = "select * from video_information vi join record r on vi.record_id = r.record_id where r.member_id = :member_id", nativeQuery = true)
+//    VideoInformation findRecordVideoInfo(@Param("member_id") long member_id);
 }
