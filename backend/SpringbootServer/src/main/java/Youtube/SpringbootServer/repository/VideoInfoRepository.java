@@ -19,4 +19,5 @@ public interface VideoInfoRepository extends JpaRepository<VideoInformation,Long
     @Transactional
     @Query("delete from VideoInformation v where v.record.id = :id")
     void deleteVideoInfo(@Param("id") long id);
+
 }

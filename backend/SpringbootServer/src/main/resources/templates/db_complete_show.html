@@ -3,85 +3,98 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>Naetube</title>
 </head>
+<style>
+    .container {
+ max-width: 1000px;
+ }
+ .field-error {
+ border-color: #dc3545;
+ color: #dc3545;
+ }
+</style>
 <body>
-<h2>DB에 저장되었습니다.</h2>
-
-<div align="center">
-    <header>영상 정보</header>
-    <table border="1">
-        <thead>
+<div class="container">
+    <div class="py-5 text-center">
+        <h2>분석 결과</h2>
+    </div>
+    <b><header>영상 정보</header></b>
+    <table class="table">
+        <thead class="thead-dark">
         <tr>
-            <th>제목</th>
-            <th>날짜</th>
-            <th>조회 수</th>
-            <th>좋아요 수</th>
+            <th scope="col">Title</th>
+            <th scope="col">VideoDate</th>
+            <th scope="col">View</th>
+            <th scope="col">Likes</th>
         </tr>
         </thead>
         <tbody>
-        <td th:text="${videoInfo.title}"></td>
-        <td th:text="${videoInfo.videoDate}"></td>
-        <td th:text="${videoInfo.view}"></td>
-        <td th:text="${videoInfo.videoLike}"></td>
+            <td th:width="530" th:text="${videoInfo.title}"></td>
+            <td th:text="${videoInfo.videoDate}"></td>
+            <td th:text="${videoInfo.view}"></td>
+            <td th:width="80" th:text="${videoInfo.videoLike}"></td>
+        </tbody>
         </tbody>
     </table>
+
     <br>
-    <header>베스트 키워드</header>
-    <table border="1">
-        <thead>
+    <b><header>베스트 키워드</header></b>
+    <table class="table">
+        <thead class="thead-dark">
         <tr>
-            <th>순위</th>
-            <th>키워드</th>
+            <th scope="col">순위</th>
+            <th scope="col">키워드</th>
         </tr>
         </thead>
         <tbody>
         <tr th:each="keyword: ${keywords}">
-            <td th:text="${keyword.keywordRank}"></td>
+            <td th:text="${keyword.keywordRank}+1"></td>
             <td th:text="${keyword.word}"></td>
         </tr>
         </tbody>
     </table>
     <br>
-    <header>키워드 댓글</header>
-    <table border="1">
-        <thead>
+    <b><header>키워드 관련 댓글</header></b>
+    <table class="table">
+        <thead class="thead-dark">
         <tr>
-            <th>순위</th>
-            <th>키워드 댓글</th>
+            <th scope="col">순위</th>
+            <th scope="col">키워드 댓글</th>
         </tr>
         </thead>
         <tbody>
         <tr th:each="keywordComment: ${keywordComments}">
-            <td th:text="${keywordComment.keyword.keywordRank}"></td>
-            <td th:text="${keywordComment.content}"></td>
+            <td th:width="80" th:text="${keywordComment.keyword.keywordRank}+1"></td>
+            <td th:utext="${keywordComment.content}"></td>
         </tr>
         </tbody>
     </table>
     <br>
-    <header>관심도</header>
-    <table border="1">
-        <thead>
+    <b><header>관심도</header></b>
+    <table class="table">
+        <thead class="thead-dark">
         <tr>
-            <th>댓글 날짜</th>
-            <th>댓글 수 </th>
+            <th scope="col">댓글 날짜</th>
+            <th scope="col">댓글 수</th>
         </tr>
         </thead>
         <tbody>
         <tr th:each="interest: ${interests}">
             <td th:text="${interest.commentDate}"></td>
-            <td th:text="${interest.commentCount}"></td>
+            <td th:width="80" th:text="${interest.commentCount}"></td>
         </tr>
         </tbody>
     </table>
     <br>
-    <header>타임라인</header>
-    <table border="1">
-        <thead>
+    <b><header>타임라인</header></b>
+    <table class="table">
+        <thead class="thead-dark">
         <tr>
-            <th>count</th>
-            <th>label</th>
-            <th>sec</th>
+            <th scope="col">count</th>
+            <th scope="col">label</th>
+            <th scope="col">sec</th>
         </tr>
         </thead>
         <tbody>
@@ -93,12 +106,12 @@
         </tbody>
     </table>
     <br>
-    <header>긍정/부정 지수</header>
-    <table border="1">
-        <thead>
+    <b><header>긍정/부정 지수</header></b>
+    <table class="table">
+        <thead class="thead-dark">
         <tr>
-            <th>긍정</th>
-            <th>부정</th>
+            <th scope="col">긍정</th>
+            <th scope="col">부정</th>
         </tr>
         </thead>
         <tbody>
@@ -107,49 +120,222 @@
         </tbody>
     </table>
     <br>
-    <header>감정 지수</header>
-    <table border="1">
-        <thead>
+    <b><header>감정 지수</header></b>
+    <table class="table">
+        <thead class="thead-dark">
         <tr>
-            <th>행복</th>
-            <th>놀람</th>
-            <th>화남</th>
-            <th>슬픔</th>
-            <th>중립</th>
-            <th>혐오</th>
-            <th>두려움</th>
+            <th scope="col">행복</th>
+            <th scope="col">놀람</th>
+            <th scope="col">화남</th>
+            <th scope="col">슬픔</th>
+            <th scope="col">중립</th>
+            <th scope="col">혐오</th>
+            <th scope="col">두려움</th>
         </tr>
         </thead>
         <tbody>
-            <td th:text="${percent.happy}"></td>
-            <td th:text="${percent.surprise}"></td>
-            <td th:text="${percent.anger}"></td>
-            <td th:text="${percent.sadness}"></td>
-            <td th:text="${percent.neutral}"></td>
-            <td th:text="${percent.disgust}"></td>
-            <td th:text="${percent.fear}"></td>
+        <td th:text="${percent.happy}"></td>
+        <td th:text="${percent.surprise}"></td>
+        <td th:text="${percent.anger}"></td>
+        <td th:text="${percent.sadness}"></td>
+        <td th:text="${percent.neutral}"></td>
+        <td th:text="${percent.disgust}"></td>
+        <td th:text="${percent.fear}"></td>
         </tbody>
     </table>
     <br>
-    <header>댓글 분석 결과</header>
-    <table border="1">
-        <thead>
+<!--    <table class="table">-->
+<!--        <thead class="thead-dark">-->
+<!--        <tr>-->
+<!--            <th scope="col">작성자 id</th>-->
+<!--            <th scope="col">내용</th>-->
+<!--            <th scope="col">index</th>-->
+<!--        </tr>-->
+<!--        </thead>-->
+<!--        <tbody>-->
+<!--        <tr th:each="comment: ${comments}">-->
+<!--            <td th:text="${comment.commentUserId}"></td>-->
+<!--            <td th:utext="${comment.content}"></td>-->
+<!--            <td th:width="100" th:text="${comment.commentIndex}"></td>-->
+<!--        </tr>-->
+<!--        </tbody>-->
+<!--    </table>-->
+    <b><header>긍정 댓글</header></b>
+    <table class="table">
+        <thead class="thead-dark">
         <tr>
-            <th>작성자 id</th>
-            <th>내용</th>
-            <th>작성 날짜</th>
-            <th>댓글 index</th>
-            <th>좋아요 수</th>
-
+            <th scope="col">작성자</th>
+            <th scope="col">내용</th>
+            <th scope="col">좋아요</th>
         </tr>
         </thead>
         <tbody>
         <tr th:each="comment: ${comments}">
-            <td th:text="${comment.commentUserId}"></td>
-            <td th:text="${comment.content}"></td>
-            <td th:text="${comment.commentDate}"></td>
-            <td th:text="${comment.commentIndex}"></td>
-            <td th:text="${comment.commentLike}"></td>
+            <th:block th:if="${comment.commentIndex == '1'}">
+                <td th:width="120" th:text="${comment.commentUserId}"></td>
+                <td th:utext="${comment.content}"></td>
+                <td th:width="80" th:text="${comment.commentLike}"></td>
+            </th:block>
+        </tr>
+        </tbody>
+    </table>
+    <br>
+    <b><header>부정 댓글</header></b>
+        <table class="table">
+            <thead class="thead-dark">
+            <tr>
+                <th scope="col">작성자</th>
+                <th scope="col">내용</th>
+                <th scope="col">좋아요</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="comment: ${comments}">
+                <th:block th:if="${comment.commentIndex == '0'}">
+                    <td th:width="120" th:text="${comment.commentUserId}"></td>
+                    <td th:utext="${comment.content}"></td>
+                    <td th:width="80" th:text="${comment.commentLike}"></td>
+                </th:block>
+            </tr>
+            </tbody>
+        </table>
+    <br>
+    <b><header>행복 댓글</header></b>
+    <table class="table">
+        <thead class="thead-dark">
+        <tr>
+            <th scope="col">작성자</th>
+            <th scope="col">내용</th>
+            <th scope="col">좋아요</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="comment: ${comments}">
+            <th:block th:if="${comment.commentIndex == '7'}">
+                <td th:width="120" th:text="${comment.commentUserId}"></td>
+                <td th:utext="${comment.content}"></td>
+                <td th:width="80" th:text="${comment.commentLike}"></td>
+            </th:block>
+        </tr>
+        </tbody>
+    </table>
+    <br>
+    <b><header>슬픔 댓글</header></b>
+    <table class="table">
+        <thead class="thead-dark">
+        <tr>
+            <th scope="col">작성자</th>
+            <th scope="col">내용</th>
+            <th scope="col">좋아요</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="comment: ${comments}">
+            <th:block th:if="${comment.commentIndex == '5'}">
+                <td th:width="120" th:text="${comment.commentUserId}"></td>
+                <td th:utext="${comment.content}"></td>
+                <td th:width="80" th:text="${comment.commentLike}"></td>
+            </th:block>
+        </tr>
+        </tbody>
+    </table>
+    <br>
+    <b><header>중립 댓글</header></b>
+    <table class="table">
+        <thead class="thead-dark">
+        <tr>
+            <th scope="col">작성자</th>
+            <th scope="col">내용</th>
+            <th scope="col">좋아요</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="comment: ${comments}">
+            <th:block th:if="${comment.commentIndex == '6'}">
+                <td th:width="120" th:text="${comment.commentUserId}"></td>
+                <td th:utext="${comment.content}"></td>
+                <td th:width="80" th:text="${comment.commentLike}"></td>
+            </th:block>
+        </tr>
+        </tbody>
+    </table>
+    <br>
+    <b><header>두려움 댓글</header></b>
+    <table class="table">
+        <thead class="thead-dark">
+        <tr>
+            <th scope="col">작성자</th>
+            <th scope="col">내용</th>
+            <th scope="col">좋아요</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="comment: ${comments}">
+            <th:block th:if="${comment.commentIndex == '2'}">
+                <td th:width="120" th:text="${comment.commentUserId}"></td>
+                <td th:utext="${comment.content}"></td>
+                <td th:width="80" th:text="${comment.commentLike}"></td>
+            </th:block>
+        </tr>
+        </tbody>
+    </table>
+    <br>
+    <b><header>놀람 댓글</header></b>
+    <table class="table">
+        <thead class="thead-dark">
+        <tr>
+            <th scope="col">작성자</th>
+            <th scope="col">내용</th>
+            <th scope="col">좋아요</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="comment: ${comments}">
+            <th:block th:if="${comment.commentIndex == '3'}">
+                <td th:width="120" th:text="${comment.commentUserId}"></td>
+                <td th:utext="${comment.content}"></td>
+                <td th:width="80" th:text="${comment.commentLike}"></td>
+            </th:block>
+        </tr>
+        </tbody>
+    </table>
+    <br>
+    <b><header>화남 댓글</header></b>
+    <table class="table">
+        <thead class="thead-dark">
+        <tr>
+            <th scope="col">작성자</th>
+            <th scope="col">내용</th>
+            <th scope="col">좋아요</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="comment: ${comments}">
+            <th:block th:if="${comment.commentIndex == '4'}">
+                <td th:width="120" th:text="${comment.commentUserId}"></td>
+                <td th:utext="${comment.content}"></td>
+                <td th:width="80" th:text="${comment.commentLike}"></td>
+            </th:block>
+        </tr>
+        </tbody>
+    </table>
+    <br>
+    <b><header>혐오 댓글</header></b>
+    <table class="table">
+        <thead class="thead-dark">
+        <tr>
+            <th scope="col">작성자</th>
+            <th scope="col">내용</th>
+            <th scope="col">좋아요</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="comment: ${comments}">
+            <th:block th:if="${comment.commentIndex == '8'}">
+                <td th:width="120" th:text="${comment.commentUserId}"></td>
+                <td th:utext="${comment.content}"></td>
+                <td th:width="80" th:text="${comment.commentLike}"></td>
+            </th:block>
         </tr>
         </tbody>
     </table>

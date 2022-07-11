@@ -2,7 +2,9 @@ package Youtube.SpringbootServer;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-//푸시 테스트11111
+import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
+
+@EnableJpaAuditing
 @SpringBootApplication
 public class SpringbootServerApplication {
 

@@ -1,13 +1,16 @@
 package Youtube.SpringbootServer.controller;
 
+import Youtube.SpringbootServer.SessionConst;
 import Youtube.SpringbootServer.dto.*;
 import Youtube.SpringbootServer.entity.*;
 import Youtube.SpringbootServer.service.BoardService;
+import Youtube.SpringbootServer.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.SessionAttribute;
 
 import java.util.List;
 
@@ -22,19 +25,22 @@ public class BoardController {
     private final VideoInformationDTO videoInformationDTO;
     private final InterestListDTO interestListDTO;
     private final TimeLineListDTO timeLineListDTO;
+    private final MemberService memberService;
 
     //목록 조회
     @GetMapping("/list")
-    public String recordList(Model model){
-        List<Record> records = boardService.findRecords();
+    public String recordList(Model model, @SessionAttribute(name = SessionConst.LOGIN_MEMBER, required = false) Member loginMember){
+        List<Record> records = boardService.findRecords(loginMember.getId());
         model.addAttribute("records", records);
         return "db_complete_list";
     }
 
     //저장
     @GetMapping("/persist")
-    public String persistComment(){
+    public String persistComment(@SessionAttribute(name = SessionConst.LOGIN_MEMBER, required = false) Member loginMember){
         Record record = new Record();
+        record.setMember(loginMember);
+        record.setVideoTitle(videoInformationDTO.getTitle());
         boardService.registerDB(commentListDTO,record,keywordDTO,percentDTO, videoInformationDTO,interestListDTO,timeLineListDTO);
         return "redirect:/list";
     }

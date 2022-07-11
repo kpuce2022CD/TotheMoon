@@ -86,8 +86,8 @@ public class BoardService {
 
 
     //분석 리스트 출력.
-    public List<Record> findRecords(){
-        return recordRepository.findAll();
+    public List<Record> findRecords(Long id){
+        return recordRepository.findByMemberId(id);
     }
 
     //분석 1건 comment 조회

@@ -23,7 +23,7 @@ public class KeywordComment {
     private Keyword keyword;
 
     //댓글 내용
-    @Column(length = 1000)
+    @Column(length = 2000)
     private String content;
 
     public KeywordComment() {

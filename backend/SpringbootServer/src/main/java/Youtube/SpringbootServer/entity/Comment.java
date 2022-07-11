@@ -31,7 +31,7 @@ public class Comment {
     private String commentIndex;
 
     //댓글 내용
-    @Column(length = 1000)
+    @Column(length = 2000)
     private String content;
 
     private String commentLike;
