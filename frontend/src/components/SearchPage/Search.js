@@ -29,11 +29,11 @@ function Search() {
         <nav class="navbar navbar-light bg-light static-top">
             <div class="container">
                 <a class="navbar-brand" href="#!">Naetube</a>
-                <a class="navbar-brand" href="http://localhost:8080/login">Login</a>
-                <a class="navbar-brand" href="http://localhost:8080/memberinfo">mypage</a>
-                <form action="http://localhost:8080/logout" method="post">
+                {/* <a class="navbar-brand" href="http://localhost:8080/login">Login</a>  */}
+                <a class="navbar-brand" href="http://localhost:8080/memberinfo" target="_blank">mypage</a>
+                {/* <form action="http://localhost:8080/logout" method="post">
                     <button onClick="" type="submit">logout</button>
-                </form>
+                </form> */}
             </div>
         </nav>
         {/* <!-- Masthead--> */}

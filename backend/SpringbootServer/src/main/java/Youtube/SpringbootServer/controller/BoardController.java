@@ -31,8 +31,6 @@ public class BoardController {
     @GetMapping("/list")
     public String recordList(Model model, @SessionAttribute(name = SessionConst.LOGIN_MEMBER, required = false) Member loginMember){
         List<Record> records = boardService.findRecords(loginMember.getId());
-//        VideoInformation recordVideoInfo = boardService.findRecordVideoInfo(loginMember.getId());
-//        model.addAttribute("recordVideoInfo",recordVideoInfo);
         model.addAttribute("records", records);
         return "db_complete_list";
     }
@@ -42,6 +40,7 @@ public class BoardController {
     public String persistComment(@SessionAttribute(name = SessionConst.LOGIN_MEMBER, required = false) Member loginMember){
         Record record = new Record();
         record.setMember(loginMember);
+        record.setVideoTitle(videoInformationDTO.getTitle());
         boardService.registerDB(commentListDTO,record,keywordDTO,percentDTO, videoInformationDTO,interestListDTO,timeLineListDTO);
         return "redirect:/list";
     }

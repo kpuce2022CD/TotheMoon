@@ -119,11 +119,6 @@ public class BoardService {
         return keywordCommentRepository.findKeywordComments(recordId);
     }
 
-//    //멤버와 관련된 vidoeinfo 조회
-//    public VideoInformation findRecordVideoInfo(Long memberId){
-//        return videoInfoRepository.findRecordVideoInfo(memberId);
-//    }
-
     //분석 1건 삭제
     public void delete(Long recordId){
         commentRepository.deleteComments(recordId);

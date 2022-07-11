@@ -8,7 +8,7 @@
 </head>
 <style>
     .container {
- max-width: 560px;
+ max-width: 1000px;
  }
  .field-error {
  border-color: #dc3545;
@@ -28,6 +28,7 @@
         <thead class="thead-dark">
         <tr>
             <th scope="col">#</th>
+            <th scope="col">VIDEO TITLE</th>
             <th scope="col">TIME</th>
             <th scope="col"></th>
             <th scope="col"></th>
@@ -36,7 +37,8 @@
         <tbody>
         <tr th:each="record,num: ${records}">
             <th scope="row">[[${num.count}]]</th>
-            <td th:text="${record.createDate}"></td>
+            <td th:width="530" th:text="${record.videoTitle}"></td>
+            <td th:width="200" th:text="${record.createDate}"></td>
             <td><a th:href="@{/persist/{id}(id = ${record.id})}">자세히 보기</a></td>
             <td><a th:href="@{/delete/{id}(id = ${record.id})}">삭제</a></td>
         </tr>

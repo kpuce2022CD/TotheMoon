@@ -58,9 +58,11 @@ public class Record {
     @CreatedDate
     private String createDate;
 
+    private String videoTitle;
+
     @PrePersist
     public void onPrePersist(){
-        this.createDate = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy.MM.dd a KK시 mm분"));
+        this.createDate = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy.MM.dd a KK : mm"));
     }
 
 }
