@@ -1,5 +1,6 @@
 package Youtube.SpringbootServer.entity;
 
+import Youtube.SpringbootServer.dto.Role;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.Getter;
@@ -23,6 +24,8 @@ public class Member {
     private String loginId;
 
     private String password;
+
+    private Role role;
 
     @JsonIgnore
     @OneToMany(mappedBy = "member")
