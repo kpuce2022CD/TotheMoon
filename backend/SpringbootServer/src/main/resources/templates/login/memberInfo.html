@@ -4,20 +4,44 @@
     <meta charset="utf-8">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <title>Naetube</title>
+    <style>
+       .navbar-brand{
+         margin-left:60px;
+        }
+        @import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@700;800&display=swap');
+        body{
+          background-color: #CD5C5C	;
+        }
+        h4,h2,button,a {
+          font-family: 'Nanum Gothic', sans-serif;
+          color: #ffffff;
+        }
+        h4 {
+           font-weight: bold;
+        }
+    </style>
 </head>
 <body>
+<nav class="navbar navbar-light bg-light static-top">
+    <a class="navbar-brand" href="http://localhost:3000/">Naetube</a>
+</nav>
 <div class="container" style="max-width: 600px">
     <div class="py-5 text-center">
-        <h2>my page</h2>
+        <h2>My Page</h2>
     </div>
+    <br><Br>
     <h4 class="mb-3" th:text="|나의 ID : ${member.loginId}|">로그인 사용자 아이디</h4>
-    <h4 class="mb-3">저장된 분석 결과 : <a th:href="@{/list/}">조회하기</a></h4>
+    <h4 class="mb-3" th:text="|가입 일 : ${member.registerDate}|">로그인 사용자 가입일</h4>
+    <br>
     <hr class="my-4">
     <div class="row">
         <div class="col">
+            <a class="w-100 btn btn-light btn-lg" th:href="@{/list/}">분석 목록 조회</a>
+        </div>
+        <div class="col">
             <form th:action="@{/logout}" method="post">
-                <button class="w-100 btn btn-dark btn-lg" onclick="location.href='items.html'" type="submit">
-                    로그아웃
+                <button class="w-100 btn btn-light btn-lg" onclick="location.href='items.html'" type="submit">
+                    sign out
                 </button>
             </form>
         </div>

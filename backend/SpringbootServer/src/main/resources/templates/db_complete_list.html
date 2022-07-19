@@ -10,6 +10,9 @@
     .container {
  max-width: 1000px;
  }
+ .navbar-brand{
+ margin-left:50px;
+ }
  .field-error {
  border-color: #dc3545;
  color: #dc3545;
@@ -18,14 +21,29 @@
     margin-left:auto;
     margin-right:auto;
  }
+ @import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@700;800&display=swap');
+ body{
+          background-color: #CD5C5C	;
+}
+ h2,button{
+          font-family: 'Nanum Gothic', sans-serif;
+          color: #ffffff;
+          font-weight: bold;
+}
+tbody, thead{
+     background-color: #ffffff;
+ }
 </style>
 <body>
+<nav class="navbar navbar-light bg-light static-top">
+    <a class="navbar-brand" href="http://localhost:3000/">Naetube</a>
+</nav>
 <div class="container">
     <div class="py-5 text-center">
         <h2>분석 목록</h2>
     </div>
-    <table class="table">
-        <thead class="thead-dark">
+    <table class="table table-hover">
+        <thead>
         <tr>
             <th scope="col">#</th>
             <th scope="col">VIDEO TITLE</th>

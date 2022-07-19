@@ -7,6 +7,9 @@
     <title>Naetube</title>
 </head>
 <style>
+.navbar-brand{
+         margin-left:60px;
+}
     .container {
  max-width: 1000px;
  }
@@ -14,15 +17,30 @@
  border-color: #dc3545;
  color: #dc3545;
  }
+ @import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@700;800&display=swap');
+ body{
+          background-color: #CD5C5C	;
+}
+ h4,h2,button,header {
+          font-family: 'Nanum Gothic', sans-serif;
+          color: #ffffff;
+          font-weight: bold
+}
+tbody, thead{
+     background-color: #ffffff;
+ }
 </style>
 <body>
+<nav class="navbar navbar-light bg-light static-top">
+    <a class="navbar-brand" href="http://localhost:3000/">Naetube</a>
+</nav>
 <div class="container">
     <div class="py-5 text-center">
         <h2>분석 결과</h2>
     </div>
     <b><header>영상 정보</header></b>
-    <table class="table">
-        <thead class="thead-dark">
+    <table class="table table-hover">
+        <thead>
         <tr>
             <th scope="col">Title</th>
             <th scope="col">VideoDate</th>
@@ -41,8 +59,8 @@
 
     <br>
     <b><header>베스트 키워드</header></b>
-    <table class="table">
-        <thead class="thead-dark">
+    <table class="table table-hover">
+        <thead>
         <tr>
             <th scope="col">순위</th>
             <th scope="col">키워드</th>
@@ -57,8 +75,8 @@
     </table>
     <br>
     <b><header>키워드 관련 댓글</header></b>
-    <table class="table">
-        <thead class="thead-dark">
+    <table class="table table-hover">
+        <thead>
         <tr>
             <th scope="col">순위</th>
             <th scope="col">키워드 댓글</th>
@@ -73,8 +91,8 @@
     </table>
     <br>
     <b><header>관심도</header></b>
-    <table class="table">
-        <thead class="thead-dark">
+    <table class="table table-hover">
+        <thead>
         <tr>
             <th scope="col">댓글 날짜</th>
             <th scope="col">댓글 수</th>
@@ -83,14 +101,14 @@
         <tbody>
         <tr th:each="interest: ${interests}">
             <td th:text="${interest.commentDate}"></td>
-            <td th:width="80" th:text="${interest.commentCount}"></td>
+            <td style="text-align: center" th:width="80" th:text="${interest.commentCount}"></td>
         </tr>
         </tbody>
     </table>
     <br>
     <b><header>타임라인</header></b>
-    <table class="table">
-        <thead class="thead-dark">
+    <table class="table table-hover">
+        <thead>
         <tr>
             <th scope="col">count</th>
             <th scope="col">label</th>
@@ -106,24 +124,12 @@
         </tbody>
     </table>
     <br>
-    <b><header>긍정/부정 지수</header></b>
-    <table class="table">
-        <thead class="thead-dark">
+    <b><header>감정 지수</header></b>
+    <table class="table table-hover" style="text-align: center">
+        <thead>
         <tr>
             <th scope="col">긍정</th>
             <th scope="col">부정</th>
-        </tr>
-        </thead>
-        <tbody>
-        <td th:text="${percent.positive}"></td>
-        <td th:text="${percent.negative}"></td>
-        </tbody>
-    </table>
-    <br>
-    <b><header>감정 지수</header></b>
-    <table class="table">
-        <thead class="thead-dark">
-        <tr>
             <th scope="col">행복</th>
             <th scope="col">놀람</th>
             <th scope="col">화남</th>
@@ -134,6 +140,8 @@
         </tr>
         </thead>
         <tbody>
+        <td th:text="${percent.positive}"></td>
+        <td th:text="${percent.negative}"></td>
         <td th:text="${percent.happy}"></td>
         <td th:text="${percent.surprise}"></td>
         <td th:text="${percent.anger}"></td>
@@ -161,8 +169,8 @@
 <!--        </tbody>-->
 <!--    </table>-->
     <b><header>긍정 댓글</header></b>
-    <table class="table">
-        <thead class="thead-dark">
+    <table class="table table-hover">
+        <thead>
         <tr>
             <th scope="col">작성자</th>
             <th scope="col">내용</th>
@@ -174,15 +182,15 @@
             <th:block th:if="${comment.commentIndex == '1'}">
                 <td th:width="120" th:text="${comment.commentUserId}"></td>
                 <td th:utext="${comment.content}"></td>
-                <td th:width="80" th:text="${comment.commentLike}"></td>
+                <td style="text-align: center" th:width="80" th:text="${comment.commentLike}"></td>
             </th:block>
         </tr>
         </tbody>
     </table>
     <br>
     <b><header>부정 댓글</header></b>
-        <table class="table">
-            <thead class="thead-dark">
+        <table class="table table-hover">
+            <thead>
             <tr>
                 <th scope="col">작성자</th>
                 <th scope="col">내용</th>
@@ -194,15 +202,15 @@
                 <th:block th:if="${comment.commentIndex == '0'}">
                     <td th:width="120" th:text="${comment.commentUserId}"></td>
                     <td th:utext="${comment.content}"></td>
-                    <td th:width="80" th:text="${comment.commentLike}"></td>
+                    <td style="text-align: center" th:width="80" th:text="${comment.commentLike}"></td>
                 </th:block>
             </tr>
             </tbody>
         </table>
     <br>
     <b><header>행복 댓글</header></b>
-    <table class="table">
-        <thead class="thead-dark">
+    <table class="table table-hover">
+        <thead>
         <tr>
             <th scope="col">작성자</th>
             <th scope="col">내용</th>
@@ -214,15 +222,15 @@
             <th:block th:if="${comment.commentIndex == '7'}">
                 <td th:width="120" th:text="${comment.commentUserId}"></td>
                 <td th:utext="${comment.content}"></td>
-                <td th:width="80" th:text="${comment.commentLike}"></td>
+                <td style="text-align: center" th:width="80" th:text="${comment.commentLike}"></td>
             </th:block>
         </tr>
         </tbody>
     </table>
     <br>
     <b><header>슬픔 댓글</header></b>
-    <table class="table">
-        <thead class="thead-dark">
+    <table class="table table-hover">
+        <thead>
         <tr>
             <th scope="col">작성자</th>
             <th scope="col">내용</th>
@@ -234,15 +242,15 @@
             <th:block th:if="${comment.commentIndex == '5'}">
                 <td th:width="120" th:text="${comment.commentUserId}"></td>
                 <td th:utext="${comment.content}"></td>
-                <td th:width="80" th:text="${comment.commentLike}"></td>
+                <td style="text-align: center" th:width="80" th:text="${comment.commentLike}"></td>
             </th:block>
         </tr>
         </tbody>
     </table>
     <br>
     <b><header>중립 댓글</header></b>
-    <table class="table">
-        <thead class="thead-dark">
+    <table class="table table-hover">
+        <thead>
         <tr>
             <th scope="col">작성자</th>
             <th scope="col">내용</th>
@@ -254,15 +262,15 @@
             <th:block th:if="${comment.commentIndex == '6'}">
                 <td th:width="120" th:text="${comment.commentUserId}"></td>
                 <td th:utext="${comment.content}"></td>
-                <td th:width="80" th:text="${comment.commentLike}"></td>
+                <td style="text-align: center" th:width="80" th:text="${comment.commentLike}"></td>
             </th:block>
         </tr>
         </tbody>
     </table>
     <br>
     <b><header>두려움 댓글</header></b>
-    <table class="table">
-        <thead class="thead-dark">
+    <table class="table table-hover">
+        <thead>
         <tr>
             <th scope="col">작성자</th>
             <th scope="col">내용</th>
@@ -274,15 +282,15 @@
             <th:block th:if="${comment.commentIndex == '2'}">
                 <td th:width="120" th:text="${comment.commentUserId}"></td>
                 <td th:utext="${comment.content}"></td>
-                <td th:width="80" th:text="${comment.commentLike}"></td>
+                <td style="text-align: center" th:width="80" th:text="${comment.commentLike}"></td>
             </th:block>
         </tr>
         </tbody>
     </table>
     <br>
     <b><header>놀람 댓글</header></b>
-    <table class="table">
-        <thead class="thead-dark">
+    <table class="table table-hover">
+        <thead>
         <tr>
             <th scope="col">작성자</th>
             <th scope="col">내용</th>
@@ -294,15 +302,15 @@
             <th:block th:if="${comment.commentIndex == '3'}">
                 <td th:width="120" th:text="${comment.commentUserId}"></td>
                 <td th:utext="${comment.content}"></td>
-                <td th:width="80" th:text="${comment.commentLike}"></td>
+                <td style="text-align: center" th:width="80" th:text="${comment.commentLike}"></td>
             </th:block>
         </tr>
         </tbody>
     </table>
     <br>
     <b><header>화남 댓글</header></b>
-    <table class="table">
-        <thead class="thead-dark">
+    <table class="table table-hover">
+        <thead>
         <tr>
             <th scope="col">작성자</th>
             <th scope="col">내용</th>
@@ -314,15 +322,15 @@
             <th:block th:if="${comment.commentIndex == '4'}">
                 <td th:width="120" th:text="${comment.commentUserId}"></td>
                 <td th:utext="${comment.content}"></td>
-                <td th:width="80" th:text="${comment.commentLike}"></td>
+                <td style="text-align: center" th:width="80" th:text="${comment.commentLike}"></td>
             </th:block>
         </tr>
         </tbody>
     </table>
     <br>
     <b><header>혐오 댓글</header></b>
-    <table class="table">
-        <thead class="thead-dark">
+    <table class="table table-hover">
+        <thead>
         <tr>
             <th scope="col">작성자</th>
             <th scope="col">내용</th>
@@ -334,7 +342,7 @@
             <th:block th:if="${comment.commentIndex == '8'}">
                 <td th:width="120" th:text="${comment.commentUserId}"></td>
                 <td th:utext="${comment.content}"></td>
-                <td th:width="80" th:text="${comment.commentLike}"></td>
+                <td style="text-align: center" th:width="80" th:text="${comment.commentLike}"></td>
             </th:block>
         </tr>
         </tbody>
