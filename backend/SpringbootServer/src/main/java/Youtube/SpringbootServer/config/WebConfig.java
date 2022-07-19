@@ -1,4 +1,4 @@
-package Youtube.SpringbootServer;
+package Youtube.SpringbootServer.config;
 
 import Youtube.SpringbootServer.interceptor.LoginCheckInterceptor;
 import org.springframework.context.annotation.Configuration;

@@ -5,9 +5,12 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,11 +28,18 @@ public class Member {
 
     private String password;
 
-    private Role role;
-
     @JsonIgnore
     @OneToMany(mappedBy = "member")
     private List<Record> records = new ArrayList<>();
+
+    @Column(name="register_date")
+    @CreatedDate
+    private String registerDate;
+
+    @PrePersist
+    public void onPrePersist(){
+        this.registerDate = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy.MM.dd a KK : mm"));
+    }
 
     public Member(){
 

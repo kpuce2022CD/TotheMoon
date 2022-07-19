@@ -16,28 +16,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 
-
         http
                 .csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/").permitAll()
-                .antMatchers("/login").permitAll()
-                .antMatchers("/members/add").permitAll()
-                .antMatchers("/logout").permitAll()
-                .antMatchers("/home").permitAll()
-                .antMatchers("/oauth2/authorization/google/**").permitAll()
-                .antMatchers("/auth/**").permitAll()
-                .antMatchers("/getcomments/**").permitAll()
-                .antMatchers("/findcomment/**").permitAll()
-                .antMatchers("/interest/**").permitAll()
-                .antMatchers("/timeline/**").permitAll()
-                .antMatchers("/videoinfo/**").permitAll()
-                .antMatchers("/getkeyword/**").permitAll()
-                .antMatchers("/css/**").permitAll()
-                .antMatchers("/*.ico").permitAll()
-                .antMatchers("/error").permitAll()
-                .antMatchers("/logout").permitAll()
-                .antMatchers("/user").hasRole("USER")
+                .antMatchers("/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .exceptionHandling().accessDeniedPage("/accessDenied")
