@@ -65,7 +65,7 @@ public class BoardService {
 
         //percent 저장
         Percent percent = entityConverter.toPercentEntity(percentDTO);
-        percent.addRecord(record);
+        percent.setRecord(record);
         percentRepository.save(percent);
 
         //videoInformation 저장.

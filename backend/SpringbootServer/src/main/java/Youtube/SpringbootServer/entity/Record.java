@@ -37,9 +37,6 @@ public class Record {
     private List<Keyword> keywords = new ArrayList<>();
 
     @OneToOne(mappedBy = "record", fetch = LAZY)
-    private Percent percent;
-
-    @OneToOne(mappedBy = "record", fetch = LAZY)
     private VideoInformation videoInformation;
 
     @JsonIgnore
