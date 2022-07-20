@@ -36,10 +36,10 @@ public class Record {
     @OneToMany(mappedBy = "record")
     private List<Keyword> keywords = new ArrayList<>();
 
-    @OneToOne(mappedBy = "record", fetch = FetchType.LAZY)
+    @OneToOne(mappedBy = "record", fetch = LAZY)
     private Percent percent;
 
-    @OneToOne(mappedBy = "record", fetch = FetchType.LAZY)
+    @OneToOne(mappedBy = "record", fetch = LAZY)
     private VideoInformation videoInformation;
 
     @JsonIgnore
@@ -58,11 +58,13 @@ public class Record {
     @CreatedDate
     private String createDate;
 
-    private String videoTitle;
-
     @PrePersist
-    public void onPrePersist(){
+    public void onPrePersist() {
         this.createDate = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy.MM.dd a KK : mm"));
     }
 
+    public void addMember(Member member){
+        this.member = member;
+        member.getRecords().add(this);
+    }
 }

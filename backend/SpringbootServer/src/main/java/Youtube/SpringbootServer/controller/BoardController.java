@@ -39,9 +39,7 @@ public class BoardController {
     @GetMapping("/persist")
     public String persistComment(@SessionAttribute(name = SessionConst.LOGIN_MEMBER, required = false) Member loginMember){
         Record record = new Record();
-        record.setMember(loginMember);
-        record.setVideoTitle(videoInformationDTO.getTitle());
-        boardService.registerDB(commentListDTO,record,keywordDTO,percentDTO, videoInformationDTO,interestListDTO,timeLineListDTO);
+        boardService.registerDB(commentListDTO,record,loginMember,keywordDTO,percentDTO, videoInformationDTO,interestListDTO,timeLineListDTO);
         return "redirect:/list";
     }
 

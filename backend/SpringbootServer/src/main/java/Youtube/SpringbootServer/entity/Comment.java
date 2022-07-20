@@ -49,4 +49,9 @@ public class Comment {
         this.content = content;
         this.commentLike = commentLike;
     }
+
+    public void addRecord(Record record){
+        this.record = record;
+        record.getComments().add(this);
+    }
 }

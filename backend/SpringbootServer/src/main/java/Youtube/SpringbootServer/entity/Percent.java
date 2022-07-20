@@ -47,4 +47,9 @@ public class Percent {
         this.disgust = disgust;
         this.fear = fear;
     }
+
+    public void addRecord(Record record){
+        this.record = record;
+        record.setPercent(this);
+    }
 }

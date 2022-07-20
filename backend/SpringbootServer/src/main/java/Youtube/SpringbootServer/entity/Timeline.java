@@ -35,4 +35,9 @@ public class Timeline {
         this.sec = sec;
         this.label = label;
     }
+
+    public void addRecord(Record record){
+        this.record = record;
+        record.getTimelines().add(this);
+    }
 }
