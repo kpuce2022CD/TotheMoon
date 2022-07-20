@@ -38,4 +38,9 @@ public class VideoInformation {
         this.view = view;
         this.videoLike = videoLike;
     }
+
+    public void addRecord(Record record){
+        this.record = record;
+        record.setVideoInformation(this);
+    }
 }

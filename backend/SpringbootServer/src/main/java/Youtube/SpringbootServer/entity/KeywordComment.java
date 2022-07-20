@@ -32,4 +32,9 @@ public class KeywordComment {
     public KeywordComment(String content) {
         this.content = content;
     }
+
+    public void addKeyword(Keyword keyword){
+        this.keyword = keyword;
+        keyword.getKeywordComments().add(this);
+    }
 }

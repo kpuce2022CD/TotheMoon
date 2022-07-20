@@ -5,8 +5,10 @@ import Youtube.SpringbootServer.entity.*;
 import Youtube.SpringbootServer.repository.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -20,6 +22,7 @@ public class BoardService {
     private final VideoInfoRepository videoInfoRepository;
     private final InterestRepository interestRepository;
     private final TimeLineRepository timeLineRepository;
+    private final MemberRepository memberRepository;
     private final EntityConverter entityConverter;
 
 //    //분석결과 등록(순수JPA)
@@ -29,49 +32,52 @@ public class BoardService {
 //    }
 
     //분석 결과 등록(스프링데이터 JPA)
-    public void registerDB(CommentListDTO commentListDTO, Record record, KeywordDTO keywordDTO, PercentDTO percentDTO,
+    @Transactional
+    public void registerDB(CommentListDTO commentListDTO, Record record, Member loginMember, KeywordDTO keywordDTO, PercentDTO percentDTO,
                            VideoInformationDTO videoInformationDTO, InterestListDTO interestListDTO, TimeLineListDTO timelineListDTO){
 
         //record 저장
+        Member member = memberRepository.findById(loginMember.getId()).get();
+        record.addMember(member);
         recordRepository.save(record);
 
         //comment 저장.
         CommentDTO[] commentDTOs = commentListDTO.getComments();
         for (CommentDTO commentDTO : commentDTOs) {
             Comment comment = entityConverter.toCommentEntity(commentDTO);  //CommentDTO -> comment엔티티로 변환
-            comment.setRecord(record);
+            comment.addRecord(record);
             commentRepository.save(comment);
         }
 
         //keyword 저장,
         for(int i=0; i<keywordDTO.getComments().length; i++){
             Keyword keyword = entityConverter.toKeywordEntity(keywordDTO, i);  //keyDTO -> keyword 엔티티로 변환.
-            keyword.setRecord(record);
+            keyword.addRecord(record);
             keywordRepository.save(keyword);
 
             //keywordComment 저장.
             for(int j=0; j< keywordDTO.getComments()[i].length; j++) {
                 KeywordComment keywordComment = entityConverter.toKeywordCommentEntity(keywordDTO, i,j);//keyDTO -> keywordComment 엔티티로 변환
-                keywordComment.setKeyword(keyword);
+                keywordComment.addKeyword(keyword);
                 keywordCommentRepository.save(keywordComment);
             }
         }
 
         //percent 저장
         Percent percent = entityConverter.toPercentEntity(percentDTO);
-        percent.setRecord(record);
+        percent.addRecord(record);
         percentRepository.save(percent);
 
         //videoInformation 저장.
         VideoInformation videoInformation = entityConverter.toVideoInfoEntity(videoInformationDTO);
-        videoInformation.setRecord(record);
+        videoInformation.addRecord(record);
         videoInfoRepository.save(videoInformation);
 
         //interest 저장
         InterestDTO[] interests = interestListDTO.getInterests();
         for (InterestDTO interestDTO : interests) {
             Interest interest = entityConverter.toInterestEntity(interestDTO); //InterestDTO -> interest 엔티티로 변환.
-            interest.setRecord(record);
+            interest.addRecord(record);
             interestRepository.save(interest);
         }
 
@@ -79,7 +85,7 @@ public class BoardService {
         TimelineDTO[] timelines = timelineListDTO.getTimeline();
         for (TimelineDTO timelineDTO : timelines) {
             Timeline timeline = entityConverter.toTimelineEntity(timelineDTO);  //TimelineDTO -> timeline 엔티티로 변환.
-            timeline.setRecord(record);
+            timeline.addRecord(record);
             timeLineRepository.save(timeline);
         }
     }
@@ -87,7 +93,8 @@ public class BoardService {
 
     //분석 리스트 출력.
     public List<Record> findRecords(Long id){
-        return recordRepository.findByMemberId(id);
+        List<Record> records = recordRepository.findByMemberId(id);
+        return records;
     }
 
     //분석 1건 comment 조회

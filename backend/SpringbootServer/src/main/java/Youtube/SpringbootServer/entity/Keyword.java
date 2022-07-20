@@ -42,4 +42,9 @@ public class Keyword {
 
     public Keyword() {
     }
+
+    public void addRecord(Record record){
+        this.record = record;
+        record.getKeywords().add(this);
+    }
 }

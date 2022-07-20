@@ -34,4 +34,9 @@ public class Interest {
         this.commentDate = commentDate;
         this.commentCount = commentCount;
     }
+
+    public void addRecord(Record record){
+        this.record = record;
+        record.getInterests().add(this);
+    }
 }
