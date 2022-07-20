@@ -1,6 +1,7 @@
 package Youtube.SpringbootServer.repository;
 
 import Youtube.SpringbootServer.entity.Comment;
+import Youtube.SpringbootServer.entity.Percent;
 import Youtube.SpringbootServer.entity.Record;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
@@ -18,5 +19,6 @@ public interface RecordRepository extends JpaRepository<Record,Long> {
 
     List<Record> findByMemberId(long id);
 
-
+    @Query("select r from Record r join fetch r.videoInformation where r.member.id= :id")
+    List<Record> findRecords(@Param("id") long id);
 }
