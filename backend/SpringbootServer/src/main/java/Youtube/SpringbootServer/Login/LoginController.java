@@ -27,30 +27,6 @@ public class LoginController {
         return "login/loginForm";
     }
 
-   // @PostMapping("/login")
-    public String loginV3(@Valid @ModelAttribute LoginForm form, BindingResult bindingResult, HttpServletRequest request){
-
-        if (bindingResult.hasErrors()) {
-            return "login/loginForm";
-        }
-
-        Member loginMember = loginService.login(form.getLoginId(), form.getPassword());
-
-        if (loginMember == null) {
-            bindingResult.reject("loginFail", "아이디가 존재 하지 않거나 비밀번호가 맞지 않습니다.");
-            return "login/loginForm";
-        }
-
-        //로그인 성공 처리
-        //세션이 있으면 있는 세션 반환, 없으면 신규 세션 생성  - request.getSession(true) - true가 디폴트로 생략 가능.
-        HttpSession session = request.getSession();
-
-        //세션에 로그인 회원 정보 보관
-        session.setAttribute(SessionConst.LOGIN_MEMBER, loginMember);
-        log.info("로그인 성공! 로그인 회원 id ={}",loginMember.getLoginId());
-        return "redirect:/home";
-    }
-
     //서블릿 HTTP 세션 로그인 + 로그인에 성공 시 로그인 전에 요청한 URL로 이동하는 기능
     @PostMapping("/login")
     public String loginV4(@Valid @ModelAttribute LoginForm form, BindingResult bindingResult,

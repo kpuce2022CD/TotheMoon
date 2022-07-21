@@ -3,45 +3,52 @@ package Youtube.SpringbootServer.controller;
 import Youtube.SpringbootServer.SessionConst;
 import Youtube.SpringbootServer.dto.MemberDTO;
 import Youtube.SpringbootServer.entity.Member;
-import Youtube.SpringbootServer.repository.MemberRepository;
 import Youtube.SpringbootServer.service.MemberService;
+import Youtube.SpringbootServer.validation.CheckUserIdValidator;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.SessionAttribute;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import java.io.IOException;
-import java.io.PrintWriter;
 
 @Controller
 @RequiredArgsConstructor
 public class MemberController {
 
-    private final MemberRepository memberRepository;
     private final MemberService memberService;
+    private final CheckUserIdValidator checkUserIdValidator;
 
+    //커스텀 유효성을 검증하기 위해 추가
+    @InitBinder
+    public void validatorBinder(WebDataBinder webDataBinder){
+        webDataBinder.addValidators(checkUserIdValidator);
+    }
+
+    //회원가입
     @GetMapping("/members/add")
     public String addForm(@ModelAttribute("memberDTO") MemberDTO memberDTO) {
         return "login/addMemberForm";
     }
 
+    //회원가입
     @PostMapping("/members/add")
-    public String save(@Valid @ModelAttribute MemberDTO memberDTO, BindingResult result, HttpServletResponse response) throws IOException {
+    public String save(@Valid @ModelAttribute MemberDTO memberDTO, BindingResult result) throws IOException {
 
+        //검증 오류 시
         if (result.hasErrors()) {
             return "login/addMemberForm";
         }
+        //회원 등록
         memberService.registerDB(memberDTO);
 
         return "redirect:/login";
     }
 
+    //마이페이지
     @GetMapping("/memberinfo")
     public String homeLoginV3Spring(@SessionAttribute(name = SessionConst.LOGIN_MEMBER, required = false) Member loginMember, Model model) {
 

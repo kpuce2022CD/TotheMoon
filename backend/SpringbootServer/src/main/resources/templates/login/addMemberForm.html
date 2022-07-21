@@ -19,21 +19,23 @@
     <div class="py-5 text-center">
         <h2>회원 가입</h2>
     </div>
-    <h4 class="mb-3">회원 정보 입력</h4>
+    <br>
     <form action="" th:action th:object="${memberDTO}" method="post">
         <div th:if="${#fields.hasGlobalErrors()}">
             <p class="field-error" th:each="err : ${#fields.globalErrors()}"
                th:text="${err}">전체 오류 메시지</p>
         </div>
+        <br>
         <div>
-            <label for="loginId">로그인 ID</label>
-            <input type="text" id="loginId" th:field="*{loginId}" class="form-control" th:errorclass="field-error">
-            <div class="field-error" th:errors="*{loginId}" />
+            <input type="text" id="loginId" th:field="*{loginId}" class="form-control" th:errorclass="field-error" placeholder="아이디 (6자~20자이내, 영문,숫자,-,_ 사용가능)">
+<!--            <div class="field-error" th:errors="*{loginId}" />-->
+            <div class="field-error" th:each="error, stat : ${#fields.errors('loginId')}" th:text="${error}" th:if="${stat.first}" />
         </div>
+        <br>
         <div>
-            <label for="password">비밀번호</label>
-            <input type="password" id="password" th:field="*{password}" class="form-control" th:errorclass="field-error">
-            <div class="field-error" th:errors="*{password}" />
+            <input type="password" id="password" th:field="*{password}" class="form-control" th:errorclass="field-error" placeholder="비밀번호 (8자~16자이내, 문자/숫자/기호 사용 필수)">
+            <!--      오류 메시지가 반복에서 처음인 경우에만 div를 출력-->
+            <div class="field-error" th:each="error, stat : ${#fields.errors('password')}" th:text="${error}" th:if="${stat.first}" />
         </div>
         <hr class="my-4">
         <div class="row">
