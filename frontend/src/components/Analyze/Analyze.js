@@ -68,9 +68,7 @@ const Analyze = () => {
       setDisgustComments([]);
       setAngerComments([]);
 
-      
-
-      result.data.map((a, i) => {
+      result.data.comments.map((a, i) => {
         if (a.index === "1") {
           setPositiveComments((comment) => [...comment, a]);
         } else if (a.index === "0") {
@@ -89,26 +87,18 @@ const Analyze = () => {
           setHappyComments((comment) => [...comment, a]);
         } else if (a.index === "8") {
           setDisgustComments((comment) => [...comment, a]);
-        } else if (a.index === "9") {
-          setPositivePercent(a.positivePercent);
-        } else if (a.index === "10") {
-          setNegativePercent(a.negativePercent);
-        } else if (a.index === "11") {
-          setHappyPercent(a.happyPercent);
-        } else if (a.index === "12") {
-          setSurprisedPercent(a.surprisedPercent);
-        } else if (a.index === "13") {
-          setAngerPercent(a.angerPercent);
-        } else if (a.index === "14") {
-          setSadnessPercent(a.sadnessPercent);
-        } else if (a.index === "15") {
-          setNeutralPercent(a.neutralPercent);
-        } else if (a.index === "16") {
-          setDisgustPercent(a.disgustPercent);
-        } else if (a.index === "17") {
-          setFearPercent(a.fearPercent);
-        }
+        } 
       });
+
+      setPositivePercent(result.data.percent.positive);
+      setNegativePercent(result.data.percent.negative);
+      setHappyPercent(result.data.percent.happy);
+      setSurprisedPercent(result.data.percent.surprise);
+      setAngerPercent(result.data.percent.anger);
+      setSadnessPercent(result.data.percent.sadness);
+      setNeutralPercent(result.data.percent.neutral);
+      setDisgustPercent(result.data.percent.disgust);
+      setFearPercent(result.data.percent.fear);
 
       setLoading(false);
     };
