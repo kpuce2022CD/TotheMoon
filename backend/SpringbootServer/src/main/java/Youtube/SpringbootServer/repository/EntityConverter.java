@@ -7,9 +7,9 @@ import org.springframework.stereotype.Component;
 @Component
 public class EntityConverter {
 
-    public Comment toCommentEntity(CommentDTO commentDTO){
-        return new Comment(commentDTO.getId(), commentDTO.getDate(), commentDTO.getIndex() , commentDTO.getComment(), commentDTO.getNum_like());
-    }
+//    public Comment toCommentEntity(CommentDTO commentDTO){
+//        return new Comment(commentDTO.getId(), commentDTO.getDate(), commentDTO.getIndex() , commentDTO.getComment(), commentDTO.getNum_like());
+//    }
 
     public Keyword toKeywordEntity(KeywordDTO keywordDTO, int i){
         return new Keyword(i, keywordDTO.getB5()[i]);
@@ -28,9 +28,9 @@ public class EntityConverter {
         return new VideoInformation(viDTO.getTitle(), viDTO.getDate(), viDTO.getView(), viDTO.getLike());
     }
 
-    public Interest toInterestEntity(InterestDTO interestDTO){
-        return new Interest(interestDTO.getCommentDate(),interestDTO.getCommentCount());
-    }
+//    public Interest toInterestEntity(InterestDTO interestDTO){
+//        return new Interest(interestDTO.getCommentDate(),interestDTO.getCommentCount());
+//    }
 
     public Timeline toTimelineEntity(TimelineDTO timelineDTO){
         return new Timeline(timelineDTO.getCount(),timelineDTO.getSec(),timelineDTO.getLabel());

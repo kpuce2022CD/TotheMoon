@@ -1,28 +1,43 @@
 package Youtube.SpringbootServer.dto;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import Youtube.SpringbootServer.entity.Comment;
+import Youtube.SpringbootServer.entity.Interest;
+import lombok.Data;
 import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import org.springframework.stereotype.Component;
 
-//comment Dto
-
+@Component
 @Getter
-@Setter
-@ToString
 public class CommentDTO {
+
     private String index;
-    private String id;
+    private String id;  //작성자 id.
     private String comment;
     private String date;
     private String num_like;
 
-    public CommentDTO(@JsonProperty("index") String index, @JsonProperty("id") String id,
-                      @JsonProperty("comment") String comment, @JsonProperty("date") String date, @JsonProperty("num_like") String num_like) {
-        this.index = index;
-        this.id = id;
-        this.comment = comment;
-        this.date = date;
-        this.num_like = num_like;
+    //DTO -> Entity
+    public Comment toEntity(){
+        return new Comment(id, date, index, comment, num_like);
     }
+
+    //Response DTO
+    @Getter
+    public static class Response{
+
+        private String commentIndex;
+        private String commentUserId;
+        private String content;
+        private String commentLike;
+
+        //Entity -> DTO
+        public Response(Comment comment){
+            this.commentIndex = comment.getCommentIndex();
+            this.commentUserId = comment.getCommentUserId();
+            this.content = comment.getContent();
+            this.commentLike = comment.getCommentLike();
+        }
+    }
+
+
 }

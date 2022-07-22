@@ -84,7 +84,7 @@ tbody, thead{
         </thead>
         <tbody>
         <tr th:each="keywordComment: ${keywordComments}">
-            <td th:width="80" th:text="${keywordComment.keyword.keywordRank}+1"></td>
+            <td th:width="80" th:text="${keywordComment.keywordRank}+1"></td>
             <td th:utext="${keywordComment.content}"></td>
         </tr>
         </tbody>

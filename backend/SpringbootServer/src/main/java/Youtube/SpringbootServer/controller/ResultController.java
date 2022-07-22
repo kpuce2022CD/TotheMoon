@@ -60,7 +60,7 @@ public class ResultController {
         String InterestBaseUrl = "http://localhost:5000/interest?url=" + url;
         RestTemplate InterestRestTemplate = new RestTemplate();
         ResponseEntity<InterestDTO[]> InterestResponse = InterestRestTemplate.getForEntity(InterestBaseUrl, InterestDTO[].class);
-        InterestDTO interests[] = InterestResponse.getBody();
+        InterestDTO[] interests = InterestResponse.getBody();
 
         model.addAttribute("size",interests.length);
         model.addAttribute("commentDate",interestService.countDate(interests));
@@ -83,7 +83,7 @@ public class ResultController {
         RestTemplate restTemplate = new RestTemplate();
         ResponseEntity<CommentDTO[]> response = restTemplate.getForEntity(baseUrl, CommentDTO[].class);
 
-        CommentDTO comments[] = response.getBody();
+        CommentDTO[] comments = response.getBody();
 //        commentListDTO.setComments(comments);
 
         HashMap<String, List> commentMap = commentService.classifyComment(comments);

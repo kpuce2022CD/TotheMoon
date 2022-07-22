@@ -25,8 +25,9 @@ public class BoardRepository {
         CommentDTO[] commentDTOs = commentListDTO.getComments();
         //comment 저장.
         for (CommentDTO commentDTO : commentDTOs) {
-            Comment comment = entityConverter.toCommentEntity(commentDTO);
-            comment.setRecord(record);
+            Comment comment = commentDTO.toEntity();
+            // Comment comment = entityConverter.toCommentEntity(commentDTO);
+        //    comment.setRecord(record);
             em.persist(comment);
         }
     }
