@@ -1,6 +1,7 @@
 package Youtube.SpringbootServer.entity;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
@@ -8,7 +9,7 @@ import static javax.persistence.FetchType.*;
 
 @Entity
 @Getter
-@Setter
+@NoArgsConstructor
 @Table(name="analysis_comment")
 public class Comment {
 
@@ -37,10 +38,6 @@ public class Comment {
     private String commentLike;
 
 //    private Percent percent;
-
-    public Comment(){
-
-    }
 
     public Comment(String commentUserId, String date, String index, String content, String commentLike) {
         this.commentUserId = commentUserId;

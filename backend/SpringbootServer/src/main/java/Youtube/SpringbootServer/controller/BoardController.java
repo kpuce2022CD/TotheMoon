@@ -21,6 +21,7 @@ public class BoardController {
     private final BoardService boardService;
     private final CommentListDTO commentListDTO;
     private final KeywordDTO keywordDTO;
+    private final KeywordCommentDTO keywordCommentDTO;
     private final PercentDTO percentDTO;
     private final VideoInformationDTO videoInformationDTO;
     private final InterestListDTO interestListDTO;
@@ -30,7 +31,7 @@ public class BoardController {
     //목록 조회
     @GetMapping("/list")
     public String recordList(Model model, @SessionAttribute(name = SessionConst.LOGIN_MEMBER, required = false) Member loginMember){
-        List<Record> records = boardService.findRecords(loginMember.getId());
+        List<RecordDTO> records = boardService.findRecords(loginMember.getId());
         model.addAttribute("records", records);
         return "db_complete_list";
     }
@@ -39,7 +40,7 @@ public class BoardController {
     @GetMapping("/persist")
     public String persistComment(@SessionAttribute(name = SessionConst.LOGIN_MEMBER, required = false) Member loginMember){
         Record record = new Record();
-        boardService.registerDB(commentListDTO,record,loginMember,keywordDTO,percentDTO, videoInformationDTO,interestListDTO,timeLineListDTO);
+        boardService.registerDB(commentListDTO,record,loginMember,keywordDTO, keywordCommentDTO, percentDTO, videoInformationDTO,interestListDTO,timeLineListDTO);
         return "redirect:/list";
     }
 
@@ -47,13 +48,13 @@ public class BoardController {
     @GetMapping("/persist/{recordId}")
     public String showComments(@PathVariable String recordId,  Model model){
         long longRecordId = Long.parseLong(recordId);
-        List<Comment> comments = boardService.findComment(longRecordId);
-        Percent percent = boardService.findPercent(longRecordId);
-        VideoInformation videoInfo = boardService.findVideoInfo(longRecordId);
-        List<Interest> interest = boardService.findInterest(longRecordId);
-        List<Keyword> keyword = boardService.findKeyword(longRecordId);
-        List<Timeline> timeLine = boardService.findTimeLine(longRecordId);
-        List<KeywordComment> keywordComments = boardService.findKeywordComment(longRecordId);
+        List<CommentDTO.Response> comments = boardService.findComment(longRecordId);
+        PercentDTO.Response percent = boardService.findPercent(longRecordId);
+        VideoInformationDTO.Response videoInfo = boardService.findVideoInfo(longRecordId);
+        List<InterestDTO.Response> interest = boardService.findInterest(longRecordId);
+        List<KeywordDTO.Response> keyword = boardService.findKeyword(longRecordId);
+        List<TimelineDTO.Response> timeLine = boardService.findTimeLine(longRecordId);
+        List<KeywordCommentDTO.Response> keywordComments = boardService.findKeywordComment(longRecordId);
         model.addAttribute("comments",comments);
         model.addAttribute("percent",percent);
         model.addAttribute("videoInfo",videoInfo);

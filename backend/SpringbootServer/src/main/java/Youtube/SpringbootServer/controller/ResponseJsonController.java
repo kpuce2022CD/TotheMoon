@@ -1,26 +1,19 @@
 package Youtube.SpringbootServer.controller;
 
 import Youtube.SpringbootServer.dto.*;
-import Youtube.SpringbootServer.entity.Keyword;
-import Youtube.SpringbootServer.service.BoardService;
 import Youtube.SpringbootServer.service.CommentService;
 import Youtube.SpringbootServer.service.VideoService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.json.simple.JSONObject;
 import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import org.json.simple.JSONArray;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -90,7 +83,7 @@ public class ResponseJsonController {
         String baseUrl = "http://localhost:5000/classifycomments?url=" + url;
         RestTemplate restTemplate = new RestTemplate();
         ResponseEntity<CommentDTO[]> response = restTemplate.getForEntity(baseUrl, CommentDTO[].class);
-        CommentDTO comments[] = response.getBody();
+        CommentDTO[] comments = response.getBody();
 
         HashMap<String, List> commentMap = commentService.classifyComment(comments);
         HashMap<String, Double> positiveNegativePercentMap = commentService.positiveNegativePercent();

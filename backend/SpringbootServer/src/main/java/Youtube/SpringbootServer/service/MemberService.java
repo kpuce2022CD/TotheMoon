@@ -12,10 +12,9 @@ import org.springframework.stereotype.Service;
 public class MemberService {
 
     private final MemberRepository memberRepository;
-    private final EntityConverter entityConverter;
 
     public void registerDB(MemberDTO memberDTO){
-        Member member = entityConverter.toMemberEntity(memberDTO);   //memberDto -> member로 변환.
+        Member member = memberDTO.toEntity();    //memberDto -> member로 변환.
         memberRepository.save(member);
     }
 }

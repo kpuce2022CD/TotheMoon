@@ -55,7 +55,7 @@ tbody, thead{
         <tbody>
         <tr th:each="record,num: ${records}">
             <th scope="row">[[${num.count}]]</th>
-            <td th:width="530" th:text="${record.videoInformation.title}"></td>
+            <td th:width="530" th:text="${record.title}"></td>
             <td th:width="200" th:text="${record.createDate}"></td>
             <td><a th:href="@{/persist/{id}(id = ${record.id})}">자세히 보기</a></td>
             <td><a th:href="@{/delete/{id}(id = ${record.id})}">삭제</a></td>

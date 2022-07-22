@@ -1,8 +1,6 @@
 package Youtube.SpringbootServer.entity;
 
-import Youtube.SpringbootServer.dto.InterestDTO;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 
@@ -10,7 +8,7 @@ import static javax.persistence.FetchType.LAZY;
 
 @Entity
 @Getter
-@Setter
+@NoArgsConstructor
 public class Interest {
 
     @Id
@@ -26,9 +24,6 @@ public class Interest {
 
     private String commentCount;
 
-    public Interest(){
-
-    }
 
     public Interest(String commentDate, String commentCount) {
         this.commentDate = commentDate;

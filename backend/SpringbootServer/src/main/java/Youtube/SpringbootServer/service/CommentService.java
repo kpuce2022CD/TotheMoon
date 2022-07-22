@@ -23,7 +23,7 @@ public class CommentService {
     private List<CommentDTO> disgustComments = new ArrayList<>(); // json 구분 인덱스 : 8
 
     //댓글 분류
-    public HashMap<String, List> classifyComment(CommentDTO comments[]){
+    public HashMap<String, List> classifyComment(CommentDTO[] comments){
 
         HashMap<String, List> commentMap = new HashMap<>();
 
