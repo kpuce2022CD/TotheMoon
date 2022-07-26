@@ -3,16 +3,23 @@ package Youtube.SpringbootServer.controller;
 import Youtube.SpringbootServer.SessionConst;
 import Youtube.SpringbootServer.dto.*;
 import Youtube.SpringbootServer.entity.*;
+import Youtube.SpringbootServer.repository.RecordRepository;
 import Youtube.SpringbootServer.service.BoardService;
 import Youtube.SpringbootServer.service.MemberService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
 import java.util.List;
+
+import static java.lang.Math.*;
 
 @Controller
 @RequiredArgsConstructor
@@ -27,14 +34,36 @@ public class BoardController {
     private final InterestListDTO interestListDTO;
     private final TimeLineListDTO timeLineListDTO;
     private final MemberService memberService;
+    private final RecordRepository recordRepository;
 
-    //목록 조회
+//    //목록 조회
+//    @GetMapping("/listPage")
+//    public String recordList2(Model model, @SessionAttribute(name = SessionConst.LOGIN_MEMBER, required = false) Member loginMember){
+//        List<RecordDTO> records = boardService.findRecords(loginMember.getId());
+//        model.addAttribute("records", records);
+//        return "db_complete_list";
+//    }
+
+
+    //목록 조회(페이징기능)
     @GetMapping("/list")
-    public String recordList(Model model, @SessionAttribute(name = SessionConst.LOGIN_MEMBER, required = false) Member loginMember){
-        List<RecordDTO> records = boardService.findRecords(loginMember.getId());
+    public String recordList(Model model, @SessionAttribute(name = SessionConst.LOGIN_MEMBER, required = false) Member loginMember,
+                                       @PageableDefault(page=0, size = 10) Pageable pageable){
+        Page<RecordDTO> recordPage = boardService.findRecordsPage(loginMember.getId(), pageable);
+        List<RecordDTO> records = recordPage.getContent();
+
+        int nowPage = recordPage.getPageable().getPageNumber();
+        int startPage = max(nowPage - 4, 1);
+        int endPage = min(nowPage + 5, recordPage.getTotalPages());
+        model.addAttribute("nowPage",nowPage);
+        model.addAttribute("startPage",startPage);
+        model.addAttribute("endPage",endPage);
+        model.addAttribute("recordPage",recordPage);
         model.addAttribute("records", records);
         return "db_complete_list";
     }
+
+
 
     //저장
     @GetMapping("/persist")

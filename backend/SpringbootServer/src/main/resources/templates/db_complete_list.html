@@ -42,6 +42,7 @@ tbody, thead{
     <div class="py-5 text-center">
         <h2>분석 목록</h2>
     </div>
+    <div>총 건수: <span th:text="${recordPage.totalElements}"></span></div>
     <table class="table table-hover">
         <thead>
         <tr>
@@ -53,8 +54,8 @@ tbody, thead{
         </tr>
         </thead>
         <tbody>
-        <tr th:each="record,num: ${records}">
-            <th scope="row">[[${num.count}]]</th>
+        <tr th:each="record : ${records}">
+            <th scope="row" th:text="${recordStat.index+1 + nowPage*recordPage.size}"></th>
             <td th:width="530" th:text="${record.title}"></td>
             <td th:width="200" th:text="${record.createDate}"></td>
             <td><a th:href="@{/persist/{id}(id = ${record.id})}">자세히 보기</a></td>
@@ -62,6 +63,24 @@ tbody, thead{
         </tr>
         </tbody>
     </table>
+
+<!--    <th:block th:each="page : ${#numbers.sequence(startPage, endPage)}">-->
+<!--        <a th:if="${page != nowPage}" th:href="@{/listPage(page = ${page -1})}" th:text="${page}"></a>-->
+<!--        <strong th:if="${page == nowPage}" th:text="${page}" style="color: red"></strong>-->
+<!--    </th:block>-->
+
+    <nav aria-label="Page navigation example">
+        <ul class="pagination justify-content-center">
+            <li class="page-item" th:classappend="${1 == nowPage+1} ? 'disabled'">
+                <a class="page-link" href="#" th:href="@{/list(page= ${nowPage-1})}" tabindex="-1">Previous</a>
+            </li>
+            <li class="page-item" th:classappend="${page == nowPage+1} ? 'disabled'" th:each="page : ${#numbers.sequence(startPage, endPage)}">
+                <a class="page-link" href="#" th:href="@{/list(page= ${page-1})}" th:text="${page}">1</a></li>
+            <li class="page-item" th:classappend="${recordPage.totalPages == nowPage+1} ? 'disabled'">
+                <a class="page-link" href="#" th:href="@{/list(page= ${nowPage+1})}">Next</a>
+            </li>
+        </ul>
+    </nav>
 </div>
 </body>
 </html>

@@ -11,7 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-public interface RecordRepository extends JpaRepository<Record,Long> {
+public interface RecordRepository extends JpaRepository<Record,Long>, RecordRepositoryCustom {
 
     @Modifying
     @Transactional
