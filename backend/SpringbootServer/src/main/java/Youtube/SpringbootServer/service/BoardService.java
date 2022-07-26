@@ -4,6 +4,8 @@ import Youtube.SpringbootServer.dto.*;
 import Youtube.SpringbootServer.entity.*;
 import Youtube.SpringbootServer.repository.*;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -91,16 +93,27 @@ public class BoardService {
     }
 
 
-    //분석 리스트 출력.
-    public List<RecordDTO> findRecords(Long id){
-        List<RecordDTO> recordDTOList = new ArrayList<>();
-        List<Record> records = recordRepository.findRecords(id);
-        for (Record recordEntity : records) {
-            RecordDTO recordDTO = new RecordDTO(recordEntity);              //Entity -> DTO
-            recordDTOList.add(recordDTO);
-        }
-        return recordDTOList;
+//    //분석 리스트 출력.
+//    public List<RecordDTO> findRecords(Long id){
+//        List<RecordDTO> recordDTOList = new ArrayList<>();
+//        List<Record> records = recordRepository.findRecords(id);
+//        for (Record recordEntity : records) {
+//            RecordDTO recordDTO = new RecordDTO(recordEntity);              //Entity -> DTO
+//            recordDTOList.add(recordDTO);
+//        }
+//        return recordDTOList;
+//    }
+
+    //Querydsl 리스트 출력
+    public Page<RecordDTO> findRecordsPage(Long id, Pageable pageable, String searchText){
+        Page<RecordDTO> recordDTOS = recordRepository.searchPage(id, pageable, searchText);
+        return recordDTOS;
     }
+
+    //분석 1건 날짜 조회
+    public String findRecordCreatedDate(Long recordId){
+        return recordRepository.findCreateDate(recordId);
+    };
 
     //분석 1건 comment 조회
     public List<CommentDTO.Response> findComment(Long recordId){

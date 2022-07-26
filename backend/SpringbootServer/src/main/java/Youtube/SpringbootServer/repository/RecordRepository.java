@@ -11,14 +11,15 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-public interface RecordRepository extends JpaRepository<Record,Long> {
+public interface RecordRepository extends JpaRepository<Record,Long>, RecordRepositoryCustom {
 
     @Modifying
     @Transactional
     void deleteById(long id);
 
-    List<Record> findByMemberId(long id);
-
     @Query("select r from Record r join fetch r.videoInformation where r.member.id= :id")
     List<Record> findRecords(@Param("id") long id);
+
+    @Query("select r.createDate from Record r where r.id = :id")
+   String findCreateDate(@Param("id") long id);
 }

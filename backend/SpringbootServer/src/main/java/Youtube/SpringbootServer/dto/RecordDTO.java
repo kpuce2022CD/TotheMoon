@@ -1,9 +1,7 @@
 package Youtube.SpringbootServer.dto;
 
 import Youtube.SpringbootServer.entity.Record;
-import Youtube.SpringbootServer.entity.Timeline;
 import lombok.Getter;
-import org.springframework.stereotype.Component;
 
 @Getter
 public class RecordDTO {
@@ -11,6 +9,12 @@ public class RecordDTO {
     private Long id;
     private String title;
     private String createDate;
+
+    public RecordDTO(Long id, String title, String createDate) {
+        this.id = id;
+        this.title = title;
+        this.createDate = createDate;
+    }
 
     //Entity -> DTO
     public RecordDTO(Record record){
