@@ -7,8 +7,10 @@
     <title>Naetube</title>
 </head>
 <style>
-    .container {
+.container {
+ margin-top:50px;
  max-width: 1000px;
+ margin-bottom:50px;
  }
  .navbar-brand{
  margin-left:50px;
@@ -39,10 +41,14 @@ tbody, thead{
     <a class="navbar-brand" href="http://localhost:3000/">Naetube</a>
 </nav>
 <div class="container">
-    <div class="py-5 text-center">
-        <h2>분석 목록</h2>
-    </div>
-    <div>총 건수: <span th:text="${recordPage.totalElements}"></span></div>
+    <div style="float:left; margin-top:10px">총 건수: <span th:text="${recordPage.totalElements}"></span></div>
+    <form class="form-inline d-flex justify-content-end" method="GET" th:action="@{/list}">
+        <div class="form-group mx-sm-3 mb-2" style="float:right;">
+            <label for="search" class="sr-only">검색</label>
+            <input type="text" class="form-control" id="search" name="search" th:value="${param.search}" placeholder="제목을 입력하세요">
+        </div>
+        <button type="submit" class="btn btn-light mb-2">검색</button>
+    </form>
     <table class="table table-hover">
         <thead>
         <tr>
@@ -68,16 +74,17 @@ tbody, thead{
 <!--        <a th:if="${page != nowPage}" th:href="@{/listPage(page = ${page -1})}" th:text="${page}"></a>-->
 <!--        <strong th:if="${page == nowPage}" th:text="${page}" style="color: red"></strong>-->
 <!--    </th:block>-->
-
+</div>
+<div style="position: fixed; bottom:0; width: 100%;">
     <nav aria-label="Page navigation example">
         <ul class="pagination justify-content-center">
             <li class="page-item" th:classappend="${1 == nowPage+1} ? 'disabled'">
-                <a class="page-link" href="#" th:href="@{/list(page= ${nowPage-1})}" tabindex="-1">Previous</a>
+                <a class="page-link" href="#" th:href="@{/list(page= ${nowPage-1}, search=${param.search})}" tabindex="-1">Previous</a>
             </li>
             <li class="page-item" th:classappend="${page == nowPage+1} ? 'disabled'" th:each="page : ${#numbers.sequence(startPage, endPage)}">
-                <a class="page-link" href="#" th:href="@{/list(page= ${page-1})}" th:text="${page}">1</a></li>
-            <li class="page-item" th:classappend="${recordPage.totalPages == nowPage+1} ? 'disabled'">
-                <a class="page-link" href="#" th:href="@{/list(page= ${nowPage+1})}">Next</a>
+                <a class="page-link" href="#" th:href="@{/list(page= ${page-1}, search=${param.search})}" th:text="${page}">1</a></li>
+            <li class="page-item" th:classappend="${endPage == nowPage+1} ? 'disabled'">
+                <a class="page-link" href="#" th:href="@{/list(page= ${nowPage+1}, search=${param.search})}">Next</a>
             </li>
         </ul>
     </nav>

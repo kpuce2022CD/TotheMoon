@@ -17,8 +17,9 @@ public interface RecordRepository extends JpaRepository<Record,Long>, RecordRepo
     @Transactional
     void deleteById(long id);
 
-    List<Record> findByMemberId(long id);
-
     @Query("select r from Record r join fetch r.videoInformation where r.member.id= :id")
     List<Record> findRecords(@Param("id") long id);
+
+    @Query("select r.createDate from Record r where r.id = :id")
+   String findCreateDate(@Param("id") long id);
 }

@@ -105,10 +105,15 @@ public class BoardService {
 //    }
 
     //Querydsl 리스트 출력
-    public Page<RecordDTO> findRecordsPage(Long id, Pageable pageable){
-        Page<RecordDTO> recordDTOS = recordRepository.searchPage(id, pageable);
+    public Page<RecordDTO> findRecordsPage(Long id, Pageable pageable, String searchText){
+        Page<RecordDTO> recordDTOS = recordRepository.searchPage(id, pageable, searchText);
         return recordDTOS;
     }
+
+    //분석 1건 날짜 조회
+    public String findRecordCreatedDate(Long recordId){
+        return recordRepository.findCreateDate(recordId);
+    };
 
     //분석 1건 comment 조회
     public List<CommentDTO.Response> findComment(Long recordId){

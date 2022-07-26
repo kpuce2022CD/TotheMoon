@@ -12,10 +12,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.SessionAttribute;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -48,13 +45,16 @@ public class BoardController {
     //목록 조회(페이징기능)
     @GetMapping("/list")
     public String recordList(Model model, @SessionAttribute(name = SessionConst.LOGIN_MEMBER, required = false) Member loginMember,
-                                       @PageableDefault(page=0, size = 10) Pageable pageable){
-        Page<RecordDTO> recordPage = boardService.findRecordsPage(loginMember.getId(), pageable);
+                                       @PageableDefault(page=0, size = 10) Pageable pageable,
+                             @RequestParam(required = false,defaultValue = "") String search){
+        Page<RecordDTO> recordPage = boardService.findRecordsPage(loginMember.getId(), pageable, search);
         List<RecordDTO> records = recordPage.getContent();
 
         int nowPage = recordPage.getPageable().getPageNumber();
         int startPage = max(nowPage - 4, 1);
-        int endPage = min(nowPage + 5, recordPage.getTotalPages());
+        int endPage = min(nowPage + 4, recordPage.getTotalPages());
+        if(endPage==0) endPage+=1;
+
         model.addAttribute("nowPage",nowPage);
         model.addAttribute("startPage",startPage);
         model.addAttribute("endPage",endPage);
@@ -84,6 +84,8 @@ public class BoardController {
         List<KeywordDTO.Response> keyword = boardService.findKeyword(longRecordId);
         List<TimelineDTO.Response> timeLine = boardService.findTimeLine(longRecordId);
         List<KeywordCommentDTO.Response> keywordComments = boardService.findKeywordComment(longRecordId);
+        String recordDate = boardService.findRecordCreatedDate(longRecordId);
+        model.addAttribute("recordDate",recordDate);
         model.addAttribute("comments",comments);
         model.addAttribute("percent",percent);
         model.addAttribute("videoInfo",videoInfo);
