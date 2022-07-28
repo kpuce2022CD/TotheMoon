@@ -14,6 +14,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import static javax.persistence.FetchType.LAZY;
 
@@ -57,7 +58,7 @@ public class Record {
 
     @PrePersist
     public void onPrePersist() {
-        this.createDate = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy.MM.dd a KK : mm"));
+        this.createDate = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy.MM.dd a KK : mm",  Locale.KOREAN));
     }
 
     public void addMember(Member member){

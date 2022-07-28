@@ -10,6 +10,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 @Entity
 @Getter
@@ -35,7 +36,7 @@ public class Member {
 
     @PrePersist
     public void onPrePersist(){
-        this.registerDate = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy.MM.dd a KK : mm"));
+        this.registerDate = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy.MM.dd a KK : mm", Locale.KOREAN));
     }
 
     public Member(){
