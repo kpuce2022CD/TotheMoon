@@ -105,17 +105,20 @@ public class BoardService {
 //    }
 
     //Querydsl 리스트 출력
+    @Transactional(readOnly = true)
     public Page<RecordDTO> findRecordsPage(Long id, Pageable pageable, String searchText){
         Page<RecordDTO> recordDTOS = recordRepository.searchPage(id, pageable, searchText);
         return recordDTOS;
     }
 
     //분석 1건 날짜 조회
+    @Transactional(readOnly = true)
     public String findRecordCreatedDate(Long recordId){
         return recordRepository.findCreateDate(recordId);
     };
 
     //분석 1건 comment 조회
+    @Transactional(readOnly = true)
     public List<CommentDTO.Response> findComment(Long recordId){
         List<CommentDTO.Response> commentDTOList = new ArrayList<>();
         List<Comment> comments = commentRepository.findComments(recordId);
@@ -127,6 +130,7 @@ public class BoardService {
     }
 
     //분석 1건 interest 조회
+    @Transactional(readOnly = true)
     public List<InterestDTO.Response> findInterest(Long recordId){
         List<InterestDTO.Response> interestDTOList = new ArrayList<>();
         List<Interest> interests = interestRepository.findInterests(recordId);
@@ -139,6 +143,7 @@ public class BoardService {
     }
 
     //분석 1건 키워드 조회
+    @Transactional(readOnly = true)
     public List<KeywordDTO.Response> findKeyword(Long recordId){
         List<KeywordDTO.Response> keywordDTOList = new ArrayList<>();
         List<Keyword> keywords = keywordRepository.findKeywords(recordId);
@@ -150,6 +155,7 @@ public class BoardService {
     }
 
     //분석 1건 percent 조회.
+    @Transactional(readOnly = true)
     public PercentDTO.Response findPercent(Long recordId){
         Percent percentEntity = percentRepository.findPercents(recordId);
         PercentDTO.Response response = new PercentDTO.Response(percentEntity);      //   Entity -> DTO
@@ -157,6 +163,7 @@ public class BoardService {
     }
 
     //분석 1건 타임라인 조회.
+    @Transactional(readOnly = true)
     public List<TimelineDTO.Response> findTimeLine(Long recordId){
         List<TimelineDTO.Response> timeLineDTOList = new ArrayList<>();
         List<Timeline> timelines = timeLineRepository.findTimelines(recordId);
@@ -168,6 +175,7 @@ public class BoardService {
     }
 
     //분석 1건 videoInfo 조회.
+    @Transactional(readOnly = true)
     public VideoInformationDTO.Response findVideoInfo(Long recordId){
         VideoInformation videoInfo = videoInfoRepository.findVideoInfo(recordId);
         VideoInformationDTO.Response response = new VideoInformationDTO.Response(videoInfo);     //Entity -> DTO
@@ -175,6 +183,7 @@ public class BoardService {
     }
 
     //분석 1건 키워드 관련 댓글 조회.
+    @Transactional(readOnly = true)
     public List<KeywordCommentDTO.Response> findKeywordComment(Long recordId){
         List<KeywordCommentDTO.Response> keywordCommentDTOList = new ArrayList<>();
 
