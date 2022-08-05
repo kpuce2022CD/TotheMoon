@@ -29,13 +29,13 @@ public class MemberController {
     }
 
     //회원가입
-    @GetMapping("/members/add")
+    @GetMapping("/members/new")
     public String addForm(@ModelAttribute("memberDTO") MemberDTO memberDTO) {
         return "login/addMemberForm";
     }
 
     //회원가입
-    @PostMapping("/members/add")
+    @PostMapping("/members/new")
     public String save(@Valid @ModelAttribute MemberDTO memberDTO, BindingResult result) throws IOException {
 
         //검증 오류 시
@@ -49,7 +49,7 @@ public class MemberController {
     }
 
     //마이페이지
-    @GetMapping("/memberinfo")
+    @GetMapping("/my-page")
     public String homeLoginV3Spring(@SessionAttribute(name = SessionConst.LOGIN_MEMBER, required = false) Member loginMember, Model model) {
 
         //세션에 회원 데이터가 없으면(로그아웃 상태) 로그인 페이지로

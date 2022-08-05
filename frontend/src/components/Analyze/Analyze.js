@@ -171,9 +171,9 @@ const Analyze = () => {
                 }
                 {
                   clickedMenuTab===5 ? 
-                  <li style={{backgroundColor:"rgb(250,128,114)",margin:"10px"}} class="nav-item" onClick={() => {setClickedMenuTab(5)}}><a style={{color:"white"}} class="nav-link js-scroll-trigger" href="http://localhost:8080/memberinfo" target="_blank">MY PAGE</a></li>
+                  <li style={{backgroundColor:"rgb(250,128,114)",margin:"10px"}} class="nav-item" onClick={() => {setClickedMenuTab(5)}}><a style={{color:"white"}} class="nav-link js-scroll-trigger" href="http://localhost:8080/my-page" target="_blank">MY PAGE</a></li>
                   :
-                  <li style={{margin:"10px"}} class="nav-item" onClick={() => {setClickedMenuTab(4)}}><a style={{color:"white"}} class="nav-link js-scroll-trigger" href="http://localhost:8080/memberinfo" target="_blank">MY PAGE</a></li>
+                  <li style={{margin:"10px"}} class="nav-item" onClick={() => {setClickedMenuTab(4)}}><a style={{color:"white"}} class="nav-link js-scroll-trigger" href="http://localhost:8080/my-page" target="_blank">MY PAGE</a></li>
                 }
               </ul>
             </div>

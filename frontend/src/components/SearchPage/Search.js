@@ -30,7 +30,7 @@ function Search() {
             <div class="container">
                 <a class="navbar-brand" href="#!">Naetube</a>
                 {/* <a class="navbar-brand" href="http://localhost:8080/login">Login</a>  */}
-                <a class="navbar-brand" href="http://localhost:8080/memberinfo">mypage</a>
+                <a class="navbar-brand" href="http://localhost:8080/my-page">mypage</a>
                 {/* <form action="http://localhost:8080/logout" method="post">
                     <button onClick="" type="submit">logout</button>
                 </form> */}
