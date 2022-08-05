@@ -49,27 +49,30 @@ tbody, thead{
         </div>
         <button type="submit" class="btn btn-light mb-2">검색</button>
     </form>
-    <table class="table table-hover">
-        <thead>
-        <tr>
-            <th scope="col">#</th>
-            <th scope="col">VIDEO TITLE</th>
-            <th scope="col">TIME</th>
-            <th scope="col"></th>
-            <th scope="col"></th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="record : ${records}">
-            <th scope="row" th:text="${recordStat.index+1 + nowPage*recordPage.size}"></th>
-            <td th:width="530" th:text="${record.title}"></td>
-            <td th:width="200" th:text="${record.createDate}"></td>
-            <td><a th:href="@{/persist/{id}(id = ${record.id})}">자세히 보기</a></td>
-            <td><a th:href="@{/delete/{id}(id = ${record.id})}">삭제</a></td>
-        </tr>
-        </tbody>
-    </table>
-
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">VIDEO TITLE</th>
+                <th scope="col">TIME</th>
+                <th scope="col"></th>
+                <th scope="col"></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="record : ${records}">
+                <th scope="row" th:text="${recordStat.index+1 + nowPage*recordPage.size}"></th>
+                <td th:width="450" th:text="${record.title}"></td>
+                <td th:width="200" th:text="${record.createDate}"></td>
+                <td th:width="140"><button class="btn btn-outline-dark" th:type="button" th:onclick="|location.href='@{/record/{id}(id = ${record.id})}'|">
+                    자세히 보기</button></td>
+                <form action="/record/delete" method="post">
+                <input th:type="hidden" th:name="recordId" th:value="${record.id}">
+                <td th:width="100"><button class="btn btn-outline-dark" type="submit">삭제</button></td>
+                </form>
+            </tr>
+            </tbody>
+        </table>
 <!--    <th:block th:each="page : ${#numbers.sequence(startPage, endPage)}">-->
 <!--        <a th:if="${page != nowPage}" th:href="@{/listPage(page = ${page -1})}" th:text="${page}"></a>-->
 <!--        <strong th:if="${page == nowPage}" th:text="${page}" style="color: red"></strong>-->

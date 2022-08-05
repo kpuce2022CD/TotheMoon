@@ -63,10 +63,7 @@ public class BoardController {
         return "db_complete_list";
     }
 
-
-
-    //저장
-    @GetMapping("/persist")
+    @GetMapping("/record")
     public String persistComment(@SessionAttribute(name = SessionConst.LOGIN_MEMBER, required = false) Member loginMember){
         Record record = new Record();
         boardService.registerDB(commentListDTO,record,loginMember,keywordDTO, keywordCommentDTO, percentDTO, videoInformationDTO,interestListDTO,timeLineListDTO);
@@ -74,7 +71,7 @@ public class BoardController {
     }
 
     //분석 1건 조회
-    @GetMapping("/persist/{recordId}")
+    @GetMapping("/record/{recordId}")
     public String showComments(@PathVariable String recordId,  Model model){
         long longRecordId = Long.parseLong(recordId);
         List<CommentDTO.Response> comments = boardService.findComment(longRecordId);
@@ -97,10 +94,9 @@ public class BoardController {
     }
 
     //분석 1건 삭제
-    @GetMapping("/delete/{recordId}")
-    public String delete(@PathVariable String recordId){
-        long longRecordId = Long.parseLong(recordId);
-        boardService.delete(longRecordId);
+    @PostMapping("/record/delete")
+    public String delete(long recordId){
+        boardService.delete(recordId);
         return "redirect:/list";
     }
 }
