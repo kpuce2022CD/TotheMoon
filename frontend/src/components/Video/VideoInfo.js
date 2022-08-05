@@ -8,11 +8,11 @@ const VideoInfo = ({ player, url }) => {
   const [videoInfo, setVideoInfo] = useState({});
   useEffect(() => {
     (async function () {
-      const result = await axios.get(`http://localhost:8080/timeline/${url}`);
+      const result = await axios.get(`http://localhost:8080/timelines/${url}`);
       setTimeline(result.data);
     })();
     (async function () {
-      const result = await axios.get(`http://localhost:8080/videoinfo/${url}`);
+      const result = await axios.get(`http://localhost:8080/videoinformations/${url}`);
       setVideoInfo(result.data);
     })();
   }, [url]);

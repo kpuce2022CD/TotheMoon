@@ -14,7 +14,7 @@ const Home = ({ url }) => {
     (async function () {
       const keyword = input.current.value;
       const result = await axios.get(
-        `http://localhost:8080/findcomment?url=${url}&keyword=${keyword}`
+        `http://localhost:8080/comments?url=${url}&keyword=${keyword}`
       );
       setVisible(true);
       setPopUp({ title: keyword, comments: result.data });

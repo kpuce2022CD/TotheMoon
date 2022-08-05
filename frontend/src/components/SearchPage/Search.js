@@ -9,7 +9,7 @@ function Search() {
     const input = useRef()
     const onClick = ()=>{
         const videoId = new URL(input.current.value).pathname
-        const url = `/analyze${videoId}`
+        const url = `/analysis${videoId}`
         navigate(url)
     }
 

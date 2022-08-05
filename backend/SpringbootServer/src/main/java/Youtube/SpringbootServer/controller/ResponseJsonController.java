@@ -34,26 +34,10 @@ public class ResponseJsonController {
     private final InterestListDTO interestListDTO;
     private final TimeLineListDTO timeLineListDTO;
 
-    private ObjectMapper objectMapper = new ObjectMapper();
-    private String link = "http://localhost:5000";
-    private RestTemplate restTemplate = new RestTemplate();
-
     @CrossOrigin("*")
-    @GetMapping("/youtube-video-id/{videoId}")
-    public String setVideoId(@PathVariable String videoId, HttpServletRequest request){
-        String baseUrl = link + "/";
-        ResponseEntity<String> response = restTemplate.getForEntity(baseUrl, String.class);
-        String comments = response.getBody();
-        HttpSession httpSession = request.getSession();
-        //String to comments domain
-        //        httpSession
-        return null;
-    }
-
-    @CrossOrigin("*")
-    @GetMapping("/getkeyword/{url}")
+    @GetMapping("/keywords/{url}")
     public KeywordDTO getKeyword(@PathVariable String url, Model model) {
-        String KeywordBaseUrl = "http://localhost:5000/searchkeyword?url=" + url;
+        String KeywordBaseUrl = "http://localhost:5000/keywords?url=" + url;
         RestTemplate KeywordRestTemplate = new RestTemplate();
 
         ResponseEntity<KeywordDTO> KeywordResponse = KeywordRestTemplate.getForEntity(KeywordBaseUrl, KeywordDTO.class);
@@ -77,10 +61,10 @@ public class ResponseJsonController {
     }
 
     @CrossOrigin("*")
-    @GetMapping("/getcomments/{url}")
+    @GetMapping("/comments/{url}")
     public CommentListDTO getComments(@PathVariable String url, Model model) {
 
-        String baseUrl = "http://localhost:5000/classifycomments?url=" + url;
+        String baseUrl = "http://localhost:5000/comments?url=" + url;
         RestTemplate restTemplate = new RestTemplate();
         ResponseEntity<CommentDTO[]> response = restTemplate.getForEntity(baseUrl, CommentDTO[].class);
         CommentDTO[] comments = response.getBody();
@@ -99,9 +83,9 @@ public class ResponseJsonController {
     }
 
     @CrossOrigin("*")
-    @GetMapping("/videoinfo/{videoId}")
+    @GetMapping("/videoinformations/{videoId}")
     public VideoInformationDTO getVideoInfo(@PathVariable String videoId){
-        String baseurl = "http://localhost:5000/getvideoinformation?url=" + videoId;
+        String baseurl = "http://localhost:5000/videoinformations?url=" + videoId;
         RestTemplate restTemplate = new RestTemplate();
         ResponseEntity<VideoInformationDTO[]> response = restTemplate.getForEntity(baseurl, VideoInformationDTO[].class);
         VideoInformationDTO[] videoInfo = response.getBody();
@@ -113,9 +97,9 @@ public class ResponseJsonController {
     }
 
     @CrossOrigin("*")
-    @GetMapping("/timeline/{videoId}")
+    @GetMapping("/timelines/{videoId}")
     public TimelineDTO[] getTimeline(@PathVariable String videoId){
-        String baseurl = "http://localhost:5000/timeline?url="+videoId;
+        String baseurl = "http://localhost:5000/timelines?url="+videoId;
         RestTemplate restTemplate = new RestTemplate();
         ResponseEntity<TimelineDTO[]> response = restTemplate.getForEntity(baseurl, TimelineDTO[].class);
         TimelineDTO[] timeline = response.getBody();
@@ -141,9 +125,9 @@ public class ResponseJsonController {
     }
 
     @CrossOrigin("*")
-    @GetMapping("/findcomment")
+    @GetMapping("/search")
     public String[] findComment(@RequestParam("url") String url, @RequestParam("keyword") String keyword){
-        String baseUrl = "http://localhost:5000/find?url=" + url+"&keyword="+keyword;
+        String baseUrl = "http://localhost:5000/search?url=" + url+"&keyword="+keyword;
         RestTemplate restTemplate = new RestTemplate();
         ResponseEntity<String[]> response = restTemplate.getForEntity(baseUrl, String[].class);
         String[] result = response.getBody();

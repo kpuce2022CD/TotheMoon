@@ -53,7 +53,7 @@ const Analyze = () => {
 
     const fetchData = async () => {
       const result = await axios.get(
-        `http://localhost:8080/getcomments/${url}`
+        `http://localhost:8080/comments/${url}`
       );
       setData(result.data);
 

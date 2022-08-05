@@ -9,7 +9,7 @@ const DropDown = ({ url, setPopUp, setVisible }) => {
   const [comments, setComments] = useState([]);
   useEffect(() => {
     (async function () {
-      const result = await axios.get(`http://localhost:8080/getkeyword/${url}`);
+      const result = await axios.get(`http://localhost:8080/keywords/${url}`);
       setData(result.data.b5);
       setComments(result.data.comments);
     })();
