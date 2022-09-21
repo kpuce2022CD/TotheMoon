@@ -14,7 +14,6 @@ import java.util.Locale;
 
 @Entity
 @Getter
-@Setter
 public class Member {
 
     @Id
@@ -42,5 +41,9 @@ public class Member {
     public Member(String loginId, String password) {
         this.loginId = loginId;
         this.password = password;
+    }
+
+    public void setLoginId(String loginId){
+        this.loginId = loginId;
     }
 }

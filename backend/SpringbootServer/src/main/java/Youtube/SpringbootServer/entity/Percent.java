@@ -9,7 +9,6 @@ import static javax.persistence.FetchType.LAZY;
 
 @Entity
 @Getter
-@Setter
 public class Percent {
 
     @Id
@@ -46,5 +45,9 @@ public class Percent {
         this.neutral = neutral;
         this.disgust = disgust;
         this.fear = fear;
+    }
+
+    public void addRecord(Record record){
+        this.record = record;
     }
 }

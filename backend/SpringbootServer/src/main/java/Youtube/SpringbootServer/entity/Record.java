@@ -20,7 +20,6 @@ import static javax.persistence.FetchType.LAZY;
 
 @Entity
 @Getter
-@Setter
 @EntityListeners(AuditingEntityListener.class)
 public class Record {
 
@@ -47,5 +46,9 @@ public class Record {
 
     public void addMember(Member member){
         this.member = member;
+    }
+
+    public void setVideoInformation(VideoInformation vi){
+        this.videoInformation = vi;
     }
 }
