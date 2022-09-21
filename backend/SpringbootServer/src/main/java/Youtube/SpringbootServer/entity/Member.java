@@ -26,10 +26,6 @@ public class Member {
 
     private String password;
 
-    @JsonIgnore
-    @OneToMany(mappedBy = "member")
-    private List<Record> records = new ArrayList<>();
-
     @Column(name="register_date")
     @CreatedDate
     private String registerDate;

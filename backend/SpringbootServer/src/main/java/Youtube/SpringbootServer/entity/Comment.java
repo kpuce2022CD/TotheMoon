@@ -49,6 +49,5 @@ public class Comment {
 
     public void addRecord(Record record){
         this.record = record;
-        record.getComments().add(this);
     }
 }

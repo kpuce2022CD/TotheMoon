@@ -38,6 +38,5 @@ public class Timeline {
 
     public void addRecord(Record record){
         this.record = record;
-        record.getTimelines().add(this);
     }
 }

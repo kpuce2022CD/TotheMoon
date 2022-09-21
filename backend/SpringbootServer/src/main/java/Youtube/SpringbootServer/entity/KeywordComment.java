@@ -35,6 +35,5 @@ public class KeywordComment {
 
     public void addKeyword(Keyword keyword){
         this.keyword = keyword;
-        keyword.getKeywordComments().add(this);
     }
 }

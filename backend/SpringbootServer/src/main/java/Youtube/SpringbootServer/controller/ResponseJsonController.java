@@ -36,15 +36,21 @@ public class ResponseJsonController {
 
     @CrossOrigin("*")
     @GetMapping("/keywords/{url}")
-    public KeywordDTO getKeyword(@PathVariable String url, Model model) {
-        String KeywordBaseUrl = "http://localhost:5000/keywords?url=" + url;
-        RestTemplate KeywordRestTemplate = new RestTemplate();
+    public KeywordDTO getKeyword(@PathVariable String url) {
 
+        String KeywordBaseUrl = "http://localhost:5000/keywords?url=" + url;
+        //RestTemplate을 매소드를 이용하여 rest API 구현.
+        RestTemplate KeywordRestTemplate = new RestTemplate();
+        //.getForEntity() - 주어진 uri로 HTTP GET 매소드로 ResponseEntity 반환 받는다.
         ResponseEntity<KeywordDTO> KeywordResponse = KeywordRestTemplate.getForEntity(KeywordBaseUrl, KeywordDTO.class);
 
         KeywordDTO keyword = KeywordResponse.getBody();
+
+        //DI한 keywordDTO에 분석 결과를 저장함. - 분석 결과 저장을 위해서 임시로 데이터를 넣음.
+        //분석 결과를 저장할 때는 BoardController에서 keywordDTO를 호출해야되기 때문. DI를 활용함.
         keywordDTO.setB5(keyword.getB5());
         keywordDTO.setComments(keyword.getComments());
+
         log.info("대표 키워드 1 = {}", keyword.getB5()[0]);
         log.info("대표 키워드 2 = {}", keyword.getB5()[1]);
         log.info("대표 키워드 3 = {}", keyword.getB5()[2]);
@@ -56,27 +62,33 @@ public class ResponseJsonController {
         log.info("키워드 4 대표 댓글 = {}", keyword.getComments()[3][0]);
         log.info("키워드 5 대표 댓글 = {}", keyword.getComments()[4][0]);
 
-
+        //일반 DTO 반환.
         return keyword;
     }
 
     @CrossOrigin("*")
     @GetMapping("/comments/{url}")
-    public CommentListDTO getComments(@PathVariable String url, Model model) {
+    public CommentListDTO getComments(@PathVariable String url) {
 
+        //Flask로부터 댓글 정보 받아오기.
         String baseUrl = "http://localhost:5000/comments?url=" + url;
         RestTemplate restTemplate = new RestTemplate();
         ResponseEntity<CommentDTO[]> response = restTemplate.getForEntity(baseUrl, CommentDTO[].class);
         CommentDTO[] comments = response.getBody();
 
         HashMap<String, List> commentMap = commentService.classifyComment(comments);
+        //긍정부정 퍼센트 계산
         HashMap<String, Double> positiveNegativePercentMap = commentService.positiveNegativePercent();
+        //감정 퍼센트 계산
         HashMap<String, Double> sentimentPercentMap = commentService.sentimentPercent();
 
+        //percentDTO에 퍼센트 값 입력
         percentDTO.SetPercentDTO(positiveNegativePercentMap.get("refined_positivePercent"),positiveNegativePercentMap.get("refined_negativePercent"),
                 sentimentPercentMap.get("refined_happyPercent"),sentimentPercentMap.get("refined_surprisedPercent"),sentimentPercentMap.get("refined_angerPercent"),
                 sentimentPercentMap.get("refined_sadnessPercent"),sentimentPercentMap.get("refined_neutralPercent"),sentimentPercentMap.get("refined_disgustPercent"),
                 sentimentPercentMap.get("refined_fearPercent"));
+
+        //comentListDTO에 percentDTO와 commentDTO 같이 묶어서 반환.
         commentListDTO.setCommentListDTO(comments,percentDTO);
 
         return commentListDTO;

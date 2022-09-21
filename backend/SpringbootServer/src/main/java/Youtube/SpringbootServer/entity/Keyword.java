@@ -25,10 +25,6 @@ public class Keyword {
     @JoinColumn(name= "record_id")
     private Record record;
 
-    @JsonIgnore
-    @OneToMany(mappedBy = "keyword")
-    private List<KeywordComment> keywordComments = new ArrayList<>();
-
     //순위
     private int keywordRank;
 
@@ -45,6 +41,5 @@ public class Keyword {
 
     public void addRecord(Record record){
         this.record = record;
-        record.getKeywords().add(this);
     }
 }

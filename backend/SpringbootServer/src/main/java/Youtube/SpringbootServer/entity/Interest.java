@@ -32,6 +32,5 @@ public class Interest {
 
     public void addRecord(Record record){
         this.record = record;
-        record.getInterests().add(this);
     }
 }

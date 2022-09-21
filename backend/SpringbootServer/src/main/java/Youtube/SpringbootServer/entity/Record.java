@@ -29,24 +29,8 @@ public class Record {
     @Column(name = "record_id")
     private Long id;
 
-    @JsonIgnore
-    @OneToMany(mappedBy = "record")
-    private List<Comment> comments = new ArrayList<>();
-
-    @JsonIgnore
-    @OneToMany(mappedBy = "record")
-    private List<Keyword> keywords = new ArrayList<>();
-
     @OneToOne(mappedBy = "record", fetch = LAZY)
     private VideoInformation videoInformation;
-
-    @JsonIgnore
-    @OneToMany(mappedBy = "record")
-    private List<Interest> interests = new ArrayList<>();
-
-    @JsonIgnore
-    @OneToMany(mappedBy = "record")
-    private List<Timeline> timelines = new ArrayList<>();
 
     @ManyToOne( fetch = LAZY)
     @JoinColumn(name= "member_id")
@@ -63,6 +47,5 @@ public class Record {
 
     public void addMember(Member member){
         this.member = member;
-        member.getRecords().add(this);
     }
 }
